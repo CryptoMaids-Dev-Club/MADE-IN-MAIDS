@@ -1,7 +1,13 @@
+import { Footer } from '@/app/_components/Footer'
 import ItemDetail from './ItemDetail'
 import type { NFTMetadata } from '../types'
 
-const AssetDetail = ({ params }: { params: { id: string } }) => <ItemDetail id={params.id} />
+const AssetDetail = ({ params }: { params: { id: string } }) => (
+  <>
+    <ItemDetail id={params.id} />
+    <Footer />
+  </>
+)
 
 export default AssetDetail
 
