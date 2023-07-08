@@ -7,7 +7,6 @@ import './index.css'
 
 const siteName = 'Made in Maids'
 const description = 'Web site created by goshujin sama in the development team'
-const url = 'https://本番のドメイン'
 
 export const metadata = {
   title: {
@@ -18,7 +17,6 @@ export const metadata = {
   openGraph: {
     title: siteName,
     description,
-    url,
     siteName,
     locale: 'ja_JP',
     type: 'website',
@@ -29,12 +27,6 @@ export const metadata = {
     description,
     site: '@CryptoMaids',
     creator: '@CryptoMaids',
-  },
-  verification: {
-    google: 'サーチコンソールのやつ',
-  },
-  alternates: {
-    canonical: url,
   },
 }
 

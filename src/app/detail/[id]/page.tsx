@@ -2,7 +2,7 @@
 
 import { Box, Container, Divider, Grid } from '@mui/material'
 import { Address, useAccount } from 'wagmi'
-import { useAsset } from '@/hooks/useAsset'
+import { useAssets } from '@/hooks/useAsset'
 import { Footer } from '@/app/_components/Footer'
 import { VotingForm } from './VotingForm'
 import { VotingInfo } from './VotingInfo'
@@ -12,9 +12,7 @@ import { NFTImage } from './NFTImage'
 
 const Detail = ({ params }: { params: { id: string } }) => {
   const { address } = useAccount()
-  const assetQuery = useAsset([Number(params.id)])
-
-  if (!assetQuery.data) return null
+  const assets = useAssets([Number(params.id)])
 
   const style = {
     width: '100%',
@@ -30,11 +28,11 @@ const Detail = ({ params }: { params: { id: string } }) => {
         <Box sx={style} mt='50px'>
           <Grid container justifyContent='center' spacing={2}>
             <Grid item md={6} xs={12}>
-              <NFTImage url={assetQuery.data[0].external_url} />
+              <NFTImage url={assets[0].external_url} />
             </Grid>
             <Grid item md={6} xs={12}>
               <Grid container spacing={1}>
-                <NFTInfo id={Number(params.id)} {...assetQuery.data[0]} />
+                <NFTInfo id={Number(params.id)} {...assets[0]} />
                 <Grid item md={12} xs={12}>
                   <Divider />
                   <br />

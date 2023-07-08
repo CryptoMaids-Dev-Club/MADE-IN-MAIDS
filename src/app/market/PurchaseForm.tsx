@@ -1,3 +1,5 @@
+'use client'
+
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import {
   FormControl,
@@ -48,7 +50,7 @@ export const PurchaseForm = ({ item }: PurchaseFormProps) => {
           <Grid item xs={2}>
             <FormControl fullWidth>
               <InputLabel>Amount</InputLabel>
-              <Select value={amount} label='Amount' onChange={handleChange} sx={{ height: '39px' }}>
+              <Select value={amount} label='Amount' onChange={handleChange} sx={{ height: '50px' }}>
                 {[...Array(range)].map((_, i) => (
                   // eslint-disable-next-line react/no-array-index-key
                   <MenuItem key={i + 1} value={i + 1}>

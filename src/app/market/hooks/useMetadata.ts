@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query'
 import { axios } from '@/lib/axios'
-import { ItemInfo, MarketItemInfo, Metadata } from '../types'
+import { ItemInfo, MarketItemInfo, NFTMetadata } from '../types'
 
 export const fetchMarketItems = async (items: ItemInfo[]): Promise<MarketItemInfo[]> => {
   if (items === undefined) return []
@@ -12,7 +12,7 @@ export const fetchMarketItems = async (items: ItemInfo[]): Promise<MarketItemInf
         const response = await axios.get(item.tokenURI.replace('ipfs://', 'https://ipfs.io/ipfs/'), {
           timeout: 20000,
         })
-        const metadata = response.data as Metadata
+        const metadata = response.data as NFTMetadata
         const info = {
           ...item,
           id: index,
@@ -34,4 +34,8 @@ export const fetchMarketItems = async (items: ItemInfo[]): Promise<MarketItemInf
   return infos
 }
 
-export const useMetadata = (items: ItemInfo[]) => useQuery(['marketItems', items], () => fetchMarketItems(items))
+export const useMetadata = (items: ItemInfo[]) => {
+  const { data } = useQuery(['marketItems', items], () => fetchMarketItems(items))
+
+  return data ?? []
+}

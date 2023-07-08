@@ -2,7 +2,7 @@ import { useContractRead } from 'wagmi'
 import { marketContractConfig } from '@/config'
 import { formatEther, formatUnits } from 'viem'
 import { axios } from '@/lib/axios'
-import type { ItemInfo, MarketItemInfo, Metadata } from '../types'
+import type { ItemInfo, MarketItemInfo, NFTMetadata } from '../types'
 
 type SolidityItemInfo = {
   name: string
@@ -34,7 +34,7 @@ export const fetchMarketItems = async (items: ItemInfo[]): Promise<MarketItemInf
         const response = await axios.get(item.tokenURI.replace('ipfs://', 'https://ipfs.io/ipfs/'), {
           timeout: 20000,
         })
-        const metadata = response.data as Metadata
+        const metadata = response.data as NFTMetadata
         const info = {
           ...item,
           id: index,

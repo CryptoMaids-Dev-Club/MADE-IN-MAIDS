@@ -4,14 +4,14 @@ import { Button, Container, Grid, Typography, useMediaQuery } from '@mui/materia
 import { Image } from 'mui-image'
 
 import NextLink from 'next/link'
-import { useAsset } from '@/hooks/useAsset'
+import { useAssets } from '@/hooks/useAsset'
 import { useTop5Votes } from './hooks/useVotes'
 
 export const Top5 = () => {
   const matches = useMediaQuery('(min-width: 560px)')
   const { ids, amounts } = useTop5Votes(matches)
 
-  const { data } = useAsset(ids)
+  const assets = useAssets(ids)
   const displayOrder = matches ? [2, 1, 3, 4, 5] : [1, 2, 3, 4, 5]
 
   return (
@@ -34,7 +34,7 @@ export const Top5 = () => {
       </Grid>
 
       <Grid container justifyContent='center' alignContent='center'>
-        {data?.map((asset, index) => (
+        {assets.map((asset, index) => (
           <Grid key={asset.name} item md={4} xs={12}>
             <Grid container justifyContent='center' alignContent='center'>
               <Image src={`/images/${displayOrder[index]}.png`} alt='rank' height={matches ? '340px' : '100px'} />

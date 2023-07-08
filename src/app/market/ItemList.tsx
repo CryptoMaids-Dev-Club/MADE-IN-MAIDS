@@ -8,11 +8,11 @@ import ItemCard from './ItemCard'
 
 const ItemList = () => {
   const items = useItems()
-  const itemsQuery = useMetadata(items as ItemInfo[])
+  const marketItems = useMetadata(items as ItemInfo[])
 
   return (
     <Grid container justifyContent='center' mt='10px' spacing={2}>
-      {itemsQuery.data?.map((item) => (
+      {marketItems.map((item) => (
         <Grid key={item.id} item>
           <Container>
             <ItemCard key={item.id} item={item} />

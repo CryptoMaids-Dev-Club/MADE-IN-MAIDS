@@ -29,4 +29,8 @@ export const fetchAssets = async (tokenIds: number[]): Promise<AssetInfo[]> => {
   return res
 }
 
-export const useAsset = (ids: number[]) => useQuery(['asset', ids], () => fetchAssets(ids))
+export const useAssets = (ids: number[]) => {
+  const { data } = useQuery(['asset', ids], () => fetchAssets(ids))
+
+  return data ?? []
+}
