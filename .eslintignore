@@ -1,0 +1,10 @@
+/.eslintrc.js
+/next.config.js
+build
+**/@types/*.d.ts
+node_modules
+*.css
+*.json
+*.snap
+*.svg
+config-overrides.js

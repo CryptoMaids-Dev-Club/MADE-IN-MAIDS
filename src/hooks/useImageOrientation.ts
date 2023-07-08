@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 
 type Orientation = 'landscape' | 'portrait' | null

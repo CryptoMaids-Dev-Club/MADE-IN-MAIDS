@@ -1,6 +1,9 @@
 import '@rainbow-me/rainbowkit/styles.css'
+import { Box, Container, CssBaseline, ThemeProvider } from '@/app/_common/_components'
+import theme from './theme'
 import { Providers } from './providers'
-import TopLayout from './TopLayout'
+import { TopBar } from './TopBar'
+import './index.css'
 
 const siteName = 'Made in Maids'
 const description = 'Web site created by goshujin sama in the development team'
@@ -35,14 +38,21 @@ export const metadata = {
   },
 }
 
-export const RootLayout = ({ children }: { children: React.ReactNode }) => (
+const RootLayout = ({ children }: { children: React.ReactNode }) => (
   <html lang='en'>
     <body>
       <Providers>
-        <TopLayout>{children}</TopLayout>
+        <ThemeProvider theme={theme}>
+          <Box sx={{ bgcolor: 'rgba(0,0,0,0.87)' }}>
+            <CssBaseline />
+            <TopBar />
+            <Container maxWidth={false} sx={{ bgcolor: 'rgba(0,0,0,0.87)' }}>
+              <Box sx={{ height: '100%', marginTop: '10px', width: '100%' }}>{children}</Box>
+            </Container>
+          </Box>
+        </ThemeProvider>
       </Providers>
     </body>
   </html>
 )
-
 export default RootLayout
