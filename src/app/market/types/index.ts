@@ -5,7 +5,7 @@ export type ItemInfo = {
   tokenURI: string
 }
 
-export type Metadata = {
+export type NFTMetadata = {
   name: string
   description: string
   attributes: string[]

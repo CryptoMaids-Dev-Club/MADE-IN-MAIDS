@@ -1,10 +1,12 @@
+'use client'
+
 import MenuIcon from '@mui/icons-material/Menu'
 import { AppBar, Box, IconButton, useMediaQuery } from '@mui/material'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useState } from 'react'
-import { Balance } from '@/app/components/Elements/Balance'
-import { MenuLink } from '@/app/components/Elements/MenuLink'
-import { SideDrawer } from '@/app/components/Elements/Drawer'
+import { Balance } from '@/app/_components/Elements/Balance'
+import { MenuLink } from '@/app/_components/Elements/MenuLink'
+import { SideDrawer } from '@/app/_components/Elements/Drawer'
 import Image from 'next/image'
 
 export const TopBar = () => {
@@ -57,16 +59,16 @@ export const TopBar = () => {
           </IconButton>
         )}
         <Image
-          src='/assets/images/maid-eye-icon.png'
-          width='107'
-          height='140'
+          src='/images/maid-eye-icon.png'
+          width='22'
+          height='30'
           alt='maid'
           style={{ height: '30px', marginTop: '10px', marginLeft: matches ? '25px' : '3px', marginRight: '3px' }}
         />
         <Image
-          src='/assets/images/logo_text.png'
-          width='486'
-          height='138'
+          src='/images/logo_text.png'
+          width='160'
+          height='45'
           alt='logo'
           style={{ height: '45px', marginTop: '5px' }}
         />

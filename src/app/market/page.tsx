@@ -1,7 +1,7 @@
-import { Header } from '@/app/components/Header'
-import { Footer } from '@/app/components/Footer'
+import { Header } from '@/app/_components/Header'
+import { Footer } from '@/app/_components/Footer'
 import { Metadata } from 'next'
-import ItemList from './components/ItemList'
+import ItemList from './ItemList'
 
 const Market = () => (
   <>
