@@ -1,9 +1,9 @@
 'use client'
 
-import { Box, CardMedia, useMediaQuery } from '@mui/material'
+import { Box, CardMedia } from '@mui/material'
 import { useImageOrientation } from '@/hooks/useImageOrientation'
-import { MarketItemInfo } from './types'
 import Image from 'next/image'
+import { MarketItemInfo } from './types'
 
 type ItemImageProps = {
   item: MarketItemInfo
@@ -23,7 +23,6 @@ const ImageStyle = {
 
 const ItemImage = ({ item }: ItemImageProps) => {
   const orientation = useImageOrientation(item.image)
-  const matches = useMediaQuery('(min-width: 560px)')
 
   if (item.nsfw)
     return (
