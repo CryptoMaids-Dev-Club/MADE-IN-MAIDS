@@ -1,5 +1,6 @@
 import { Box, Card, CardContent, CardMedia, Grid, Typography } from '@mui/material'
 import Link from 'next/link'
+import Image from 'next/image'
 
 type TopCardProps = {
   title: string
@@ -29,7 +30,9 @@ const TopCard = ({ title, color, image, description, link }: TopCardProps) => (
     <Link href={link}>
       <Card sx={{ width: 500, height: 580, background: 'black' }}>
         <Box overflow='hidden' width={500} height={500}>
-          <CardMedia sx={ImageStyle} component='img' width='500' height='500' image={image} />
+          <CardMedia sx={{ ...ImageStyle }}>
+            <Image src={image} height={700} width={500} alt='item' style={{ objectFit: 'cover' }} />
+          </CardMedia>
         </Box>
         <CardContent sx={{ background: 'black' }}>
           <Grid>

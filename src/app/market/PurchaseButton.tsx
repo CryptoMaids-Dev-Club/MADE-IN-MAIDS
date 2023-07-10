@@ -1,8 +1,12 @@
+'use client'
+
 import LoadingButton from '@mui/lab/LoadingButton'
 import { useEffect, useState } from 'react'
 import { useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import { MARKET_PROXY_CONTRACT_ADDRESS, maidsContractConfig, marketContractConfig } from '@/config'
 import { useAllowance } from '@/hooks/useAllowance'
+import { Alert, Grid, Snackbar, Typography } from '@mui/material'
+import { TwitterIcon, TwitterShareButton } from 'react-share'
 import { MarketItemInfo } from './types'
 
 type PurchaseButtonProps = {
@@ -11,11 +15,33 @@ type PurchaseButtonProps = {
   differentAddress: string
 }
 
+const SuccessAlert = ({ title, url }: { title: string; url: string }) => (
+  <Grid container>
+    <Grid item>
+      <Typography variant='h5'>Successfully bought! Share</Typography>
+    </Grid>
+    <Grid item>
+      <TwitterShareButton title={title} url={url} hashtags={['CryptoMaids', '$MAIDS']}>
+        <TwitterIcon size={34} round />
+      </TwitterShareButton>
+    </Grid>
+  </Grid>
+)
+
 const PurchaseButton = ({ item, amount, differentAddress }: PurchaseButtonProps) => {
   const [isActive, setIsActive] = useState(false)
   const [approved, setApproved] = useState(false)
   const { address } = useAccount()
   const { allowance, refetch } = useAllowance(address, MARKET_PROXY_CONTRACT_ADDRESS)
+  const [open, setOpen] = useState(false)
+
+  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return
+    }
+
+    setOpen(false)
+  }
 
   useEffect(() => {
     const checkActive = () => {
@@ -55,6 +81,10 @@ const PurchaseButton = ({ item, amount, differentAddress }: PurchaseButtonProps)
 
   const buyItemTx = useWaitForTransaction({
     hash: buyItemData?.hash,
+    // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
+    onSuccess() {
+      setOpen(true)
+    },
   })
 
   useEffect(() => {
@@ -77,14 +107,25 @@ const PurchaseButton = ({ item, amount, differentAddress }: PurchaseButtonProps)
   }
 
   return (
-    <LoadingButton
-      fullWidth
-      loading={isLoadingApprove || isLoadingBuyItem || approveTx.isLoading || buyItemTx.isLoading}
-      disabled={!isActive}
-      onClick={handleClick}
-      sx={{ border: '1px solid gray', color: 'FF4264', fontSize: '20px' }}>
-      {approved ? `Purchase for ${Number(item.price) * amount} $MAIDS` : `Approve $MAIDS`}
-    </LoadingButton>
+    <>
+      <LoadingButton
+        fullWidth
+        loading={isLoadingApprove || isLoadingBuyItem || approveTx.isLoading || buyItemTx.isLoading}
+        disabled={!isActive}
+        onClick={handleClick}
+        sx={{ border: '1px solid gray', color: 'FF4264', fontSize: '20px' }}>
+        {approved ? `Purchase for ${Number(item.price) * amount} $MAIDS` : `Approve $MAIDS`}
+      </LoadingButton>
+      <Snackbar
+        open={open}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        autoHideDuration={10000}
+        onClose={handleClose}>
+        <Alert icon={false} onClose={handleClose} variant='filled' severity='success' sx={{ width: '100%' }}>
+          <SuccessAlert title={item.name} url={`https://localhost:3000/item/${item.id}`} />
+        </Alert>
+      </Snackbar>
+    </>
   )
 }
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { Close } from '@mui/icons-material'
+import Close from '@mui/icons-material/Close'
 import { Box, Button, Grid, Typography, Modal, IconButton, useMediaQuery } from '@mui/material'
 import { useState } from 'react'
 import { MarketItemInfo } from './types'

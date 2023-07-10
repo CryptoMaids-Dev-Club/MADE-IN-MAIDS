@@ -1,8 +1,7 @@
 import { useContractRead } from 'wagmi'
 import { marketContractConfig } from '@/config'
 import { formatEther, formatUnits } from 'viem'
-import { axios } from '@/lib/axios'
-import type { ItemInfo, MarketItemInfo, NFTMetadata } from '../types'
+import type { ItemInfo } from '../types'
 
 type SolidityItemInfo = {
   name: string
@@ -26,36 +25,6 @@ const convert = (items: SolidityItemInfo[]) => {
   return convertedItems
 }
 
-export const fetchMarketItems = async (items: ItemInfo[]): Promise<MarketItemInfo[]> => {
-  const infos: MarketItemInfo[] = []
-  await Promise.all(
-    items.map(async (item, index) => {
-      try {
-        const response = await axios.get(item.tokenURI.replace('ipfs://', 'https://ipfs.io/ipfs/'), {
-          timeout: 20000,
-        })
-        const metadata = response.data as NFTMetadata
-        const info = {
-          ...item,
-          id: index,
-          name: metadata.name,
-          description: metadata.description,
-          image: metadata.image.replace('ipfs://', 'https://ipfs.io/ipfs/'),
-          external_url: metadata.external_url && metadata.external_url.replace('ipfs://', 'https://ipfs.io/ipfs/'),
-          nsfw: metadata.nsfw,
-        }
-        infos.push(info)
-      } catch (e) {
-        console.log(e)
-      }
-    })
-  )
-
-  infos.sort((a, b) => Number(a.id) - Number(b.id))
-
-  return infos
-}
-
 export const useItems = () => {
   const { data: items } = useContractRead({
     ...marketContractConfig,
@@ -65,3 +34,5 @@ export const useItems = () => {
 
   return items
 }
+
+export default useItems

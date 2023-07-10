@@ -34,8 +34,6 @@ export const generateMetadata = async ({ params }: { params: { id: string } }) =
       images: [
         {
           url: meta.image,
-          width: 800,
-          height: 600,
         },
       ],
       type: 'website',

@@ -3,6 +3,7 @@
 import { Box, CardMedia, useMediaQuery } from '@mui/material'
 import { useImageOrientation } from '@/hooks/useImageOrientation'
 import { MarketItemInfo } from './types'
+import Image from 'next/image'
 
 type ItemImageProps = {
   item: MarketItemInfo
@@ -27,7 +28,9 @@ const ItemImage = ({ item }: ItemImageProps) => {
   if (item.nsfw)
     return (
       <Box overflow='hidden'>
-        <CardMedia sx={ImageStyle} component='img' height='350' image={item.image} />
+        <CardMedia sx={{ ...ImageStyle, position: 'relative' }}>
+          <Image src={item.image} width='390' height='350' alt='item' style={{ objectFit: 'cover' }} />
+        </CardMedia>
       </Box>
     )
 
@@ -35,15 +38,13 @@ const ItemImage = ({ item }: ItemImageProps) => {
     // eslint-disable-next-line react/jsx-no-useless-fragment
     <Box overflow='hidden'>
       {orientation?.toString() === 'landscape' ? (
-        <CardMedia
-          sx={ImageStyle}
-          component='img'
-          width={matches ? 390 : window.innerWidth - 100}
-          height='auto'
-          image={item.image}
-        />
+        <CardMedia sx={{ ...ImageStyle, position: 'relative' }}>
+          <Image src={item.image} width='390' height='350' alt='item' style={{ objectFit: 'cover' }} />
+        </CardMedia>
       ) : (
-        <CardMedia sx={ImageStyle} component='img' height='350' width='auto' image={item.image} />
+        <CardMedia sx={{ ...ImageStyle, position: 'relative' }}>
+          <Image src={item.image} width='390' height='350' alt='item' style={{ objectFit: 'cover' }} />
+        </CardMedia>
       )}
     </Box>
   )

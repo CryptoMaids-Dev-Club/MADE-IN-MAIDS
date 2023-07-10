@@ -1,8 +1,9 @@
 'use client'
 
-import { Box, Grid, Typography, useMediaQuery } from '@/app/_common/_components'
+import { Box, Grid, Typography, useMediaQuery } from '@mui/material'
 import { useItems } from '@/app/market/hooks/useItems'
 import { useMetadata } from '@/app/market/hooks/useMetadata'
+import Image from 'next/image'
 import { ItemInfo } from '../types'
 import { PurchaseForm } from '../PurchaseForm'
 
@@ -26,10 +27,15 @@ const ItemDetail = ({ id }: { id: string }) => {
     <Box sx={style}>
       <Grid container justifyContent='center'>
         <Grid item md={6} sm={12}>
-          <img
-            src={marketItem.nsfw ? marketItem.external_url : marketItem.image}
+          <Image
+            src={marketItem?.nsfw ? marketItem.external_url : marketItem.image}
             alt='nft'
             width={matches ? '500' : window.innerWidth - 200}
+            height={300}
+            style={{
+              maxWidth: '100%',
+              height: 'auto',
+            }}
           />
         </Grid>
         <Grid item md={6}>
