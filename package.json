@@ -5,6 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@testing-library/jest-dom": "^5.16.5",
     "@mui/icons-material": "^5.11.0",
     "@mui/lab": "^5.0.0-alpha.115",
     "@mui/material": "^5.11.4",
@@ -69,7 +70,6 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^13.4.9",
-    "@testing-library/jest-dom": "^5.16.5",
     "@typescript-eslint/eslint-plugin": "^5.59.9",
     "@typescript-eslint/parser": "^5.60.1",
     "eslint": "^8.23.1",
