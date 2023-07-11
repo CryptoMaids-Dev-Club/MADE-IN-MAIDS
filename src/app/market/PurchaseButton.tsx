@@ -21,7 +21,7 @@ const SuccessAlert = ({ title, url }: { title: string; url: string }) => (
       <Typography variant='h5'>Successfully bought! Share</Typography>
     </Grid>
     <Grid item>
-      <TwitterShareButton title={title} url={url} hashtags={['CryptoMaids', '$MAIDS']}>
+      <TwitterShareButton title={title} url={url} hashtags={['CryptoMaids']}>
         <TwitterIcon size={34} round />
       </TwitterShareButton>
     </Grid>
@@ -124,7 +124,7 @@ const PurchaseButton = ({ item, amount, differentAddress }: PurchaseButtonProps)
         <Alert icon={false} onClose={handleClose} variant='filled' severity='success' sx={{ width: '100%' }}>
           <SuccessAlert
             title={item.name}
-            url={`https://${process.env.VERCEL_URL || 'http://localhost:3000'}/item/${item.id}`}
+            url={`https://${process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:3000'}/item/${item.id}`}
           />
         </Alert>
       </Snackbar>
