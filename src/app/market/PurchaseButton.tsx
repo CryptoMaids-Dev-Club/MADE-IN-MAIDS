@@ -122,7 +122,10 @@ const PurchaseButton = ({ item, amount, differentAddress }: PurchaseButtonProps)
         autoHideDuration={10000}
         onClose={handleClose}>
         <Alert icon={false} onClose={handleClose} variant='filled' severity='success' sx={{ width: '100%' }}>
-          <SuccessAlert title={item.name} url={`https://localhost:3000/item/${item.id}`} />
+          <SuccessAlert
+            title={item.name}
+            url={`https://${process.env.VERCEL_URL || 'http://localhost:3000'}/item/${item.id}`}
+          />
         </Alert>
       </Snackbar>
     </>

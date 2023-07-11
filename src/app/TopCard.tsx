@@ -31,7 +31,7 @@ const TopCard = ({ title, color, image, description, link }: TopCardProps) => (
       <Card sx={{ width: 500, height: 580, background: 'black' }}>
         <Box overflow='hidden' width={500} height={500}>
           <CardMedia sx={{ ...ImageStyle }}>
-            <Image src={image} height={700} width={500} alt='item' style={{ objectFit: 'cover' }} />
+            <Image src={image} height={500} width={500} alt='item' style={{ objectFit: 'cover' }} />
           </CardMedia>
         </Box>
         <CardContent sx={{ background: 'black' }}>
