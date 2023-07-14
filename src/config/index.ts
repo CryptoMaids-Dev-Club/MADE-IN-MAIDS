@@ -18,23 +18,23 @@ export const NETWORK = process.env.NEXT_PUBLIC_NETWORK === 'mainnet' ? polygon :
 export const votingContractConfig = {
   address: MAIDS_VOTING_CONTRACT_ADDRESS,
   abi: MaidsVotingContract.abi,
-  chainId: NETWORK.id,
+  chainId: 137,
 }
 
 export const maidsContractConfig = {
   address: MAIDS_CONTRACT_ADDRESS,
   abi: MaidsTokenContract.abi,
-  chainId: NETWORK.id,
+  chainId: 1,
 }
 
 export const marketContractConfig = {
   address: MARKET_PROXY_CONTRACT_ADDRESS,
   abi: MaidsMarketContract.abi,
-  chainId: NETWORK.id,
+  chainId: 137,
 }
 
 export const maidsItemContractConfig = {
   address: MAIDS_ITEM_CONTRACT_ADDRESS,
   abi: MaidsItemContract.abi,
-  chainId: NETWORK.id,
+  chainId: 137,
 }

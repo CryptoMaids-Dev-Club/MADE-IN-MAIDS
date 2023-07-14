@@ -1,16 +1,9 @@
-'use client'
-
 import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
-import { useItems } from '@/app/market/hooks/useItems'
-import { useMetadata } from '@/app/market/hooks/useMetadata'
-import type { ItemInfo } from '@/app/market/types'
 import ItemCard from './ItemCard'
+import { MarketItemInfo } from '@/app/market/types'
 
-const ItemList = () => {
-  const items = useItems()
-  const marketItems = useMetadata(items as ItemInfo[])
-
+const ItemList = ({ marketItems }: { marketItems: MarketItemInfo[] }) => {
   return (
     <Grid container justifyContent='center' mt='10px' spacing={2}>
       {marketItems.map((item) => (

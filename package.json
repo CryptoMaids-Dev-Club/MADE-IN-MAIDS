@@ -15,6 +15,7 @@
     "@types/node": "^16.11.59",
     "@types/react": "^18.0.20",
     "@types/react-dom": "^18.0.6",
+    "@wagmi/core": "^1.3.7",
     "axios": "^1.4.0",
     "buffer": "^6.0.3",
     "eslint-import-resolver-alias": "^1.1.2",

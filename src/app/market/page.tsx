@@ -2,14 +2,22 @@ import { Header } from '@/app/_components/Header'
 import { Footer } from '@/app/_components/Footer'
 import { Metadata } from 'next'
 import ItemList from './ItemList'
+import { getItems } from '@/app/market/api/getItems'
+import { getMarketItems } from '@/app/market/api/getMarketItems'
 
-const Market = () => (
-  <>
-    <Header />
-    <ItemList />
-    <Footer />
-  </>
-)
+const Market = async () => {
+  // const items = useItems()
+  const items = await getItems()
+  // const marketItems = useMetadata(items as ItemInfo[])
+  const marketItems = await getMarketItems(items)
+  return (
+    <>
+      <Header />
+      <ItemList marketItems={marketItems} />
+      <Footer />
+    </>
+  )
+}
 
 export default Market
 

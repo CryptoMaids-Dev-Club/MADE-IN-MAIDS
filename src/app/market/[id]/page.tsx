@@ -1,13 +1,21 @@
 import { Footer } from '@/app/_components/Footer'
 import ItemDetail from './ItemDetail'
 import type { NFTMetadata } from '../types'
+import { getItems } from '@/app/market/api/getItems'
+import { getMarketItems } from '@/app/market/api/getMarketItems'
 
-const AssetDetail = ({ params }: { params: { id: string } }) => (
-  <>
-    <ItemDetail id={params.id} />
-    <Footer />
-  </>
-)
+const AssetDetail = async ({ params }: { params: { id: string } }) => {
+  const items = await getItems()
+  const marketItems = await getMarketItems(items)
+  const marketItem = marketItems[Number(params.id)]
+
+  return (
+    <>
+      <ItemDetail marketItem={marketItem} />
+      <Footer />
+    </>
+  )
+}
 
 export default AssetDetail
 
