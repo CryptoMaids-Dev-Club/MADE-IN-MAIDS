@@ -1,6 +1,7 @@
 import { maidsContractConfig } from '@/config'
 import WalletIcon from '@mui/icons-material/Wallet'
-import { Grid, Typography } from '@mui/material'
+import Grid from '@mui/material/Grid'
+import Typography from '@mui/material/Typography'
 import { useAccount, useContractRead } from 'wagmi'
 import { formatEther } from 'viem'
 

@@ -1,5 +1,5 @@
 import { Image } from 'mui-image'
-import { useMediaQuery } from 'usehooks-ts'
+import useMediaQuery from '@mui/material/useMediaQuery'
 
 type NFTImageProps = {
   url: string

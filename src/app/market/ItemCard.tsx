@@ -1,6 +1,8 @@
-'use client'
-
-import { Grid, Typography, Card, CardContent, useMediaQuery } from '@mui/material'
+import Grid from '@mui/material/Grid'
+import Typography from '@mui/material/Typography'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import type { MarketItemInfo } from '@/app/market/types'
 import Link from 'next/link'
 import ItemImage from './ItemImage'

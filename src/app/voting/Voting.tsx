@@ -1,6 +1,10 @@
 'use client'
 
-import { Button, Divider, Grid, TextField, Typography } from '@mui/material'
+import Button from '@mui/material/Button'
+import Divider from '@mui/material/Divider'
+import Grid from '@mui/material/Grid'
+import TextField from '@mui/material/TextField'
+import Typography from '@mui/material/Typography'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 

@@ -1,6 +1,9 @@
 'use client'
 
-import { Box, Grid, Typography, useMediaQuery } from '@mui/material'
+import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
+import Typography from '@mui/material/Typography'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import { useItems } from '@/app/market/hooks/useItems'
 import { useMetadata } from '@/app/market/hooks/useMetadata'
 import Image from 'next/image'

@@ -1,4 +1,4 @@
-import { Container } from '@/app/_common/_components'
+import Container from '@mui/material/Container'
 import { Footer } from '@/app/_components/Footer'
 import { Metadata } from 'next'
 import { Top5 } from './Top5'

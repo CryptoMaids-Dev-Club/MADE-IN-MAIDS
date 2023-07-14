@@ -1,6 +1,10 @@
 'use client'
 
-import { Button, Container, Grid, Typography, useMediaQuery } from '@mui/material'
+import Button from '@mui/material/Button'
+import Container from '@mui/material/Container'
+import Grid from '@mui/material/Grid'
+import Typography from '@mui/material/Typography'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import { Image } from 'mui-image'
 
 import NextLink from 'next/link'

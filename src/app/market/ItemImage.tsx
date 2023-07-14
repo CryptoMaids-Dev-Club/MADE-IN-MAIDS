@@ -1,6 +1,7 @@
 'use client'
 
-import { Box, CardMedia } from '@mui/material'
+import Box from '@mui/material/Box'
+import CardMedia from '@mui/material/CardMedia'
 import { useImageOrientation } from '@/hooks/useImageOrientation'
 import Image from 'next/image'
 import { MarketItemInfo } from './types'

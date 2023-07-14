@@ -1,6 +1,7 @@
-'use client'
-
-import { AppBar, Box, Typography } from '@mui/material'
+// import { AppBar, Box, Typography } from '@mui/material'
+import AppBar from '@mui/material/AppBar'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
 
 export const Footer = () => (
   <AppBar component='footer' position='fixed' sx={{ backgroundColor: '#000000', top: 'auto', bottom: 0 }}>

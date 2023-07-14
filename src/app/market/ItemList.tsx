@@ -1,6 +1,7 @@
 'use client'
 
-import { Grid, Container } from '@mui/material'
+import Grid from '@mui/material/Grid'
+import Container from '@mui/material/Container'
 import { useItems } from '@/app/market/hooks/useItems'
 import { useMetadata } from '@/app/market/hooks/useMetadata'
 import type { ItemInfo } from '@/app/market/types'

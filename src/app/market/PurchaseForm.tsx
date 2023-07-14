@@ -1,17 +1,14 @@
 'use client'
 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import {
-  FormControl,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-  Switch,
-  TextField,
-  Typography,
-} from '@mui/material'
+import FormControl from '@mui/material/FormControl'
+import Grid from '@mui/material/Grid'
+import InputLabel from '@mui/material/InputLabel'
+import MenuItem from '@mui/material/MenuItem'
+import Select, { SelectChangeEvent } from '@mui/material/Select'
+import Switch from '@mui/material/Switch'
+import TextField from '@mui/material/TextField'
+import Typography from '@mui/material/Typography'
 import { useState } from 'react'
 import { MarketItemInfo } from './types'
 import PurchaseButton from './PurchaseButton'

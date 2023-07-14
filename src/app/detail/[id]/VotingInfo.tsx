@@ -1,4 +1,6 @@
-import { Grid, Typography, useMediaQuery } from '@mui/material'
+import Grid from '@mui/material/Grid'
+import Typography from '@mui/material/Typography'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import { formatEther } from 'viem'
 import { Address, useContractRead } from 'wagmi'
 import { votingContractConfig } from '@/config'

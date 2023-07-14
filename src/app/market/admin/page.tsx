@@ -1,7 +1,9 @@
 'use client'
 
 import { marketContractConfig } from '@/config'
-import { TextField, Button, Grid } from '@mui/material'
+import TextField from '@mui/material/TextField'
+import Button from '@mui/material/Button'
+import Grid from '@mui/material/Grid'
 import { parseEther } from 'viem'
 import { useState } from 'react'
 import { useForm, SubmitHandler, Controller } from 'react-hook-form'

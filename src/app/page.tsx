@@ -1,6 +1,4 @@
-'use client'
-
-import { Grid } from '@/app/_common/_components'
+import { Grid } from '@mui/material'
 import { Footer } from '@/app/_components/Footer'
 import TopCard from './TopCard'
 

@@ -1,6 +1,10 @@
+'use client'
+
 import { MAIDS_VOTING_CONTRACT_ADDRESS, maidsContractConfig, votingContractConfig } from '@/config'
-import { LoadingButton } from '@mui/lab'
-import { Grid, TextField, useMediaQuery } from '@mui/material'
+import LoadingButton from '@mui/lab/LoadingButton'
+import Grid from '@mui/material/Grid'
+import TextField from '@mui/material/TextField'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import { useState } from 'react'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { useDebounce } from 'usehooks-ts'

@@ -1,6 +1,9 @@
 'use client'
 
-import { Box, Container, Divider, Grid } from '@mui/material'
+import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
+import Divider from '@mui/material/Divider'
+import Grid from '@mui/material/Grid'
 import { Address, useAccount } from 'wagmi'
 import { useAssets } from '@/hooks/useAsset'
 import { Footer } from '@/app/_components/Footer'
