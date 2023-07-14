@@ -1,8 +1,8 @@
 import { Footer } from '@/app/_components/Footer'
-import ItemDetail from './ItemDetail'
-import type { NFTMetadata } from '../types'
 import { getItems } from '@/app/market/api/getItems'
 import { getMarketItems } from '@/app/market/api/getMarketItems'
+import ItemDetail from './ItemDetail'
+import type { NFTMetadata } from '../types'
 
 const AssetDetail = async ({ params }: { params: { id: string } }) => {
   const items = await getItems()

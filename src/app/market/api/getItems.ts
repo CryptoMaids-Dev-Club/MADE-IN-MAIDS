@@ -1,13 +1,11 @@
-import { readContract } from '@wagmi/core'
+import { readContract, createConfig, configureChains } from '@wagmi/core'
 import { polygon } from '@wagmi/core/chains'
 import { marketContractConfig } from '@/config'
 import { formatEther, formatUnits } from 'viem'
-import type { ItemInfo } from '../types'
 
-import { createConfig, configureChains } from '@wagmi/core'
 import { infuraProvider } from '@wagmi/core/providers/infura'
 import { publicProvider } from '@wagmi/core/providers/public'
-import { INFURA_API_KEY, NETWORK } from '@/config'
+import type { ItemInfo } from '../types'
 
 export const { chains, publicClient } = configureChains(
   [polygon],
@@ -25,14 +23,6 @@ type SolidityItemInfo = {
   tokenURI: string
 }
 
-export const getItems = async () => {
-  const data = await readContract({
-    ...marketContractConfig,
-    functionName: 'fetchMarketItems',
-  })
-  return convert(data as SolidityItemInfo[])
-}
-
 const convert = (items: SolidityItemInfo[]) => {
   const convertedItems: ItemInfo[] = []
   items.forEach((item) => {
@@ -46,4 +36,13 @@ const convert = (items: SolidityItemInfo[]) => {
   })
 
   return convertedItems
+}
+
+export const getItems = async () => {
+  const data = await readContract({
+    ...marketContractConfig,
+    functionName: 'fetchMarketItems',
+  })
+
+  return convert(data as SolidityItemInfo[])
 }

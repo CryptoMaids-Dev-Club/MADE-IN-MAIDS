@@ -2,8 +2,8 @@ import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import Image from 'next/image'
-import { PurchaseForm } from '../PurchaseForm'
 import { MarketItemInfo } from '@/app/market/types'
+import { PurchaseForm } from '../PurchaseForm'
 
 const ItemDetail = ({ marketItem }: { marketItem: MarketItemInfo }) => {
   const style = {
@@ -24,7 +24,7 @@ const ItemDetail = ({ marketItem }: { marketItem: MarketItemInfo }) => {
           <Image
             src={marketItem?.nsfw ? marketItem.external_url : marketItem.image}
             alt='nft'
-            width={'500'}
+            width='500'
             height={300}
             style={{
               maxWidth: '100%',
@@ -34,7 +34,7 @@ const ItemDetail = ({ marketItem }: { marketItem: MarketItemInfo }) => {
         </Grid>
         <Grid item md={6}>
           <Grid>
-            <Typography variant={'h4'} component='span' sx={{ color: 'black' }}>
+            <Typography variant='h4' component='span' sx={{ color: 'black' }}>
               {marketItem.name}
             </Typography>
           </Grid>

@@ -29,3 +29,5 @@ export const getMarketItems = async (items: ItemInfo[]): Promise<MarketItemInfo[
 
   return infos
 }
+
+export default getMarketItems
