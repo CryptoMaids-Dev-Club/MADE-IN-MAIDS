@@ -5,6 +5,7 @@ import 'server-only'
 // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
 export default async function getMarketItems() {
   const res = await fetch(`${VERCEL_URL}/api/marketItems`)
+  console.log(`${VERCEL_URL}/api/marketItems`)
 
   if (!res.ok) {
     throw new Error('Something went wrong!')
