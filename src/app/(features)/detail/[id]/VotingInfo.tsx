@@ -1,17 +1,19 @@
+'use client'
+
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { formatEther } from 'viem'
-import { Address, useContractRead } from 'wagmi'
+import { useAccount, useContractRead } from 'wagmi'
 import { votingContractConfig } from '@/config'
 
 type VotingInfoProps = {
-  address: Address
   id: number
 }
 
-export const VotingInfo = ({ address, id }: VotingInfoProps) => {
+export const VotingInfo = ({ id }: VotingInfoProps) => {
   const matches = useMediaQuery('(min-width: 560px)')
+  const { address } = useAccount()
 
   const { data: amountOfToken } = useContractRead({
     ...votingContractConfig,

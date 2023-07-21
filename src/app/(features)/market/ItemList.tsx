@@ -1,7 +1,7 @@
 import Grid from '@mui/material/Grid'
 import Container from '@mui/material/Container'
-import { MarketItemInfo } from '@/app/market/types'
 import ItemCard from './ItemCard'
+import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
 
 const ItemList = ({ marketItems }: { marketItems: MarketItemInfo[] }) => (
   <Grid container justifyContent='center' mt='10px' spacing={2}>

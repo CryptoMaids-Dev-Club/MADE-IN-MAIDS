@@ -10,8 +10,8 @@ import Switch from '@mui/material/Switch'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import { useState } from 'react'
-import { MarketItemInfo } from './types'
 import PurchaseButton from './PurchaseButton'
+import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
 
 type PurchaseFormProps = {
   item: MarketItemInfo

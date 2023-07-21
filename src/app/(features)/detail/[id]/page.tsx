@@ -1,21 +1,20 @@
-'use client'
-
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Divider from '@mui/material/Divider'
 import Grid from '@mui/material/Grid'
-import { Address, useAccount } from 'wagmi'
-import { useAssets } from '@/hooks/useAsset'
 import { Footer } from '@/app/_components/Footer'
-import { VotingForm } from './VotingForm'
+import dynamic from 'next/dynamic'
+import getAsset from '@/app/api/assets/[id]/getAsset'
 import { VotingInfo } from './VotingInfo'
 import { NFTInfo } from './NFTInfo'
 import { Induction } from './Induction'
-import { NFTImage } from './NFTImage'
 
-const Detail = ({ params }: { params: { id: string } }) => {
-  const { address } = useAccount()
-  const assets = useAssets([Number(params.id)])
+const VotingForm = dynamic(() => import('./VotingForm'), { ssr: false })
+const NFTImage = dynamic(() => import('./NFTImage'), { ssr: false })
+
+// eslint-disable-next-line prefer-arrow/prefer-arrow-functions, react/function-component-definition
+export default async function Page({ params }: { params: { id: string } }) {
+  const asset = await getAsset({ id: params.id })
 
   const style = {
     width: '100%',
@@ -31,16 +30,16 @@ const Detail = ({ params }: { params: { id: string } }) => {
         <Box sx={style} mt='50px'>
           <Grid container justifyContent='center' spacing={2}>
             <Grid item md={6} xs={12}>
-              <NFTImage url={assets[0].external_url} />
+              <NFTImage url={asset.external_url} />
             </Grid>
             <Grid item md={6} xs={12}>
               <Grid container spacing={1}>
-                <NFTInfo id={Number(params.id)} {...assets[0]} />
+                <NFTInfo id={Number(params.id)} {...asset} />
                 <Grid item md={12} xs={12}>
                   <Divider />
                   <br />
                 </Grid>
-                <VotingInfo address={address as Address} id={Number(params.id)} />
+                <VotingInfo id={Number(params.id)} />
                 <Grid item md={12} xs={12}>
                   <br />
                   <Divider />
@@ -60,5 +59,3 @@ const Detail = ({ params }: { params: { id: string } }) => {
     </>
   )
 }
-
-export default Detail

@@ -1,3 +1,5 @@
+'use client'
+
 import { Image } from 'mui-image'
 import useMediaQuery from '@mui/material/useMediaQuery'
 

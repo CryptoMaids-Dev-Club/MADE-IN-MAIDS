@@ -1,6 +1,6 @@
 'use client'
 
-import { MAIDS_VOTING_CONTRACT_ADDRESS, maidsContractConfig, votingContractConfig } from '@/config'
+import { MAIDS_VOTING_CONTRACT_ADDRESS, VERCEL_URL, maidsContractConfig, votingContractConfig } from '@/config'
 import LoadingButton from '@mui/lab/LoadingButton'
 import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
@@ -10,6 +10,9 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { useDebounce } from 'usehooks-ts'
 import { useAccount, useContractRead, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import { parseEther } from 'viem'
+import Snackbar from '@mui/material/Snackbar'
+import Alert from '@mui/material/Alert'
+import { TwitterAlert } from '@/app/_components/Elements/TwitterAlert'
 
 type VotingFormProps = {
   id: number
@@ -17,6 +20,15 @@ type VotingFormProps = {
 
 export const VotingForm = ({ id }: VotingFormProps) => {
   const matches = useMediaQuery('(min-width: 560px)')
+  const [open, setOpen] = useState(true)
+
+  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return
+    }
+
+    setOpen(false)
+  }
 
   const validationRules = {
     votes: {
@@ -61,6 +73,10 @@ export const VotingForm = ({ id }: VotingFormProps) => {
 
   const voteTx = useWaitForTransaction({
     hash: vote.data?.hash,
+    // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
+    onSuccess() {
+      setOpen(true)
+    },
   })
 
   const onSubmit: SubmitHandler<Inputs> = () => {
@@ -110,6 +126,21 @@ export const VotingForm = ({ id }: VotingFormProps) => {
             fullWidth>
             {canVote ? `Vote` : `Approve $MAIDS`}
           </LoadingButton>
+        </Grid>
+        <Grid item xs={12}>
+          <Snackbar
+            open={open}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+            autoHideDuration={10000}
+            onClose={handleClose}>
+            <Alert icon={false} onClose={handleClose} variant='filled' severity='success' sx={{ width: '100%' }}>
+              <TwitterAlert
+                message='Successfully voted! Share'
+                title='My CryptoMaids Voting'
+                url={`${VERCEL_URL}/voting` || `http://localhost:3000'/voting`}
+              />
+            </Alert>
+          </Snackbar>
         </Grid>
       </Grid>
     </>

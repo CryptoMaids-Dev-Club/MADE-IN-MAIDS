@@ -4,7 +4,7 @@ import Box from '@mui/material/Box'
 import CardMedia from '@mui/material/CardMedia'
 import { useImageOrientation } from '@/hooks/useImageOrientation'
 import Image from 'next/image'
-import { MarketItemInfo } from './types'
+import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
 
 type ItemImageProps = {
   item: MarketItemInfo

@@ -6,8 +6,12 @@ import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useState } from 'react'
 import { Balance } from '@/app/_components/Elements/Balance'
 import { MenuLink } from '@/app/_components/Elements/MenuLink'
-import { SideDrawer } from '@/app/_components/Elements/Drawer'
 import Image from 'next/image'
+import dynamic from 'next/dynamic'
+
+const SideDrawer = dynamic(() => import('@/app/_components/Elements/Drawer').then((mod) => mod.SideDrawer), {
+  ssr: false,
+})
 
 export const TopBar = () => {
   const linkNames = ['Discord', 'Twitter', 'WebSite', 'TACHIYOMI', 'OS', 'SHOOTING', 'NFT STAKING']

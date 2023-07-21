@@ -5,19 +5,17 @@ export type ItemInfo = {
   tokenURI: string
 }
 
-export type NFTMetadata = {
-  name: string
-  description: string
-  attributes: string[]
-  image: string
-  external_url: string
-  nsfw: boolean
-}
-
 export type MarketItemInfo = ItemInfo & {
   id: string | number
   description: string
   image: string
   external_url: string
   nsfw: boolean
+}
+
+export type SolidityItemInfo = {
+  name: string
+  price: bigint
+  supply: bigint
+  tokenURI: string
 }

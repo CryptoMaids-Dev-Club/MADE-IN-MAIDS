@@ -3,7 +3,8 @@
 import { useEffect } from 'react'
 import { Box, Button, Typography } from '@mui/material'
 
-const ErrorFallback = ({ error, reset }: { error: Error; reset: () => void }) => {
+// eslint-disable-next-line prefer-arrow/prefer-arrow-functions, react/function-component-definition
+export default function Error({ error, reset }: { error: Error; reset: () => void }) {
   useEffect(() => {
     console.error(error)
   }, [error])
@@ -19,5 +20,3 @@ const ErrorFallback = ({ error, reset }: { error: Error; reset: () => void }) =>
     </Box>
   )
 }
-
-export default ErrorFallback

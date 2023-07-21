@@ -2,9 +2,9 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
-import type { MarketItemInfo } from '@/app/market/types'
 import Link from 'next/link'
 import ItemImage from './ItemImage'
+import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
 
 type ItemCardProps = {
   item: MarketItemInfo

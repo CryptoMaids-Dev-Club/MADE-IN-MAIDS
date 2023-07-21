@@ -2,8 +2,8 @@ import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import Image from 'next/image'
-import { MarketItemInfo } from '@/app/market/types'
 import { PurchaseForm } from '../PurchaseForm'
+import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
 
 const ItemDetail = ({ marketItem }: { marketItem: MarketItemInfo }) => {
   const style = {
@@ -11,7 +11,8 @@ const ItemDetail = ({ marketItem }: { marketItem: MarketItemInfo }) => {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 1200,
+    width: '70%',
+    maxWidth: 1200,
     bgcolor: 'pink',
     boxShadow: 24,
     p: 4,
@@ -19,13 +20,14 @@ const ItemDetail = ({ marketItem }: { marketItem: MarketItemInfo }) => {
 
   return (
     <Box sx={style}>
-      <Grid container justifyContent='center'>
+      <Grid container justifyContent='center' spacing={2}>
         <Grid item md={6} sm={12}>
           <Image
             src={marketItem?.nsfw ? marketItem.external_url : marketItem.image}
             alt='nft'
-            width='500'
-            height={300}
+            placeholder='blur'
+            width={600}
+            height={600}
             style={{
               maxWidth: '100%',
               height: 'auto',
@@ -34,7 +36,7 @@ const ItemDetail = ({ marketItem }: { marketItem: MarketItemInfo }) => {
         </Grid>
         <Grid item md={6}>
           <Grid>
-            <Typography variant='h4' component='span' sx={{ color: 'black' }}>
+            <Typography component='span' sx={{ color: 'black', typography: { sm: 'h4', xs: 'h5' } }}>
               {marketItem.name}
             </Typography>
           </Grid>

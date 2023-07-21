@@ -7,20 +7,28 @@ import { QueryClientProvider } from 'react-query'
 import '@rainbow-me/rainbowkit/styles.css'
 import { WagmiConfig } from 'wagmi'
 import { queryClient } from '@/lib/react-query'
-import { chains, config } from '@/lib/wagmi'
+import { polygon } from '@wagmi/core/chains'
+import { infuraProvider } from '@wagmi/core/providers/infura'
+import { publicProvider } from '@wagmi/core/providers/public'
+import { configureChains, createConfig } from '@wagmi/core'
+import { config } from '@/lib/wagmi'
 
-export const Providers = ({ children }: { children: React.ReactNode }) => {
-  const [mounted, setMounted] = React.useState(false)
-  React.useEffect(() => setMounted(true), [])
+export const { chains, publicClient } = configureChains(
+  [polygon],
+  [infuraProvider({ apiKey: process.env.NEXT_PUBLIC_INFURA_API_KEY as string }), publicProvider()]
+)
 
-  return (
-    <WagmiConfig config={config}>
-      <RainbowKitProvider chains={chains} theme={darkTheme()}>
-        <QueryClientProvider client={queryClient}>{mounted && children}</QueryClientProvider>
-      </RainbowKitProvider>
-    </WagmiConfig>
-  )
-}
+export const wagmiConfig = createConfig({
+  publicClient,
+})
+
+export const Providers = ({ children }: { children: React.ReactNode }) => (
+  <WagmiConfig config={config}>
+    <RainbowKitProvider chains={chains} theme={darkTheme()}>
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+    </RainbowKitProvider>
+  </WagmiConfig>
+)
 
 export default Providers
 

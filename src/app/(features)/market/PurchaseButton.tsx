@@ -3,33 +3,18 @@
 import LoadingButton from '@mui/lab/LoadingButton'
 import { useEffect, useState } from 'react'
 import { useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
-import { MARKET_PROXY_CONTRACT_ADDRESS, maidsContractConfig, marketContractConfig } from '@/config'
+import { MARKET_PROXY_CONTRACT_ADDRESS, VERCEL_URL, maidsContractConfig, marketContractConfig } from '@/config'
 import { useAllowance } from '@/hooks/useAllowance'
 import Alert from '@mui/material/Alert'
-import Grid from '@mui/material/Grid'
 import Snackbar from '@mui/material/Snackbar'
-import Typography from '@mui/material/Typography'
-import { TwitterIcon, TwitterShareButton } from 'react-share'
-import { MarketItemInfo } from './types'
+import { TwitterAlert } from '@/app/_components/Elements/TwitterAlert'
+import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
 
 type PurchaseButtonProps = {
   item: MarketItemInfo
   amount: number
   differentAddress: string
 }
-
-const SuccessAlert = ({ title, url }: { title: string; url: string }) => (
-  <Grid container>
-    <Grid item>
-      <Typography variant='h5'>Successfully bought! Share</Typography>
-    </Grid>
-    <Grid item>
-      <TwitterShareButton title={title} url={url} hashtags={['CryptoMaids']}>
-        <TwitterIcon size={34} round />
-      </TwitterShareButton>
-    </Grid>
-  </Grid>
-)
 
 const PurchaseButton = ({ item, amount, differentAddress }: PurchaseButtonProps) => {
   const [isActive, setIsActive] = useState(false)
@@ -125,9 +110,11 @@ const PurchaseButton = ({ item, amount, differentAddress }: PurchaseButtonProps)
         autoHideDuration={10000}
         onClose={handleClose}>
         <Alert icon={false} onClose={handleClose} variant='filled' severity='success' sx={{ width: '100%' }}>
-          <SuccessAlert
+          <TwitterAlert
+            message='Successfully bought! Share'
             title={item.name}
-            url={`https://${process.env.NEXT_PUBLIC_VERCEL_URL || 'http://localhost:3000'}/item/${item.id}`}
+            url={`${VERCEL_URL}/item/${item.id}` || `http://localhost:3000'/item/${item.id}`}
+            hashtags={['CryptoMaids']}
           />
         </Alert>
       </Snackbar>

@@ -1,13 +1,12 @@
 import { Footer } from '@/app/_components/Footer'
-import { getItems } from '@/app/market/api/getItems'
-import { getMarketItems } from '@/app/market/api/getMarketItems'
+import getMarketItems from '@/app/api/marketItems/getMarketItems'
+import getMetadata from '@/app/api/metadata/[id]/getMetadata'
 import ItemDetail from './ItemDetail'
-import type { NFTMetadata } from '../types'
+import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
 
 const AssetDetail = async ({ params }: { params: { id: string } }) => {
-  const items = await getItems()
-  const marketItems = await getMarketItems(items)
-  const marketItem = marketItems[Number(params.id)]
+  const marketItems = await getMarketItems()
+  const marketItem = marketItems[Number(params.id)] as unknown as MarketItemInfo
 
   return (
     <>
@@ -19,19 +18,8 @@ const AssetDetail = async ({ params }: { params: { id: string } }) => {
 
 export default AssetDetail
 
-const getMetadata = async (id: string) => {
-  const metadataId = [5, 1, 3, 6]
-  // ToDO: Modify Original Metadata URL
-  const res = await fetch(
-    `https://cryptomaids-art.s3.ap-northeast-1.amazonaws.com/market/metadata/${metadataId[Number(id)]}.json`
-  )
-  const data = (await res.json()) as NFTMetadata
-
-  return data
-}
-
 export const generateMetadata = async ({ params }: { params: { id: string } }) => {
-  const meta = await getMetadata(params.id)
+  const meta = await getMetadata({ id: params.id })
 
   return {
     title: 'Item',

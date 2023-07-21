@@ -1,3 +1,5 @@
+'use client'
+
 import { maidsContractConfig } from '@/config'
 import WalletIcon from '@mui/icons-material/Wallet'
 import Grid from '@mui/material/Grid'
