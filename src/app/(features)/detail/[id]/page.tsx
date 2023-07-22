@@ -58,3 +58,29 @@ export default async function Page({ params }: { params: { id: string } }) {
     </>
   )
 }
+
+export const generateMetadata = async ({ params }: { params: { id: string } }) => {
+  const meta = await getAsset({ id: params.id })
+
+  return {
+    title: 'Item',
+    openGraph: {
+      title: meta.name,
+      description: meta.name,
+      siteName: 'CryptoMaids Made in Maids',
+      images: [
+        {
+          url: meta.image,
+        },
+      ],
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: meta.name,
+      description: meta.name,
+      creator: '@CryptoMaids',
+      images: [meta.image],
+    },
+  }
+}

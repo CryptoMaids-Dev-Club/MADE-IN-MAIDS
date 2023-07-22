@@ -13,7 +13,6 @@ import { parseEther } from 'viem'
 import Snackbar from '@mui/material/Snackbar'
 import Alert from '@mui/material/Alert'
 import { TwitterAlert } from '@/app/_components/Elements/TwitterAlert'
-import { getBaseUrl } from '@/lib/getBaseUrl'
 
 type VotingFormProps = {
   id: number
@@ -135,9 +134,9 @@ export const VotingForm = ({ id }: VotingFormProps) => {
             onClose={handleClose}>
             <Alert icon={false} onClose={handleClose} variant='filled' severity='success' sx={{ width: '100%' }}>
               <TwitterAlert
-                message='Successfully voted! Share'
+                message={`Voted for CryptoMaids #${id}! Share`}
                 title='My CryptoMaids Voting'
-                url={`${getBaseUrl()}/voting`}
+                url={`https://made-in-maids.vercel.app/detail/${id}`}
               />
             </Alert>
           </Snackbar>

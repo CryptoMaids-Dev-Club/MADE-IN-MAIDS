@@ -8,7 +8,6 @@ import { useAllowance } from '@/hooks/useAllowance'
 import Alert from '@mui/material/Alert'
 import Snackbar from '@mui/material/Snackbar'
 import { TwitterAlert } from '@/app/_components/Elements/TwitterAlert'
-import { getBaseUrl } from '@/lib/getBaseUrl'
 import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
 
 type PurchaseButtonProps = {
@@ -113,7 +112,7 @@ const PurchaseButton = ({ item, amount, differentAddress }: PurchaseButtonProps)
           <TwitterAlert
             message='Successfully bought! Share'
             title={item.name}
-            url={`${getBaseUrl()}/item/${item.id}`}
+            url={`https://made-in-maids.vercel.app/market/item/${item.id}`}
             hashtags={['CryptoMaids']}
           />
         </Alert>
