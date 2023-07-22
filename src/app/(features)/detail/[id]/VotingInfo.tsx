@@ -2,7 +2,6 @@
 
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
-import useMediaQuery from '@mui/material/useMediaQuery'
 import { formatEther } from 'viem'
 import { useAccount, useContractRead } from 'wagmi'
 import { votingContractConfig } from '@/config'
@@ -12,7 +11,6 @@ type VotingInfoProps = {
 }
 
 export const VotingInfo = ({ id }: VotingInfoProps) => {
-  const matches = useMediaQuery('(min-width: 560px)')
   const { address } = useAccount()
 
   const { data: amountOfToken } = useContractRead({
@@ -28,22 +26,23 @@ export const VotingInfo = ({ id }: VotingInfoProps) => {
     functionName: 'getVoteAmountsOfUser',
     args: [address, id],
     cacheOnBlock: true,
+    enabled: address !== undefined,
     select: (data) => Math.floor(Number(formatEther(data as bigint))),
   })
 
   return (
-    <>
-      <Grid item md={12} xs={12} sx={{ maxHeight: matches ? 300 : 100 }}>
+    <Grid container>
+      <Grid item md={12} xs={12}>
         <Typography variant='h5' component='span' sx={{ color: 'black' }}>
           {`Number of Votes:${amountOfToken ?? 0}`}
         </Typography>
       </Grid>
-      <Grid item md={12} xs={12} sx={{ maxHeight: matches ? 300 : 100 }}>
+      <Grid item md={12} xs={12}>
         <Typography variant='h5' component='span' sx={{ color: 'black' }}>
           {`Your Votes:${amountOfUser ?? 0}`}
         </Typography>
       </Grid>
-    </>
+    </Grid>
   )
 }
 

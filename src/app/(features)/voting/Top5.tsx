@@ -56,12 +56,7 @@ export const Top5 = ({ votes, assets }: Top5Props) => {
         {assets.map((asset, index) => (
           <Grid key={asset.name} item md={4} xs={12}>
             <Grid container justifyContent='center' alignContent='center'>
-              <Image
-                src={`/images/${displayOrder[index]}.png`}
-                alt='rank'
-                height={matches ? '340' : '100'}
-                width={matches ? '370' : '120'}
-              />
+              <Image src={`/images/${displayOrder[index]}.png`} alt='rank' height='360' width='370' />
 
               <NextLink href={`/detail/${votes[index].id}`}>
                 <Box overflow='hidden' width={340} height={576}>

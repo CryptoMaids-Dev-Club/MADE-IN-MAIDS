@@ -63,7 +63,7 @@ export const generateMetadata = async ({ params }: { params: { id: string } }) =
   const meta = await getAsset({ id: params.id })
 
   return {
-    title: 'Item',
+    title: 'Detail',
     openGraph: {
       title: meta.name,
       siteName: 'CryptoMaids Made in Maids',

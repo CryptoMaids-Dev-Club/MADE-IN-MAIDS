@@ -48,6 +48,7 @@ export const VotingForm = ({ id }: VotingFormProps) => {
     ...maidsContractConfig,
     functionName: 'allowance',
     args: [address, MAIDS_VOTING_CONTRACT_ADDRESS],
+    enabled: address !== undefined,
   })
 
   const votingConfig = usePrepareContractWrite({
@@ -62,6 +63,7 @@ export const VotingForm = ({ id }: VotingFormProps) => {
     ...maidsContractConfig,
     functionName: 'approve',
     args: [MAIDS_VOTING_CONTRACT_ADDRESS, '0xffffffffffffffffffffffffffffffffffffffffffffffffff'],
+    enabled: address !== undefined,
   }).config
   const approve = useContractWrite({
     ...approveConfig,

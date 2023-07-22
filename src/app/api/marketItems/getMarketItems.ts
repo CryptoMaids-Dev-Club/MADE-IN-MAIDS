@@ -6,7 +6,9 @@ import 'server-only'
 export default async function getMarketItems() {
   try {
     console.log(`${getBaseUrl()}/api/marketItems`)
-    const res = await fetch(`${getBaseUrl()}/api/marketItems`)
+    const res = await fetch(`${getBaseUrl()}/api/marketItems`, {
+      next: { revalidate: 60 },
+    })
 
     if (!res.ok) {
       throw new Error('Something went wrong!')

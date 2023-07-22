@@ -24,7 +24,7 @@ export const votingContractConfig = {
 export const maidsContractConfig = {
   address: MAIDS_CONTRACT_ADDRESS,
   abi: MaidsTokenContract.abi,
-  chainId: 1,
+  chainId: 137,
 }
 
 export const marketContractConfig = {
