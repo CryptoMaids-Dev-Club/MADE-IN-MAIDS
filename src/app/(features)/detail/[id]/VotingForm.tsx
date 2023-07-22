@@ -20,7 +20,7 @@ type VotingFormProps = {
 
 export const VotingForm = ({ id }: VotingFormProps) => {
   const matches = useMediaQuery('(min-width: 560px)')
-  const [open, setOpen] = useState(true)
+  const [open, setOpen] = useState(false)
 
   const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {

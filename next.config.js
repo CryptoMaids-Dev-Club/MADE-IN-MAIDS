@@ -9,7 +9,7 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    domains: ['cryptomaids-art.s3.ap-northeast-1.amazonaws.com'], //ここにドメインを指定
+    domains: ['cryptomaids-art.s3.ap-northeast-1.amazonaws.com', 'cryptomaids-metadata.s3.amazonaws.com'], //ここにドメインを指定
   },
   webpack: (config) => {
     config.resolve.fallback = {

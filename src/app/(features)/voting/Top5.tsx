@@ -1,15 +1,28 @@
 'use client'
 
-import Button from '@mui/material/Button'
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import { Image } from 'mui-image'
+// import { Image } from 'mui-image'
+import Image from 'next/image'
 
 import NextLink from 'next/link'
+import { Box } from '@mui/material'
 import type { AssetInfo } from '@/app/api/asset/[id]/asset'
 import type { Vote } from '@/app/api/voting/[slug]/voting'
+
+const ImageStyle = {
+  '&:hover': {
+    transform: 'scale(1.1,1.1)',
+    transition: '0.5s all',
+  },
+  '&:focus': {
+    transform: 'scale(1.1,1.1)',
+    margin: 'auto 0',
+    transition: '0.5s all',
+  },
+}
 
 type Top5Props = {
   votes: Vote[]
@@ -43,12 +56,25 @@ export const Top5 = ({ votes, assets }: Top5Props) => {
         {assets.map((asset, index) => (
           <Grid key={asset.name} item md={4} xs={12}>
             <Grid container justifyContent='center' alignContent='center'>
-              <Image src={`/images/${displayOrder[index]}.png`} alt='rank' height={matches ? '340px' : '100px'} />
+              <Image
+                src={`/images/${displayOrder[index]}.png`}
+                alt='rank'
+                height={matches ? '340' : '100'}
+                width={matches ? '370' : '120'}
+              />
 
               <NextLink href={`/detail/${votes[index].id}`}>
-                <Button>
-                  <Image src={asset.external_url} width='90%' height='auto' />
-                </Button>
+                <Box overflow='hidden' width={340} height={576}>
+                  <Box sx={{ ...ImageStyle }}>
+                    <Image
+                      src={asset.external_url}
+                      width='340'
+                      height='576'
+                      alt='maids'
+                      style={{ objectFit: 'cover' }}
+                    />
+                  </Box>
+                </Box>
               </NextLink>
 
               <Typography variant='h5' color='gold'>
