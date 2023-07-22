@@ -3,13 +3,17 @@ import type { AssetInfo } from './asset'
 import 'server-only'
 
 export default async function getAsset({ id }: { id: string }) {
-  const res = await fetch(`${getBaseUrl()}/api/asset/${id}`)
+  try {
+    const res = await fetch(`${getBaseUrl()}/api/asset/${id}`)
 
-  if (!res.ok) {
-    throw new Error('Something went wrong!')
+    if (!res.ok) {
+      throw new Error('Something went wrong!')
+    }
+
+    const asset = (await res.json()) as AssetInfo
+
+    return asset
+  } catch (e) {
+    return {} as AssetInfo
   }
-
-  const asset = (await res.json()) as AssetInfo
-
-  return asset
 }
