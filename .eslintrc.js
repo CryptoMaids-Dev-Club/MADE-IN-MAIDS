@@ -70,14 +70,6 @@ module.exports = {
       },
     ],
     'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
-    'prefer-arrow/prefer-arrow-functions': [
-      'error',
-      {
-        disallowPrototype: true,
-        singleReturnOnly: false,
-        classPropertiesAllowed: false,
-      },
-    ],
     'react/jsx-filename-extension': [
       'error',
       {
@@ -87,6 +79,7 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'react/require-default-props': 'off',
     'react/react-in-jsx-scope': 'off',
+    'import/prefer-default-export': 'off',
     'no-console': 'off',
     '@typescript-eslint/no-misused-promises': [
       2,

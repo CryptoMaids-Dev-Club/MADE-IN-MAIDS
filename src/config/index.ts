@@ -14,7 +14,6 @@ export const MARKET_PROXY_CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_MARKET_PROX
 export const MAIDS_ITEM_CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_MAIDS_ITEM_CONTRACT_ADDRESS as Address
 export const MAIDS_VOTING_CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_MAIDS_VOTING_CONTRACT_ADDRESS as Address
 export const NETWORK = process.env.NEXT_PUBLIC_NETWORK === 'mainnet' ? polygon : polygonMumbai
-export const VERCEL_URL = (process.env.NEXT_PUBLIC_VERCEL_URL as string) ?? 'http://localhost:3000'
 
 export const votingContractConfig = {
   address: MAIDS_VOTING_CONTRACT_ADDRESS,

@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import { Box, Button, Typography } from '@mui/material'
 
-// eslint-disable-next-line prefer-arrow/prefer-arrow-functions, react/function-component-definition
+// eslint-disable-next-line react/function-component-definition
 export default function Error({ error, reset }: { error: Error; reset: () => void }) {
   useEffect(() => {
     console.error(error)

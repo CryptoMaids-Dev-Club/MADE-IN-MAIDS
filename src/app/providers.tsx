@@ -12,6 +12,8 @@ import { infuraProvider } from '@wagmi/core/providers/infura'
 import { publicProvider } from '@wagmi/core/providers/public'
 import { configureChains, createConfig } from '@wagmi/core'
 import { config } from '@/lib/wagmi'
+import { CssBaseline, ThemeProvider } from '@mui/material'
+import theme from './theme'
 
 export const { chains, publicClient } = configureChains(
   [polygon],
@@ -23,11 +25,14 @@ export const wagmiConfig = createConfig({
 })
 
 export const Providers = ({ children }: { children: React.ReactNode }) => (
-  <WagmiConfig config={config}>
-    <RainbowKitProvider chains={chains} theme={darkTheme()}>
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-    </RainbowKitProvider>
-  </WagmiConfig>
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    <WagmiConfig config={config}>
+      <RainbowKitProvider chains={chains} theme={darkTheme()}>
+        <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+      </RainbowKitProvider>
+    </WagmiConfig>
+  </ThemeProvider>
 )
 
 export default Providers

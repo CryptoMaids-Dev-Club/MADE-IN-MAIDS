@@ -3,11 +3,12 @@
 import LoadingButton from '@mui/lab/LoadingButton'
 import { useEffect, useState } from 'react'
 import { useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
-import { MARKET_PROXY_CONTRACT_ADDRESS, VERCEL_URL, maidsContractConfig, marketContractConfig } from '@/config'
+import { MARKET_PROXY_CONTRACT_ADDRESS, maidsContractConfig, marketContractConfig } from '@/config'
 import { useAllowance } from '@/hooks/useAllowance'
 import Alert from '@mui/material/Alert'
 import Snackbar from '@mui/material/Snackbar'
 import { TwitterAlert } from '@/app/_components/Elements/TwitterAlert'
+import { getBaseUrl } from '@/lib/getBaseUrl'
 import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
 
 type PurchaseButtonProps = {
@@ -69,7 +70,6 @@ const PurchaseButton = ({ item, amount, differentAddress }: PurchaseButtonProps)
 
   const buyItemTx = useWaitForTransaction({
     hash: buyItemData?.hash,
-    // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
     onSuccess() {
       setOpen(true)
     },
@@ -113,7 +113,7 @@ const PurchaseButton = ({ item, amount, differentAddress }: PurchaseButtonProps)
           <TwitterAlert
             message='Successfully bought! Share'
             title={item.name}
-            url={`${VERCEL_URL}/item/${item.id}` || `http://localhost:3000'/item/${item.id}`}
+            url={`${getBaseUrl()}/item/${item.id}`}
             hashtags={['CryptoMaids']}
           />
         </Alert>

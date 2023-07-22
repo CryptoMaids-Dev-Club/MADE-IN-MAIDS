@@ -4,7 +4,6 @@ import { Metadata } from 'next'
 import getMarketItems from '@/app/api/marketItems/getMarketItems'
 import ItemList from './ItemList'
 
-// eslint-disable-next-line prefer-arrow/prefer-arrow-functions, react/function-component-definition
 export default async function Market() {
   const marketItems = await getMarketItems()
 

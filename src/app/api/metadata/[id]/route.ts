@@ -12,7 +12,6 @@ const getMetadata = async (id: string) => {
   return data
 }
 
-// eslint-disable-next-line prefer-arrow/prefer-arrow-functions, import/prefer-default-export
 export async function GET(_req: NextRequest, { params }: { params: { id: string } }) {
   const data = await getMetadata(params.id)
 

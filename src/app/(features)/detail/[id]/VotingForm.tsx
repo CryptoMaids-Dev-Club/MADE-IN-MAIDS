@@ -1,6 +1,6 @@
 'use client'
 
-import { MAIDS_VOTING_CONTRACT_ADDRESS, VERCEL_URL, maidsContractConfig, votingContractConfig } from '@/config'
+import { MAIDS_VOTING_CONTRACT_ADDRESS, maidsContractConfig, votingContractConfig } from '@/config'
 import LoadingButton from '@mui/lab/LoadingButton'
 import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
@@ -13,6 +13,7 @@ import { parseEther } from 'viem'
 import Snackbar from '@mui/material/Snackbar'
 import Alert from '@mui/material/Alert'
 import { TwitterAlert } from '@/app/_components/Elements/TwitterAlert'
+import { getBaseUrl } from '@/lib/getBaseUrl'
 
 type VotingFormProps = {
   id: number
@@ -73,7 +74,6 @@ export const VotingForm = ({ id }: VotingFormProps) => {
 
   const voteTx = useWaitForTransaction({
     hash: vote.data?.hash,
-    // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
     onSuccess() {
       setOpen(true)
     },
@@ -137,7 +137,7 @@ export const VotingForm = ({ id }: VotingFormProps) => {
               <TwitterAlert
                 message='Successfully voted! Share'
                 title='My CryptoMaids Voting'
-                url={`${VERCEL_URL}/voting` || `http://localhost:3000'/voting`}
+                url={`${getBaseUrl()}/voting`}
               />
             </Alert>
           </Snackbar>

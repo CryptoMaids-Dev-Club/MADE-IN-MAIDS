@@ -1,15 +1,15 @@
 import { getBaseUrl } from '@/lib/getBaseUrl'
-import type { NFTMetadata } from './metadata'
+import type { AssetInfo } from './asset'
 import 'server-only'
 
 export default async function getAsset({ id }: { id: string }) {
-  const res = await fetch(`${getBaseUrl()}/api/metadata/${id}`)
+  const res = await fetch(`${getBaseUrl()}/api/asset/${id}`)
 
   if (!res.ok) {
     throw new Error('Something went wrong!')
   }
 
-  const metadata = (await res.json()) as NFTMetadata
+  const asset = (await res.json()) as AssetInfo
 
-  return metadata
+  return asset
 }

@@ -8,7 +8,6 @@ const fetchAsset = async (id: number): Promise<AssetInfo> => {
   return asset
 }
 
-// eslint-disable-next-line prefer-arrow/prefer-arrow-functions, import/prefer-default-export
 export async function GET(_req: NextRequest, { params }: { params: { id: number } }) {
   const data = await fetchAsset(params.id)
 

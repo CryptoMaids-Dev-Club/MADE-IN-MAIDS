@@ -4,7 +4,7 @@ import Divider from '@mui/material/Divider'
 import Grid from '@mui/material/Grid'
 import { Footer } from '@/app/_components/Footer'
 import dynamic from 'next/dynamic'
-import getAsset from '@/app/api/assets/[id]/getAsset'
+import getAsset from '@/app/api/asset/[id]/getAsset'
 import { VotingInfo } from './VotingInfo'
 import { NFTInfo } from './NFTInfo'
 import { Induction } from './Induction'
@@ -12,7 +12,6 @@ import { Induction } from './Induction'
 const VotingForm = dynamic(() => import('./VotingForm'), { ssr: false })
 const NFTImage = dynamic(() => import('./NFTImage'), { ssr: false })
 
-// eslint-disable-next-line prefer-arrow/prefer-arrow-functions, react/function-component-definition
 export default async function Page({ params }: { params: { id: string } }) {
   const asset = await getAsset({ id: params.id })
 

@@ -25,7 +25,6 @@ const ItemDetail = ({ marketItem }: { marketItem: MarketItemInfo }) => {
           <Image
             src={marketItem?.nsfw ? marketItem.external_url : marketItem.image}
             alt='nft'
-            placeholder='blur'
             width={600}
             height={600}
             style={{

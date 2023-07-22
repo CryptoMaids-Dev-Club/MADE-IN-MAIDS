@@ -63,7 +63,6 @@ const getMarketItems = async (items: ItemInfo[]): Promise<MarketItemInfo[]> => {
   return infos
 }
 
-// eslint-disable-next-line prefer-arrow/prefer-arrow-functions, import/prefer-default-export
 export async function GET(_req: NextRequest) {
   const data = await readContract({
     ...marketContractConfig,
