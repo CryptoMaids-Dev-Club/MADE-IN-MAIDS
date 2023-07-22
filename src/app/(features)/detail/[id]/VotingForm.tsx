@@ -135,7 +135,7 @@ export const VotingForm = ({ id }: VotingFormProps) => {
             <Alert icon={false} onClose={handleClose} variant='filled' severity='success' sx={{ width: '100%' }}>
               <TwitterAlert
                 message={`Voted for CryptoMaids #${id}! Share`}
-                title='My CryptoMaids Voting'
+                title={`Voted for CryptoMaids #${id}!`}
                 url={`https://made-in-maids.vercel.app/detail/${id}`}
               />
             </Alert>

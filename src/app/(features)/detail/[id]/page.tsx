@@ -66,7 +66,6 @@ export const generateMetadata = async ({ params }: { params: { id: string } }) =
     title: 'Item',
     openGraph: {
       title: meta.name,
-      description: meta.name,
       siteName: 'CryptoMaids Made in Maids',
       images: [
         {
@@ -78,7 +77,6 @@ export const generateMetadata = async ({ params }: { params: { id: string } }) =
     twitter: {
       card: 'summary_large_image',
       title: meta.name,
-      description: meta.name,
       creator: '@CryptoMaids',
       images: [meta.image],
     },
