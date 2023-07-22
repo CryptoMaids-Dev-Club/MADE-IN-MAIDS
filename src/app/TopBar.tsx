@@ -8,6 +8,7 @@ import { Balance } from '@/app/_components/Elements/Balance'
 import { MenuLink } from '@/app/_components/Elements/MenuLink'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
+import Link from 'next/link'
 
 const SideDrawer = dynamic(() => import('@/app/_components/Elements/Drawer').then((mod) => mod.SideDrawer), {
   ssr: false,
@@ -62,20 +63,24 @@ export const TopBar = () => {
             <MenuIcon />
           </IconButton>
         )}
-        <Image
-          src='/images/maid-eye-icon.png'
-          width='22'
-          height='30'
-          alt='maid'
-          style={{ height: '30px', marginTop: '10px', marginLeft: matches ? '25px' : '3px', marginRight: '3px' }}
-        />
-        <Image
-          src='/images/logo_text.png'
-          width='160'
-          height='45'
-          alt='logo'
-          style={{ height: '45px', marginTop: '5px' }}
-        />
+        <Link href='/' style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Image
+            src='/images/maid-eye-icon.png'
+            width='22'
+            height='30'
+            alt='maid'
+            style={{ height: '30px', marginTop: '10px', marginLeft: matches ? '25px' : '3px', marginRight: '3px' }}
+          />
+        </Link>
+        <Link href='/' style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Image
+            src='/images/logo_text.png'
+            width='160'
+            height='45'
+            alt='logo'
+            style={{ height: '45px', marginTop: '5px' }}
+          />
+        </Link>
         {matches && (
           <Box sx={{ paddingTop: '10px' }}>
             <MenuLink text='Discord' link='https://discord.gg/cryptomaids' />
