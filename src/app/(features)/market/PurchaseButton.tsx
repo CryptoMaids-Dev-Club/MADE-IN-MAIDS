@@ -111,7 +111,7 @@ const PurchaseButton = ({ item, amount, differentAddress }: PurchaseButtonProps)
         <Alert icon={false} onClose={handleClose} variant='filled' severity='success' sx={{ width: '100%' }}>
           <TwitterAlert
             message='Successfully bought! Share'
-            title={item.name}
+            title={`Successfully bought ${item.name}!`}
             url={`https://made-in-maids.vercel.app/market/item/${item.id}`}
             hashtags={['CryptoMaids']}
           />

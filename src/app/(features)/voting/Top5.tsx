@@ -4,7 +4,6 @@ import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
-// import { Image } from 'mui-image'
 import Image from 'next/image'
 
 import NextLink from 'next/link'
@@ -33,6 +32,13 @@ export const Top5 = ({ votes, assets }: Top5Props) => {
   const matches = useMediaQuery('(min-width: 560px)')
   const displayOrder = matches ? [2, 1, 3, 4, 5] : [1, 2, 3, 4, 5]
 
+  const sortedAssets = [...assets]
+  const sortedVotes = [...votes]
+  if (matches) {
+    ;[sortedAssets[1], sortedAssets[0]] = [assets[0], assets[1]]
+    ;[sortedVotes[1], sortedVotes[0]] = [votes[0], votes[1]]
+  }
+
   return (
     <Container>
       <Grid container justifyContent='center' alignContent='center' mt='20px' mb='10px'>
@@ -53,12 +59,12 @@ export const Top5 = ({ votes, assets }: Top5Props) => {
       </Grid>
 
       <Grid container justifyContent='center' alignContent='center'>
-        {assets.map((asset, index) => (
+        {sortedAssets.map((asset, index) => (
           <Grid key={asset.name} item md={4} xs={12}>
             <Grid container justifyContent='center' alignContent='center'>
               <Image src={`/images/${displayOrder[index]}.png`} alt='rank' height='360' width='370' />
 
-              <NextLink href={`/detail/${votes[index].id}`}>
+              <NextLink href={`/detail/${sortedVotes[index].id}`}>
                 <Box overflow='hidden' width={340} height={576}>
                   <Box sx={{ ...ImageStyle }}>
                     <Image
@@ -73,7 +79,7 @@ export const Top5 = ({ votes, assets }: Top5Props) => {
               </NextLink>
 
               <Typography variant='h5' color='gold'>
-                {`Number of Votes:${votes[index].amount}`}
+                {`Number of Votes:${sortedVotes[index].amount}`}
               </Typography>
             </Grid>
           </Grid>

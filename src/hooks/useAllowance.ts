@@ -8,6 +8,7 @@ export const useAllowance = (account?: Address, spender?: string) => {
     ...maidsContractConfig,
     functionName: 'allowance',
     args: [account, spender],
+    enabled: account !== undefined,
     select: (data) => Number(formatEther(data as bigint)),
   })
 

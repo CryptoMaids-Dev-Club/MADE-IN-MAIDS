@@ -75,7 +75,7 @@ export const TopBar = () => {
 
         <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
           {linkNames.map((name, index) => (
-            <MenuLink text={name} link={linkUrls[index]} />
+            <MenuLink key={name} text={name} link={linkUrls[index]} />
           ))}
         </Box>
 

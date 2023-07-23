@@ -5,14 +5,15 @@ import LoadingButton from '@mui/lab/LoadingButton'
 import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { useDebounce } from 'usehooks-ts'
-import { useAccount, useContractRead, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
+import { useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import { parseEther } from 'viem'
 import Snackbar from '@mui/material/Snackbar'
 import Alert from '@mui/material/Alert'
 import { TwitterAlert } from '@/app/_components/Elements/TwitterAlert'
+import { useAllowance } from '@/hooks/useAllowance'
 
 type VotingFormProps = {
   id: number
@@ -44,18 +45,13 @@ export const VotingForm = ({ id }: VotingFormProps) => {
   const debounceAmount = useDebounce(amount, 500)
   const { address } = useAccount()
 
-  const { data: canVote } = useContractRead({
-    ...maidsContractConfig,
-    functionName: 'allowance',
-    args: [address, MAIDS_VOTING_CONTRACT_ADDRESS],
-    enabled: address !== undefined,
-  })
+  const { allowance, refetch } = useAllowance(address, MAIDS_VOTING_CONTRACT_ADDRESS)
 
   const votingConfig = usePrepareContractWrite({
     ...votingContractConfig,
     functionName: 'vote',
     args: debounceAmount ? [id, parseEther(`${Number(debounceAmount)}`)] : [id, 0],
-    enabled: canVote as boolean,
+    enabled: Boolean(allowance) && Boolean(debounceAmount),
   }).config
   const vote = useContractWrite({ ...votingConfig })
 
@@ -80,9 +76,18 @@ export const VotingForm = ({ id }: VotingFormProps) => {
     },
   })
 
+  useEffect(() => {
+    const refetchAllowance = async () => {
+      if (address !== undefined) {
+        await refetch()
+      }
+    }
+    void refetchAllowance()
+  }, [approveTx.status, voteTx.status, refetch, address])
+
   const onSubmit: SubmitHandler<Inputs> = () => {
     try {
-      if (canVote) {
+      if (allowance) {
         if (Number(debounceAmount) <= 0) return
         vote.write?.()
       } else {
@@ -125,7 +130,7 @@ export const VotingForm = ({ id }: VotingFormProps) => {
             loading={approve.isLoading || vote.isLoading || approveTx.isLoading || voteTx.isLoading}
             sx={{ fontSize: '30px', border: '1px solid', mt: '20px' }}
             fullWidth>
-            {canVote ? `Vote` : `Approve $MAIDS`}
+            {allowance ? `Vote` : `Approve $MAIDS`}
           </LoadingButton>
         </Grid>
         <Grid item xs={12}>
@@ -139,6 +144,7 @@ export const VotingForm = ({ id }: VotingFormProps) => {
                 message={`Voted for CryptoMaids #${id}! Share`}
                 title={`Voted for CryptoMaids #${id}!`}
                 url={`https://made-in-maids.vercel.app/detail/${id}`}
+                hashtags={['CryptoMaids']}
               />
             </Alert>
           </Snackbar>
