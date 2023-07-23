@@ -1,5 +1,5 @@
 import '@rainbow-me/rainbowkit/styles.css'
-import { Box, Container } from '@mui/material'
+import { Box } from '@mui/material'
 import { Providers } from './providers'
 import { TopBar } from './TopBar'
 import './index.css'
@@ -35,9 +35,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
       <Providers>
         <Box sx={{ bgcolor: 'rgba(0,0,0,0.87)' }}>
           <TopBar />
-          <Container maxWidth={false} sx={{ bgcolor: 'rgba(0,0,0,0.87)' }}>
-            <Box sx={{ height: '100%', marginTop: '10px', width: '100%' }}>{children}</Box>
-          </Container>
+          <Box sx={{ marginTop: '10px', width: '100%' }}>{children}</Box>
         </Box>
       </Providers>
     </body>

@@ -1,21 +1,21 @@
 'use client'
 
 import MenuIcon from '@mui/icons-material/Menu'
-import { AppBar, Box, IconButton, useMediaQuery } from '@mui/material'
+import { AppBar, Box, IconButton, Toolbar } from '@mui/material'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useState } from 'react'
 import { Balance } from '@/app/_components/Elements/Balance'
 import { MenuLink } from '@/app/_components/Elements/MenuLink'
-import Image from 'next/image'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const SideDrawer = dynamic(() => import('@/app/_components/Elements/Drawer').then((mod) => mod.SideDrawer), {
   ssr: false,
 })
 
 export const TopBar = () => {
-  const linkNames = ['Discord', 'Twitter', 'WebSite', 'TACHIYOMI', 'OS', 'SHOOTING', 'NFT STAKING']
+  const linkNames = ['Discord', 'Twitter', 'WebSite', 'TACHIYOMI', 'OS', 'SHOOTING', 'STAKING']
   const linkUrls = [
     'https://discord.gg/cryptomaids',
     'https://twitter.com/CryptoMaids',
@@ -25,8 +25,6 @@ export const TopBar = () => {
     'https://cryptomaids-shooting.netlify.app/',
     'https://made-in-maids.cryptomaids.tokyo/',
   ]
-
-  const matches = useMediaQuery('(min-width: 560px)')
 
   const [open, setOpen] = useState(false)
 
@@ -39,74 +37,58 @@ export const TopBar = () => {
   }
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar
-        enableColorOnDark
-        position='sticky'
-        color='inherit'
-        elevation={0}
-        sx={{
-          height: 50,
-          width: '100%',
-          bgcolor: 'rgba(0,0,0,0.87)',
-          flexDirection: 'row',
-          color: 'white',
-          fontFamily: 'serif !important',
-        }}>
-        {!matches && (
+    <AppBar
+      enableColorOnDark
+      position='sticky'
+      color='inherit'
+      elevation={0}
+      sx={{
+        height: 50,
+        width: '100%',
+        bgcolor: 'rgba(0,0,0,0.87)',
+        color: 'white',
+        fontFamily: 'serif !important',
+      }}>
+      <Toolbar>
+        <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
           <IconButton
             color='inherit'
             aria-label='open drawer'
             onClick={handleDrawerOpen}
             edge='start'
-            sx={{ ...(open && { display: 'none' }), ml: '5px' }}>
+            sx={{ ...(open && { display: 'none' }) }}>
             <MenuIcon />
           </IconButton>
-        )}
-        <Link href='/' style={{ textDecoration: 'none', color: 'inherit' }}>
-          <Image
-            src='/images/maid-eye-icon.png'
-            width='22'
-            height='30'
-            alt='maid'
-            style={{ height: '30px', marginTop: '10px', marginLeft: matches ? '25px' : '3px', marginRight: '3px' }}
-          />
-        </Link>
-        <Link href='/' style={{ textDecoration: 'none', color: 'inherit' }}>
-          <Image
-            src='/images/logo_text.png'
-            width='160'
-            height='45'
-            alt='logo'
-            style={{ height: '45px', marginTop: '5px' }}
-          />
-        </Link>
-        {matches && (
-          <Box sx={{ paddingTop: '10px' }}>
-            <MenuLink text='Discord' link='https://discord.gg/cryptomaids' />
-            <MenuLink text='Twitter' link='https://twitter.com/CryptoMaids' />
-            <MenuLink text='WebSite' link='https://cryptomaids.tokyo/home' />
-            <MenuLink text='TACHIYOMI' link='https://cryptomaids.tokyo/tachiyomi' />
-            <MenuLink text='OS' link='https://opensea.io/collection/cryptomaids' />
-            <MenuLink text='SHOOTING' link='https://cryptomaids-shooting.netlify.app/' />
-            <MenuLink text='NFT STAKING' link='https://made-in-maids.cryptomaids.tokyo/' />
-          </Box>
-        )}
-        <Box sx={{ paddingTop: '5px', flexGrow: 1 }} />
-        {matches && (
-          <Box sx={{ paddingTop: '10px', paddingRight: '10px' }}>
-            <Balance />
-          </Box>
-        )}
-        <Box id='connect_button' sx={{ paddingTop: '5px', paddingRight: matches ? '20px' : '0px' }}>
-          <ConnectButton showBalance={false} />
         </Box>
-      </AppBar>
 
-      {!matches && (
+        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Link href='/' style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Image src='/images/logo_set.png' width='160' height='48' alt='logo' style={{ marginTop: '10px' }} />
+          </Link>
+        </Box>
+
+        <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
+          <Link href='/' style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Image src='/images/logo_set.png' width='160' height='48' alt='logo' style={{ marginTop: '10px' }} />
+          </Link>
+        </Box>
+
+        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          {linkNames.map((name, index) => (
+            <MenuLink text={name} link={linkUrls[index]} />
+          ))}
+        </Box>
+
+        <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' }, mr: '10px' }}>
+          <Balance />
+        </Box>
+
+        <ConnectButton showBalance={false} />
+      </Toolbar>
+      <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
         <SideDrawer linkNames={linkNames} linkUrls={linkUrls} open={open} handleDrawerClose={handleDrawerClose} />
-      )}
-    </Box>
+      </Box>
+    </AppBar>
   )
 }
 

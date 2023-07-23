@@ -4,7 +4,7 @@ import TopCard from './TopCard'
 
 const Page = () => (
   <>
-    <Grid container justifyContent='center' alignItems='center' spacing={3} sx={{ mt: '50px' }}>
+    <Grid container justifyContent='center' alignItems='center' spacing={3}>
       <Grid item justifyContent='center' alignItems='center'>
         <TopCard
           title='MARKET'

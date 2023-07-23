@@ -14,6 +14,7 @@ export const MenuLink = ({ text, link }: MenuLinkProps) => (
       paddingLeft: '20px',
       fontFamily: 'serif !important',
       cursor: 'pointer',
+      my: 2,
     }}
     onClick={() => window.open(link, '_blank')}>
     {text}

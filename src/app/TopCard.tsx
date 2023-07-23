@@ -28,10 +28,16 @@ const TopCard = ({ title, color, image, description, link }: TopCardProps) => (
       {title}
     </Typography>
     <Link href={link}>
-      <Card sx={{ width: 500, height: 580, background: 'black' }}>
-        <Box overflow='hidden' width={500} height={500}>
+      <Card sx={{ width: { xs: 400, sm: 500 }, height: { xs: 530, sm: 580 }, background: 'black' }}>
+        <Box overflow='hidden' sx={{ width: { xs: 400, sm: 500 }, height: { xs: 400, sm: 500 } }}>
           <CardMedia sx={{ ...ImageStyle }}>
-            <Image src={image} height={500} width={500} alt='item' style={{ objectFit: 'cover' }} />
+            <Image
+              src={image}
+              height={500}
+              width={500}
+              alt='item'
+              style={{ objectFit: 'cover', width: '100%', height: 'auto' }}
+            />
           </CardMedia>
         </Box>
         <CardContent sx={{ background: 'black' }}>
