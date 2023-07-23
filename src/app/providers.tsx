@@ -1,18 +1,15 @@
 'use client'
 
-import { RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit'
+import { RainbowKitProvider, darkTheme, getDefaultWallets } from '@rainbow-me/rainbowkit'
 import React from 'react'
-import { QueryClientProvider } from 'react-query'
 
 import '@rainbow-me/rainbowkit/styles.css'
-import { WagmiConfig } from 'wagmi'
-import { queryClient } from '@/lib/react-query'
+import { WagmiConfig, createConfig, configureChains } from 'wagmi'
 import { polygon } from '@wagmi/core/chains'
 import { infuraProvider } from '@wagmi/core/providers/infura'
 import { publicProvider } from '@wagmi/core/providers/public'
-import { configureChains, createConfig } from '@wagmi/core'
-import { config } from '@/lib/wagmi'
 import { CssBaseline, ThemeProvider } from '@mui/material'
+import { WALLET_CONNECT_ID } from '@/config'
 import theme from './theme'
 
 export const { chains, publicClient } = configureChains(
@@ -24,12 +21,25 @@ export const wagmiConfig = createConfig({
   publicClient,
 })
 
+const projectId = WALLET_CONNECT_ID
+const { connectors } = getDefaultWallets({
+  appName: 'MadeInMaids',
+  projectId,
+  chains,
+})
+
+export const config = createConfig({
+  autoConnect: true,
+  connectors,
+  publicClient,
+})
+
 export const Providers = ({ children }: { children: React.ReactNode }) => (
   <ThemeProvider theme={theme}>
     <CssBaseline />
     <WagmiConfig config={config}>
       <RainbowKitProvider chains={chains} theme={darkTheme()}>
-        <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+        {children}
       </RainbowKitProvider>
     </WagmiConfig>
   </ThemeProvider>
