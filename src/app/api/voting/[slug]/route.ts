@@ -43,3 +43,5 @@ export async function GET(_req: NextRequest, { params }: { params: { slug: numbe
 
   return NextResponse.json(topVotes.slice(0, params.slug))
 }
+
+export const dynamic = 'force-dynamic'
