@@ -1,7 +1,10 @@
 'use client'
 
 import MenuIcon from '@mui/icons-material/Menu'
-import { AppBar, Box, IconButton, Toolbar } from '@mui/material'
+import AppBar from '@mui/material/AppBar'
+import Box from '@mui/material/Box'
+import IconButton from '@mui/material/IconButton'
+import Toolbar from '@mui/material/Toolbar'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import { useState } from 'react'
 import { Balance } from '@/app/_components/Elements/Balance'

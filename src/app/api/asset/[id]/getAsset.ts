@@ -14,6 +14,8 @@ export default async function getAsset({ id }: { id: string }) {
 
     return asset
   } catch (e) {
+    console.log(e)
+
     return {} as AssetInfo
   }
 }

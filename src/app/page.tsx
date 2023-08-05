@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material'
+import Grid from '@mui/material/Grid'
 import { Footer } from '@/app/_components/Footer'
 import TopCard from './TopCard'
 

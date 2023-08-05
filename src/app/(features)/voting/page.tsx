@@ -1,26 +1,31 @@
 import Container from '@mui/material/Container'
 import { Footer } from '@/app/_components/Footer'
 import { Metadata } from 'next'
-import getTopVotes from '@/app/api/voting/[slug]/getTopVotes'
-import getAsset from '@/app/api/asset/[id]/getAsset'
+import { Suspense } from 'react'
+import CircularProgress from '@mui/material/CircularProgress'
+import Grid from '@mui/material/Grid'
+import Typography from '@mui/material/Typography'
 import { Top5 } from './Top5'
 import { Voting } from './Voting'
-import type { AssetInfo } from '@/app/api/asset/[id]/asset'
 
-export default async function VotingTop() {
-  const top5 = await getTopVotes({ slug: 5 })
-  const assets = [] as AssetInfo[]
-  // eslint-disable-next-line no-restricted-syntax
-  for (const vote of top5) {
-    // eslint-disable-next-line no-await-in-loop
-    const asset = await getAsset({ id: String(vote.id) })
-    assets.push(asset)
-  }
-
+// eslint-disable-next-line react/function-component-definition
+export default function VotingTop() {
   return (
     <>
       <Container>
-        <Top5 votes={top5} assets={assets} />
+        <Grid container justifyContent='center' alignContent='center' mt='20px' mb='10px'>
+          <Typography variant='h1' color='hotpink' sx={{ typography: { sm: 'h1', xs: 'h4' } }}>
+            CryptoMaids VOTING
+          </Typography>
+        </Grid>
+        <Suspense
+          fallback={
+            <Grid container justifyContent='center' alignContent='center' mt='20px'>
+              <CircularProgress />
+            </Grid>
+          }>
+          <Top5 />
+        </Suspense>
         <Voting />
       </Container>
       <Footer />

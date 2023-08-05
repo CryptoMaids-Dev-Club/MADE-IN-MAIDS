@@ -1,5 +1,5 @@
 import '@rainbow-me/rainbowkit/styles.css'
-import { Box } from '@mui/material'
+import Box from '@mui/material/Box'
 import { Providers } from './providers'
 import { TopBar } from './TopBar'
 import './index.css'

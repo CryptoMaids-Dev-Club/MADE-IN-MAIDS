@@ -1,16 +1,24 @@
 import { Header } from '@/app/_components/Header'
 import { Footer } from '@/app/_components/Footer'
 import { Metadata } from 'next'
-import getMarketItems from '@/app/api/marketItems/getMarketItems'
+import { Suspense } from 'react'
+import CircularProgress from '@mui/material/CircularProgress'
+import Grid from '@mui/material/Grid'
 import ItemList from './ItemList'
 
-export default async function Market() {
-  const marketItems = await getMarketItems()
-
+// eslint-disable-next-line react/function-component-definition
+export default function Market() {
   return (
     <>
       <Header />
-      <ItemList marketItems={marketItems} />
+      <Suspense
+        fallback={
+          <Grid container justifyContent='center' alignContent='center' mt='20px'>
+            <CircularProgress />
+          </Grid>
+        }>
+        <ItemList />
+      </Suspense>
       <Footer />
     </>
   )
