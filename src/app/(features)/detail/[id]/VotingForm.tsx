@@ -87,7 +87,7 @@ export const VotingForm = ({ id }: VotingFormProps) => {
 
   const onSubmit: SubmitHandler<Inputs> = () => {
     try {
-      if (allowance) {
+      if (allowance && allowance > Number(debounceAmount)) {
         if (Number(debounceAmount) <= 0) return
         vote.write?.()
       } else {
@@ -130,7 +130,7 @@ export const VotingForm = ({ id }: VotingFormProps) => {
             loading={approve.isLoading || vote.isLoading || approveTx.isLoading || voteTx.isLoading}
             sx={{ fontSize: '30px', border: '1px solid', mt: '20px' }}
             fullWidth>
-            {allowance ? `Vote` : `Approve $MAIDS`}
+            {allowance && allowance > Number(debounceAmount) ? `Vote` : `Approve $MAIDS`}
           </LoadingButton>
         </Grid>
         <Grid item xs={12}>

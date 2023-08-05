@@ -1,7 +1,9 @@
 'use client'
 
 import { useEffect } from 'react'
-import { Box, Button, Typography } from '@mui/material'
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import Typography from '@mui/material/Typography'
 
 // eslint-disable-next-line react/function-component-definition
 export default function Error({ error, reset }: { error: Error; reset: () => void }) {
