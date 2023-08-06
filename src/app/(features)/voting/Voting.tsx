@@ -5,18 +5,10 @@ import Divider from '@mui/material/Divider'
 import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
-import { Controller, SubmitHandler, useForm } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
-
-const validationRules = {
-  id: {
-    required: 'tokenIDを入力してください',
-  },
-}
-
-type Inputs = {
-  id: string
-}
+import { FormSchema, formSchema } from '@/app/(features)/detail/[id]/schema'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 const textfieldStyle = {
   '& .MuiInputBase-input': {
@@ -43,10 +35,17 @@ const textfieldStyle = {
 }
 
 export const Voting = () => {
-  const { control, handleSubmit } = useForm<Inputs>()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormSchema>({
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+    resolver: zodResolver(formSchema),
+  })
   const router = useRouter()
-  const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => {
-    router.push(`/detail/${data.id}`)
+  const onSubmit: SubmitHandler<FormSchema> = (data: FormSchema) => {
+    router.push(`/detail/${data.num}`)
   }
 
   return (
@@ -59,25 +58,17 @@ export const Voting = () => {
           </Typography>
         </Grid>
         <Grid item mb='20px'>
-          <Controller
-            name='id'
-            control={control}
-            rules={validationRules.id}
-            defaultValue=''
-            render={({ field, fieldState }) => (
-              <TextField
-                {...field}
-                id='outlined-required'
-                label='Required: tokenId'
-                variant='standard'
-                size='medium'
-                error={fieldState.invalid}
-                helperText={fieldState.error?.message}
-                sx={{ ...textfieldStyle }}
-                type='number'
-                style={{ width: '350px' }}
-              />
-            )}
+          <TextField
+            {...register('num', { valueAsNumber: true })}
+            id='outlined-required'
+            label='Required: tokenId'
+            variant='standard'
+            size='medium'
+            error={'num' in errors}
+            helperText={errors.num?.message}
+            sx={{ ...textfieldStyle }}
+            type='number'
+            style={{ width: '350px' }}
           />
         </Grid>
         <Grid item>

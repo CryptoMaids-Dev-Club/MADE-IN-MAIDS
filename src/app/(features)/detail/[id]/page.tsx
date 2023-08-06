@@ -5,16 +5,17 @@ import Grid from '@mui/material/Grid'
 import { Footer } from '@/app/_components/Footer'
 import dynamic from 'next/dynamic'
 import getAsset from '@/app/api/asset/[id]/getAsset'
+import { Skeleton } from '@mui/material'
+import { Suspense } from 'react'
 import { VotingInfo } from './VotingInfo'
 import { NFTInfo } from './NFTInfo'
 import { Induction } from './Induction'
+import { NFTImage } from './NFTImage'
 
 const VotingForm = dynamic(() => import('./VotingForm'), { ssr: false })
-const NFTImage = dynamic(() => import('./NFTImage'), { ssr: false })
 
-export default async function Page({ params }: { params: { id: string } }) {
-  const asset = await getAsset({ id: params.id })
-
+// eslint-disable-next-line react/function-component-definition
+export default function Page({ params }: { params: { id: string } }) {
   const style = {
     width: '100%',
     bgcolor: 'pink',
@@ -29,16 +30,31 @@ export default async function Page({ params }: { params: { id: string } }) {
         <Box sx={style} mt='50px'>
           <Grid container justifyContent='center' spacing={2}>
             <Grid item md={6} xs={12}>
-              <NFTImage url={asset.external_url} />
+              <Suspense
+                fallback={
+                  <Skeleton
+                    sx={{ bgcolor: 'grey.900' }}
+                    animation='wave'
+                    variant='rectangular'
+                    width={500}
+                    height={800}
+                  />
+                }>
+                <NFTImage id={params.id} />
+              </Suspense>
             </Grid>
             <Grid item md={6} xs={12}>
               <Grid container spacing={1}>
-                <NFTInfo id={Number(params.id)} {...asset} />
+                <Suspense fallback={<Skeleton sx={{ bgcolor: 'grey.900' }} />}>
+                  <NFTInfo id={params.id} />
+                </Suspense>
                 <Grid item md={12} xs={12}>
                   <Divider />
                   <br />
                 </Grid>
+
                 <VotingInfo id={Number(params.id)} />
+
                 <Grid item md={12} xs={12}>
                   <br />
                   <Divider />
