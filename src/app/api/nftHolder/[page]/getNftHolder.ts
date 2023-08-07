@@ -1,9 +1,8 @@
-import { getBaseUrl } from '@/lib/getBaseUrl'
 import { NFTHolder } from './nftHolder'
 
 export default async function getNftHolder({ page }: { page: number }) {
   try {
-    const res = await fetch(`${getBaseUrl()}/api/nftHolder/${page}`)
+    const res = await fetch(`https://made-in-maids-git-develop-maids-dev-club.vercel.app/api/nftHolder/${page}`)
 
     if (!res.ok) {
       throw new Error('Something went wrong!')

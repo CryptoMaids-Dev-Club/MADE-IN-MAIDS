@@ -12,6 +12,7 @@ import Avatar from '@mui/material/Avatar'
 import InfiniteScroll from 'react-infinite-scroller'
 import { useState } from 'react'
 import getNftHolder from '@/app/api/nftHolder/[page]/getNftHolder'
+import Typography from '@mui/material/Typography'
 import type { NFTHolder } from '@/app/api/nftHolder/[page]/nftHolder'
 
 const NFTHolderTable = () => {
@@ -38,7 +39,10 @@ const NFTHolderTable = () => {
   }
 
   return (
-    <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={<p key={0}>Loading...</p>}>
+    <InfiniteScroll
+      loadMore={loadMore}
+      hasMore={hasMore}
+      loader={<Typography sx={{ color: 'white' }}>Loading...</Typography>}>
       <TableContainer>
         <Table aria-label='simple table'>
           <TableHead>

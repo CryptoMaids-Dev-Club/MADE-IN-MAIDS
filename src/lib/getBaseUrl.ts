@@ -1,4 +1,2 @@
 export const getBaseUrl = () =>
-  process.env.NEXT_PUBLIC_VERCEL_URL
-    ? process.env.NEXT_PUBLIC_VERCEL_URL
-    : `http://localhost:${process.env.PORT ?? 3000}`
+  process.env.VERCEL_URL ? `https://market.cryptomaids.tokyo` : `http://localhost:${process.env.PORT ?? 3000}`
