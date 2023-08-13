@@ -6,12 +6,14 @@ import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
 import Toolbar from '@mui/material/Toolbar'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { Balance } from '@/app/_components/Elements/Balance'
 import { MenuLink } from '@/app/_components/Elements/MenuLink'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import Image from 'next/image'
+import { ProfileIcon } from '@/app/_components/Elements/ProfileIcon'
+import Skeleton from '@mui/material/Skeleton'
 
 const SideDrawer = dynamic(() => import('@/app/_components/Elements/Drawer').then((mod) => mod.SideDrawer), {
   ssr: false,
@@ -84,6 +86,12 @@ export const TopBar = () => {
 
         <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' }, mr: '10px' }}>
           <Balance />
+        </Box>
+
+        <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' }, mr: '10px' }}>
+          <Suspense fallback={<Skeleton variant='circular' width={40} height={40} sx={{ bgcolor: 'grey.900' }} />}>
+            <ProfileIcon />
+          </Suspense>
         </Box>
 
         <ConnectButton showBalance={false} />

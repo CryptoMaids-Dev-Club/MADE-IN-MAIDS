@@ -12,7 +12,7 @@ export default async function getMaidsHolder({ page }: { page: number }) {
 
     return holders
   } catch (e) {
-    console.log(e)
+    console.error(e)
 
     return {} as MaidsHolder[]
   }

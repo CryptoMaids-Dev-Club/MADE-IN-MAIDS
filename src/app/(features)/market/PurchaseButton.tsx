@@ -89,7 +89,7 @@ const PurchaseButton = ({ item, amount, differentAddress }: PurchaseButtonProps)
         approve?.()
       }
     } catch (e) {
-      console.log(e)
+      console.error(e)
     }
   }
 

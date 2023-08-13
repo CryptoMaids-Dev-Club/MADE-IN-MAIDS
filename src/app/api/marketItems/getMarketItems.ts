@@ -21,7 +21,7 @@ export default async function getMarketItems() {
 
     return marketItems
   } catch (e) {
-    console.log(e)
+    console.error(e)
 
     return [{}] as MarketItemInfo[]
   }

@@ -22,7 +22,6 @@ const NFTHolderTable = () => {
   const loadMore = async (page: number) => {
     if (page > 5) {
       // until 100 owner
-      console.log('over 10')
       setHasMore(false)
 
       return

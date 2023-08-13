@@ -96,7 +96,7 @@ export const VotingForm = ({ id }: VotingFormProps) => {
         approve.write?.()
       }
     } catch (e) {
-      console.log(e)
+      console.error(e)
     }
   }
 
