@@ -27,7 +27,7 @@ const Profile = ({ address }: ProfileProps) => {
     <Grid container alignItems='center' direction='column'>
       <ProfileAvatar userInfo={userInfo} />
 
-      <UserName userInfo={userInfo} />
+      <UserName targetAddress={address} userInfo={userInfo} />
       <Typography sx={{ color: 'white' }}>{address}</Typography>
     </Grid>
   )

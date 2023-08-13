@@ -12,10 +12,11 @@ import Snackbar from '@mui/material/Snackbar'
 import Alert from '@mui/material/Alert'
 
 type UserNameProps = {
+  targetAddress: string
   userInfo: User
 }
 
-const UserName = ({ userInfo }: UserNameProps) => {
+const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const editing = Boolean(anchorEl)
 
@@ -58,7 +59,7 @@ const UserName = ({ userInfo }: UserNameProps) => {
       {!editing ? (
         <Typography variant='h4' sx={{ color: 'white' }}>
           {userName}
-          {address && address === userInfo.address && (
+          {address && address === targetAddress && (
             <IconButton onClick={handleClick} sx={{ color: 'white' }}>
               <ModeEditIcon />
             </IconButton>
