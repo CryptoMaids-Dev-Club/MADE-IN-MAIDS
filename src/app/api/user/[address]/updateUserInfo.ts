@@ -1,4 +1,3 @@
-import { getBaseUrl } from '@/lib/getBaseUrl'
 import { User } from '@prisma/client'
 
 export default async function updateUserInfo({
@@ -13,7 +12,7 @@ export default async function updateUserInfo({
   signature: string
 }) {
   try {
-    const res = await fetch(`${getBaseUrl()}/api/user/${address}`, {
+    const res = await fetch(`https://made-in-maids-git-develop-maids-dev-club.vercel.app/api/user/${address}`, {
       method: 'POST',
       body: JSON.stringify({ name, address, iconUrl, signature }),
       next: { revalidate: 5 },
