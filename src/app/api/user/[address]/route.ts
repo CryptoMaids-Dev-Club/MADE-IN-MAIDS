@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { NextRequest, NextResponse } from 'next/server'
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { PrismaClient } from '@prisma/client'
 import { recoverMessageAddress } from 'viem'
 

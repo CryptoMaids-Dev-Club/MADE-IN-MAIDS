@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-// import getUserInfo from '@/app/api/user/[address]/getUserInfo'
 import Avatar from '@mui/material/Avatar'
 import { User } from '@prisma/client'
 
