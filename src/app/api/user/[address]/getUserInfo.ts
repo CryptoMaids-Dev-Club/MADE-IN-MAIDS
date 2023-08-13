@@ -7,9 +7,7 @@ export default async function getUserInfo({ address }: { address: string }) {
   }
 
   try {
-    const res = await fetch(`${getBaseUrl()}/api/user/${address}`, {
-      next: { revalidate: 5 },
-    })
+    const res = await fetch(`${getBaseUrl()}/api/user/${address}`)
 
     if (!res.ok) {
       throw new Error('Something went wrong!')

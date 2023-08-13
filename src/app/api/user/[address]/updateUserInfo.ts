@@ -15,7 +15,6 @@ export default async function updateUserInfo({
     const res = await fetch(`https://made-in-maids-git-develop-maids-dev-club.vercel.app/api/user/${address}`, {
       method: 'POST',
       body: JSON.stringify({ name, address, iconUrl, signature }),
-      next: { revalidate: 5 },
     })
 
     if (!res.ok) {
