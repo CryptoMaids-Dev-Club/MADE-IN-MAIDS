@@ -9,4 +9,4 @@ export async function GET(_req: NextRequest) {
   return NextResponse.json(user)
 }
 
-export const revalidate = 60
+export const dynamic = 'force-dynamic'

@@ -131,7 +131,7 @@ const MaidsList = ({ targetAddress }: MaidsListProps) => {
                 title={nft.name}
                 actionIcon={
                   address &&
-                  address.toString().toLowerCase() === nft.owner && (
+                  address.toLowerCase() === nft.owner && (
                     <Chip
                       label='Set As Icon'
                       variant='outlined'

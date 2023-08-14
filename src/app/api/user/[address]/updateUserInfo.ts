@@ -12,9 +12,10 @@ export default async function updateUserInfo({
   signature: string
 }) {
   try {
-    const res = await fetch(`/api/user/${address}`, {
+    const lowerAddress = address.toLowerCase()
+    const res = await fetch(`/api/user/${lowerAddress}`, {
       method: 'POST',
-      body: JSON.stringify({ name, address, iconUrl, signature }),
+      body: JSON.stringify({ name, address: lowerAddress, iconUrl, signature }),
     })
 
     if (!res.ok) {

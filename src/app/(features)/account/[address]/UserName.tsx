@@ -82,7 +82,7 @@ const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
       {!editing ? (
         <Typography variant='h4' sx={{ color: 'white' }}>
           {userName}
-          {address && address === targetAddress && (
+          {address && address.toLowerCase() === targetAddress && (
             <IconButton onClick={handleClick} sx={{ color: 'white' }}>
               <ModeEditIcon />
             </IconButton>
