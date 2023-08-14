@@ -6,7 +6,7 @@ import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { useEffect, useState } from 'react'
-import { Controller, SubmitHandler, useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 import { useDebounce } from 'usehooks-ts'
 import { useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import { parseEther } from 'viem'
@@ -14,6 +14,9 @@ import Snackbar from '@mui/material/Snackbar'
 import Alert from '@mui/material/Alert'
 import { TwitterAlert } from '@/app/_components/Elements/TwitterAlert'
 import { useAllowance } from '@/hooks/useAllowance'
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { zodResolver } from '@hookform/resolvers/zod'
+import { FormSchema, formSchema } from './schema'
 
 type VotingFormProps = {
   id: number
@@ -31,17 +34,16 @@ export const VotingForm = ({ id }: VotingFormProps) => {
     setOpen(false)
   }
 
-  const validationRules = {
-    votes: {
-      required: '投票数を入力してください',
-    },
-  }
-  type Inputs = {
-    votes: number
-  }
-  const { control, handleSubmit } = useForm<Inputs>()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormSchema>({
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
+    resolver: zodResolver(formSchema),
+  })
 
-  const [amount, setAmount] = useState('')
+  const [amount, setAmount] = useState(0)
   const debounceAmount = useDebounce(amount, 500)
   const { address } = useAccount()
 
@@ -85,7 +87,7 @@ export const VotingForm = ({ id }: VotingFormProps) => {
     void refetchAllowance()
   }, [approveTx.status, voteTx.status, refetch, address])
 
-  const onSubmit: SubmitHandler<Inputs> = () => {
+  const onSubmit = (_: FormSchema) => {
     try {
       if (allowance && allowance > Number(debounceAmount)) {
         if (Number(debounceAmount) <= 0) return
@@ -94,32 +96,23 @@ export const VotingForm = ({ id }: VotingFormProps) => {
         approve.write?.()
       }
     } catch (e) {
-      console.log(e)
+      console.error(e)
     }
   }
 
   return (
     <>
-      <Controller
-        name='votes'
-        control={control}
-        rules={validationRules.votes}
-        defaultValue={0}
-        render={({ field, fieldState }) => (
-          <TextField
-            {...field}
-            id='outlined-required'
-            label='Required: voteAmounts'
-            variant='standard'
-            size='medium'
-            error={fieldState.invalid}
-            helperText={fieldState.error?.message}
-            onChange={(e) => setAmount(e.target.value)}
-            value={amount}
-            type='number'
-            style={{ width: matches ? '530px' : window.innerWidth * 0.68 }}
-          />
-        )}
+      <TextField
+        {...register('num', { valueAsNumber: true })}
+        id='outlined-required'
+        label='Required: voteAmounts'
+        variant='standard'
+        size='medium'
+        onChange={(e) => setAmount(Number(e.target.value))}
+        error={'num' in errors}
+        helperText={errors.num?.message}
+        type='number'
+        style={{ width: matches ? '530px' : window.innerWidth * 0.68 }}
       />
       <Grid container>
         <Grid item xs={12}>

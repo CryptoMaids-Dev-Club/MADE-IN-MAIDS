@@ -8,6 +8,7 @@ import MaidsMarketContract from '@/assets/contracts/MaidsMarketPlace.json'
 import MaidsItemContract from '@/assets/contracts/MaidsItem1155.json'
 
 export const INFURA_API_KEY = process.env.NEXT_PUBLIC_INFURA_API_KEY as string
+export const CHAINBASE_API_KEY = process.env.NEXT_PUBLIC_CHAINBASE_API_KEY as string
 export const WALLET_CONNECT_ID = process.env.NEXT_PUBLIC_WALLET_CONNECT_ID as string
 export const MAIDS_CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_MAIDS_CONTRACT_ADDRESS as Address
 export const MARKET_PROXY_CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_MARKET_PROXY_CONTRACT_ADDRESS as Address

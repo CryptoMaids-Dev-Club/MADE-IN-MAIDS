@@ -1,27 +1,24 @@
-'use client'
-
 import Grid from '@mui/material/Grid'
 import Link from '@mui/material/Link'
 import Typography from '@mui/material/Typography'
 import Image from 'next/image'
-import useMediaQuery from '@mui/material/useMediaQuery'
-import type { AssetInfo } from '@/app/api/asset/[id]/asset'
+import getAsset from '@/app/api/asset/[id]/getAsset'
 
-type NFTInfoProps = AssetInfo & {
-  id: number
+type NFTInfoProps = {
+  id: string
 }
 
-export const NFTInfo = ({ id, name }: NFTInfoProps) => {
-  const matches = useMediaQuery('(min-width: 560px)')
+export const NFTInfo = async ({ id }: NFTInfoProps) => {
+  const asset = await getAsset({ id })
 
   return (
     <>
       <Grid item>
         <Typography component='span' sx={{ color: 'black', typography: { sm: 'h4', xs: 'h5' } }}>
-          {name}
+          {asset.name}
         </Typography>
       </Grid>
-      <Grid item mt={matches ? '5px' : '0px'}>
+      <Grid item mt='5px'>
         <Link
           href={`https://opensea.io/assets/ethereum/0x5703a3245ff6fad37fa2a2500f0739d4f6a234e7/${id}`}
           underline='none'>

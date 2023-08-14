@@ -24,7 +24,7 @@ export default async function getTopAssets({ slug }: { slug: number }) {
 
     return topAssets
   } catch (e) {
-    console.log(e)
+    console.error(e)
 
     return [{}] as TopAsset[]
   }

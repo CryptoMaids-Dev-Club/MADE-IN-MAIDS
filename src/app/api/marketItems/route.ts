@@ -55,7 +55,7 @@ const getMarketItems = async (items: ItemInfo[]): Promise<MarketItemInfo[]> => {
         }
         infos.push(info)
       } catch (e) {
-        console.log(e)
+        console.error(e)
       }
     })
   )

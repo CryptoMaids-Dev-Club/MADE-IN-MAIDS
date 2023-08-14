@@ -1,16 +1,25 @@
-'use client'
-
-import { Image } from 'mui-image'
-import useMediaQuery from '@mui/material/useMediaQuery'
+import Image from 'next/image'
+import getAsset from '@/app/api/asset/[id]/getAsset'
 
 type NFTImageProps = {
-  url: string
+  id: string
 }
 
-export const NFTImage = ({ url }: NFTImageProps) => {
-  const matches = useMediaQuery('(min-width: 560px)')
+export const NFTImage = async ({ id }: NFTImageProps) => {
+  const asset = await getAsset({ id })
 
-  return <Image src={url} width={matches ? '400' : window.innerWidth * 0.69} />
+  return (
+    <Image
+      src={asset.external_url}
+      alt='maids'
+      width={500}
+      height={800}
+      style={{
+        maxWidth: '100%',
+        height: 'auto',
+      }}
+    />
+  )
 }
 
 export default NFTImage
