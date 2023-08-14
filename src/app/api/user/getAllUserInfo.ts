@@ -1,5 +1,6 @@
 import { getBaseUrl } from '@/lib/getBaseUrl'
 import { User } from '@prisma/client'
+import 'server-only'
 
 export default async function getAllUserInfo() {
   try {
