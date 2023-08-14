@@ -4,9 +4,7 @@ import 'server-only'
 
 export default async function getAllUserInfo() {
   try {
-    const res = await fetch(`${getBaseUrl()}/api/user`, {
-      next: { revalidate: 60 },
-    })
+    const res = await fetch(`${getBaseUrl()}/api/user`)
 
     if (!res.ok) {
       throw new Error('Something went wrong!')
