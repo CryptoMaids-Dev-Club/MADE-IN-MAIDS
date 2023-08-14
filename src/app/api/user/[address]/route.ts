@@ -46,7 +46,7 @@ async function updateIconUrl(address: string, iconUrl: string) {
 export async function GET(_req: NextRequest, { params }: { params: { address: string } }) {
   const user = await prisma.user.findUnique({
     where: {
-      address: params.address,
+      address: params.address.toLowerCase(),
     },
   })
 
@@ -59,13 +59,15 @@ export async function POST(request: NextRequest) {
     message: 'Update Profile',
     signature,
   })
-  if (recoveredAddress !== address) return NextResponse.json({ error: 'Invalid signature' }, { status: 400 })
+
+  if (recoveredAddress.toLowerCase() !== address)
+    return NextResponse.json({ error: 'Invalid signature' }, { status: 400 })
 
   let user
   if (name !== '') {
-    user = await updateName(address as string, name as string)
+    user = await updateName((address as string).toLowerCase(), name as string)
   } else if (iconUrl !== '') {
-    user = await updateIconUrl(address as string, iconUrl as string)
+    user = await updateIconUrl((address as string).toLowerCase(), iconUrl as string)
   }
 
   return NextResponse.json(user)

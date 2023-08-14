@@ -5,7 +5,7 @@ import 'server-only'
 export default async function getAllUserInfo() {
   try {
     const res = await fetch(`${getBaseUrl()}/api/user`, {
-      next: { revalidate: 60 },
+      cache: 'no-store',
     })
 
     if (!res.ok) {

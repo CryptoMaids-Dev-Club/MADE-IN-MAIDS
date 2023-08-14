@@ -12,7 +12,7 @@ export const ProfileIcon = () => {
   if (isLoading || address === undefined) return <Avatar src='' sx={{ width: 40, height: 40 }} />
 
   return (
-    <NextLink href={`/account/${address}`}>
+    <NextLink href={`/account/${address.toLowerCase()}`}>
       <Avatar src={userInfo ? userInfo.iconUrl : ''} sx={{ width: 40, height: 40 }} />
     </NextLink>
   )
