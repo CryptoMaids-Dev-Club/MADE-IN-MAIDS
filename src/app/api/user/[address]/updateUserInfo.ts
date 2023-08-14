@@ -12,7 +12,7 @@ export default async function updateUserInfo({
   signature: string
 }) {
   try {
-    const res = await fetch(`https://made-in-maids-git-develop-maids-dev-club.vercel.app/api/user/${address}`, {
+    const res = await fetch(`/api/user/${address}`, {
       method: 'POST',
       body: JSON.stringify({ name, address, iconUrl, signature }),
     })

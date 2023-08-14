@@ -1,6 +1,5 @@
 'use client'
 
-import * as React from 'react'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
@@ -8,14 +7,20 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Avatar from '@mui/material/Avatar'
-// eslint-disable-next-line import/no-extraneous-dependencies
 import InfiniteScroll from 'react-infinite-scroller'
 import { useState } from 'react'
+import NextLink from 'next/link'
 import getNftHolder from '@/app/api/nftHolder/[page]/getNftHolder'
 import Typography from '@mui/material/Typography'
+import { User } from '@prisma/client'
 import type { NFTHolder } from '@/app/api/nftHolder/[page]/nftHolder'
+import { getUserIcon, getUserName } from './utils'
 
-const NFTHolderTable = () => {
+type NFTHolderTableProps = {
+  userInfos: User[]
+}
+
+const NFTHolderTable = ({ userInfos }: NFTHolderTableProps) => {
   const [holdersList, setHoldersList] = useState<NFTHolder[]>([])
   const [hasMore, setHasMore] = useState(true)
 
@@ -41,7 +46,11 @@ const NFTHolderTable = () => {
     <InfiniteScroll
       loadMore={loadMore}
       hasMore={hasMore}
-      loader={<Typography sx={{ color: 'white' }}>Loading...</Typography>}>
+      loader={
+        <Typography key={0} sx={{ color: 'white' }}>
+          Loading...
+        </Typography>
+      }>
       <TableContainer>
         <Table aria-label='simple table'>
           <TableHead>
@@ -59,9 +68,13 @@ const NFTHolderTable = () => {
                   {index + 1}
                 </TableCell>
                 <TableCell>
-                  <Avatar src='/images/icon.png' sx={{ width: 96, height: 96 }} />
+                  <Avatar src={getUserIcon(holder.address, userInfos)} sx={{ width: 96, height: 96 }} />
                 </TableCell>
-                <TableCell sx={{ color: 'white', fontSize: '20px' }}>{holder.address}</TableCell>
+                <TableCell sx={{ color: 'white', fontSize: '20px' }}>
+                  <NextLink href={`/account/${holder.address}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                    {getUserName(holder.address, userInfos)}
+                  </NextLink>
+                </TableCell>
                 <TableCell sx={{ color: 'white', fontSize: '20px' }}>{holder.total}</TableCell>
               </TableRow>
             ))}

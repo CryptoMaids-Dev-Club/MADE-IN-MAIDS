@@ -16,7 +16,14 @@ type UserNameProps = {
   userInfo: User
 }
 
+type SavedSignature = {
+  signature: string
+  timestamp: number
+}
+
 const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
+  const localStorageLimit = 60 * 60 * 24
+
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const editing = Boolean(anchorEl)
 
@@ -37,6 +44,7 @@ const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
       if (address === undefined) return
       try {
         await updateUserInfo({ name: userName, address, iconUrl: '', signature: data })
+        localStorage.setItem(address, JSON.stringify({ signature: data, timestamp: new Date().getTime() }))
         setOpen(true)
       } catch (e) {
         console.error(e)
@@ -48,10 +56,25 @@ const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
     setAnchorEl(event.currentTarget)
   }
 
-  const handleClose = () => {
+  const handleClose = async () => {
     setAnchorEl(null)
-    if (userInfo.name === userName) return
-    signMessage()
+    if (userInfo.name === userName || address === undefined) return
+
+    const savedSignatureObject = localStorage.getItem(address)
+    if (savedSignatureObject) {
+      const savedSignature = JSON.parse(savedSignatureObject) as SavedSignature
+      const signatureTime = savedSignature.timestamp
+      const nowTime = new Date().getTime()
+      const diffTime = (nowTime - signatureTime) / 1000
+      if (diffTime > localStorageLimit) {
+        signMessage()
+      } else {
+        await updateUserInfo({ name: userName, address, iconUrl: '', signature: savedSignature.signature ?? '' })
+        setOpen(true)
+      }
+    } else {
+      signMessage()
+    }
   }
 
   return (

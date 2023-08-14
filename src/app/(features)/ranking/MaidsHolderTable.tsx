@@ -1,6 +1,5 @@
 'use client'
 
-import * as React from 'react'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
@@ -8,14 +7,20 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Avatar from '@mui/material/Avatar'
-// eslint-disable-next-line import/no-extraneous-dependencies
 import InfiniteScroll from 'react-infinite-scroller'
 import { useState } from 'react'
+import NextLink from 'next/link'
 import getMaidsHolder from '@/app/api/maidsHolder/[page]/getMaidsHolder'
 import Typography from '@mui/material/Typography'
+import { User } from '@prisma/client'
 import type { MaidsHolder } from '@/app/api/maidsHolder/[page]/maidsHolder'
+import { getUserIcon, getUserName } from './utils'
 
-const MaidsHolderTable = () => {
+type MaidsHolderTableProps = {
+  userInfos: User[]
+}
+
+const MaidsHolderTable = ({ userInfos }: MaidsHolderTableProps) => {
   const [holdersList, setHoldersList] = useState<MaidsHolder[]>([])
   const [hasMore, setHasMore] = useState(true)
 
@@ -41,7 +46,11 @@ const MaidsHolderTable = () => {
     <InfiniteScroll
       loadMore={loadMore}
       hasMore={hasMore}
-      loader={<Typography sx={{ color: 'white' }}>Loading...</Typography>}>
+      loader={
+        <Typography key={0} sx={{ color: 'white' }}>
+          Loading...
+        </Typography>
+      }>
       <TableContainer>
         <Table aria-label='simple table'>
           <TableHead>
@@ -59,9 +68,15 @@ const MaidsHolderTable = () => {
                   {index + 1}
                 </TableCell>
                 <TableCell>
-                  <Avatar src='/images/mogm.png' sx={{ width: 96, height: 96 }} />
+                  <Avatar src={getUserIcon(holder.wallet_address, userInfos)} sx={{ width: 96, height: 96 }} />
                 </TableCell>
-                <TableCell sx={{ color: 'white', fontSize: '20px' }}>{holder.wallet_address}</TableCell>
+                <TableCell sx={{ color: 'white', fontSize: '20px' }}>
+                  <NextLink
+                    href={`/account/${holder.wallet_address}`}
+                    style={{ textDecoration: 'none', color: 'inherit' }}>
+                    {getUserName(holder.wallet_address, userInfos)}
+                  </NextLink>
+                </TableCell>
                 <TableCell sx={{ color: 'white', fontSize: '20px' }}>{Math.floor(Number(holder.amount))}</TableCell>
               </TableRow>
             ))}

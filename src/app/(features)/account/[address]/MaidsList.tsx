@@ -29,7 +29,14 @@ type MaidsListProps = {
   targetAddress: string
 }
 
+type SavedSignature = {
+  signature: string
+  timestamp: number
+}
+
 const MaidsList = ({ targetAddress }: MaidsListProps) => {
+  const localStorageLimit = 60 * 60 * 24
+
   const [maidsList, setMaidsList] = useState<OwnedNFTs[]>([])
   const [hasMore, setHasMore] = useState(true)
   const [iconUrl, setIconUrl] = useState('')
@@ -51,6 +58,7 @@ const MaidsList = ({ targetAddress }: MaidsListProps) => {
       if (address === undefined) return
       try {
         await updateUserInfo({ name: '', address, iconUrl, signature: data })
+        localStorage.setItem(address, JSON.stringify({ signature: data, timestamp: new Date().getTime() }))
         setOpen(true)
       } catch (e) {
         console.error(e)
@@ -74,10 +82,26 @@ const MaidsList = ({ targetAddress }: MaidsListProps) => {
     }
   }
 
-  const handleSaveClick = (newIconUrl: string) => {
+  const handleSaveClick = async (newIconUrl: string) => {
     if (address === undefined) return
+
+    const savedSignatureObject = localStorage.getItem(address)
+    if (savedSignatureObject) {
+      const savedSignature = JSON.parse(savedSignatureObject) as SavedSignature
+      const signatureTime = savedSignature.timestamp
+      const nowTime = new Date().getTime()
+      const diffTime = (nowTime - signatureTime) / 1000
+      if (diffTime > localStorageLimit) {
+        signMessage()
+      } else {
+        await updateUserInfo({ name: '', address, iconUrl: newIconUrl, signature: savedSignature.signature ?? '' })
+        setOpen(true)
+      }
+    } else {
+      signMessage()
+    }
+
     setIconUrl(newIconUrl)
-    signMessage()
   }
 
   return (

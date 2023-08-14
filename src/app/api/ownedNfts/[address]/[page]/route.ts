@@ -16,8 +16,6 @@ const fetchOwnedNFTs = async ({ address, page }: { address: string; page: number
   const ownedNFTs = (await response.json()) as unknown as OwnedResponse
 
   if (ownedNFTs.data === null) {
-    console.log('null')
-
     return {} as OwnedAssetInfo
   }
 
