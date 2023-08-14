@@ -4,7 +4,9 @@ import 'server-only'
 
 export default async function getAllUserInfo() {
   try {
-    const res = await fetch(`${getBaseUrl()}/api/user`)
+    const res = await fetch(`${getBaseUrl()}/api/user`, {
+      cache: 'no-store',
+    })
 
     if (!res.ok) {
       throw new Error('Something went wrong!')
