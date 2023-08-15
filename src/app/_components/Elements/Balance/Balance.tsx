@@ -18,8 +18,8 @@ export const Balance = () => {
 
   return (
     <>
-      <WalletIcon sx={{ marginTop: '4px', marginRight: '3px' }} />
-      <Typography variant='h6' component='span' sx={{ color: 'gold' }}>
+      <WalletIcon sx={{ display: { xs: 'none', sm: 'block' }, marginTop: '4px', marginRight: '3px' }} />
+      <Typography variant='h6' sx={{ color: 'gold' }}>
         {balance ?? 0} $MAIDS
       </Typography>
     </>

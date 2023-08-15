@@ -1,6 +1,7 @@
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
+import { Metadata } from 'next'
 import Profile from './Profile'
 import MaidsList from './MaidsList'
 
@@ -17,3 +18,7 @@ const MyPage = ({ params }: { params: { address: string } }) => (
 )
 
 export default MyPage
+
+export const metadata: Metadata = {
+  title: 'MyPage',
+}

@@ -1,5 +1,4 @@
 import { Header } from '@/app/_components/Header'
-import { Footer } from '@/app/_components/Footer'
 import { Metadata } from 'next'
 import { Suspense } from 'react'
 import CircularProgress from '@mui/material/CircularProgress'
@@ -19,7 +18,6 @@ export default function Market() {
         }>
         <ItemList />
       </Suspense>
-      <Footer />
     </>
   )
 }

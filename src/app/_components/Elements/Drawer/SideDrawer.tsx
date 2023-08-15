@@ -10,6 +10,8 @@ import ListItemText from '@mui/material/ListItemText'
 import styled from '@mui/material/styles/styled'
 import useTheme from '@mui/material/styles/useTheme'
 import { Balance } from '@/app/_components/Elements/Balance'
+import { ProfileIcon } from '@/app/_components/Elements/ProfileIcon'
+import Grid from '@mui/material/Grid'
 
 const DrawerHeader = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -17,7 +19,6 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
-  justifyContent: 'flex-end',
 }))
 
 type SideDrawerProps = {
@@ -45,10 +46,19 @@ export const SideDrawer = ({ linkNames, linkUrls, open, handleDrawerClose }: Sid
       anchor='left'
       open={open}>
       <DrawerHeader>
-        <Balance />
-        <IconButton onClick={handleDrawerClose}>
-          {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-        </IconButton>
+        <Grid container>
+          <Grid item xs={3}>
+            <ProfileIcon />
+          </Grid>
+          <Grid item xs={7} display='flex' alignItems='center'>
+            <Balance />
+          </Grid>
+          <Grid item xs={2}>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            </IconButton>
+          </Grid>
+        </Grid>
       </DrawerHeader>
       <Divider />
       <List>

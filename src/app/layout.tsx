@@ -1,5 +1,6 @@
 import '@rainbow-me/rainbowkit/styles.css'
 import Box from '@mui/material/Box'
+import { Footer } from '@/app/_components/Footer'
 import { Providers } from './providers'
 import { TopBar } from './TopBar'
 import './index.css'
@@ -36,6 +37,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
         <Box sx={{ bgcolor: 'rgba(0,0,0,0.87)' }}>
           <TopBar />
           <Box sx={{ marginTop: '10px', width: '100%' }}>{children}</Box>
+          <Footer />
         </Box>
       </Providers>
     </body>

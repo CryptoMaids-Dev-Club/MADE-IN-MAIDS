@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import { prisma } from '@/lib/prisma'
 import { NextRequest, NextResponse } from 'next/server'
-import { PrismaClient } from '@prisma/client'
 import { recoverMessageAddress } from 'viem'
-
-const prisma = new PrismaClient()
 
 async function updateName(address: string, name: string) {
   const user = await prisma.user.upsert({

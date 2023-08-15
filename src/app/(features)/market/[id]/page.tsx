@@ -1,4 +1,3 @@
-import { Footer } from '@/app/_components/Footer'
 import getMarketItems from '@/app/api/marketItems/getMarketItems'
 import getMetadata from '@/app/api/metadata/[id]/getMetadata'
 import ItemDetail from './ItemDetail'
@@ -8,12 +7,7 @@ const AssetDetail = async ({ params }: { params: { id: string } }) => {
   const marketItems = await getMarketItems()
   const marketItem = marketItems[Number(params.id)] as unknown as MarketItemInfo
 
-  return (
-    <>
-      <ItemDetail marketItem={marketItem} />
-      <Footer />
-    </>
-  )
+  return <ItemDetail marketItem={marketItem} />
 }
 
 export default AssetDetail
