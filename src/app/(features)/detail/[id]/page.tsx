@@ -2,7 +2,6 @@ import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Divider from '@mui/material/Divider'
 import Grid from '@mui/material/Grid'
-import { Footer } from '@/app/_components/Footer'
 import dynamic from 'next/dynamic'
 import getAsset from '@/app/api/asset/[id]/getAsset'
 import { Skeleton } from '@mui/material'
@@ -25,53 +24,50 @@ export default function Page({ params }: { params: { id: string } }) {
   }
 
   return (
-    <>
-      <Container>
-        <Box sx={style} mt='50px'>
-          <Grid container justifyContent='center' spacing={2}>
-            <Grid item md={6} xs={12}>
-              <Suspense
-                fallback={
-                  <Skeleton
-                    sx={{ bgcolor: 'grey.900' }}
-                    animation='wave'
-                    variant='rectangular'
-                    width={500}
-                    height={800}
-                  />
-                }>
-                <NFTImage id={params.id} />
+    <Container>
+      <Box sx={style} mt='50px'>
+        <Grid container justifyContent='center' spacing={2}>
+          <Grid item md={6} xs={12}>
+            <Suspense
+              fallback={
+                <Skeleton
+                  sx={{ bgcolor: 'grey.900' }}
+                  animation='wave'
+                  variant='rectangular'
+                  width={500}
+                  height={800}
+                />
+              }>
+              <NFTImage id={params.id} />
+            </Suspense>
+          </Grid>
+          <Grid item md={6} xs={12}>
+            <Grid container spacing={1}>
+              <Suspense fallback={<Skeleton sx={{ bgcolor: 'grey.900' }} />}>
+                <NFTInfo id={params.id} />
               </Suspense>
-            </Grid>
-            <Grid item md={6} xs={12}>
-              <Grid container spacing={1}>
-                <Suspense fallback={<Skeleton sx={{ bgcolor: 'grey.900' }} />}>
-                  <NFTInfo id={params.id} />
-                </Suspense>
-                <Grid item md={12} xs={12}>
-                  <Divider />
-                  <br />
-                </Grid>
-
-                <VotingInfo id={Number(params.id)} />
-
-                <Grid item md={12} xs={12}>
-                  <br />
-                  <Divider />
-                  <br />
-                </Grid>
-                <VotingForm id={Number(params.id)} />
-                <Grid item md={12} xs={12}>
-                  <br />
-                </Grid>
-                <Induction />
+              <Grid item md={12} xs={12}>
+                <Divider />
+                <br />
               </Grid>
+
+              <VotingInfo id={Number(params.id)} />
+
+              <Grid item md={12} xs={12}>
+                <br />
+                <Divider />
+                <br />
+              </Grid>
+              <VotingForm id={Number(params.id)} />
+              <Grid item md={12} xs={12}>
+                <br />
+              </Grid>
+              <Induction />
             </Grid>
           </Grid>
-        </Box>
-      </Container>
-      <Footer />
-    </>
+        </Grid>
+      </Box>
+    </Container>
   )
 }
 

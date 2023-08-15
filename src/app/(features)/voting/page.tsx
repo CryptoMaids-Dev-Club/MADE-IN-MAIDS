@@ -1,5 +1,4 @@
 import Container from '@mui/material/Container'
-import { Footer } from '@/app/_components/Footer'
 import { Metadata } from 'next'
 import { Suspense } from 'react'
 import CircularProgress from '@mui/material/CircularProgress'
@@ -8,30 +7,24 @@ import Typography from '@mui/material/Typography'
 import { Top5 } from './Top5'
 import { Voting } from './Voting'
 
-// eslint-disable-next-line react/function-component-definition
-export default function VotingTop() {
-  return (
-    <>
-      <Container>
-        <Grid container justifyContent='center' alignContent='center' mt='20px' mb='10px'>
-          <Typography variant='h1' color='hotpink' sx={{ typography: { sm: 'h1', xs: 'h4' } }}>
-            CryptoMaids VOTING
-          </Typography>
+const VotingTop = () => (
+  <Container>
+    <Typography variant='h1' align='center' color='hotpink' sx={{ typography: { sm: 'h1', xs: 'h4' } }}>
+      CryptoMaids VOTING
+    </Typography>
+    <Suspense
+      fallback={
+        <Grid container justifyContent='center' alignContent='center' mt='20px'>
+          <CircularProgress />
         </Grid>
-        <Suspense
-          fallback={
-            <Grid container justifyContent='center' alignContent='center' mt='20px'>
-              <CircularProgress />
-            </Grid>
-          }>
-          <Top5 />
-        </Suspense>
-        <Voting />
-      </Container>
-      <Footer />
-    </>
-  )
-}
+      }>
+      <Top5 />
+    </Suspense>
+    <Voting />
+  </Container>
+)
+
+export default VotingTop
 
 export const metadata: Metadata = {
   title: 'Voting',

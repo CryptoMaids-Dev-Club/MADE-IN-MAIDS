@@ -1,5 +1,4 @@
 import Box from '@mui/material/Box'
-import { Footer } from '@/app/_components/Footer'
 import { Metadata } from 'next'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
@@ -14,69 +13,67 @@ const Ranking = async () => {
   const userInfos = await getAllUserInfo()
 
   return (
-    <>
-      <Grid container>
-        <Grid
-          item
-          xs={3}
-          position='fixed'
-          width='30%'
-          height='100vh'
-          display='flex'
-          flexDirection='column'
-          justifyContent='flex-end'>
-          <Image
-            src='/images/maid_velo.png'
-            alt='maids'
-            width={500}
-            height={800}
-            style={{
-              maxWidth: '100%',
-              height: 'auto',
-            }}
-          />
-        </Grid>
-        <Grid item xs={6} sx={{ ml: '25%' }}>
-          <Container>
-            <Typography
-              align='center'
-              variant='h1'
-              color='hotpink'
-              sx={{ typography: { sm: 'h1', xs: 'h4' }, mb: '20px' }}>
-              Holder Ranking
-            </Typography>
-            <Box sx={{ width: '100%', bgcolor: '#333333' }}>
-              <CenteredTabs labels={['NFT', '$MAIDS']}>
-                <NFTHolderTable userInfos={userInfos} />
-                <MaidsHolderTable userInfos={userInfos} />
-              </CenteredTabs>
-            </Box>
-          </Container>
-        </Grid>
-        <Grid
-          item
-          xs={3}
-          position='fixed'
-          width='30%'
-          height='100vh'
-          display='flex'
-          flexDirection='column'
-          justifyContent='flex-end'
-          sx={{ ml: '75%' }}>
-          <Image
-            src='/images/maid_rita.png'
-            alt='maids'
-            width={500}
-            height={800}
-            style={{
-              maxWidth: '100%',
-              height: 'auto',
-            }}
-          />
-        </Grid>
+    <Grid container>
+      <Grid
+        item
+        sm={3}
+        position='fixed'
+        width='30%'
+        height='100vh'
+        display='flex'
+        flexDirection='column'
+        justifyContent='flex-end'
+        sx={{ display: { xs: 'none', sm: 'flex' } }}>
+        <Image
+          src='/images/maid_velo.png'
+          alt='maids'
+          width={500}
+          height={800}
+          style={{
+            maxWidth: '100%',
+            height: 'auto',
+          }}
+        />
       </Grid>
-      <Footer />
-    </>
+      <Grid item sm={6} sx={{ ml: { sm: '25%', xs: '0%' } }}>
+        <Container>
+          <Typography
+            align='center'
+            variant='h1'
+            color='hotpink'
+            sx={{ typography: { sm: 'h1', xs: 'h4' }, mb: '20px' }}>
+            Holder Ranking
+          </Typography>
+          <Box sx={{ width: '100%', bgcolor: '#333333' }}>
+            <CenteredTabs labels={['NFT', '$MAIDS']}>
+              <NFTHolderTable userInfos={userInfos} />
+              <MaidsHolderTable userInfos={userInfos} />
+            </CenteredTabs>
+          </Box>
+        </Container>
+      </Grid>
+      <Grid
+        item
+        sm={3}
+        position='fixed'
+        width='30%'
+        height='100vh'
+        display='flex'
+        flexDirection='column'
+        justifyContent='flex-end'
+        sx={{ ml: '75%', display: { xs: 'none', sm: 'flex' } }}>
+        <Image
+          src='/images/maid_rita.png'
+          alt='maids'
+          width={500}
+          height={800}
+          style={{
+            maxWidth: '100%',
+            height: 'auto',
+          }}
+        />
+      </Grid>
+    </Grid>
   )
 }
 
