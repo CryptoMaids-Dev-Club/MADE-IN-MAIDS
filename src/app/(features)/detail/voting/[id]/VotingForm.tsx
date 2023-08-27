@@ -14,7 +14,6 @@ import Snackbar from '@mui/material/Snackbar'
 import Alert from '@mui/material/Alert'
 import { TwitterAlert } from '@/app/_components/Elements/TwitterAlert'
 import { useAllowance } from '@/hooks/useAllowance'
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { zodResolver } from '@hookform/resolvers/zod'
 import { FormSchema, formSchema } from './schema'
 
