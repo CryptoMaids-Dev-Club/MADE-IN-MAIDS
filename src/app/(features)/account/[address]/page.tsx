@@ -14,6 +14,7 @@ const MyPage = ({ params }: { params: { address: string } }) => (
     <Box sx={{ border: '3px dashed hotpink', borderRadius: '20px', padding: '10px' }}>
       <MaidsList targetAddress={params.address} />
     </Box>
+    <br />
   </Container>
 )
 
