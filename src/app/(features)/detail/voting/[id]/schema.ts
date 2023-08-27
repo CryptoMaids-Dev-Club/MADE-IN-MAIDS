@@ -1,9 +1,8 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { z } from 'zod'
 
 export const formSchema = z.object({
-  name: z.string().min(1),
-  character: z.string().min(1),
-  description: z.string().min(1),
+  num: z.number().positive().int().min(1),
 })
 
 export type FormSchema = z.infer<typeof formSchema>

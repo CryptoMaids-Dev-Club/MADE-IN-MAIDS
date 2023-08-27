@@ -2,7 +2,7 @@ import { getBaseUrl } from '@/lib/getBaseUrl'
 import type { AssetInfo } from './asset'
 import 'server-only'
 
-export default async function getAsset({ id }: { id: string }) {
+export default async function getAsset({ id }: { id: number }) {
   try {
     const res = await fetch(`${getBaseUrl()}/api/asset/${id}`)
 

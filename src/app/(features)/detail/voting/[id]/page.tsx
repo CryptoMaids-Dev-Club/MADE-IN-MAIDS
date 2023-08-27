@@ -1,13 +1,20 @@
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
+import Divider from '@mui/material/Divider'
 import Grid from '@mui/material/Grid'
+import dynamic from 'next/dynamic'
 import getAsset from '@/app/api/asset/[id]/getAsset'
-import Skeleton from '@mui/material/Skeleton'
+import { Skeleton } from '@mui/material'
 import { Suspense } from 'react'
-import { NFTImage } from '../NFTImage'
-import NFTProfile from './NFTProfile'
+import { VotingInfo } from './VotingInfo'
+import { NFTInfo } from '../../NFTInfo'
+import { Induction } from './Induction'
+import { NFTImage } from '../../NFTImage'
 
-const Detail = ({ params }: { params: { id: number } }) => {
+const VotingForm = dynamic(() => import('./VotingForm'), { ssr: false })
+
+// eslint-disable-next-line react/function-component-definition
+export default function Page({ params }: { params: { id: number } }) {
   const style = {
     width: '100%',
     bgcolor: 'pink',
@@ -35,17 +42,34 @@ const Detail = ({ params }: { params: { id: number } }) => {
             </Suspense>
           </Grid>
           <Grid item md={6} xs={12}>
-            <Suspense fallback={<Skeleton sx={{ bgcolor: 'grey.900' }} />}>
-              <NFTProfile id={params.id} />
-            </Suspense>
+            <Grid container spacing={1}>
+              <Suspense fallback={<Skeleton sx={{ bgcolor: 'grey.900' }} />}>
+                <NFTInfo id={params.id} />
+              </Suspense>
+              <Grid item md={12} xs={12}>
+                <Divider />
+                <br />
+              </Grid>
+
+              <VotingInfo id={Number(params.id)} />
+
+              <Grid item md={12} xs={12}>
+                <br />
+                <Divider />
+                <br />
+              </Grid>
+              <VotingForm id={Number(params.id)} />
+              <Grid item md={12} xs={12}>
+                <br />
+              </Grid>
+              <Induction />
+            </Grid>
           </Grid>
         </Grid>
       </Box>
     </Container>
   )
 }
-
-export default Detail
 
 export const generateMetadata = async ({ params }: { params: { id: number } }) => {
   const meta = await getAsset({ id: params.id })

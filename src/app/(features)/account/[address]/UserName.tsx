@@ -10,20 +10,14 @@ import { User } from '@prisma/client'
 import { useAccount, useSignMessage } from 'wagmi'
 import Snackbar from '@mui/material/Snackbar'
 import Alert from '@mui/material/Alert'
+import { getSignatureFromLocalStorage, saveSignatureToLocalStorage } from '@/lib/signature'
 
 type UserNameProps = {
   targetAddress: string
   userInfo: User
 }
 
-type SavedSignature = {
-  signature: string
-  timestamp: number
-}
-
 const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
-  const localStorageLimit = 60 * 60 * 24
-
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const editing = Boolean(anchorEl)
 
@@ -44,7 +38,7 @@ const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
       if (address === undefined) return
       try {
         await updateUserInfo({ name: userName, address, iconUrl: '', signature: data })
-        localStorage.setItem(address, JSON.stringify({ signature: data, timestamp: new Date().getTime() }))
+        saveSignatureToLocalStorage(address, data)
         setOpen(true)
       } catch (e) {
         console.error(e)
@@ -60,18 +54,10 @@ const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
     setAnchorEl(null)
     if (userInfo.name === userName || address === undefined) return
 
-    const savedSignatureObject = localStorage.getItem(address)
-    if (savedSignatureObject) {
-      const savedSignature = JSON.parse(savedSignatureObject) as SavedSignature
-      const signatureTime = savedSignature.timestamp
-      const nowTime = new Date().getTime()
-      const diffTime = (nowTime - signatureTime) / 1000
-      if (diffTime > localStorageLimit) {
-        signMessage()
-      } else {
-        await updateUserInfo({ name: userName, address, iconUrl: '', signature: savedSignature.signature ?? '' })
-        setOpen(true)
-      }
+    const signature = getSignatureFromLocalStorage(address)
+    if (signature) {
+      await updateUserInfo({ name: userName, address, iconUrl: '', signature })
+      setOpen(true)
     } else {
       signMessage()
     }

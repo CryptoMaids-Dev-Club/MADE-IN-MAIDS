@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
-import { FormSchema, formSchema } from '@/app/(features)/detail/[id]/schema'
+import { FormSchema, formSchema } from '@/app/(features)/detail/voting/[id]/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 const textfieldStyle = {

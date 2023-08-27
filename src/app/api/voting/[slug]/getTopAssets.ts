@@ -17,7 +17,7 @@ export default async function getTopAssets({ slug }: { slug: number }) {
 
     await Promise.all(
       topVotes.map(async (vote, index) => {
-        const asset = await getAsset({ id: String(vote.id) })
+        const asset = await getAsset({ id: vote.id })
         topAssets.push({ ...vote, ...asset, rank: index + 1 })
       })
     )

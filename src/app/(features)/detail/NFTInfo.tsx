@@ -5,7 +5,7 @@ import Image from 'next/image'
 import getAsset from '@/app/api/asset/[id]/getAsset'
 
 type NFTInfoProps = {
-  id: string
+  id: number
 }
 
 export const NFTInfo = async ({ id }: NFTInfoProps) => {
