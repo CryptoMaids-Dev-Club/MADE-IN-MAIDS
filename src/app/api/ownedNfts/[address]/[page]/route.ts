@@ -1,5 +1,6 @@
 import { CHAINBASE_API_KEY } from '@/config'
 import { NextRequest, NextResponse } from 'next/server'
+import { prisma } from '@/lib/prisma'
 import { OwnedAssetInfo, OwnedNFTs, OwnedResponse } from './ownedNft'
 import type { AssetInfo } from '@/app/api/asset/[id]/asset'
 
@@ -19,12 +20,20 @@ const fetchOwnedNFTs = async ({ address, page }: { address: string; page: number
     return {} as OwnedAssetInfo
   }
 
+  const maidProfiles = await prisma.maidProfile.findMany()
+
   const assets = [] as OwnedNFTs[]
   await Promise.all(
     ownedNFTs.data.map(async (nft) => {
       const res = await fetch(`https://api.cryptomaids.tokyo/metadata/crypto_maid/${nft.token_id}`)
       const asset = (await res.json()) as unknown as AssetInfo
-      assets.push({ ...nft, ...asset })
+
+      const index = maidProfiles.findIndex((e) => e.id === Number(nft.token_id))
+      if (index !== -1) {
+        assets.push({ ...nft, ...asset, name: maidProfiles[index].name })
+      } else {
+        assets.push({ ...nft, ...asset })
+      }
     })
   )
 
