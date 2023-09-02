@@ -17,7 +17,7 @@ import { useAccount, useSignMessage } from 'wagmi'
 import updateMaidProfile from '@/app/api/maidsProfile/[id]/updateMaidProfile'
 import { getSignatureFromLocalStorage, saveSignatureToLocalStorage } from '@/lib/signature'
 import NextLink from 'next/link'
-import { FormSchema, formSchema } from './schema'
+import { FormSchema, formSchema } from '../schema'
 
 type MaidsProfileProps = {
   profile: MaidProfile

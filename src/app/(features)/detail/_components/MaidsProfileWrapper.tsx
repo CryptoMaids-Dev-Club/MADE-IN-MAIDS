@@ -6,11 +6,11 @@ type NFTProfileProps = {
   id: number
 }
 
-const NFTProfile = async ({ id }: NFTProfileProps) => {
+const MaidsProfileWrapper = async ({ id }: NFTProfileProps) => {
   const maidProfile = await getMaidProfile({ id })
   const owner = await getNftOwner({ id })
 
   return <MaidsProfile profile={{ ...maidProfile, id }} owner={owner} />
 }
 
-export default NFTProfile
+export default MaidsProfileWrapper

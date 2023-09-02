@@ -1,24 +1,9 @@
-import Box from '@mui/material/Box'
-import Container from '@mui/material/Container'
-import Typography from '@mui/material/Typography'
 import { Metadata } from 'next'
-import Profile from './Profile'
-import MaidsList from './MaidsList'
+import MyPage from './_components/MyPage'
 
-const MyPage = ({ params }: { params: { address: string } }) => (
-  <Container>
-    <Profile address={params.address} />
-    <Typography variant='h1' sx={{ color: 'white' }}>
-      Your Maids
-    </Typography>
-    <Box sx={{ border: '3px dashed hotpink', borderRadius: '20px', padding: '10px' }}>
-      <MaidsList targetAddress={params.address} />
-    </Box>
-    <br />
-  </Container>
-)
+const Page = ({ params }: { params: { address: string } }) => <MyPage address={params.address} />
 
-export default MyPage
+export default Page
 
 export const metadata: Metadata = {
   title: 'MyPage',

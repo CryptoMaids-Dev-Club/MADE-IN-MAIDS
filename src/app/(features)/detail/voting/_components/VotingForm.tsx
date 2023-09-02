@@ -15,7 +15,7 @@ import Alert from '@mui/material/Alert'
 import { TwitterAlert } from '@/app/_components/Elements/TwitterAlert'
 import { useAllowance } from '@/hooks/useAllowance'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { FormSchema, formSchema } from './schema'
+import { FormSchema, formSchema } from '../schema'
 
 type VotingFormProps = {
   id: number
