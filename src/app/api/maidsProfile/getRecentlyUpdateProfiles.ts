@@ -1,7 +1,8 @@
+import { cache } from 'react'
 import 'server-only'
 import { prisma } from '@/lib/prisma'
 
-export const getRecentlyUpdateProfiles = async () => {
+export const getRecentlyUpdateProfiles = cache(async () => {
   const profiles = await prisma.maidProfile.findMany({
     orderBy: {
       updatedAt: 'desc',
@@ -10,6 +11,6 @@ export const getRecentlyUpdateProfiles = async () => {
   })
 
   return profiles
-}
+})
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 10
