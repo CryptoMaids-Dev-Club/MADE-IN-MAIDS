@@ -14,17 +14,19 @@ import TextField from '@mui/material/TextField'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import Button from '@mui/material/Button'
 import { useAccount, useSignMessage } from 'wagmi'
-import updateMaidProfile from '@/app/api/maidsProfile/[id]/updateMaidProfile'
+import updateMaidProfile from '@/app/api/maidsProfile/updateMaidProfile'
 import { getSignatureFromLocalStorage, saveSignatureToLocalStorage } from '@/lib/signature'
 import NextLink from 'next/link'
-import { FormSchema, formSchema } from './schema'
+import { FormSchema, formSchema } from '../schema'
+import type { AssetInfo } from '@/app/api/asset/[id]/asset'
 
 type MaidsProfileProps = {
   profile: MaidProfile
+  asset: AssetInfo
   owner: string
 }
 
-const MaidsProfile = ({ profile, owner }: MaidsProfileProps) => {
+const MaidsProfile = ({ profile, asset, owner }: MaidsProfileProps) => {
   const [editing, setEditing] = useState(false)
   const [maidsProfile, setMaidsProfile] = useState<MaidProfile>(profile)
   const debounceProfile = useDebounce(maidsProfile, 500)
@@ -35,7 +37,7 @@ const MaidsProfile = ({ profile, owner }: MaidsProfileProps) => {
     async onSuccess(data) {
       if (address === undefined) return
       try {
-        await updateMaidProfile({ ...debounceProfile, address, signature: data })
+        await updateMaidProfile({ ...debounceProfile, imageUrl: asset.image, address, signature: data })
         saveSignatureToLocalStorage(address, data)
         setEditing(false)
       } catch (e) {
@@ -59,7 +61,7 @@ const MaidsProfile = ({ profile, owner }: MaidsProfileProps) => {
     const signature = getSignatureFromLocalStorage(address)
 
     if (signature) {
-      await updateMaidProfile({ ...debounceProfile, address, signature })
+      await updateMaidProfile({ ...debounceProfile, imageUrl: asset.image, address, signature })
       setEditing(false)
     } else {
       signMessage()

@@ -21,4 +21,7 @@ model MaidProfile {
   name        String
   character   String
   description String
+  imageUrl    String @default("")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 }

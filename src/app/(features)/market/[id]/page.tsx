@@ -1,6 +1,6 @@
 import getMarketItems from '@/app/api/marketItems/getMarketItems'
 import getMetadata from '@/app/api/metadata/[id]/getMetadata'
-import ItemDetail from './ItemDetail'
+import ItemDetail from '../_components/ItemDetail'
 import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
 
 const AssetDetail = async ({ params }: { params: { id: string } }) => {
