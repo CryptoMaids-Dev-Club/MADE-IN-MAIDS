@@ -12,4 +12,4 @@ export const getRecentlyUpdateProfiles = async () => {
   return profiles
 }
 
-export const revalidate = 10
+export const dynamic = 'force-dynamic'
