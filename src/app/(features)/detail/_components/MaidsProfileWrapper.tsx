@@ -1,4 +1,4 @@
-import getMaidProfile from '@/app/api/maidsProfile/[id]/getMaidProfile'
+import getMaidProfile from '@/app/api/maidsProfile/getMaidProfile'
 import getNftOwner from '@/app/api/nftOwner/[id]/getNftOwner'
 import getAsset from '@/app/api/asset/[id]/getAsset'
 import MaidsProfile from './MaidsProfile'
