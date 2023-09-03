@@ -1,13 +1,27 @@
+import type { MaidProfile } from '@prisma/client'
+import { getBaseUrl } from '@/lib/getBaseUrl'
 import 'server-only'
-import { prisma } from '@/lib/prisma'
 
 export const getRecentlyUpdateProfiles = async () => {
-  const profiles = await prisma.maidProfile.findMany({
-    orderBy: {
-      updatedAt: 'desc',
-    },
-    take: 5,
-  })
+  try {
+    const res = await fetch(`${getBaseUrl()}/api/maidsProfile`, {
+      cache: 'no-store',
+    })
 
-  return profiles
+    if (!res.ok) {
+      throw new Error('Something went wrong!')
+    }
+
+    const profiles = (await res.json()) as MaidProfile[]
+
+    if (profiles.length === 0) {
+      return [{}] as MaidProfile[]
+    }
+
+    return profiles
+  } catch (e) {
+    console.error(e)
+
+    return [{}] as MaidProfile[]
+  }
 }
