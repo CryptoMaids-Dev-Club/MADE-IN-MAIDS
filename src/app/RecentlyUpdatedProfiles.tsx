@@ -32,3 +32,5 @@ const RecentlyUpdatedProfiles = async () => {
 }
 
 export default RecentlyUpdatedProfiles
+
+export const revalidate = 10
