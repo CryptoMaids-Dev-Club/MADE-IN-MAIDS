@@ -46,6 +46,9 @@ dependencies:
   '@types/react-dom':
     specifier: ^18.0.6
     version: 18.2.7
+  '@vercel/analytics':
+    specifier: ^1.0.2
+    version: 1.0.2
   '@vercel/postgres':
     specifier: ^0.4.1
     version: 0.4.1
@@ -1539,6 +1542,10 @@ packages:
       '@vanilla-extract/css': ^1.0.0
     dependencies:
       '@vanilla-extract/css': 1.9.1
+    dev: false
+
+  /@vercel/analytics@1.0.2:
+    resolution: {integrity: sha512-BZFxVrv24VbNNl5xMxqUojQIegEeXMI6rX3rg1uVLYUEXsuKNBSAEQf4BWEcjQDp/8aYJOj6m8V4PUA3x/cxgg==}
     dev: false
 
   /@vercel/postgres@0.4.1:
