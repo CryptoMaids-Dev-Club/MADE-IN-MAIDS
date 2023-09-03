@@ -1,6 +1,6 @@
 import Grid from '@mui/material/Grid'
 import TopCard from './TopCard'
-import RecentlyUpdatedProfiles from './RecentlyUpdatedProfiles'
+import RecentlyUpdatedProfilesWrapper from './RecentlyUpdatedProfilesWrapper'
 
 const Page = () => (
   <>
@@ -43,7 +43,7 @@ const Page = () => (
       </Grid>
     </Grid>
     <Grid sx={{ padding: '30px' }}>
-      <RecentlyUpdatedProfiles />
+      <RecentlyUpdatedProfilesWrapper />
     </Grid>
     <br />
   </>
