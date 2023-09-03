@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
-import { FormSchema, formSchema } from '@/app/(features)/detail/voting/[id]/schema'
+import { FormSchema, formSchema } from '@/app/(features)/detail/voting/schema'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 const textfieldStyle = {
@@ -34,13 +34,12 @@ const textfieldStyle = {
   mt: '5px',
 }
 
-export const Voting = () => {
+export const VotingTransitionForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormSchema>({
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
     resolver: zodResolver(formSchema),
   })
   const router = useRouter()
@@ -88,4 +87,4 @@ export const Voting = () => {
   )
 }
 
-export default Voting
+export default VotingTransitionForm

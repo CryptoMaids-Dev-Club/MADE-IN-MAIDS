@@ -8,3 +8,5 @@ node_modules
 *.snap
 *.svg
 config-overrides.js
+.next
+.vercel

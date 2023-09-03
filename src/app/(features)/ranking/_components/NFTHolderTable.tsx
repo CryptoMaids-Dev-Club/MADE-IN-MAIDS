@@ -10,18 +10,18 @@ import Avatar from '@mui/material/Avatar'
 import InfiniteScroll from 'react-infinite-scroller'
 import { useState } from 'react'
 import NextLink from 'next/link'
-import getMaidsHolder from '@/app/api/maidsHolder/[page]/getMaidsHolder'
+import getNftHolder from '@/app/api/nftHolder/[page]/getNftHolder'
 import Typography from '@mui/material/Typography'
 import { User } from '@prisma/client'
-import type { MaidsHolder } from '@/app/api/maidsHolder/[page]/maidsHolder'
-import { getUserIcon, getUserName } from './utils'
+import type { NFTHolder } from '@/app/api/nftHolder/[page]/nftHolder'
+import { getUserIcon, getUserName } from '../utils'
 
-type MaidsHolderTableProps = {
+type NFTHolderTableProps = {
   userInfos: User[]
 }
 
-const MaidsHolderTable = ({ userInfos }: MaidsHolderTableProps) => {
-  const [holdersList, setHoldersList] = useState<MaidsHolder[]>([])
+const NFTHolderTable = ({ userInfos }: NFTHolderTableProps) => {
+  const [holdersList, setHoldersList] = useState<NFTHolder[]>([])
   const [hasMore, setHasMore] = useState(true)
 
   const loadMore = async (page: number) => {
@@ -32,9 +32,9 @@ const MaidsHolderTable = ({ userInfos }: MaidsHolderTableProps) => {
       return
     }
 
-    const holders = await getMaidsHolder({ page })
+    const holders = await getNftHolder({ page })
 
-    if (holders === undefined || holders.length < 1) {
+    if (holders.length < 1) {
       setHasMore(false)
 
       return
@@ -63,21 +63,19 @@ const MaidsHolderTable = ({ userInfos }: MaidsHolderTableProps) => {
           </TableHead>
           <TableBody>
             {holdersList.map((holder, index) => (
-              <TableRow key={holder.wallet_address} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+              <TableRow key={holder.address} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                 <TableCell sx={{ color: 'white', fontSize: '20px' }} component='th' scope='row'>
                   {index + 1}
                 </TableCell>
                 <TableCell>
-                  <Avatar src={getUserIcon(holder.wallet_address, userInfos)} sx={{ width: 96, height: 96 }} />
+                  <Avatar src={getUserIcon(holder.address, userInfos)} sx={{ width: 96, height: 96 }} />
                 </TableCell>
                 <TableCell sx={{ color: 'white', fontSize: '20px' }}>
-                  <NextLink
-                    href={`/account/${holder.wallet_address}`}
-                    style={{ textDecoration: 'none', color: 'inherit' }}>
-                    {getUserName(holder.wallet_address, userInfos)}
+                  <NextLink href={`/account/${holder.address}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                    {getUserName(holder.address, userInfos)}
                   </NextLink>
                 </TableCell>
-                <TableCell sx={{ color: 'white', fontSize: '20px' }}>{Math.floor(Number(holder.amount))}</TableCell>
+                <TableCell sx={{ color: 'white', fontSize: '20px' }}>{holder.total}</TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -87,4 +85,4 @@ const MaidsHolderTable = ({ userInfos }: MaidsHolderTableProps) => {
   )
 }
 
-export default MaidsHolderTable
+export default NFTHolderTable

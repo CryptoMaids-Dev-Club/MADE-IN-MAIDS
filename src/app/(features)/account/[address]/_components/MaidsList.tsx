@@ -1,46 +1,29 @@
 'use client'
 
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import getOwnedNfts from '@/app/api/ownedNfts/[address]/[page]/getOwnedNfts'
 import ImageList from '@mui/material/ImageList'
-import ImageListItem from '@mui/material/ImageListItem'
 import ImageListItemBar from '@mui/material/ImageListItemBar'
 import Typography from '@mui/material/Typography'
 import { useState } from 'react'
 import InfiniteScroll from 'react-infinite-scroller'
-import { styled } from '@mui/material/styles'
-import { useRouter } from 'next/navigation'
-import updateUserInfo from '@/app/api/user/[address]/updateUserInfo'
+import updateUserInfo from '@/app/api/user/updateUserInfo'
 import Chip from '@mui/material/Chip'
 import { useAccount, useSignMessage } from 'wagmi'
 import Snackbar from '@mui/material/Snackbar'
 import Alert from '@mui/material/Alert'
+import { ImageListItemWithStyle } from '@/app/_components/Elements/ImageListItemWithStyle'
+import { getSignatureFromLocalStorage } from '@/lib/signature'
+import Link from 'next/link'
 import type { OwnedNFTs } from '@/app/api/ownedNfts/[address]/[page]/ownedNft'
-
-const ImageListItemWithStyle = styled(ImageListItem)(() => ({
-  '&:hover': {
-    opacity: '0.5',
-    transition: '0.3s',
-  },
-}))
 
 type MaidsListProps = {
   targetAddress: string
 }
 
-type SavedSignature = {
-  signature: string
-  timestamp: number
-}
-
 const MaidsList = ({ targetAddress }: MaidsListProps) => {
-  const localStorageLimit = 60 * 60 * 24
-
   const [maidsList, setMaidsList] = useState<OwnedNFTs[]>([])
   const [hasMore, setHasMore] = useState(true)
   const [iconUrl, setIconUrl] = useState('')
-  const router = useRouter()
   const { address } = useAccount()
   const [open, setOpen] = useState(false)
 
@@ -85,18 +68,10 @@ const MaidsList = ({ targetAddress }: MaidsListProps) => {
   const handleSaveClick = async (newIconUrl: string) => {
     if (address === undefined) return
 
-    const savedSignatureObject = localStorage.getItem(address)
-    if (savedSignatureObject) {
-      const savedSignature = JSON.parse(savedSignatureObject) as SavedSignature
-      const signatureTime = savedSignature.timestamp
-      const nowTime = new Date().getTime()
-      const diffTime = (nowTime - signatureTime) / 1000
-      if (diffTime > localStorageLimit) {
-        signMessage()
-      } else {
-        await updateUserInfo({ name: '', address, iconUrl: newIconUrl, signature: savedSignature.signature ?? '' })
-        setOpen(true)
-      }
+    const signature = getSignatureFromLocalStorage(address)
+    if (signature) {
+      await updateUserInfo({ name: '', address, iconUrl: newIconUrl, signature })
+      setOpen(true)
     } else {
       signMessage()
     }
@@ -119,14 +94,9 @@ const MaidsList = ({ targetAddress }: MaidsListProps) => {
           cols={maidsList.length >= 3 ? 3 : maidsList.length + 1}>
           {maidsList.map((nft) => (
             <ImageListItemWithStyle key={nft.image}>
-              <img
-                src={nft.image}
-                srcSet={nft.image}
-                alt={nft.name}
-                onClick={() => router.push(`/detail/${nft.token_id}`)}
-                loading='lazy'
-                style={{ cursor: 'pointer' }}
-              />
+              <Link href={`/detail/${nft.token_id}`}>
+                <img src={nft.image} srcSet={nft.image} alt={nft.name} loading='lazy' />
+              </Link>
               <ImageListItemBar
                 title={nft.name}
                 actionIcon={

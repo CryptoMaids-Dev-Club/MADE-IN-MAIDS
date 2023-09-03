@@ -1,51 +1,9 @@
-import Box from '@mui/material/Box'
-import Container from '@mui/material/Container'
-import Grid from '@mui/material/Grid'
 import getAsset from '@/app/api/asset/[id]/getAsset'
-import Skeleton from '@mui/material/Skeleton'
-import { Suspense } from 'react'
-import { NFTImage } from '../NFTImage'
-import NFTProfile from './NFTProfile'
+import Detail from '../_components/Detail'
 
-const Detail = ({ params }: { params: { id: number } }) => {
-  const style = {
-    width: '100%',
-    bgcolor: 'pink',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-  }
+const DetailPage = ({ params }: { params: { id: number } }) => <Detail id={params.id} />
 
-  return (
-    <Container>
-      <Box sx={style} mt='50px'>
-        <Grid container justifyContent='center' spacing={2}>
-          <Grid item md={6} xs={12}>
-            <Suspense
-              fallback={
-                <Skeleton
-                  sx={{ bgcolor: 'grey.900' }}
-                  animation='wave'
-                  variant='rectangular'
-                  width={500}
-                  height={800}
-                />
-              }>
-              <NFTImage id={params.id} />
-            </Suspense>
-          </Grid>
-          <Grid item md={6} xs={12}>
-            <Suspense fallback={<Skeleton sx={{ bgcolor: 'grey.900' }} />}>
-              <NFTProfile id={params.id} />
-            </Suspense>
-          </Grid>
-        </Grid>
-      </Box>
-    </Container>
-  )
-}
-
-export default Detail
+export default DetailPage
 
 export const generateMetadata = async ({ params }: { params: { id: number } }) => {
   const meta = await getAsset({ id: params.id })
