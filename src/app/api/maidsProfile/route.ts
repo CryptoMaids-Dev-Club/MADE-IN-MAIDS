@@ -11,3 +11,5 @@ export async function GET(_req: NextRequest) {
 
   return NextResponse.json(profiles)
 }
+
+export const dynamic = 'force-dynamic'
