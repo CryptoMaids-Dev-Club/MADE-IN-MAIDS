@@ -33,4 +33,4 @@ const RecentlyUpdatedProfiles = async () => {
 
 export default RecentlyUpdatedProfiles
 
-export const revalidate = 10
+export const dynamic = 'force-dynamic'
