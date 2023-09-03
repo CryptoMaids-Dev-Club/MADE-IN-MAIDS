@@ -1,6 +1,7 @@
 import '@rainbow-me/rainbowkit/styles.css'
 import Box from '@mui/material/Box'
 import { Footer } from '@/app/_components/Footer'
+import { Analytics } from '@vercel/analytics/react'
 import { Providers } from './providers'
 import { TopBar } from './TopBar'
 import './index.css'
@@ -36,7 +37,10 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
       <Providers>
         <Box sx={{ bgcolor: 'rgba(0,0,0,0.87)' }}>
           <TopBar />
-          <Box sx={{ marginTop: '10px', width: '100%' }}>{children}</Box>
+          <Box sx={{ marginTop: '10px', width: '100%' }}>
+            {children}
+            <Analytics />
+          </Box>
           <Footer />
         </Box>
       </Providers>
