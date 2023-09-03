@@ -6,6 +6,7 @@ export default async function updateMaidProfile({
   name,
   character,
   description,
+  imageUrl,
   address,
   signature,
 }: MaidProfileUpdate) {
@@ -13,7 +14,7 @@ export default async function updateMaidProfile({
     const lowerAddress = address.toLowerCase()
     const res = await fetch(`/api/maidsProfile/${id}`, {
       method: 'POST',
-      body: JSON.stringify({ id, name, character, description, address: lowerAddress, signature }),
+      body: JSON.stringify({ id, name, character, description, imageUrl, address: lowerAddress, signature }),
     })
 
     if (!res.ok) {

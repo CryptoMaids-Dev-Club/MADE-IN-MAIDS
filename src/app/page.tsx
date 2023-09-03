@@ -1,45 +1,52 @@
 import Grid from '@mui/material/Grid'
 import TopCard from './TopCard'
+import RecentlyUpdatedProfiles from './RecentlyUpdatedProfiles'
 
 const Page = () => (
-  <Grid container justifyContent='center' alignItems='center' spacing={3}>
-    <Grid item justifyContent='center' alignItems='center'>
-      <TopCard
-        title='MARKET'
-        color='hotpink'
-        image='/images/mogm.png'
-        description='You can spend $MAIDS tokens to mint exclusive NFT'
-        link='/market'
-      />
+  <>
+    <Grid container justifyContent='center' alignItems='center' spacing={3}>
+      <Grid item justifyContent='center' alignItems='center'>
+        <TopCard
+          title='MARKET'
+          color='hotpink'
+          image='/images/mogm.png'
+          description='You can spend $MAIDS tokens to mint exclusive NFT'
+          link='/market'
+        />
+      </Grid>
+      <Grid item>
+        <TopCard
+          title='STAKING'
+          color='cyan'
+          image='/images/staking.png'
+          description='Hold CryptoMaids earn $MAIDS'
+          link='https://made-in-maids.cryptomaids.tokyo/'
+        />
+      </Grid>
+      <Grid item>
+        <TopCard
+          title='VOTING'
+          color='gold'
+          image='/images/voting.png'
+          description='Let’s make your maid NO.1'
+          link='/voting'
+        />
+      </Grid>
+      <Grid item>
+        <TopCard
+          title='RANKING'
+          color='gold'
+          image='/images/ranking.png'
+          description='CryptoMaids NFT & $MAIDS holder ranking'
+          link='/ranking'
+        />
+      </Grid>
     </Grid>
-    <Grid item>
-      <TopCard
-        title='STAKING'
-        color='cyan'
-        image='/images/staking.png'
-        description='Hold CryptoMaids earn $MAIDS'
-        link='https://made-in-maids.cryptomaids.tokyo/'
-      />
+    <Grid sx={{ padding: '30px' }}>
+      <RecentlyUpdatedProfiles />
     </Grid>
-    <Grid item>
-      <TopCard
-        title='VOTING'
-        color='gold'
-        image='/images/voting.png'
-        description='Let’s make your maid NO.1'
-        link='/voting'
-      />
-    </Grid>
-    <Grid item>
-      <TopCard
-        title='RANKING'
-        color='gold'
-        image='/images/ranking.png'
-        description='CryptoMaids NFT & $MAIDS holder ranking'
-        link='/ranking'
-      />
-    </Grid>
-  </Grid>
+    <br />
+  </>
 )
 
 export default Page
