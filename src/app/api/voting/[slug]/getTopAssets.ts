@@ -29,3 +29,5 @@ export default async function getTopAssets({ slug }: { slug: number }) {
     return [{}] as TopAsset[]
   }
 }
+
+export const revalidate = 10 // 10 seconds

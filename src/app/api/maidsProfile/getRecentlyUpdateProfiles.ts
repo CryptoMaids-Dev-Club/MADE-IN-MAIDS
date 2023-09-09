@@ -5,7 +5,7 @@ import 'server-only'
 export const getRecentlyUpdateProfiles = async () => {
   try {
     const res = await fetch(`${getBaseUrl()}/api/maidsProfile`, {
-      cache: 'no-store',
+      next: { revalidate: 10 },
     })
 
     if (!res.ok) {

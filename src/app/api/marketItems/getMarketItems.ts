@@ -6,7 +6,7 @@ import 'server-only'
 export default async function getMarketItems() {
   try {
     const res = await fetch(`${getBaseUrl()}/api/marketItems`, {
-      cache: 'no-store',
+      next: { revalidate: 600 },
     })
 
     if (!res.ok) {

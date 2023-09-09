@@ -21,3 +21,5 @@ export async function GET(_req: NextRequest, { params }: { params: { id: number 
 
   return NextResponse.json(data)
 }
+
+export const revalidate = 60 // 1 minute

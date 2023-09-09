@@ -45,3 +45,5 @@ export async function GET(_req: NextRequest, { params }: { params: { address: st
 
   return NextResponse.json(data)
 }
+
+export const revalidate = 60 // 1 minute

@@ -2,9 +2,7 @@ import type { OwnedAssetInfo } from '@/app/api/ownedNfts/[address]/[page]/ownedN
 
 export default async function getNftHolder({ address, page }: { address: string; page: number }) {
   try {
-    const res = await fetch(`/api/ownedNfts/${address}/${page}`, {
-      next: { revalidate: 60 },
-    })
+    const res = await fetch(`/api/ownedNfts/${address}/${page}`)
 
     if (!res.ok) {
       throw new Error('Something went wrong!')
@@ -19,3 +17,5 @@ export default async function getNftHolder({ address, page }: { address: string;
     return {} as OwnedAssetInfo
   }
 }
+
+export const revalidate = 60 // 1 minute

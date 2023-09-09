@@ -22,3 +22,5 @@ export async function GET(_req: NextRequest, { params }: { params: { page: numbe
 
   return NextResponse.json(data)
 }
+
+export const revalidate = 60 * 60 // 1 hour

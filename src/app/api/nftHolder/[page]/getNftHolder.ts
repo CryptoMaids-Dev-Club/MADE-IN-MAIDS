@@ -17,3 +17,5 @@ export default async function getNftHolder({ page }: { page: number }) {
     return {} as NFTHolder[]
   }
 }
+
+export const revalidate = 60 * 60 // 1 hour
