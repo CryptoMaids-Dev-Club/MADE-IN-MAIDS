@@ -40,9 +40,7 @@ const getMarketItems = async (items: ItemInfo[]): Promise<MarketItemInfo[]> => {
   await Promise.all(
     items.map(async (item, index) => {
       try {
-        const response = await fetch(item.tokenURI.replace('ipfs://', 'https://ipfs.io/ipfs/'), {
-          next: { revalidate: 60 },
-        })
+        const response = await fetch(item.tokenURI.replace('ipfs://', 'https://ipfs.io/ipfs/'))
         const metadata = (await response.json()) as NFTMetadata
         const info = {
           ...item,
@@ -75,3 +73,5 @@ export async function GET(_req: NextRequest) {
 
   return NextResponse.json(marketItems)
 }
+
+export const revalidate = 600

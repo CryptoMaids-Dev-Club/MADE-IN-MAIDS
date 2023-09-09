@@ -2,9 +2,7 @@ import { getBaseUrl } from '@/lib/getBaseUrl'
 
 export default async function getNftOwner({ id }: { id: number }) {
   try {
-    const res = await fetch(`${getBaseUrl()}/api/nftOwner/${id}`, {
-      next: { revalidate: 60 },
-    })
+    const res = await fetch(`${getBaseUrl()}/api/nftOwner/${id}`)
 
     if (!res.ok) {
       throw new Error('Something went wrong!')
@@ -19,3 +17,5 @@ export default async function getNftOwner({ id }: { id: number }) {
     return '' as string
   }
 }
+
+export const revalidate = 60 // 1 minute

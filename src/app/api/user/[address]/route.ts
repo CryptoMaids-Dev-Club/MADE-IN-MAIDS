@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { prisma } from '@/lib/prisma'
 import { NextRequest, NextResponse } from 'next/server'
 
@@ -12,3 +11,5 @@ export async function GET(_req: NextRequest, { params }: { params: { address: st
 
   return NextResponse.json(user)
 }
+
+export const revalidate = 60 // 1 minute
