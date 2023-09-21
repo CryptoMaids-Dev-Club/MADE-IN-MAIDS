@@ -10,11 +10,10 @@ import { useForm } from 'react-hook-form'
 import { useDebounce } from 'usehooks-ts'
 import { useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import { parseEther } from 'viem'
-import Snackbar from '@mui/material/Snackbar'
-import Alert from '@mui/material/Alert'
 import { TwitterAlert } from '@/app/_components/Elements/TwitterAlert'
 import { useAllowance } from '@/hooks/useAllowance'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useSuccessSnackbar } from '@/app/_components/Elements/SnackBar'
 import { FormSchema, formSchema } from '../schema'
 
 type VotingFormProps = {
@@ -23,15 +22,8 @@ type VotingFormProps = {
 
 export const VotingForm = ({ id }: VotingFormProps) => {
   const matches = useMediaQuery('(min-width: 560px)')
-  const [open, setOpen] = useState(false)
 
-  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
-      return
-    }
-
-    setOpen(false)
-  }
+  const { open: openSnackbar, Snackbar } = useSuccessSnackbar()
 
   const {
     register,
@@ -73,7 +65,7 @@ export const VotingForm = ({ id }: VotingFormProps) => {
   const voteTx = useWaitForTransaction({
     hash: vote.data?.hash,
     onSuccess() {
-      setOpen(true)
+      openSnackbar()
     },
   })
 
@@ -117,7 +109,6 @@ export const VotingForm = ({ id }: VotingFormProps) => {
         <Grid item xs={12}>
           <LoadingButton
             size='large'
-            // eslint-disable-next-line @typescript-eslint/no-misused-promises
             onClick={handleSubmit(onSubmit)}
             loading={approve.isLoading || vote.isLoading || approveTx.isLoading || voteTx.isLoading}
             sx={{ fontSize: '30px', border: '1px solid', mt: '20px' }}
@@ -126,19 +117,13 @@ export const VotingForm = ({ id }: VotingFormProps) => {
           </LoadingButton>
         </Grid>
         <Grid item xs={12}>
-          <Snackbar
-            open={open}
-            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-            autoHideDuration={10000}
-            onClose={handleClose}>
-            <Alert icon={false} onClose={handleClose} variant='filled' severity='success' sx={{ width: '100%' }}>
-              <TwitterAlert
-                message={`Voted for CryptoMaids #${id}! Share`}
-                title={`Voted for CryptoMaids #${id}!`}
-                url={`https://made-in-maids.vercel.app/detail/${id}`}
-                hashtags={['CryptoMaids']}
-              />
-            </Alert>
+          <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} autoHideDuration={10000}>
+            <TwitterAlert
+              message={`Voted for CryptoMaids #${id}! Share`}
+              title={`Voted for CryptoMaids #${id}!`}
+              url={`https://made-in-maids.vercel.app/detail/${id}`}
+              hashtags={['CryptoMaids']}
+            />
           </Snackbar>
         </Grid>
       </Grid>

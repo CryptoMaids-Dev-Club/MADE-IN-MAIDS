@@ -5,9 +5,8 @@ import { useEffect, useState } from 'react'
 import { useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import { MARKET_PROXY_CONTRACT_ADDRESS, maidsContractConfig, marketContractConfig } from '@/config'
 import { useAllowance } from '@/hooks/useAllowance'
-import Alert from '@mui/material/Alert'
-import Snackbar from '@mui/material/Snackbar'
 import { TwitterAlert } from '@/app/_components/Elements/TwitterAlert'
+import { useSuccessSnackbar } from '@/app/_components/Elements/SnackBar'
 import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
 
 type PurchaseButtonProps = {
@@ -21,15 +20,7 @@ const PurchaseButton = ({ item, amount, differentAddress }: PurchaseButtonProps)
   const [approved, setApproved] = useState(false)
   const { address } = useAccount()
   const { allowance, refetch } = useAllowance(address, MARKET_PROXY_CONTRACT_ADDRESS)
-  const [open, setOpen] = useState(false)
-
-  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
-      return
-    }
-
-    setOpen(false)
-  }
+  const { open: openSnackbar, Snackbar } = useSuccessSnackbar()
 
   useEffect(() => {
     const checkActive = () => {
@@ -70,7 +61,7 @@ const PurchaseButton = ({ item, amount, differentAddress }: PurchaseButtonProps)
   const buyItemTx = useWaitForTransaction({
     hash: buyItemData?.hash,
     onSuccess() {
-      setOpen(true)
+      openSnackbar()
     },
   })
 
@@ -103,19 +94,13 @@ const PurchaseButton = ({ item, amount, differentAddress }: PurchaseButtonProps)
         sx={{ border: '1px solid gray', color: 'FF4264', fontSize: '20px' }}>
         {approved ? `Purchase for ${Number(item.price) * amount} $MAIDS` : `Approve $MAIDS`}
       </LoadingButton>
-      <Snackbar
-        open={open}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-        autoHideDuration={10000}
-        onClose={handleClose}>
-        <Alert icon={false} onClose={handleClose} variant='filled' severity='success' sx={{ width: '100%' }}>
-          <TwitterAlert
-            message='Successfully bought! Share'
-            title={`Successfully bought ${item.name}!`}
-            url={`https://made-in-maids.vercel.app/market/item/${item.id}`}
-            hashtags={['CryptoMaids']}
-          />
-        </Alert>
+      <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} autoHideDuration={10000}>
+        <TwitterAlert
+          message='Successfully bought! Share'
+          title={`Successfully bought ${item.name}!`}
+          url={`https://made-in-maids.vercel.app/market/item/${item.id}`}
+          hashtags={['CryptoMaids']}
+        />
       </Snackbar>
     </>
   )
