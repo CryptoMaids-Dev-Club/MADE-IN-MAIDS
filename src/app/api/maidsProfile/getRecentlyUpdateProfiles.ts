@@ -1,5 +1,5 @@
-import type { MaidProfile } from '@prisma/client'
 import { getBaseUrl } from '@/lib/getBaseUrl'
+import type { MaidProfile } from '@prisma/client'
 import 'server-only'
 
 export const getRecentlyUpdateProfiles = async () => {

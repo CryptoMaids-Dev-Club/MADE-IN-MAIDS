@@ -1,18 +1,17 @@
 'use client'
 
-import { RainbowKitProvider, darkTheme, getDefaultWallets } from '@rainbow-me/rainbowkit'
 import React from 'react'
-
+import CssBaseline from '@mui/material/CssBaseline'
+import ThemeProvider from '@mui/material/styles/ThemeProvider'
+import { RainbowKitProvider, darkTheme, getDefaultWallets } from '@rainbow-me/rainbowkit'
 import '@rainbow-me/rainbowkit/styles.css'
-import { WagmiConfig, createConfig, configureChains } from 'wagmi'
 import { polygon } from '@wagmi/core/chains'
 import { infuraProvider } from '@wagmi/core/providers/infura'
 import { publicProvider } from '@wagmi/core/providers/public'
-import CssBaseline from '@mui/material/CssBaseline'
-import ThemeProvider from '@mui/material/styles/ThemeProvider'
-import { WALLET_CONNECT_ID } from '@/config'
-// eslint-disable-next-line import/no-extraneous-dependencies
+
 import { SWRConfig } from 'swr'
+import { WagmiConfig, createConfig, configureChains } from 'wagmi'
+import { WALLET_CONNECT_ID } from '@/config'
 import NextAppDirEmotionCacheProvider from './EmotionCache'
 import theme from './theme'
 

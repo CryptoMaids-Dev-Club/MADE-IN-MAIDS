@@ -1,12 +1,12 @@
 'use client'
 
-import LoadingButton from '@mui/lab/LoadingButton'
 import { useEffect, useState } from 'react'
+import LoadingButton from '@mui/lab/LoadingButton'
 import { useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
+import { useSuccessSnackbar } from '@/app/_components/Elements/SnackBar'
+import { TwitterAlert } from '@/app/_components/Elements/TwitterAlert'
 import { MARKET_PROXY_CONTRACT_ADDRESS, maidsContractConfig, marketContractConfig } from '@/config'
 import { useAllowance } from '@/hooks/useAllowance'
-import { TwitterAlert } from '@/app/_components/Elements/TwitterAlert'
-import { useSuccessSnackbar } from '@/app/_components/Elements/SnackBar'
 import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
 
 type PurchaseButtonProps = {

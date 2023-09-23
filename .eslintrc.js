@@ -1,103 +1,37 @@
 module.exports = {
-  env: {
-    browser: true,
-    es2021: true,
-  },
-  extends: [
-    'plugin:react/recommended',
-    'airbnb',
-    'airbnb-typescript',
-    'airbnb/hooks',
-    'plugin:import/errors',
-    'plugin:import/warnings',
-    'plugin:import/typescript',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-requiring-type-checking',
-    'prettier',
-  ],
-  parserOptions: {
-    ecmaVersion: 'latest',
-    project: './tsconfig.eslint.json',
-    sourceType: 'module',
-    tsconfigRootDir: __dirname,
-  },
-  plugins: ['@typescript-eslint', 'import', 'jsx-a11y', 'prefer-arrow', 'react', 'react-hooks'],
   root: true,
+  extends: ['plugin:@typescript-eslint/recommended', 'next/core-web-vitals', 'prettier'],
+  plugins: ['unused-imports'],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    project: './tsconfig.json',
+  },
   rules: {
-    // occur error in `import React from 'react'` with react-scripts 4.0.1
-    'no-use-before-define': 'off',
-    '@typescript-eslint/no-use-before-define': ['error'],
-    'import/no-unresolved': [2, { ignore: ['.png$', '.webp$', '.jpg$'] }],
-    'lines-between-class-members': [
-      'error',
-      'always',
-      {
-        exceptAfterSingleLine: true,
-      },
-    ],
-    'no-void': [
+    '@typescript-eslint/no-unused-vars': 'error',
+    '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/no-unsafe-call': 'error',
+    '@typescript-eslint/no-unsafe-member-access': 'error',
+    '@typescript-eslint/no-unsafe-assignment': 'error',
+    '@typescript-eslint/no-unsafe-return': 'error',
+    'unused-imports/no-unused-imports-ts': 'warn',
+    'import/order': [
       'error',
       {
-        allowAsStatement: true,
-      },
-    ],
-    'padding-line-between-statements': [
-      'error',
-      {
-        blankLine: 'always',
-        prev: '*',
-        next: 'return',
-      },
-    ],
-    '@typescript-eslint/no-unused-vars': [
-      'error',
-      {
-        vars: 'all',
-        args: 'after-used',
-        argsIgnorePattern: '_',
-        ignoreRestSiblings: false,
-        varsIgnorePattern: '_',
-      },
-    ],
-    'import/extensions': [
-      'error',
-      'ignorePackages',
-      {
-        js: 'never',
-        jsx: 'never',
-        ts: 'never',
-        tsx: 'never',
-      },
-    ],
-    'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
-    'react/jsx-filename-extension': [
-      'error',
-      {
-        extensions: ['.jsx', '.tsx'],
-      },
-    ],
-    'react/jsx-props-no-spreading': 'off',
-    'react/require-default-props': 'off',
-    'react/react-in-jsx-scope': 'off',
-    'import/prefer-default-export': 'off',
-    'no-console': 'off',
-    '@typescript-eslint/no-misused-promises': [
-      2,
-      {
-        checksVoidReturn: {
-          attributes: false,
+        groups: ['builtin', 'external', 'internal', 'parent', 'sibling', 'index', 'object', 'type'],
+        pathGroups: [
+          {
+            pattern: '{react,react-dom/**,react-router-dom}',
+            group: 'builtin',
+            position: 'before',
+          },
+        ],
+        pathGroupsExcludedImportTypes: ['builtin'],
+        alphabetize: {
+          order: 'asc',
         },
       },
     ],
   },
-  overrides: [
-    {
-      files: ['*.tsx'],
-      rules: {
-        'react/prop-types': 'off',
-      },
-    },
-  ],
   settings: {
     'import/resolver': {
       node: {

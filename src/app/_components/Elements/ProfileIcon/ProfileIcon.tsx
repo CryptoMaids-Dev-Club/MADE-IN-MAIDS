@@ -1,9 +1,9 @@
 'use client'
 
-import { useUser } from '@/app/(features)/account/_hooks/useUser'
 import Avatar from '@mui/material/Avatar'
 import NextLink from 'next/link'
 import { useAccount } from 'wagmi'
+import { useUser } from '@/app/(features)/account/_hooks/useUser'
 
 export const ProfileIcon = () => {
   const { address } = useAccount()

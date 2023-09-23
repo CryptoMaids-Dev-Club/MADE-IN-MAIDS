@@ -1,20 +1,20 @@
 'use client'
 
+import { useState } from 'react'
+import Avatar from '@mui/material/Avatar'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
-import Avatar from '@mui/material/Avatar'
-import InfiniteScroll from 'react-infinite-scroller'
-import { useState } from 'react'
-import NextLink from 'next/link'
-import getMaidsHolder from '@/app/api/maidsHolder/[page]/getMaidsHolder'
 import Typography from '@mui/material/Typography'
 import { User } from '@prisma/client'
-import type { MaidsHolder } from '@/app/api/maidsHolder/[page]/maidsHolder'
+import NextLink from 'next/link'
+import InfiniteScroll from 'react-infinite-scroller'
+import getMaidsHolder from '@/app/api/maidsHolder/[page]/getMaidsHolder'
 import { getUserIcon, getUserName } from '../utils'
+import type { MaidsHolder } from '@/app/api/maidsHolder/[page]/maidsHolder'
 
 type MaidsHolderTableProps = {
   userInfos: User[]

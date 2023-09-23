@@ -1,14 +1,14 @@
 'use client'
 
+import { zodResolver } from '@hookform/resolvers/zod'
 import Button from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
 import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
-import { SubmitHandler, useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import { FormSchema, formSchema } from '@/app/(features)/detail/voting/schema'
-import { zodResolver } from '@hookform/resolvers/zod'
 
 const textfieldStyle = {
   '& .MuiInputBase-input': {
@@ -73,7 +73,6 @@ export const VotingTransitionForm = () => {
         <Grid item>
           <Button
             size='large'
-            // eslint-disable-next-line @typescript-eslint/no-misused-promises
             onClick={handleSubmit(onSubmit)}
             sx={{ fontSize: '30px', border: '1px solid', mt: '20px' }}
             fullWidth>

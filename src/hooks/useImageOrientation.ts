@@ -19,8 +19,7 @@ export const useImageOrientation = (imageSrc: string): string | null => {
       const imageElement = await createImageElement(imageSrc)
       setOrientation(imageElement.width > imageElement.height ? 'landscape' : 'portrait')
     }
-    // eslint-disable-next-line @typescript-eslint/no-floating-promises
-    handleSetOrientation()
+    void handleSetOrientation()
   }, [imageSrc])
 
   return orientation

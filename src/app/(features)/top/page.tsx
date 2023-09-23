@@ -1,8 +1,8 @@
-import Grid from '@mui/material/Grid'
 import { Suspense } from 'react'
+import Grid from '@mui/material/Grid'
 import Skeleton from '@mui/material/Skeleton'
-import TopCard from './_components/TopCard'
 import RecentlyUpdatedProfiles from './_components/RecentlyUpdatedProfiles'
+import TopCard from './_components/TopCard'
 
 const Page = () => (
   <>

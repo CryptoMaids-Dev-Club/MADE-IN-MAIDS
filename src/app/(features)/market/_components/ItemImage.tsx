@@ -2,8 +2,8 @@
 
 import Box from '@mui/material/Box'
 import CardMedia from '@mui/material/CardMedia'
-import { useImageOrientation } from '@/hooks/useImageOrientation'
 import Image from 'next/image'
+import { useImageOrientation } from '@/hooks/useImageOrientation'
 import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
 
 type ItemImageProps = {
@@ -35,7 +35,6 @@ const ItemImage = ({ item }: ItemImageProps) => {
     )
 
   return (
-    // eslint-disable-next-line react/jsx-no-useless-fragment
     <Box overflow='hidden'>
       {orientation?.toString() === 'landscape' ? (
         <CardMedia sx={{ ...ImageStyle, position: 'relative' }}>

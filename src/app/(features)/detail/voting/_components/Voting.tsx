@@ -1,15 +1,15 @@
+import { Suspense } from 'react'
+import { Skeleton } from '@mui/material'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Divider from '@mui/material/Divider'
 import Grid from '@mui/material/Grid'
 import dynamic from 'next/dynamic'
 import getAsset from '@/app/api/asset/[id]/getAsset'
-import { Skeleton } from '@mui/material'
-import { Suspense } from 'react'
-import { VotingInfo } from './VotingInfo'
+import { NFTImage } from '../../_components/NFTImage'
 import { NFTInfo } from '../../_components/NFTInfo'
 import { Induction } from './Induction'
-import { NFTImage } from '../../_components/NFTImage'
+import { VotingInfo } from './VotingInfo'
 
 const VotingForm = dynamic(() => import('./VotingForm'), { ssr: false })
 

@@ -1,19 +1,19 @@
 'use client'
 
-import { MAIDS_VOTING_CONTRACT_ADDRESS, maidsContractConfig, votingContractConfig } from '@/config'
+import { useEffect, useState } from 'react'
+import { zodResolver } from '@hookform/resolvers/zod'
 import LoadingButton from '@mui/lab/LoadingButton'
 import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDebounce } from 'usehooks-ts'
-import { useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import { parseEther } from 'viem'
-import { TwitterAlert } from '@/app/_components/Elements/TwitterAlert'
-import { useAllowance } from '@/hooks/useAllowance'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import { useSuccessSnackbar } from '@/app/_components/Elements/SnackBar'
+import { TwitterAlert } from '@/app/_components/Elements/TwitterAlert'
+import { MAIDS_VOTING_CONTRACT_ADDRESS, maidsContractConfig, votingContractConfig } from '@/config'
+import { useAllowance } from '@/hooks/useAllowance'
 import { FormSchema, formSchema } from '../schema'
 
 type VotingFormProps = {
@@ -30,7 +30,6 @@ export const VotingForm = ({ id }: VotingFormProps) => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormSchema>({
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
     resolver: zodResolver(formSchema),
   })
 
@@ -78,7 +77,7 @@ export const VotingForm = ({ id }: VotingFormProps) => {
     void refetchAllowance()
   }, [approveTx.status, voteTx.status, refetch, address])
 
-  const onSubmit = (_: FormSchema) => {
+  const onSubmit = () => {
     try {
       if (allowance && allowance > Number(debounceAmount)) {
         if (Number(debounceAmount) <= 0) return

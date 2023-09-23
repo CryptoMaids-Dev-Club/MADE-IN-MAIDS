@@ -1,22 +1,22 @@
 'use client'
 
-import { MaidProfile } from '@prisma/client'
-import Grid from '@mui/material/Grid'
-import Typography from '@mui/material/Typography'
-import Image from 'next/image'
-import Link from '@mui/material/Link'
-import Divider from '@mui/material/Divider'
 import { useState } from 'react'
-import { useDebounce } from 'usehooks-ts'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import TextField from '@mui/material/TextField'
-import useMediaQuery from '@mui/material/useMediaQuery'
 import Button from '@mui/material/Button'
+import Divider from '@mui/material/Divider'
+import Grid from '@mui/material/Grid'
+import Link from '@mui/material/Link'
+import TextField from '@mui/material/TextField'
+import Typography from '@mui/material/Typography'
+import useMediaQuery from '@mui/material/useMediaQuery'
+import { MaidProfile } from '@prisma/client'
+import Image from 'next/image'
+import NextLink from 'next/link'
+import { useForm } from 'react-hook-form'
+import { useDebounce } from 'usehooks-ts'
 import { useAccount, useSignMessage } from 'wagmi'
 import updateMaidProfile from '@/app/api/maidsProfile/updateMaidProfile'
 import { getSignatureFromLocalStorage, saveSignatureToLocalStorage } from '@/lib/signature'
-import NextLink from 'next/link'
 import { FormSchema, formSchema } from '../schema'
 import type { AssetInfo } from '@/app/api/asset/[id]/asset'
 
@@ -55,7 +55,7 @@ const MaidsProfile = ({ profile, asset, owner }: MaidsProfileProps) => {
     resolver: zodResolver(formSchema),
   })
 
-  const onSubmit = async (_: FormSchema) => {
+  const onSubmit = async () => {
     if (address === undefined) return
 
     const signature = getSignatureFromLocalStorage(address)

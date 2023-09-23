@@ -1,5 +1,5 @@
-import { getBaseUrl } from '@/lib/getBaseUrl'
 import { notFound } from 'next/navigation'
+import { getBaseUrl } from '@/lib/getBaseUrl'
 import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
 import 'server-only'
 

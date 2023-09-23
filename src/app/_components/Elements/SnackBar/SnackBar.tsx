@@ -1,8 +1,8 @@
 'use client'
 
+import { useState } from 'react'
 import Alert from '@mui/material/Alert'
 import MuiSnackbar, { SnackbarProps as MuiSnackBarProps } from '@mui/material/Snackbar'
-import { useState } from 'react'
 
 type SnackbarProps = Omit<MuiSnackBarProps, 'children'> & {
   children: React.ReactNode

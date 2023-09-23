@@ -1,8 +1,8 @@
 'use server'
 
-import { prisma } from '@/lib/prisma'
-import { CHAINBASE_API_KEY } from '@/config'
 import { recoverMessageAddress } from 'viem'
+import { CHAINBASE_API_KEY } from '@/config'
+import { prisma } from '@/lib/prisma'
 import type { MaidProfileUpdate } from './maidProfileUpdate'
 
 export default async function updateMaidProfile({

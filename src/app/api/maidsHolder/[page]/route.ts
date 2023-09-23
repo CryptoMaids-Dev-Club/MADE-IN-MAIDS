@@ -1,5 +1,5 @@
-import { CHAINBASE_API_KEY } from '@/config'
 import { NextRequest, NextResponse } from 'next/server'
+import { CHAINBASE_API_KEY } from '@/config'
 import { MaidsHolder } from './maidsHolder'
 
 const fetchMaidsHolder = async ({ page }: { page: number }): Promise<MaidsHolder> => {

@@ -1,5 +1,5 @@
-import { CHAINBASE_API_KEY } from '@/config'
 import { NextRequest, NextResponse } from 'next/server'
+import { CHAINBASE_API_KEY } from '@/config'
 
 const getNftOwner = async ({ id }: { id: number }): Promise<string> => {
   const res = await fetch(

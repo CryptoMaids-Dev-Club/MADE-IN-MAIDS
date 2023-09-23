@@ -1,20 +1,20 @@
 'use client'
 
+import { useState } from 'react'
+import Avatar from '@mui/material/Avatar'
 import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
-import Avatar from '@mui/material/Avatar'
-import InfiniteScroll from 'react-infinite-scroller'
-import { useState } from 'react'
-import NextLink from 'next/link'
-import getNftHolder from '@/app/api/nftHolder/[page]/getNftHolder'
 import Typography from '@mui/material/Typography'
 import { User } from '@prisma/client'
-import type { NFTHolder } from '@/app/api/nftHolder/[page]/nftHolder'
+import NextLink from 'next/link'
+import InfiniteScroll from 'react-infinite-scroller'
+import getNftHolder from '@/app/api/nftHolder/[page]/getNftHolder'
 import { getUserIcon, getUserName } from '../utils'
+import type { NFTHolder } from '@/app/api/nftHolder/[page]/nftHolder'
 
 type NFTHolderTableProps = {
   userInfos: User[]

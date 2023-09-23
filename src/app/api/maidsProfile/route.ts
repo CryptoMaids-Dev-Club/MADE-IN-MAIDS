@@ -1,7 +1,7 @@
+import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
-import { NextRequest, NextResponse } from 'next/server'
 
-export async function GET(_req: NextRequest) {
+export async function GET() {
   const profiles = await prisma.maidProfile.findMany({
     orderBy: {
       updatedAt: 'desc',

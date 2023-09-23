@@ -1,17 +1,17 @@
 'use client'
 
-import Typography from '@mui/material/Typography'
-import ModeEditIcon from '@mui/icons-material/ModeEdit'
-import IconButton from '@mui/material/IconButton'
-import FormControl from '@mui/material/FormControl'
-import OutlinedInput from '@mui/material/OutlinedInput'
-import InputAdornment from '@mui/material/InputAdornment'
 import { useState } from 'react'
-import updateUserInfo from '@/app/api/user/updateUserInfo'
+import ModeEditIcon from '@mui/icons-material/ModeEdit'
+import FormControl from '@mui/material/FormControl'
+import IconButton from '@mui/material/IconButton'
+import InputAdornment from '@mui/material/InputAdornment'
+import OutlinedInput from '@mui/material/OutlinedInput'
+import Typography from '@mui/material/Typography'
 import { User } from '@prisma/client'
 import { useAccount, useSignMessage } from 'wagmi'
-import { getSignatureFromLocalStorage, saveSignatureToLocalStorage } from '@/lib/signature'
 import { useSuccessSnackbar } from '@/app/_components/Elements/SnackBar'
+import updateUserInfo from '@/app/api/user/updateUserInfo'
+import { getSignatureFromLocalStorage, saveSignatureToLocalStorage } from '@/lib/signature'
 
 type UserNameProps = {
   targetAddress: string

@@ -1,10 +1,10 @@
+import { Suspense } from 'react'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import Skeleton from '@mui/material/Skeleton'
-import { Suspense } from 'react'
-import { NFTImage } from './NFTImage'
 import MaidsProfileWrapper from './MaidsProfileWrapper'
+import { NFTImage } from './NFTImage'
 
 type DetailProps = {
   id: number

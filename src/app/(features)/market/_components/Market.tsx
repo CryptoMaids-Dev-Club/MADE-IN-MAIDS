@@ -1,5 +1,5 @@
-import { Metadata } from 'next'
 import { Suspense } from 'react'
+import { Metadata } from 'next'
 import { CenteringCircularProgress } from '@/app/_components/Elements/CenteringCircularProgress'
 import ItemList from './ItemList'
 

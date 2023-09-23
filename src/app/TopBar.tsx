@@ -1,19 +1,19 @@
 'use client'
 
+import { Suspense, useState } from 'react'
 import MenuIcon from '@mui/icons-material/Menu'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
+import Skeleton from '@mui/material/Skeleton'
 import Toolbar from '@mui/material/Toolbar'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { Suspense, useState } from 'react'
+import dynamic from 'next/dynamic'
+import Image from 'next/image'
+import Link from 'next/link'
 import { Balance } from '@/app/_components/Elements/Balance'
 import { MenuLink } from '@/app/_components/Elements/MenuLink'
-import dynamic from 'next/dynamic'
-import Link from 'next/link'
-import Image from 'next/image'
 import { ProfileIcon } from '@/app/_components/Elements/ProfileIcon'
-import Skeleton from '@mui/material/Skeleton'
 
 const SideDrawer = dynamic(() => import('@/app/_components/Elements/Drawer').then((mod) => mod.SideDrawer), {
   ssr: false,

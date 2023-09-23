@@ -1,8 +1,8 @@
 import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import Image from 'next/image'
-import Container from '@mui/material/Container'
 import { PurchaseForm } from './PurchaseForm'
 import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
 

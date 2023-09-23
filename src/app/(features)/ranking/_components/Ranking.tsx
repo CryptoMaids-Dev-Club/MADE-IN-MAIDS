@@ -1,13 +1,13 @@
 import Box from '@mui/material/Box'
-import { Metadata } from 'next'
 import Container from '@mui/material/Container'
-import Typography from '@mui/material/Typography'
-import Image from 'next/image'
 import Grid from '@mui/material/Grid'
+import Typography from '@mui/material/Typography'
+import { Metadata } from 'next'
+import Image from 'next/image'
 import getAllUserInfo from '@/app/api/user/getAllUserInfo'
-import CenteredTabs from './TabPanel'
-import NFTHolderTable from './NFTHolderTable'
 import MaidsHolderTable from './MaidsHolderTable'
+import NFTHolderTable from './NFTHolderTable'
+import CenteredTabs from './TabPanel'
 
 const Ranking = async () => {
   const userInfos = await getAllUserInfo()

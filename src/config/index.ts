@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { polygon, polygonMumbai } from 'wagmi/chains'
+import MaidsItemContract from '@/assets/contracts/MaidsItem1155.json'
+import MaidsMarketContract from '@/assets/contracts/MaidsMarketPlace.json'
+import MaidsTokenContract from '@/assets/contracts/MaidsToken.json'
+import MaidsVotingContract from '@/assets/contracts/MaidsVoting.json'
 import type { Address } from 'wagmi'
 
-import MaidsVotingContract from '@/assets/contracts/MaidsVoting.json'
-import MaidsTokenContract from '@/assets/contracts/MaidsToken.json'
-import MaidsMarketContract from '@/assets/contracts/MaidsMarketPlace.json'
-import MaidsItemContract from '@/assets/contracts/MaidsItem1155.json'
 
 export const INFURA_API_KEY = process.env.NEXT_PUBLIC_INFURA_API_KEY as string
 export const CHAINBASE_API_KEY = process.env.NEXT_PUBLIC_CHAINBASE_API_KEY as string

@@ -1,10 +1,10 @@
-import { getRecentlyUpdateProfiles } from '@/app/api/maidsProfile/getRecentlyUpdateProfiles'
-import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
 import ImageList from '@mui/material/ImageList'
 import ImageListItemBar from '@mui/material/ImageListItemBar'
+import Typography from '@mui/material/Typography'
 import Link from 'next/link'
-import Box from '@mui/material/Box'
 import { ImageListItemWithStyle } from '@/app/_components/Elements/ImageListItemWithStyle'
+import { getRecentlyUpdateProfiles } from '@/app/api/maidsProfile/getRecentlyUpdateProfiles'
 
 const RecentlyUpdatedProfiles = async () => {
   const profiles = await getRecentlyUpdateProfiles()

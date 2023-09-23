@@ -1,6 +1,7 @@
 'use client'
 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import { useState } from 'react'
 import FormControl from '@mui/material/FormControl'
 import Grid from '@mui/material/Grid'
 import InputLabel from '@mui/material/InputLabel'
@@ -9,7 +10,6 @@ import Select, { SelectChangeEvent } from '@mui/material/Select'
 import Switch from '@mui/material/Switch'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
-import { useState } from 'react'
 import PurchaseButton from './PurchaseButton'
 import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
 
@@ -49,7 +49,6 @@ export const PurchaseForm = ({ item }: PurchaseFormProps) => {
               <InputLabel>Amount</InputLabel>
               <Select value={amount} label='Amount' onChange={handleChange} sx={{ height: '50px' }}>
                 {[...Array(range)].map((_, i) => (
-                  // eslint-disable-next-line react/no-array-index-key
                   <MenuItem key={i + 1} value={i + 1}>
                     {i + 1}
                   </MenuItem>

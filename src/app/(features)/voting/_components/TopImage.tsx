@@ -1,11 +1,11 @@
 'use client'
 
-import Image from 'next/image'
-import useMediaQuery from '@mui/material/useMediaQuery'
-import NextLink from 'next/link'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
+import useMediaQuery from '@mui/material/useMediaQuery'
+import Image from 'next/image'
+import NextLink from 'next/link'
 
 import type { TopAsset } from '@/app/api/voting/[slug]/voting'
 

@@ -1,9 +1,9 @@
 import '@rainbow-me/rainbowkit/styles.css'
 import Box from '@mui/material/Box'
-import { Footer } from '@/app/_components/Footer'
 import { Analytics } from '@vercel/analytics/react'
-import { Providers } from './providers'
+import { Footer } from '@/app/_components/Footer'
 import { TopBar } from './TopBar'
+import { Providers } from './providers'
 import './index.css'
 
 const siteName = 'Made in Maids'
