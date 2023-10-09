@@ -15,7 +15,7 @@ export default async function getAllPredictions() {
   } catch (e) {
     console.error(e)
 
-    return [{}] as Prediction[]
+    return [] as Prediction[]
   }
 }
 

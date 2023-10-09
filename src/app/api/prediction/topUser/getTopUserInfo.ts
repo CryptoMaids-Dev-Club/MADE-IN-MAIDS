@@ -17,7 +17,7 @@ export default async function getTopUser() {
   } catch (e) {
     console.error(e)
 
-    return [{}] as TopUserInfo[]
+    return [] as TopUserInfo[]
   }
 }
 
