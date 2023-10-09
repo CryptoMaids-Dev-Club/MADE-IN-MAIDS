@@ -152,7 +152,7 @@ const PredictionForm = ({ predictionInfo, predictionText: PredictionText }: Pred
         {buttonMessage()}
       </LoadingButton>
       <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} autoHideDuration={3000}>
-        Successfully updated!
+        Successfully predict!
       </Snackbar>
     </>
   )
