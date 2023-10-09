@@ -25,7 +25,7 @@ export const votingContractConfig = {
 export const maidsContractConfig = {
   address: MAIDS_CONTRACT_ADDRESS,
   abi: MaidsTokenContract.abi,
-  chainId: 11155111,
+  chainId: 137,
 }
 
 export const marketContractConfig = {
@@ -43,5 +43,5 @@ export const maidsItemContractConfig = {
 export const maidsPredictionContractConfig = {
   address: MAIDS_PREDICTION_CONTRACT_ADDRESS,
   abi: MaidsPredictionContract.abi,
-  chainId: 11155111,
+  chainId: 137,
 }

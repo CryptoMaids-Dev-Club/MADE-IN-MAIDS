@@ -120,7 +120,7 @@ const PredictionForm = ({ predictionInfo, predictionText: PredictionText }: Pred
       <Typography variant='h4'>Choices</Typography>
       <FormControl fullWidth>
         <RadioGroup
-          value={PredictionText.choices[0]}
+          value={PredictionText.choices[choice]}
           onChange={(event) => setChoice(PredictionText.choices.indexOf(event.target.value))}>
           {PredictionText.choices.map((choice) => (
             <FormControlLabel key={choice} value={choice} control={<Radio />} label={choice} />

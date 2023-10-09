@@ -1,15 +1,8 @@
-import { readContract, configureChains, createConfig } from '@wagmi/core'
-import { sepolia } from '@wagmi/core/chains'
-import { infuraProvider } from '@wagmi/core/providers/infura'
-import { publicProvider } from '@wagmi/core/providers/public'
+import { readContract, createConfig } from '@wagmi/core'
 import { NextRequest, NextResponse } from 'next/server'
 import { SolidityPrediction } from '@/app/api/prediction/prediction'
 import { maidsPredictionContractConfig } from '@/config'
-
-const { publicClient } = configureChains(
-  [sepolia],
-  [infuraProvider({ apiKey: process.env.NEXT_PUBLIC_INFURA_API_KEY as string }), publicProvider()]
-)
+import { publicClient } from '@/lib/wagmicore'
 
 createConfig({ publicClient })
 

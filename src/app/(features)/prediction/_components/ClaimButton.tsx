@@ -3,6 +3,7 @@
 import LoadingButton from '@mui/lab/LoadingButton'
 import { useAccount, useContractRead, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import { convertUserInfo } from '@/app/(features)/prediction/utils'
+import { useSuccessSnackbar } from '@/app/_components/Elements/SnackBar'
 import { maidsPredictionContractConfig } from '@/config'
 import type { Prediction, SolidityUserInfo } from '@/app/api/prediction/prediction'
 
@@ -11,6 +12,8 @@ type ClaimButtonProps = {
 }
 
 const ClaimButton = ({ predictionInfo }: ClaimButtonProps) => {
+  const { open: openSnackbar, Snackbar } = useSuccessSnackbar()
+
   const claimConfig = usePrepareContractWrite({
     ...maidsPredictionContractConfig,
     functionName: 'claimReward',
@@ -20,6 +23,9 @@ const ClaimButton = ({ predictionInfo }: ClaimButtonProps) => {
   const claim = useContractWrite({ ...claimConfig })
   const claimTx = useWaitForTransaction({
     hash: claim.data?.hash,
+    onSuccess() {
+      openSnackbar()
+    },
   })
 
   const { address } = useAccount()
@@ -53,15 +59,20 @@ const ClaimButton = ({ predictionInfo }: ClaimButtonProps) => {
   }
 
   return (
-    <LoadingButton
-      variant='contained'
-      onClick={() => claim.write?.()}
-      loading={claim.isLoading || claimTx.isLoading}
-      disabled={predictionInfo.isSettled || rewardAmount === 0}
-      sx={{ fontSize: '20px', border: '1px solid', mt: '20px' }}
-      fullWidth>
-      {buttonMessage()}
-    </LoadingButton>
+    <>
+      <LoadingButton
+        variant='contained'
+        onClick={() => claim.write?.()}
+        loading={claim.isLoading || claimTx.isLoading}
+        disabled={predictionInfo.isSettled || rewardAmount === 0}
+        sx={{ fontSize: '20px', border: '1px solid', mt: '20px' }}
+        fullWidth>
+        {buttonMessage()}
+      </LoadingButton>
+      <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} autoHideDuration={3000}>
+        You have claimed {rewardAmount} $MAIDS!
+      </Snackbar>
+    </>
   )
 }
 

@@ -8,16 +8,14 @@ import '@rainbow-me/rainbowkit/styles.css'
 import { polygon } from '@wagmi/core/chains'
 import { infuraProvider } from '@wagmi/core/providers/infura'
 import { publicProvider } from '@wagmi/core/providers/public'
-
 import { SWRConfig } from 'swr'
-import { sepolia } from 'viem/chains'
 import { WagmiConfig, createConfig, configureChains } from 'wagmi'
 import { WALLET_CONNECT_ID } from '@/config'
 import NextAppDirEmotionCacheProvider from './EmotionCache'
 import theme from './theme'
 
 export const { chains, publicClient } = configureChains(
-  [polygon, sepolia],
+  [polygon],
   [infuraProvider({ apiKey: process.env.NEXT_PUBLIC_INFURA_API_KEY as string }), publicProvider()]
 )
 

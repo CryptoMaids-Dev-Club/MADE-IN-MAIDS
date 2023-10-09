@@ -1,11 +1,10 @@
 import { TopUserInfo } from '@/app/api/prediction/prediction'
+import { getBaseUrl } from '@/lib/getBaseUrl'
 import 'server-only'
 
 export default async function getTopUser() {
   try {
-    const res = await fetch(
-      `https://made-in-maids-git-feature-prediction-maids-dev-club.vercel.app/api/prediction/topUser`
-    )
+    const res = await fetch(`${getBaseUrl()}/api/prediction/topUser`)
 
     if (!res.ok) {
       throw new Error('Something went wrong!')
