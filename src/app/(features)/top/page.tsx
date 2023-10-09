@@ -45,7 +45,7 @@ const Page = () => (
       </Grid>
     </Grid>
     <Grid sx={{ padding: '30px' }}>
-      <Suspense fallback={<Skeleton variant='circular' width={40} height={40} sx={{ bgcolor: 'grey.900' }} />}>
+      <Suspense fallback={<Skeleton variant='circular' width={40} height={40} />}>
         <RecentlyUpdatedProfiles />
       </Suspense>
     </Grid>

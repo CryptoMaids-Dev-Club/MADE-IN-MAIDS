@@ -10,30 +10,6 @@ import { useRouter } from 'next/navigation'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { FormSchema, formSchema } from '@/app/(features)/detail/voting/schema'
 
-const textfieldStyle = {
-  '& .MuiInputBase-input': {
-    color: 'yellow', // 入力文字の色
-  },
-  '& label': {
-    color: '#AAAAAA', // 通常時のラベル色
-  },
-  '& .MuiInput-underline:before': {
-    borderBottomColor: 'white', // 通常時のボーダー色
-  },
-  '& .MuiInput-underline:hover:not(.Mui-disabled):before': {
-    borderBottomColor: '#DDDDDD', // ホバー時のボーダー色
-  },
-  '& .MuiOutlinedInput-root': {
-    '& fieldset': {
-      borderColor: 'white', // 通常時のボーダー色(アウトライン)
-    },
-    '&:hover fieldset': {
-      borderColor: '#DDDDDD', // ホバー時のボーダー色(アウトライン)
-    },
-  },
-  mt: '5px',
-}
-
 export const VotingTransitionForm = () => {
   const {
     register,
@@ -65,7 +41,6 @@ export const VotingTransitionForm = () => {
             size='medium'
             error={'num' in errors}
             helperText={errors.num?.message}
-            sx={{ ...textfieldStyle }}
             type='number'
             style={{ width: '350px' }}
           />

@@ -14,7 +14,7 @@ export const NFTInfo = async ({ id }: NFTInfoProps) => {
   return (
     <>
       <Grid item>
-        <Typography component='span' sx={{ color: 'black', typography: { sm: 'h4', xs: 'h5' } }}>
+        <Typography component='span' sx={{ typography: { sm: 'h4', xs: 'h5' } }}>
           {asset.name}
         </Typography>
       </Grid>

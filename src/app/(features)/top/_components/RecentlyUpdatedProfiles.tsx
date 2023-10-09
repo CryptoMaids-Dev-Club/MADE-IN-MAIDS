@@ -11,9 +11,7 @@ const RecentlyUpdatedProfiles = async () => {
 
   return (
     <>
-      <Typography variant='h2' sx={{ color: 'white' }}>
-        Recently Updated Profiles
-      </Typography>
+      <Typography variant='h2'>Recently Updated Profiles</Typography>
       <Box sx={{ border: '2px solid white', padding: '5px' }}>
         <ImageList sx={{ height: 600 }} cols={5} gap={15}>
           {profiles.map((profile) => (

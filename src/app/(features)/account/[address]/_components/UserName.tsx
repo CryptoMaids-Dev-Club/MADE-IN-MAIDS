@@ -61,10 +61,10 @@ const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
   return (
     <div>
       {!editing ? (
-        <Typography variant='h4' sx={{ color: 'white' }}>
+        <Typography variant='h4'>
           {userName}
           {address && address.toLowerCase() === targetAddress && (
-            <IconButton onClick={handleClick} sx={{ color: 'white' }}>
+            <IconButton onClick={handleClick}>
               <ModeEditIcon />
             </IconButton>
           )}
@@ -83,7 +83,6 @@ const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
                 </IconButton>
               </InputAdornment>
             }
-            sx={{ input: { color: 'white' } }}
           />
         </FormControl>
       )}

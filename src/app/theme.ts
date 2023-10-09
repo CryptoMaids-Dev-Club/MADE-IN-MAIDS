@@ -4,25 +4,7 @@ import createTheme from '@mui/material/styles/createTheme'
 
 const theme = createTheme({
   palette: {
-    mode: 'light',
-    primary: {
-      main: '#d87274',
-      light: '#ffa2a3',
-      dark: 'lightblue',
-    },
-    background: {
-      default: 'black',
-    },
-  },
-  components: {
-    MuiDrawer: {
-      styleOverrides: {
-        paper: {
-          backgroundColor: 'slategray',
-          color: 'gold',
-        },
-      },
-    },
+    mode: 'dark',
   },
   typography: {
     fontFamily: [

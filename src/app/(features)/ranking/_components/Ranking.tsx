@@ -44,7 +44,7 @@ const Ranking = async () => {
             sx={{ typography: { sm: 'h1', xs: 'h4' }, mb: '20px' }}>
             Holder Ranking
           </Typography>
-          <Box sx={{ width: '100%', bgcolor: '#333333' }}>
+          <Box sx={{ width: '100%' }}>
             <CenteredTabs labels={['NFT', '$MAIDS']}>
               <NFTHolderTable userInfos={userInfos} />
               <MaidsHolderTable userInfos={userInfos} />

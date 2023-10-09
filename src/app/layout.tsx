@@ -35,7 +35,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
   <html lang='en'>
     <body>
       <Providers>
-        <Box sx={{ bgcolor: 'rgba(0,0,0,0.87)' }}>
+        <Box>
           <TopBar />
           <Box sx={{ marginTop: '10px', width: '100%' }}>
             {children}

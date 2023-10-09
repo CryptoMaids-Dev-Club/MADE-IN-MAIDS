@@ -43,39 +43,32 @@ const NFTHolderTable = ({ userInfos }: NFTHolderTableProps) => {
   }
 
   return (
-    <InfiniteScroll
-      loadMore={loadMore}
-      hasMore={hasMore}
-      loader={
-        <Typography key={0} sx={{ color: 'white' }}>
-          Loading...
-        </Typography>
-      }>
+    <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={<Typography key={0}>Loading...</Typography>}>
       <TableContainer>
         <Table aria-label='simple table'>
           <TableHead>
             <TableRow>
-              <TableCell sx={{ color: 'white', fontSize: '20px' }}>Rank</TableCell>
-              <TableCell sx={{ color: 'white', fontSize: '20px' }}>Icon</TableCell>
-              <TableCell sx={{ color: 'white', fontSize: '20px' }}>Address</TableCell>
-              <TableCell sx={{ color: 'white', fontSize: '20px' }}>Quantity</TableCell>
+              <TableCell sx={{ fontSize: '20px' }}>Rank</TableCell>
+              <TableCell sx={{ fontSize: '20px' }}>Icon</TableCell>
+              <TableCell sx={{ fontSize: '20px' }}>Address</TableCell>
+              <TableCell sx={{ fontSize: '20px' }}>Quantity</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {holdersList.map((holder, index) => (
               <TableRow key={holder.address} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                <TableCell sx={{ color: 'white', fontSize: '20px' }} component='th' scope='row'>
+                <TableCell sx={{ fontSize: '20px' }} component='th' scope='row'>
                   {index + 1}
                 </TableCell>
                 <TableCell>
                   <Avatar src={getUserIcon(holder.address, userInfos)} sx={{ width: 96, height: 96 }} />
                 </TableCell>
-                <TableCell sx={{ color: 'white', fontSize: '20px' }}>
+                <TableCell sx={{ fontSize: '20px' }}>
                   <NextLink href={`/account/${holder.address}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                     {getUserName(holder.address, userInfos)}
                   </NextLink>
                 </TableCell>
-                <TableCell sx={{ color: 'white', fontSize: '20px' }}>{holder.total}</TableCell>
+                <TableCell sx={{ fontSize: '20px' }}>{holder.total}</TableCell>
               </TableRow>
             ))}
           </TableBody>
