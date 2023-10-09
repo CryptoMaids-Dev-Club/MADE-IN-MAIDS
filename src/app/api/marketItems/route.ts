@@ -1,23 +1,19 @@
 import { readContract, configureChains, createConfig } from '@wagmi/core'
 import { polygon } from '@wagmi/core/chains'
-import { marketContractConfig } from '@/config'
-import { formatEther, formatUnits } from 'viem'
 import { infuraProvider } from '@wagmi/core/providers/infura'
 import { publicProvider } from '@wagmi/core/providers/public'
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
+import { formatEther, formatUnits } from 'viem'
+import { marketContractConfig } from '@/config'
 import type { ItemInfo, MarketItemInfo, SolidityItemInfo } from './marketItem'
 import type { NFTMetadata } from '@/app/api/metadata/[id]/metadata'
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const { chains, publicClient } = configureChains(
+const { publicClient } = configureChains(
   [polygon],
   [infuraProvider({ apiKey: process.env.NEXT_PUBLIC_INFURA_API_KEY as string }), publicProvider()]
 )
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const config = createConfig({
-  publicClient,
-})
+createConfig({ publicClient })
 
 const convert = (items: SolidityItemInfo[]) => {
   const convertedItems: ItemInfo[] = []
@@ -63,7 +59,7 @@ const getMarketItems = async (items: ItemInfo[]): Promise<MarketItemInfo[]> => {
   return infos
 }
 
-export async function GET(_req: NextRequest) {
+export async function GET() {
   const data = await readContract({
     ...marketContractConfig,
     functionName: 'fetchMarketItems',

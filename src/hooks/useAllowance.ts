@@ -1,7 +1,7 @@
-import { maidsContractConfig } from '@/config'
-import { useContractRead } from 'wagmi'
-import type { Address } from 'wagmi'
 import { formatEther } from 'viem'
+import { useContractRead } from 'wagmi'
+import { maidsContractConfig } from '@/config'
+import type { Address } from 'wagmi'
 
 export const useAllowance = (account?: Address, spender?: string) => {
   const { data: allowance, refetch } = useContractRead({

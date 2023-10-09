@@ -1,8 +1,8 @@
-import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
+import Typography from '@mui/material/Typography'
 import getUserInfo from '@/app/api/user/getUserInfo'
-import UserName from './UserName'
 import ProfileAvatar from './ProfileAvatar'
+import UserName from './UserName'
 
 type ProfileProps = {
   address: string
@@ -16,7 +16,7 @@ const Profile = async ({ address }: ProfileProps) => {
       <ProfileAvatar userInfo={userInfo} />
 
       <UserName targetAddress={address} userInfo={userInfo} />
-      <Typography sx={{ color: 'white' }}>{address}</Typography>
+      <Typography>{address}</Typography>
     </Grid>
   )
 }

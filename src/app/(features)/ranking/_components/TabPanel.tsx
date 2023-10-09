@@ -2,9 +2,9 @@
 
 import * as React from 'react'
 import Box from '@mui/material/Box'
-import Tabs from '@mui/material/Tabs'
-import Tab from '@mui/material/Tab'
 import Container from '@mui/material/Container'
+import Tab from '@mui/material/Tab'
+import Tabs from '@mui/material/Tabs'
 
 type TabPanelProps = {
   children?: React.ReactNode
@@ -44,13 +44,12 @@ const CenteredTabs = ({ labels, children }: CenteredTabsProps) => {
     <>
       <Tabs value={value} onChange={handleChange} indicatorColor='primary' textColor='primary' centered>
         {labels.map((label) => (
-          <Tab sx={{ color: 'white', fontSize: '24px' }} key={label} label={label} />
+          <Tab sx={{ fontSize: '24px' }} key={label} label={label} />
         ))}{' '}
       </Tabs>
 
       {children &&
         children.map((child, index) => (
-          // eslint-disable-next-line react/no-array-index-key
           <TabPanel key={index} value={value} index={index}>
             {child}
           </TabPanel>

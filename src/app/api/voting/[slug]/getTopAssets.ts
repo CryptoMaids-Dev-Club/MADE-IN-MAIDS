@@ -1,7 +1,7 @@
-import { getBaseUrl } from '@/lib/getBaseUrl'
-import 'server-only'
 import getAsset from '@/app/api/asset/[id]/getAsset'
+import { getBaseUrl } from '@/lib/getBaseUrl'
 import type { TopAsset, Vote } from './voting'
+import 'server-only'
 
 export default async function getTopAssets({ slug }: { slug: number }) {
   try {

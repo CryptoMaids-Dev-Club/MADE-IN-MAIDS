@@ -1,22 +1,21 @@
 'use client'
 
-import { MaidProfile } from '@prisma/client'
-import Grid from '@mui/material/Grid'
-import Typography from '@mui/material/Typography'
-import Image from 'next/image'
-import Link from '@mui/material/Link'
-import Divider from '@mui/material/Divider'
 import { useState } from 'react'
-import { useDebounce } from 'usehooks-ts'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import TextField from '@mui/material/TextField'
-import useMediaQuery from '@mui/material/useMediaQuery'
 import Button from '@mui/material/Button'
+import Divider from '@mui/material/Divider'
+import Grid from '@mui/material/Grid'
+import Link from '@mui/material/Link'
+import TextField from '@mui/material/TextField'
+import Typography from '@mui/material/Typography'
+import useMediaQuery from '@mui/material/useMediaQuery'
+import { MaidProfile } from '@prisma/client'
+import Image from 'next/image'
+import { useForm } from 'react-hook-form'
+import { useDebounce } from 'usehooks-ts'
 import { useAccount, useSignMessage } from 'wagmi'
 import updateMaidProfile from '@/app/api/maidsProfile/updateMaidProfile'
 import { getSignatureFromLocalStorage, saveSignatureToLocalStorage } from '@/lib/signature'
-import NextLink from 'next/link'
 import { FormSchema, formSchema } from '../schema'
 import type { AssetInfo } from '@/app/api/asset/[id]/asset'
 
@@ -55,7 +54,7 @@ const MaidsProfile = ({ profile, asset, owner }: MaidsProfileProps) => {
     resolver: zodResolver(formSchema),
   })
 
-  const onSubmit = async (_: FormSchema) => {
+  const onSubmit = async () => {
     if (address === undefined) return
 
     const signature = getSignatureFromLocalStorage(address)
@@ -86,7 +85,7 @@ const MaidsProfile = ({ profile, asset, owner }: MaidsProfileProps) => {
               style={{ width: matches ? '530px' : window.innerWidth * 0.68 }}
             />
           ) : (
-            <Typography component='span' sx={{ color: 'black', typography: { sm: 'h4', xs: 'h5' } }}>
+            <Typography component='span' sx={{ typography: { sm: 'h4', xs: 'h5' } }}>
               {debounceProfile.name ?? `CryptoMaids #${profile.id}`}
             </Typography>
           )}
@@ -102,7 +101,7 @@ const MaidsProfile = ({ profile, asset, owner }: MaidsProfileProps) => {
         )}
       </Grid>
       <Divider sx={{ mb: '10px' }} />
-      <Typography component='span' sx={{ color: 'black', typography: { sm: 'h4', xs: 'h5' } }}>
+      <Typography component='span' sx={{ typography: { sm: 'h4', xs: 'h5' } }}>
         Character
         <br />
       </Typography>
@@ -121,12 +120,12 @@ const MaidsProfile = ({ profile, asset, owner }: MaidsProfileProps) => {
           style={{ width: matches ? '530px' : window.innerWidth * 0.68 }}
         />
       ) : (
-        <Typography variant='h5' component='span' sx={{ color: 'black', whiteSpace: 'pre-line' }}>
+        <Typography variant='h5' component='span' sx={{ whiteSpace: 'pre-line' }}>
           {debounceProfile.character ?? '???'}
         </Typography>
       )}
       <Divider sx={{ mb: '10px', mt: '10px' }} />
-      <Typography component='span' sx={{ color: 'black', typography: { sm: 'h4', xs: 'h5' } }}>
+      <Typography component='span' sx={{ typography: { sm: 'h4', xs: 'h5' } }}>
         Description
         <br />
       </Typography>
@@ -145,7 +144,7 @@ const MaidsProfile = ({ profile, asset, owner }: MaidsProfileProps) => {
           style={{ width: matches ? '530px' : window.innerWidth * 0.68 }}
         />
       ) : (
-        <Typography variant='h5' component='span' sx={{ color: 'black', whiteSpace: 'pre-line' }}>
+        <Typography variant='h5' component='span' sx={{ whiteSpace: 'pre-line' }}>
           {debounceProfile.description ?? '???'}
         </Typography>
       )}
@@ -163,11 +162,9 @@ const MaidsProfile = ({ profile, asset, owner }: MaidsProfileProps) => {
       )}
       <br />
       <br />
-      <NextLink href={`/detail/voting/${profile.id}`}>
-        <Typography variant='h5' component='span' sx={{ color: 'black' }}>
-          Go to Vote
-        </Typography>
-      </NextLink>
+      <Link href={`/detail/voting/${profile.id}`}>
+        <Typography variant='h4'>Go to Vote</Typography>
+      </Link>
     </>
   )
 }

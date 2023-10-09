@@ -1,10 +1,10 @@
 'use client'
 
-import { maidsContractConfig } from '@/config'
 import WalletIcon from '@mui/icons-material/Wallet'
 import Typography from '@mui/material/Typography'
-import { useAccount, useContractRead } from 'wagmi'
 import { formatEther } from 'viem'
+import { useAccount, useContractRead } from 'wagmi'
+import { maidsContractConfig } from '@/config'
 
 export const Balance = () => {
   const { address } = useAccount()

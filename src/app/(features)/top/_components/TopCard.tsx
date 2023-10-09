@@ -4,8 +4,8 @@ import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
-import Link from 'next/link'
 import Image from 'next/image'
+import Link from 'next/link'
 
 type TopCardProps = {
   title: string
@@ -33,7 +33,7 @@ const TopCard = ({ title, color, image, description, link }: TopCardProps) => (
       {title}
     </Typography>
     <Link href={link}>
-      <Card sx={{ width: { xs: 400, sm: 500 }, height: { xs: 530, sm: 580 }, background: 'black' }}>
+      <Card sx={{ width: { xs: 400, sm: 500 }, height: { xs: 530, sm: 580 } }}>
         <Box overflow='hidden' sx={{ width: { xs: 400, sm: 500 }, height: { xs: 400, sm: 500 } }}>
           <CardMedia sx={{ ...ImageStyle }}>
             <Image
@@ -45,7 +45,7 @@ const TopCard = ({ title, color, image, description, link }: TopCardProps) => (
             />
           </CardMedia>
         </Box>
-        <CardContent sx={{ background: 'black' }}>
+        <CardContent>
           <Grid>
             <Typography variant='h5' noWrap sx={{ color: 'yellow' }} style={{ whiteSpace: 'pre-line' }}>
               {description}

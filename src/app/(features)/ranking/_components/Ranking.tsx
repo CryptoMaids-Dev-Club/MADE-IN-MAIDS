@@ -1,13 +1,13 @@
 import Box from '@mui/material/Box'
-import { Metadata } from 'next'
 import Container from '@mui/material/Container'
-import Typography from '@mui/material/Typography'
-import Image from 'next/image'
 import Grid from '@mui/material/Grid'
+import Typography from '@mui/material/Typography'
+import { Metadata } from 'next'
+import Image from 'next/image'
 import getAllUserInfo from '@/app/api/user/getAllUserInfo'
-import CenteredTabs from './TabPanel'
-import NFTHolderTable from './NFTHolderTable'
 import MaidsHolderTable from './MaidsHolderTable'
+import NFTHolderTable from './NFTHolderTable'
+import CenteredTabs from './TabPanel'
 
 const Ranking = async () => {
   const userInfos = await getAllUserInfo()
@@ -44,7 +44,7 @@ const Ranking = async () => {
             sx={{ typography: { sm: 'h1', xs: 'h4' }, mb: '20px' }}>
             Holder Ranking
           </Typography>
-          <Box sx={{ width: '100%', bgcolor: '#333333' }}>
+          <Box sx={{ width: '100%' }}>
             <CenteredTabs labels={['NFT', '$MAIDS']}>
               <NFTHolderTable userInfos={userInfos} />
               <MaidsHolderTable userInfos={userInfos} />

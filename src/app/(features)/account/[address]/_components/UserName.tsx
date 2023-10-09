@@ -1,17 +1,16 @@
 'use client'
 
-import Typography from '@mui/material/Typography'
-import ModeEditIcon from '@mui/icons-material/ModeEdit'
-import IconButton from '@mui/material/IconButton'
-import FormControl from '@mui/material/FormControl'
-import OutlinedInput from '@mui/material/OutlinedInput'
-import InputAdornment from '@mui/material/InputAdornment'
 import { useState } from 'react'
-import updateUserInfo from '@/app/api/user/updateUserInfo'
+import ModeEditIcon from '@mui/icons-material/ModeEdit'
+import FormControl from '@mui/material/FormControl'
+import IconButton from '@mui/material/IconButton'
+import InputAdornment from '@mui/material/InputAdornment'
+import OutlinedInput from '@mui/material/OutlinedInput'
+import Typography from '@mui/material/Typography'
 import { User } from '@prisma/client'
 import { useAccount, useSignMessage } from 'wagmi'
-import Snackbar from '@mui/material/Snackbar'
-import Alert from '@mui/material/Alert'
+import { useSuccessSnackbar } from '@/app/_components/Elements/SnackBar'
+import updateUserInfo from '@/app/api/user/updateUserInfo'
 import { getSignatureFromLocalStorage, saveSignatureToLocalStorage } from '@/lib/signature'
 
 type UserNameProps = {
@@ -24,15 +23,9 @@ const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
   const editing = Boolean(anchorEl)
 
   const [userName, setUserName] = useState(userInfo.name)
-  const [open, setOpen] = useState(false)
 
-  const handleCloseAlert = (event?: React.SyntheticEvent | Event, reason?: string) => {
-    if (reason === 'clickaway') {
-      return
-    }
+  const { open: openSnackbar, Snackbar } = useSuccessSnackbar()
 
-    setOpen(false)
-  }
   const { address } = useAccount()
   const { signMessage } = useSignMessage({
     message: 'Update Profile',
@@ -41,7 +34,7 @@ const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
       try {
         await updateUserInfo({ name: userName, address, iconUrl: '', signature: data })
         saveSignatureToLocalStorage(address, data)
-        setOpen(true)
+        openSnackbar()
       } catch (e) {
         console.error(e)
       }
@@ -59,7 +52,7 @@ const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
     const signature = getSignatureFromLocalStorage(address)
     if (signature) {
       await updateUserInfo({ name: userName, address, iconUrl: '', signature })
-      setOpen(true)
+      openSnackbar()
     } else {
       signMessage()
     }
@@ -68,10 +61,10 @@ const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
   return (
     <div>
       {!editing ? (
-        <Typography variant='h4' sx={{ color: 'white' }}>
+        <Typography variant='h4'>
           {userName}
           {address && address.toLowerCase() === targetAddress && (
-            <IconButton onClick={handleClick} sx={{ color: 'white' }}>
+            <IconButton onClick={handleClick}>
               <ModeEditIcon />
             </IconButton>
           )}
@@ -90,18 +83,11 @@ const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
                 </IconButton>
               </InputAdornment>
             }
-            sx={{ input: { color: 'white' } }}
           />
         </FormControl>
       )}
-      <Snackbar
-        open={open}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-        autoHideDuration={3000}
-        onClose={handleCloseAlert}>
-        <Alert icon={false} onClose={handleCloseAlert} variant='filled' severity='success' sx={{ width: '100%' }}>
-          Successfully updated! Please refresh the page.
-        </Alert>
+      <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} autoHideDuration={3000}>
+        Successfully updated! Please refresh the page.
       </Snackbar>
     </div>
   )

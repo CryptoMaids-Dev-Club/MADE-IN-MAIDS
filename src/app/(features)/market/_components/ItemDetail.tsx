@@ -1,8 +1,8 @@
 import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import Image from 'next/image'
-import Container from '@mui/material/Container'
 import { PurchaseForm } from './PurchaseForm'
 import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
 
@@ -10,8 +10,7 @@ const ItemDetail = ({ marketItem }: { marketItem: MarketItemInfo }) => {
   const style = {
     marginTop: '30px',
     maxWidth: 1200,
-    bgcolor: 'pink',
-    boxShadow: 24,
+    boxShadow: 12,
     p: 4,
   }
 
@@ -33,17 +32,17 @@ const ItemDetail = ({ marketItem }: { marketItem: MarketItemInfo }) => {
           </Grid>
           <Grid item md={6}>
             <Grid>
-              <Typography component='span' sx={{ color: 'black', typography: { sm: 'h4', xs: 'h5' } }}>
+              <Typography component='span' sx={{ typography: { sm: 'h4', xs: 'h5' } }}>
                 {marketItem.name}
               </Typography>
             </Grid>
             <Grid sx={{ overflow: 'auto', maxHeight: 300 }}>
-              <Typography variant='h6' component='span' sx={{ color: 'black' }}>
+              <Typography variant='h6' component='span'>
                 {marketItem.description}
               </Typography>
             </Grid>
             <Grid>
-              <Typography variant='h6' component='span' sx={{ color: 'black' }}>
+              <Typography variant='h6' component='span'>
                 {`Supply: ${marketItem.supply}`}
               </Typography>
             </Grid>

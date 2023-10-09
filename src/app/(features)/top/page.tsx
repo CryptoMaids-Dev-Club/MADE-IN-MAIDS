@@ -1,8 +1,8 @@
-import Grid from '@mui/material/Grid'
 import { Suspense } from 'react'
+import Grid from '@mui/material/Grid'
 import Skeleton from '@mui/material/Skeleton'
-import TopCard from './_components/TopCard'
 import RecentlyUpdatedProfiles from './_components/RecentlyUpdatedProfiles'
+import TopCard from './_components/TopCard'
 
 const Page = () => (
   <>
@@ -45,7 +45,7 @@ const Page = () => (
       </Grid>
     </Grid>
     <Grid sx={{ padding: '30px' }}>
-      <Suspense fallback={<Skeleton variant='circular' width={40} height={40} sx={{ bgcolor: 'grey.900' }} />}>
+      <Suspense fallback={<Skeleton variant='circular' width={40} height={40} />}>
         <RecentlyUpdatedProfiles />
       </Suspense>
     </Grid>

@@ -1,22 +1,18 @@
 import { readContract, configureChains, createConfig } from '@wagmi/core'
 import { polygon } from '@wagmi/core/chains'
-import { votingContractConfig } from '@/config'
-import { formatEther } from 'viem'
 import { infuraProvider } from '@wagmi/core/providers/infura'
 import { publicProvider } from '@wagmi/core/providers/public'
 import { NextRequest, NextResponse } from 'next/server'
+import { formatEther } from 'viem'
+import { votingContractConfig } from '@/config'
 import type { SolidityVote, Vote } from './voting'
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const { chains, publicClient } = configureChains(
+const { publicClient } = configureChains(
   [polygon],
   [infuraProvider({ apiKey: process.env.NEXT_PUBLIC_INFURA_API_KEY as string }), publicProvider()]
 )
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const config = createConfig({
-  publicClient,
-})
+createConfig({ publicClient })
 
 const sort = (solidityVotes: SolidityVote[]) => {
   const votes: Vote[] = []

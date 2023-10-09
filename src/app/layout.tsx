@@ -1,9 +1,9 @@
 import '@rainbow-me/rainbowkit/styles.css'
 import Box from '@mui/material/Box'
-import { Footer } from '@/app/_components/Footer'
 import { Analytics } from '@vercel/analytics/react'
-import { Providers } from './providers'
+import { Footer } from '@/app/_components/Footer'
 import { TopBar } from './TopBar'
+import { Providers } from './providers'
 import './index.css'
 
 const siteName = 'Made in Maids'
@@ -35,7 +35,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
   <html lang='en'>
     <body>
       <Providers>
-        <Box sx={{ bgcolor: 'rgba(0,0,0,0.87)' }}>
+        <Box>
           <TopBar />
           <Box sx={{ marginTop: '10px', width: '100%' }}>
             {children}

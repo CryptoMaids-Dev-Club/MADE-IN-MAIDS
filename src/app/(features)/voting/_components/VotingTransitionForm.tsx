@@ -1,38 +1,14 @@
 'use client'
 
+import { zodResolver } from '@hookform/resolvers/zod'
 import Button from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
 import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
-import { SubmitHandler, useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
+import { SubmitHandler, useForm } from 'react-hook-form'
 import { FormSchema, formSchema } from '@/app/(features)/detail/voting/schema'
-import { zodResolver } from '@hookform/resolvers/zod'
-
-const textfieldStyle = {
-  '& .MuiInputBase-input': {
-    color: 'yellow', // 入力文字の色
-  },
-  '& label': {
-    color: '#AAAAAA', // 通常時のラベル色
-  },
-  '& .MuiInput-underline:before': {
-    borderBottomColor: 'white', // 通常時のボーダー色
-  },
-  '& .MuiInput-underline:hover:not(.Mui-disabled):before': {
-    borderBottomColor: '#DDDDDD', // ホバー時のボーダー色
-  },
-  '& .MuiOutlinedInput-root': {
-    '& fieldset': {
-      borderColor: 'white', // 通常時のボーダー色(アウトライン)
-    },
-    '&:hover fieldset': {
-      borderColor: '#DDDDDD', // ホバー時のボーダー色(アウトライン)
-    },
-  },
-  mt: '5px',
-}
 
 export const VotingTransitionForm = () => {
   const {
@@ -65,7 +41,6 @@ export const VotingTransitionForm = () => {
             size='medium'
             error={'num' in errors}
             helperText={errors.num?.message}
-            sx={{ ...textfieldStyle }}
             type='number'
             style={{ width: '350px' }}
           />
@@ -73,7 +48,6 @@ export const VotingTransitionForm = () => {
         <Grid item>
           <Button
             size='large'
-            // eslint-disable-next-line @typescript-eslint/no-misused-promises
             onClick={handleSubmit(onSubmit)}
             sx={{ fontSize: '30px', border: '1px solid', mt: '20px' }}
             fullWidth>

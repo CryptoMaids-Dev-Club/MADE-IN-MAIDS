@@ -1,5 +1,5 @@
-import { prisma } from '@/lib/prisma'
 import { MaidProfile } from '@prisma/client'
+import { prisma } from '@/lib/prisma'
 import 'server-only'
 
 export default async function getMaidProfile({ id }: { id: number }) {
