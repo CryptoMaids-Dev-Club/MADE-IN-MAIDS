@@ -91,7 +91,7 @@ const PurchaseButton = ({ item, amount, differentAddress }: PurchaseButtonProps)
         loading={isLoadingApprove || isLoadingBuyItem || approveTx.isLoading || buyItemTx.isLoading}
         disabled={!isActive}
         onClick={handleClick}
-        sx={{ border: '1px solid gray', color: 'FF4264', fontSize: '20px' }}>
+        sx={{ border: '1px solid gray', fontSize: '20px' }}>
         {approved ? `Purchase for ${Number(item.price) * amount} $MAIDS` : `Approve $MAIDS`}
       </LoadingButton>
       <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} autoHideDuration={10000}>

@@ -11,11 +11,14 @@ import { ConnectButton } from '@rainbow-me/rainbowkit'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Balance } from '@/app/_components/Elements/Balance'
 import { MenuLink } from '@/app/_components/Elements/MenuLink'
 import { ProfileIcon } from '@/app/_components/Elements/ProfileIcon'
 
 const SideDrawer = dynamic(() => import('@/app/_components/Elements/Drawer').then((mod) => mod.SideDrawer), {
+  ssr: false,
+})
+
+const Balance = dynamic(() => import('@/app/_components/Elements/Balance').then((mod) => mod.Balance), {
   ssr: false,
 })
 
@@ -43,21 +46,16 @@ export const TopBar = () => {
 
   return (
     <AppBar
-      enableColorOnDark
       position='sticky'
-      color='inherit'
       elevation={0}
       sx={{
         height: 50,
         width: '100%',
-        bgcolor: 'rgba(0,0,0,0.87)',
-        color: 'white',
         fontFamily: 'serif !important',
       }}>
       <Toolbar>
         <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
           <IconButton
-            color='inherit'
             aria-label='open drawer'
             onClick={handleDrawerOpen}
             edge='start'

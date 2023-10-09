@@ -1,10 +1,10 @@
 import { polygon, polygonMumbai } from 'wagmi/chains'
 import MaidsItemContract from '@/assets/contracts/MaidsItem1155.json'
 import MaidsMarketContract from '@/assets/contracts/MaidsMarketPlace.json'
+import MaidsPredictionContract from '@/assets/contracts/MaidsPrediction.json'
 import MaidsTokenContract from '@/assets/contracts/MaidsToken.json'
 import MaidsVotingContract from '@/assets/contracts/MaidsVoting.json'
 import type { Address } from 'wagmi'
-
 
 export const INFURA_API_KEY = process.env.NEXT_PUBLIC_INFURA_API_KEY as string
 export const CHAINBASE_API_KEY = process.env.NEXT_PUBLIC_CHAINBASE_API_KEY as string
@@ -13,6 +13,7 @@ export const MAIDS_CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_MAIDS_CONTRACT_ADD
 export const MARKET_PROXY_CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_MARKET_PROXY_CONTRACT_ADDRESS as Address
 export const MAIDS_ITEM_CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_MAIDS_ITEM_CONTRACT_ADDRESS as Address
 export const MAIDS_VOTING_CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_MAIDS_VOTING_CONTRACT_ADDRESS as Address
+export const MAIDS_PREDICTION_CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_MAIDS_PREDICTION_CONTRACT_ADDRESS as Address
 export const NETWORK = process.env.NEXT_PUBLIC_NETWORK === 'mainnet' ? polygon : polygonMumbai
 
 export const votingContractConfig = {
@@ -36,5 +37,11 @@ export const marketContractConfig = {
 export const maidsItemContractConfig = {
   address: MAIDS_ITEM_CONTRACT_ADDRESS,
   abi: MaidsItemContract.abi,
+  chainId: 137,
+}
+
+export const maidsPredictionContractConfig = {
+  address: MAIDS_PREDICTION_CONTRACT_ADDRESS,
+  abi: MaidsPredictionContract.abi,
   chainId: 137,
 }

@@ -36,7 +36,7 @@ export const PurchaseForm = ({ item }: PurchaseFormProps) => {
   return (
     <Grid container alignItems='center' justifyContent='center' sx={{ mt: '20px' }}>
       {Number(item.supply) <= 0 ? (
-        <Typography variant='h5' component='span' sx={{ color: 'black' }}>
+        <Typography variant='h5' component='span'>
           SOLD OUT!
         </Typography>
       ) : (

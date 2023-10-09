@@ -44,7 +44,7 @@ const CenteredTabs = ({ labels, children }: CenteredTabsProps) => {
     <>
       <Tabs value={value} onChange={handleChange} indicatorColor='primary' textColor='primary' centered>
         {labels.map((label) => (
-          <Tab sx={{ color: 'white', fontSize: '24px' }} key={label} label={label} />
+          <Tab sx={{ fontSize: '24px' }} key={label} label={label} />
         ))}{' '}
       </Tabs>
 

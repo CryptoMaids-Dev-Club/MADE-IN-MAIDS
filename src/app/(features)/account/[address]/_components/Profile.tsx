@@ -16,7 +16,7 @@ const Profile = async ({ address }: ProfileProps) => {
       <ProfileAvatar userInfo={userInfo} />
 
       <UserName targetAddress={address} userInfo={userInfo} />
-      <Typography sx={{ color: 'white' }}>{address}</Typography>
+      <Typography>{address}</Typography>
     </Grid>
   )
 }

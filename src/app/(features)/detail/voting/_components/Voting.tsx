@@ -20,9 +20,7 @@ type VotingProps = {
 const Voting = ({ id }: VotingProps) => {
   const style = {
     width: '100%',
-    bgcolor: 'pink',
-    border: '2px solid #000',
-    boxShadow: 24,
+    boxShadow: 12,
     p: 4,
   }
 
@@ -31,22 +29,13 @@ const Voting = ({ id }: VotingProps) => {
       <Box sx={style} mt='50px'>
         <Grid container justifyContent='center' spacing={2}>
           <Grid item md={6} xs={12}>
-            <Suspense
-              fallback={
-                <Skeleton
-                  sx={{ bgcolor: 'grey.900' }}
-                  animation='wave'
-                  variant='rectangular'
-                  width={500}
-                  height={800}
-                />
-              }>
+            <Suspense fallback={<Skeleton animation='wave' variant='rectangular' width={500} height={800} />}>
               <NFTImage id={id} />
             </Suspense>
           </Grid>
           <Grid item md={6} xs={12}>
             <Grid container spacing={1}>
-              <Suspense fallback={<Skeleton sx={{ bgcolor: 'grey.900' }} />}>
+              <Suspense fallback={<Skeleton />}>
                 <NFTInfo id={id} />
               </Suspense>
               <Grid item md={12} xs={12}>

@@ -40,7 +40,7 @@ const MaidsList = ({ targetAddress }: MaidsListProps) => {
     },
   })
 
-  if (targetAddress === undefined) return <Typography sx={{ color: 'white' }}>Invalid Address</Typography>
+  if (targetAddress === undefined) return <Typography>Invalid Address</Typography>
 
   const loadMore = async (page: number) => {
     const ownedNfts = await getOwnedNfts({ address: targetAddress, page })
@@ -72,14 +72,7 @@ const MaidsList = ({ targetAddress }: MaidsListProps) => {
 
   return (
     <>
-      <InfiniteScroll
-        loadMore={loadMore}
-        hasMore={hasMore}
-        loader={
-          <Typography key={0} sx={{ color: 'white' }}>
-            Loading...
-          </Typography>
-        }>
+      <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={<Typography key={0}>Loading...</Typography>}>
         <ImageList
           sx={{ height: 600 * Math.ceil(maidsList.length / 3) }}
           cols={maidsList.length >= 3 ? 3 : maidsList.length + 1}>
@@ -98,7 +91,6 @@ const MaidsList = ({ targetAddress }: MaidsListProps) => {
                       variant='outlined'
                       size='small'
                       onClick={() => handleSaveClick(nft.image)}
-                      sx={{ color: 'white' }}
                     />
                   )
                 }

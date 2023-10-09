@@ -8,7 +8,6 @@ import '@rainbow-me/rainbowkit/styles.css'
 import { polygon } from '@wagmi/core/chains'
 import { infuraProvider } from '@wagmi/core/providers/infura'
 import { publicProvider } from '@wagmi/core/providers/public'
-
 import { SWRConfig } from 'swr'
 import { WagmiConfig, createConfig, configureChains } from 'wagmi'
 import { WALLET_CONNECT_ID } from '@/config'

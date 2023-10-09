@@ -11,19 +11,17 @@ type ItemCardProps = {
 }
 
 const ItemCard = ({ item }: ItemCardProps) => (
-  <Link href={`/market/${item.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-    <Card sx={{ width: 370, height: 480 }}>
+  <Link href={`/market/${item.id}`} style={{ textDecoration: 'none' }}>
+    <Card sx={{ width: 370, height: 480, boxShadow: 12 }}>
       <ItemImage item={item} />
       <CardContent>
         <Grid>
-          <Typography variant='h5' noWrap sx={{ color: 'black' }}>
+          <Typography variant='h5' noWrap>
             {item.name}
           </Typography>
         </Grid>
         <Grid>
-          <Typography variant='h6' sx={{ color: 'black' }}>
-            {Math.ceil(Number(item.price))} $MAIDS
-          </Typography>
+          <Typography variant='h6'>{Math.ceil(Number(item.price))} $MAIDS</Typography>
         </Grid>
       </CardContent>
     </Card>

@@ -33,12 +33,12 @@ export const VotingInfo = ({ id }: VotingInfoProps) => {
   return (
     <Grid container>
       <Grid item md={12} xs={12}>
-        <Typography variant='h5' component='span' sx={{ color: 'black' }}>
+        <Typography variant='h5' component='span'>
           {`Number of Votes:${amountOfToken ?? 0}`}
         </Typography>
       </Grid>
       <Grid item md={12} xs={12}>
-        <Typography variant='h5' component='span' sx={{ color: 'black' }}>
+        <Typography variant='h5' component='span'>
           {`Your Votes:${amountOfUser ?? 0}`}
         </Typography>
       </Grid>
