@@ -26,7 +26,7 @@ const PredictionUserInfo = ({ id, choices }: PredictionUserInfoProps) => {
     <>
       <Typography variant='h4'>Your Prediction</Typography>
       <Typography variant='body1' color='cyan'>
-        Choice: {userInfo?.choice !== undefined ? choices[userInfo?.choice] : 'No prediction yet'}
+        Choice: {userInfo?.isPredicted ? choices[userInfo?.choice] : 'No prediction yet'}
         <br />
         Amount: {userInfo?.amount ?? 0}
       </Typography>

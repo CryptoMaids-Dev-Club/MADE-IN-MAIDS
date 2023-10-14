@@ -20,4 +20,4 @@ export default async function getAllPredictions() {
   }
 }
 
-export const revalidate = 10 // 10 seconds
+export const revalidate = 0 // ToDo: set to 10 seconds
