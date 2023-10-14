@@ -1,7 +1,7 @@
 import { configureChains } from '@wagmi/core'
-import { polygon } from '@wagmi/core/chains'
 import { infuraProvider } from '@wagmi/core/providers/infura'
 import { publicProvider } from '@wagmi/core/providers/public'
+import { polygon } from 'wagmi/chains'
 
 export const { publicClient } = configureChains(
   [polygon],

@@ -28,7 +28,7 @@ const Result = ({ predictionInfo, predictionText }: ResultProps) => {
     } else if (rewardAmount === 0) {
       return 'No Hit'
     } else {
-      return `Reward: ${rewardAmount}`
+      return `Reward: ${rewardAmount ?? 0}`
     }
   }
 

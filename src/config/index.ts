@@ -1,4 +1,4 @@
-import { polygon, polygonMumbai } from 'wagmi/chains'
+import { polygon, sepolia } from 'wagmi/chains'
 import MaidsItemContract from '@/assets/contracts/MaidsItem1155.json'
 import MaidsMarketContract from '@/assets/contracts/MaidsMarketPlace.json'
 import MaidsPredictionContract from '@/assets/contracts/MaidsPrediction.json'
@@ -14,7 +14,8 @@ export const MARKET_PROXY_CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_MARKET_PROX
 export const MAIDS_ITEM_CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_MAIDS_ITEM_CONTRACT_ADDRESS as Address
 export const MAIDS_VOTING_CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_MAIDS_VOTING_CONTRACT_ADDRESS as Address
 export const MAIDS_PREDICTION_CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_MAIDS_PREDICTION_CONTRACT_ADDRESS as Address
-export const NETWORK = process.env.NEXT_PUBLIC_NETWORK === 'mainnet' ? polygon : polygonMumbai
+export const NETWORK = process.env.NEXT_PUBLIC_NETWORK === 'mainnet' ? polygon : sepolia
+export const CHAINS = process.env.NEXT_PUBLIC_NETWORK === 'mainnet' ? [polygon] : [sepolia]
 
 export const votingContractConfig = {
   address: MAIDS_VOTING_CONTRACT_ADDRESS,
