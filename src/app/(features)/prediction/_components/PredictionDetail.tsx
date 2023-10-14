@@ -19,7 +19,9 @@ const PredictionDetail = async ({ id }: PredictionDetailProps) => {
   const response = await fetch(predictionInfo.predictionURI)
   const predictionText = (await response.json()) as PredictionText
 
-  const jstTime = new Date(predictionInfo.endTime * 1000).toLocaleString('ja-JP')
+  const jstTime = new Date(predictionInfo.endTime * 1000).toLocaleString('ja-JP', {
+    timeZone: 'Asia/Tokyo',
+  })
   const utcTime = new Date(predictionInfo.endTime * 1000).toLocaleString('en-US')
 
   return (
