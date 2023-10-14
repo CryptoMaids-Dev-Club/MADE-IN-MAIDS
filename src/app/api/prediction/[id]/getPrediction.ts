@@ -4,7 +4,9 @@ import 'server-only'
 
 export default async function getPrediction({ id }: { id: number }) {
   try {
-    const res = await fetch(`${getBaseUrl()}/api/prediction/${id}`)
+    const res = await fetch(`${getBaseUrl()}/api/prediction/${id}`, {
+      cache: 'no-store',
+    })
 
     if (!res.ok) {
       throw new Error('Something went wrong!')
