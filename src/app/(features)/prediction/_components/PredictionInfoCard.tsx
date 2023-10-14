@@ -13,12 +13,22 @@ const PredictionInfoCard = async ({ predictionInfo }: PredictionProps) => {
   const response = await fetch(predictionInfo.predictionURI)
   const predictionText = (await response.json()) as PredictionText
 
+  const labelMessage = () => {
+    if (predictionInfo.isSettled) {
+      return 'Finished'
+    } else if (predictionInfo.endTime < Date.now() / 1000) {
+      return 'Waiting for result'
+    } else {
+      return 'Ongoing'
+    }
+  }
+
   return (
     <Link href={`/prediction/${predictionInfo.id}`}>
       <Card sx={{ border: '1px solid gray', width: 350 }}>
         <CardContent>
           <Chip
-            label={predictionInfo.isSettled ? 'Finished' : 'Ongoing'}
+            label={labelMessage()}
             color={predictionInfo.isSettled ? 'error' : 'success'}
             variant='outlined'
             size='small'

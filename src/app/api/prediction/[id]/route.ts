@@ -30,4 +30,4 @@ export async function GET(_req: NextRequest, { params }: { params: { id: string 
   return NextResponse.json(convertToPredictions(data as SolidityPrediction))
 }
 
-export const revalidate = 60 // 1 minute
+export const dynamic = 'force-dynamic'

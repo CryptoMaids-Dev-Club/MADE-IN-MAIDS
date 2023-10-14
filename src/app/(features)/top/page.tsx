@@ -28,7 +28,7 @@ const Page = () => (
       <Grid item>
         <TopCard
           title='VOTING'
-          color='gold'
+          color='orange'
           image='/images/voting.png'
           description='Let’s make your maid NO.1'
           link='/voting'
@@ -41,6 +41,15 @@ const Page = () => (
           image='/images/ranking.png'
           description='CryptoMaids NFT & $MAIDS holder ranking'
           link='/ranking'
+        />
+      </Grid>
+      <Grid item>
+        <TopCard
+          title='PREDICTION'
+          color='lightgreen'
+          image='/images/prediction.png'
+          description='Predict the CryptoMaids event results'
+          link='/prediction'
         />
       </Grid>
     </Grid>
