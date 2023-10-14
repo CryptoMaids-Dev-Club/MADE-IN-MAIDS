@@ -4,7 +4,9 @@ import 'server-only'
 
 export default async function getAllPredictions() {
   try {
-    const res = await fetch(`${getBaseUrl()}/api/prediction`)
+    const res = await fetch(`${getBaseUrl()}/api/prediction`, {
+      cache: 'no-store',
+    })
 
     if (!res.ok) {
       throw new Error('Something went wrong!')
@@ -20,4 +22,4 @@ export default async function getAllPredictions() {
   }
 }
 
-export const revalidate = 0 // ToDo: set to 10 seconds
+// export const revalidate = 0 // ToDo: set to 10 seconds
