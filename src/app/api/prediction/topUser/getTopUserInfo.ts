@@ -4,7 +4,9 @@ import 'server-only'
 
 export default async function getTopUser() {
   try {
-    const res = await fetch(`${getBaseUrl()}/api/prediction/topUser`)
+    const res = await fetch(`${getBaseUrl()}/api/prediction/topUser`, {
+      cache: 'no-store',
+    })
 
     if (!res.ok) {
       throw new Error('Something went wrong!')
