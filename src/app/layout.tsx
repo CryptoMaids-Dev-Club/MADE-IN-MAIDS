@@ -35,14 +35,12 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
   <html lang='en'>
     <body>
       <Providers>
-        <Box>
-          <TopBar />
-          <Box sx={{ marginTop: '10px', width: '100%' }}>
-            {children}
-            <Analytics />
-          </Box>
-          <Footer />
+        <TopBar />
+        <Box sx={{ marginTop: '10px', width: '100%' }}>
+          {children}
+          <Analytics />
         </Box>
+        <Footer />
       </Providers>
     </body>
   </html>

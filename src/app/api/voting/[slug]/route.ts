@@ -24,7 +24,6 @@ const sort = (solidityVotes: SolidityVote[]) => {
 }
 
 export async function GET(_req: NextRequest, { params }: { params: { slug: number } }) {
-  console.log('get request')
   const data = await readContract({
     ...votingContractConfig,
     functionName: 'getAllVotes',
