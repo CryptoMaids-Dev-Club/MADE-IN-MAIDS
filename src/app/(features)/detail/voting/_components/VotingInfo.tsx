@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import { formatEther } from 'viem'
 import { useAccount, useContractRead } from 'wagmi'
-import { votingContractConfig } from '@/config'
+import { votingContractConfig } from '@/config/client'
 
 type VotingInfoProps = {
   id: number

@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography'
 import { useAccount, useContractRead } from 'wagmi'
 import { convertUserInfo } from '@/app/(features)/prediction/utils'
 import { SolidityUserInfo } from '@/app/api/prediction/prediction'
-import { maidsPredictionContractConfig } from '@/config'
+import { maidsPredictionContractConfig } from '@/config/client'
 
 type PredictionUserInfoProps = {
   id: number

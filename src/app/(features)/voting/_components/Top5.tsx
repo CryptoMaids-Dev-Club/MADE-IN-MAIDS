@@ -3,6 +3,8 @@ import { TopImage } from './TopImage'
 
 export const Top5 = async () => {
   const topAssets = await getTopAssets({ slug: 5 })
+  console.log('aaaaaaaaaaa')
+  console.log(topAssets)
 
   return <TopImage topAssets={topAssets} />
 }

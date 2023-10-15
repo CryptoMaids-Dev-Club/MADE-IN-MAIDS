@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import LoadingButton from '@mui/lab/LoadingButton'
 import FormControl from '@mui/material/FormControl'
@@ -12,14 +12,14 @@ import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import { useForm } from 'react-hook-form'
 import { useDebounce } from 'usehooks-ts'
-
 import { parseEther } from 'viem'
 import { useAccount, useContractRead, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import { z } from 'zod'
 import { convertUserInfo } from '@/app/(features)/prediction/utils'
 import { useSuccessSnackbar } from '@/app/_components/Elements/SnackBar'
-import { MAIDS_PREDICTION_CONTRACT_ADDRESS, maidsContractConfig, maidsPredictionContractConfig } from '@/config'
+import { MAIDS_PREDICTION_CONTRACT_ADDRESS, maidsContractConfig, maidsPredictionContractConfig } from '@/config/client'
 import useAllowance from '@/hooks/useAllowance'
+import { useApprove } from '@/hooks/useApprove'
 import type { Prediction, PredictionText, SolidityUserInfo } from '@/app/api/prediction/prediction'
 
 type PredictionFormProps = {
@@ -28,7 +28,7 @@ type PredictionFormProps = {
 }
 
 const schema = z.object({
-  amount: z.number(),
+  amount: z.number().min(100),
 })
 type FormSchema = z.infer<typeof schema>
 
@@ -41,7 +41,12 @@ const PredictionForm = ({ predictionInfo, predictionText: PredictionText }: Pred
   const debounceAmount = useDebounce(amount, 500)
 
   const { address } = useAccount()
-  const { allowance, refetch } = useAllowance(address, MAIDS_PREDICTION_CONTRACT_ADDRESS)
+  const { allowance, refetch } = useAllowance(address ?? `0x${''}`, MAIDS_PREDICTION_CONTRACT_ADDRESS)
+  const { approve, approveTx } = useApprove(
+    maidsContractConfig.address,
+    address ?? `0x${''}`,
+    MAIDS_PREDICTION_CONTRACT_ADDRESS
+  )
 
   const {
     register,
@@ -67,35 +72,13 @@ const PredictionForm = ({ predictionInfo, predictionText: PredictionText }: Pred
   }).config
   const prediction = useContractWrite({ ...predictionConfig })
 
-  const approveConfig = usePrepareContractWrite({
-    ...maidsContractConfig,
-    functionName: 'approve',
-    args: [MAIDS_PREDICTION_CONTRACT_ADDRESS, '0xffffffffffffffffffffffffffffffffffffffffffffffffff'],
-    enabled: address !== undefined,
-  }).config
-  const approve = useContractWrite({
-    ...approveConfig,
-  })
-
-  const approveTx = useWaitForTransaction({
-    hash: approve.data?.hash,
-  })
-
   const predictionTx = useWaitForTransaction({
     hash: prediction.data?.hash,
     onSuccess() {
       openSnackbar()
+      refetch()
     },
   })
-
-  useEffect(() => {
-    const refetchAllowance = async () => {
-      if (address !== undefined) {
-        await refetch()
-      }
-    }
-    void refetchAllowance()
-  }, [approveTx.status, predictionTx.status, refetch, address])
 
   const handleChoice = () => {
     if (allowance) {

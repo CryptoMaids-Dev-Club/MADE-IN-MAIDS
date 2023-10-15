@@ -1,16 +1,9 @@
-import { readContract, configureChains, createConfig } from '@wagmi/core'
-import { polygon } from '@wagmi/core/chains'
-import { infuraProvider } from '@wagmi/core/providers/infura'
-import { publicProvider } from '@wagmi/core/providers/public'
+import { readContract, createConfig } from '@wagmi/core'
 import { NextRequest, NextResponse } from 'next/server'
 import { formatEther } from 'viem'
-import { votingContractConfig } from '@/config'
+import { votingContractConfig } from '@/config/server'
+import { publicClient } from '@/lib/wagmicore'
 import type { SolidityVote, Vote } from './voting'
-
-const { publicClient } = configureChains(
-  [polygon],
-  [infuraProvider({ apiKey: process.env.NEXT_PUBLIC_INFURA_API_KEY as string }), publicProvider()]
-)
 
 createConfig({ publicClient })
 
@@ -31,6 +24,7 @@ const sort = (solidityVotes: SolidityVote[]) => {
 }
 
 export async function GET(_req: NextRequest, { params }: { params: { slug: number } }) {
+  console.log('get request')
   const data = await readContract({
     ...votingContractConfig,
     functionName: 'getAllVotes',

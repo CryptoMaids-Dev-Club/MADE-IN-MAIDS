@@ -4,14 +4,11 @@ import { infuraProvider } from '@wagmi/core/providers/infura'
 import { publicProvider } from '@wagmi/core/providers/public'
 import { NextResponse } from 'next/server'
 import { formatEther, formatUnits } from 'viem'
-import { marketContractConfig } from '@/config'
+import { INFURA_API_KEY, marketContractConfig } from '@/config/server'
 import type { ItemInfo, MarketItemInfo, SolidityItemInfo } from './marketItem'
-import type { NFTMetadata } from '@/app/api/metadata/[id]/metadata'
+import type { NFTMetadata } from '@/app/api/marketItems/marketItem'
 
-const { publicClient } = configureChains(
-  [polygon],
-  [infuraProvider({ apiKey: process.env.NEXT_PUBLIC_INFURA_API_KEY as string }), publicProvider()]
-)
+const { publicClient } = configureChains([polygon], [infuraProvider({ apiKey: INFURA_API_KEY }), publicProvider()])
 
 createConfig({ publicClient })
 

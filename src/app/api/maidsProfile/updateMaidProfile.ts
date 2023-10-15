@@ -1,7 +1,7 @@
 'use server'
 
 import { recoverMessageAddress } from 'viem'
-import { CHAINBASE_API_KEY } from '@/config'
+import { CHAINBASE_API_KEY } from '@/config/server'
 import { prisma } from '@/lib/prisma'
 import type { MaidProfileUpdate } from './maidProfileUpdate'
 
