@@ -1,5 +1,6 @@
 /.eslintrc.js
 /next.config.js
+/next.config.mjs
 build
 **/@types/*.d.ts
 node_modules

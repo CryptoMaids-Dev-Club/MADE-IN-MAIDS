@@ -5,7 +5,9 @@ import 'server-only'
 
 export default async function getTopAssets({ slug }: { slug: number }) {
   try {
-    const res = await fetch(`${getBaseUrl()}/api/voting/${slug}`)
+    const res = await fetch(`${getBaseUrl()}/api/voting/${slug}`, {
+      cache: 'no-store',
+    })
 
     if (!res.ok) {
       throw new Error('Something went wrong!')
@@ -30,4 +32,4 @@ export default async function getTopAssets({ slug }: { slug: number }) {
   }
 }
 
-export const revalidate = 10 // 10 seconds
+// export const revalidate = 10 // 10 seconds

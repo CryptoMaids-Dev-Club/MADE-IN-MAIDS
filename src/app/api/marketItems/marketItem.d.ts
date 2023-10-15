@@ -13,6 +13,15 @@ export type MarketItemInfo = ItemInfo & {
   nsfw: boolean
 }
 
+export type NFTMetadata = {
+  name: string
+  description: string
+  attributes: string[]
+  image: string
+  external_url: string
+  nsfw: boolean
+}
+
 export type SolidityItemInfo = {
   name: string
   price: bigint

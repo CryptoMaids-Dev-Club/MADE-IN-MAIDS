@@ -11,6 +11,7 @@ export const Header = () => (
         alt='header'
         width='2500'
         height='488'
+        priority={true}
         style={{ overflow: 'hidden', margin: '3px' }}
       />
     </Box>

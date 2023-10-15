@@ -3,7 +3,7 @@
 import Typography from '@mui/material/Typography'
 import { formatEther } from 'viem'
 import { useAccount, useContractRead } from 'wagmi'
-import { maidsPredictionContractConfig } from '@/config'
+import { maidsPredictionContractConfig } from '@/config/client'
 import type { Prediction, PredictionText } from '@/app/api/prediction/prediction'
 
 type ResultProps = {

@@ -1,7 +1,7 @@
 import { readContract, createConfig } from '@wagmi/core'
 import { NextRequest, NextResponse } from 'next/server'
 import { SolidityPrediction } from '@/app/api/prediction/prediction'
-import { maidsPredictionContractConfig } from '@/config'
+import { maidsPredictionContractConfig } from '@/config/server'
 import { publicClient } from '@/lib/wagmicore'
 
 createConfig({ publicClient })

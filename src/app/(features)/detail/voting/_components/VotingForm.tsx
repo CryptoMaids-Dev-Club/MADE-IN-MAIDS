@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
 import LoadingButton from '@mui/lab/LoadingButton'
 import Grid from '@mui/material/Grid'
@@ -12,8 +12,9 @@ import { parseEther } from 'viem'
 import { useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import { useSuccessSnackbar } from '@/app/_components/Elements/SnackBar'
 import { TwitterAlert } from '@/app/_components/Elements/TwitterAlert'
-import { MAIDS_VOTING_CONTRACT_ADDRESS, maidsContractConfig, votingContractConfig } from '@/config'
+import { MAIDS_VOTING_CONTRACT_ADDRESS, maidsContractConfig, votingContractConfig } from '@/config/client'
 import { useAllowance } from '@/hooks/useAllowance'
+import { useApprove } from '@/hooks/useApprove'
 import { FormSchema, formSchema } from '../schema'
 
 type VotingFormProps = {
@@ -37,7 +38,12 @@ export const VotingForm = ({ id }: VotingFormProps) => {
   const debounceAmount = useDebounce(amount, 500)
   const { address } = useAccount()
 
-  const { allowance, refetch } = useAllowance(address, MAIDS_VOTING_CONTRACT_ADDRESS)
+  const { allowance, refetch } = useAllowance(address ?? `0x${''}`, MAIDS_VOTING_CONTRACT_ADDRESS)
+  const { approve, approveTx } = useApprove(
+    maidsContractConfig.address,
+    address ?? `0x${''}`,
+    MAIDS_VOTING_CONTRACT_ADDRESS
+  )
 
   const votingConfig = usePrepareContractWrite({
     ...votingContractConfig,
@@ -47,35 +53,13 @@ export const VotingForm = ({ id }: VotingFormProps) => {
   }).config
   const vote = useContractWrite({ ...votingConfig })
 
-  const approveConfig = usePrepareContractWrite({
-    ...maidsContractConfig,
-    functionName: 'approve',
-    args: [MAIDS_VOTING_CONTRACT_ADDRESS, '0xffffffffffffffffffffffffffffffffffffffffffffffffff'],
-    enabled: address !== undefined,
-  }).config
-  const approve = useContractWrite({
-    ...approveConfig,
-  })
-
-  const approveTx = useWaitForTransaction({
-    hash: approve.data?.hash,
-  })
-
   const voteTx = useWaitForTransaction({
     hash: vote.data?.hash,
     onSuccess() {
       openSnackbar()
+      refetch()
     },
   })
-
-  useEffect(() => {
-    const refetchAllowance = async () => {
-      if (address !== undefined) {
-        await refetch()
-      }
-    }
-    void refetchAllowance()
-  }, [approveTx.status, voteTx.status, refetch, address])
 
   const onSubmit = () => {
     try {
