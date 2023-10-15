@@ -5,8 +5,9 @@ import LoadingButton from '@mui/lab/LoadingButton'
 import { useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import { useSuccessSnackbar } from '@/app/_components/Elements/SnackBar'
 import { TwitterAlert } from '@/app/_components/Elements/TwitterAlert'
-import { MARKET_PROXY_CONTRACT_ADDRESS, maidsContractConfig, marketContractConfig } from '@/config'
+import { MARKET_PROXY_CONTRACT_ADDRESS, maidsContractConfig, marketContractConfig } from '@/config/client'
 import { useAllowance } from '@/hooks/useAllowance'
+import { useApprove } from '@/hooks/useApprove'
 import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
 
 type PurchaseButtonProps = {
@@ -19,7 +20,12 @@ const PurchaseButton = ({ item, amount, differentAddress }: PurchaseButtonProps)
   const [isActive, setIsActive] = useState(false)
   const [approved, setApproved] = useState(false)
   const { address } = useAccount()
-  const { allowance, refetch } = useAllowance(address, MARKET_PROXY_CONTRACT_ADDRESS)
+  const { allowance, refetch } = useAllowance(address ?? `0x${''}`, MARKET_PROXY_CONTRACT_ADDRESS)
+  const { approve, approveTx } = useApprove(
+    maidsContractConfig.address,
+    address ?? `0x${''}`,
+    MARKET_PROXY_CONTRACT_ADDRESS
+  )
   const { open: openSnackbar, Snackbar } = useSuccessSnackbar()
 
   useEffect(() => {
@@ -44,40 +50,22 @@ const PurchaseButton = ({ item, amount, differentAddress }: PurchaseButtonProps)
     args: differentAddress !== '' ? [differentAddress, item.id, amount] : [address, item.id, amount],
     enabled: approved,
   })
-  const { data: buyItemData, isLoading: isLoadingApprove, write: buyItem } = useContractWrite(buyItemConfig)
-
-  const { config: approveConfig } = usePrepareContractWrite({
-    ...maidsContractConfig,
-    functionName: 'approve',
-    args: [MARKET_PROXY_CONTRACT_ADDRESS, '0xffffffffffffffffffffffffffffffffffffffffffffffffff'],
-    enabled: address !== undefined,
-  })
-  const { data: approveData, isLoading: isLoadingBuyItem, write: approve } = useContractWrite(approveConfig)
-
-  const approveTx = useWaitForTransaction({
-    hash: approveData?.hash,
-  })
+  const buyItem = useContractWrite(buyItemConfig)
 
   const buyItemTx = useWaitForTransaction({
-    hash: buyItemData?.hash,
+    hash: buyItem.data?.hash,
     onSuccess() {
       openSnackbar()
+      refetch()
     },
   })
-
-  useEffect(() => {
-    const refetchAllowance = async () => {
-      await refetch()
-    }
-    void refetchAllowance()
-  }, [approveTx.status, buyItemTx.status, refetch])
 
   const handleClick = () => {
     try {
       if (approved) {
-        buyItem?.()
+        buyItem.write?.()
       } else {
-        approve?.()
+        approve.write?.()
       }
     } catch (e) {
       console.error(e)
@@ -88,7 +76,7 @@ const PurchaseButton = ({ item, amount, differentAddress }: PurchaseButtonProps)
     <>
       <LoadingButton
         fullWidth
-        loading={isLoadingApprove || isLoadingBuyItem || approveTx.isLoading || buyItemTx.isLoading}
+        loading={approve.isLoading || buyItem.isLoading || approveTx.isLoading || buyItemTx.isLoading}
         disabled={!isActive}
         onClick={handleClick}
         sx={{ border: '1px solid gray', fontSize: '20px' }}>

@@ -4,7 +4,7 @@ import LoadingButton from '@mui/lab/LoadingButton'
 import { useAccount, useContractRead, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import { convertUserInfo } from '@/app/(features)/prediction/utils'
 import { useSuccessSnackbar } from '@/app/_components/Elements/SnackBar'
-import { maidsPredictionContractConfig } from '@/config'
+import { maidsPredictionContractConfig } from '@/config/client'
 import type { Prediction, SolidityUserInfo } from '@/app/api/prediction/prediction'
 
 type ClaimButtonProps = {
@@ -64,7 +64,7 @@ const ClaimButton = ({ predictionInfo }: ClaimButtonProps) => {
         variant='contained'
         onClick={() => claim.write?.()}
         loading={claim.isLoading || claimTx.isLoading}
-        disabled={predictionInfo.isSettled || rewardAmount === 0}
+        disabled={!predictionInfo.isSettled || rewardAmount === 0}
         sx={{ fontSize: '20px', border: '1px solid', mt: '20px' }}
         fullWidth>
         {buttonMessage()}

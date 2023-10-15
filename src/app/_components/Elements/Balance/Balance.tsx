@@ -4,7 +4,7 @@ import WalletIcon from '@mui/icons-material/Wallet'
 import Typography from '@mui/material/Typography'
 import { formatEther } from 'viem'
 import { useAccount, useContractRead } from 'wagmi'
-import { maidsContractConfig } from '@/config'
+import { maidsContractConfig } from '@/config/client'
 
 export const Balance = () => {
   const { address } = useAccount()

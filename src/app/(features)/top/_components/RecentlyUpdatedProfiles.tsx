@@ -1,13 +1,25 @@
+/* eslint-disable @next/next/no-img-element */
+import { ImageListItem } from '@mui/material'
 import Box from '@mui/material/Box'
 import ImageList from '@mui/material/ImageList'
 import ImageListItemBar from '@mui/material/ImageListItemBar'
 import Typography from '@mui/material/Typography'
 import Link from 'next/link'
-import { ImageListItemWithStyle } from '@/app/_components/Elements/ImageListItemWithStyle'
 import { getRecentlyUpdateProfiles } from '@/app/api/maidsProfile/getRecentlyUpdateProfiles'
 
 const RecentlyUpdatedProfiles = async () => {
   const profiles = await getRecentlyUpdateProfiles()
+  const style = {
+    '&:hover': {
+      opacity: '0.5',
+      transition: '0.3s',
+    },
+    img: {
+      objectFit: 'cover',
+      width: '100%',
+      height: '600px',
+    },
+  }
 
   return (
     <>
@@ -15,13 +27,12 @@ const RecentlyUpdatedProfiles = async () => {
       <Box sx={{ border: '2px solid white', padding: '5px' }}>
         <ImageList sx={{ height: 600 }} cols={5} gap={15}>
           {profiles.map((profile) => (
-            <ImageListItemWithStyle key={profile.imageUrl}>
+            <ImageListItem key={profile.imageUrl} sx={style}>
               <Link href={`/detail/${profile.id}`}>
                 <img src={profile.imageUrl} srcSet={profile.imageUrl} alt={profile.name} loading='lazy' />
-
                 <ImageListItemBar title={profile.name} />
               </Link>
-            </ImageListItemWithStyle>
+            </ImageListItem>
           ))}
         </ImageList>
       </Box>

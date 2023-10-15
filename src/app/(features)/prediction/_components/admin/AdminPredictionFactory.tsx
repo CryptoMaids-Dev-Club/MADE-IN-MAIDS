@@ -9,7 +9,7 @@ import { useForm } from 'react-hook-form'
 import { useDebounce } from 'usehooks-ts'
 import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import { z } from 'zod'
-import { maidsPredictionContractConfig } from '@/config'
+import { maidsPredictionContractConfig } from '@/config/client'
 
 const schema = z.object({
   choiceLength: z.number().positive().int().min(1),

@@ -1,15 +1,7 @@
 import { Metadata } from 'next'
-import PredictionList from './_components/PredictionList'
-import RewardRanking from './_components/RewardRanking'
+import Prediction from './_components/Prediction'
 
-const PredictionPage = () => {
-  return (
-    <>
-      <PredictionList />
-      <RewardRanking />
-    </>
-  )
-}
+const PredictionPage = () => <Prediction />
 
 export default PredictionPage
 

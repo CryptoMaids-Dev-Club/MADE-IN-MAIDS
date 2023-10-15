@@ -9,13 +9,14 @@ import { infuraProvider } from '@wagmi/core/providers/infura'
 import { publicProvider } from '@wagmi/core/providers/public'
 import { SWRConfig } from 'swr'
 import { WagmiConfig, createConfig, configureChains } from 'wagmi'
-import { CHAINS, WALLET_CONNECT_ID } from '@/config'
+import { NETWORK, WALLET_CONNECT_ID } from '@/config/client'
+import { INFURA_API_KEY } from '@/config/client'
 import NextAppDirEmotionCacheProvider from './EmotionCache'
 import theme from './theme'
 
 export const { chains, publicClient } = configureChains(
-  [...CHAINS],
-  [infuraProvider({ apiKey: process.env.NEXT_PUBLIC_INFURA_API_KEY as string }), publicProvider()]
+  [NETWORK],
+  [infuraProvider({ apiKey: INFURA_API_KEY }), publicProvider()]
 )
 
 export const wagmiConfig = createConfig({

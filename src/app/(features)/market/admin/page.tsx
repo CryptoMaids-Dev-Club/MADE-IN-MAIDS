@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField'
 import { useForm, SubmitHandler, Controller } from 'react-hook-form'
 import { parseEther } from 'viem'
 import { useAccount, usePrepareContractWrite, useContractWrite } from 'wagmi'
-import { marketContractConfig } from '@/config'
+import { marketContractConfig } from '@/config/client'
 
 const textfieldStyle = {
   '& .MuiInputBase-input': {

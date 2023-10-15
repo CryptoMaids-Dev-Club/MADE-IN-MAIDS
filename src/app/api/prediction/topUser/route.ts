@@ -2,7 +2,7 @@ import { createConfig, readContract } from '@wagmi/core'
 import { NextResponse } from 'next/server'
 import { formatEther } from 'viem'
 import { SolidityTopUserInfo, TopUserInfo } from '@/app/api/prediction/prediction'
-import { maidsPredictionContractConfig } from '@/config'
+import { maidsPredictionContractConfig } from '@/config/server'
 import { publicClient } from '@/lib/wagmicore'
 
 createConfig({ publicClient })

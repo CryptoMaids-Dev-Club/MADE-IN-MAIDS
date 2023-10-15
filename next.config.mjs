@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
-  enabled: process.env.ANALYZE === 'true',
-})
+import './src/env/client.mjs'
+import './src/env/server.mjs'
 
 const nextConfig = {
   reactStrictMode: true,
@@ -28,4 +27,4 @@ const nextConfig = {
   },
 }
 
-module.exports = nextConfig
+export default nextConfig

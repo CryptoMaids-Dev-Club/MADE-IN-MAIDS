@@ -63,11 +63,11 @@ const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
       {!editing ? (
         <Typography variant='h4'>
           {userName}
-          {address && address.toLowerCase() === targetAddress && (
-            <IconButton onClick={handleClick}>
+          {
+            <IconButton onClick={handleClick} disabled={address?.toLocaleLowerCase() !== targetAddress}>
               <ModeEditIcon />
             </IconButton>
-          )}
+          }
         </Typography>
       ) : (
         <FormControl sx={{ m: 1, width: '20ch' }} variant='outlined'>
