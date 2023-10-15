@@ -1,6 +1,7 @@
 'use client'
 
 import LoadingButton from '@mui/lab/LoadingButton'
+import { formatEther } from 'viem'
 import { useAccount, useContractRead, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import { convertUserInfo } from '@/app/(features)/prediction/utils'
 import { useSuccessSnackbar } from '@/app/_components/Elements/SnackBar'
@@ -35,7 +36,7 @@ const ClaimButton = ({ predictionInfo }: ClaimButtonProps) => {
     functionName: 'getRewardAmount',
     args: [address, predictionInfo.id],
     cacheOnBlock: true,
-    select: (data) => Number(data),
+    select: (data) => Math.floor(Number(formatEther(data as bigint))),
   })
 
   const { data: userInfo } = useContractRead({
@@ -64,7 +65,7 @@ const ClaimButton = ({ predictionInfo }: ClaimButtonProps) => {
         variant='contained'
         onClick={() => claim.write?.()}
         loading={claim.isLoading || claimTx.isLoading}
-        disabled={!predictionInfo.isSettled || rewardAmount === 0}
+        disabled={!predictionInfo.isSettled || rewardAmount === 0 || userInfo?.isClaimed}
         sx={{ fontSize: '20px', border: '1px solid', mt: '20px' }}
         fullWidth>
         {buttonMessage()}
