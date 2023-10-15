@@ -64,7 +64,7 @@ const ClaimButton = ({ predictionInfo }: ClaimButtonProps) => {
         variant='contained'
         onClick={() => claim.write?.()}
         loading={claim.isLoading || claimTx.isLoading}
-        disabled={predictionInfo.isSettled || rewardAmount === 0}
+        disabled={!predictionInfo.isSettled || rewardAmount === 0}
         sx={{ fontSize: '20px', border: '1px solid', mt: '20px' }}
         fullWidth>
         {buttonMessage()}
