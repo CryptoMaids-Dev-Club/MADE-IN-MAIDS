@@ -9,7 +9,6 @@ import InputAdornment from '@mui/material/InputAdornment'
 import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
 import TextField from '@mui/material/TextField'
-import Typography from '@mui/material/Typography'
 import { useForm } from 'react-hook-form'
 import { useDebounce } from 'usehooks-ts'
 import { parseEther } from 'viem'
@@ -61,6 +60,8 @@ const PredictionForm = ({ predictionInfo, predictionText: PredictionText }: Pred
     functionName: 'getUserInfo',
     args: [address, predictionInfo.id],
     cacheOnBlock: true,
+    suspense: true,
+    enabled: !!address,
     select: (data) => convertUserInfo(data as SolidityUserInfo),
   })
 
@@ -100,7 +101,6 @@ const PredictionForm = ({ predictionInfo, predictionText: PredictionText }: Pred
 
   return (
     <>
-      <Typography variant='h4'>Choices</Typography>
       <FormControl fullWidth>
         <RadioGroup
           value={PredictionText.choices[choice]}

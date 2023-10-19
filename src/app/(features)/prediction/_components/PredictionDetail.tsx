@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import Container from '@mui/material/Container'
 import Divider from '@mui/material/Divider'
 import Typography from '@mui/material/Typography'
@@ -42,13 +43,23 @@ const PredictionDetail = async ({ id }: PredictionDetailProps) => {
       </Typography>
       <Typography variant='body1'>Rate: x{(100 + predictionInfo.rate) / 100}</Typography>
       <br />
-      <PredictionForm predictionInfo={predictionInfo} predictionText={predictionText} />
+
+      <Typography variant='h4'>Choices</Typography>
+      <Suspense fallback={<Typography variant='body1'>Loading...</Typography>}>
+        <PredictionForm predictionInfo={predictionInfo} predictionText={predictionText} />
+      </Suspense>
 
       <Divider sx={{ mt: '20px' }} />
-      <PredictionUserInfo id={id} choices={predictionText.choices} />
-      <Divider sx={{ mt: '5px' }} />
+      <Typography variant='h4'>Your Prediction</Typography>
+      <Suspense fallback={<Typography variant='body1'>Loading...</Typography>}>
+        <PredictionUserInfo id={id} choices={predictionText.choices} />
+        <Divider sx={{ mt: '5px' }} />
+      </Suspense>
 
-      <Result predictionInfo={predictionInfo} predictionText={predictionText} />
+      <Typography variant='h4'>Result</Typography>
+      <Suspense fallback={<Typography variant='body1'>Loading...</Typography>}>
+        <Result predictionInfo={predictionInfo} predictionText={predictionText} />
+      </Suspense>
 
       <ClaimButton predictionInfo={predictionInfo} />
     </Container>

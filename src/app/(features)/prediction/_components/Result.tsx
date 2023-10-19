@@ -19,6 +19,8 @@ const Result = ({ predictionInfo, predictionText }: ResultProps) => {
     functionName: 'getRewardAmount',
     args: [address, predictionInfo.id],
     cacheOnBlock: true,
+    suspense: true,
+    enabled: !!address,
     select: (data) => Math.floor(Number(formatEther(data as bigint))),
   })
 
@@ -34,7 +36,6 @@ const Result = ({ predictionInfo, predictionText }: ResultProps) => {
 
   return (
     <>
-      <Typography variant='h4'>Result</Typography>
       <Typography variant='body1'>
         Correct Answer: {predictionInfo.isSettled ? predictionText.choices[predictionInfo.result] : 'Pending'}
       </Typography>

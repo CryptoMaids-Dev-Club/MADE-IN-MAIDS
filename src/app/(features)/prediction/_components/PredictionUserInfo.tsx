@@ -19,12 +19,13 @@ const PredictionUserInfo = ({ id, choices }: PredictionUserInfoProps) => {
     functionName: 'getUserInfo',
     args: [address, id],
     cacheOnBlock: true,
+    suspense: true,
+    enabled: !!address,
     select: (data) => convertUserInfo(data as SolidityUserInfo),
   })
 
   return (
     <>
-      <Typography variant='h4'>Your Prediction</Typography>
       <Typography variant='body1' color='cyan'>
         Choice: {userInfo?.isPredicted ? choices[userInfo?.choice] : 'No prediction yet'}
         <br />
