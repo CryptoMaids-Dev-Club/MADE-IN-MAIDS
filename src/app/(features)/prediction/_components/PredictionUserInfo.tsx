@@ -12,7 +12,7 @@ type PredictionUserInfoProps = {
 }
 
 const PredictionUserInfo = ({ id, choices }: PredictionUserInfoProps) => {
-  const { address } = useAccount()
+  const { address, isConnected } = useAccount()
 
   const { data: userInfo } = useContractRead({
     ...maidsPredictionContractConfig,
@@ -20,7 +20,7 @@ const PredictionUserInfo = ({ id, choices }: PredictionUserInfoProps) => {
     args: [address, id],
     cacheOnBlock: true,
     suspense: true,
-    enabled: !!address,
+    enabled: isConnected,
     select: (data) => convertUserInfo(data as SolidityUserInfo),
   })
 

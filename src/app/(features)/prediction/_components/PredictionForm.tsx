@@ -39,7 +39,7 @@ const PredictionForm = ({ predictionInfo, predictionText: PredictionText }: Pred
   const debounceChoice = useDebounce(choice, 500)
   const debounceAmount = useDebounce(amount, 500)
 
-  const { address } = useAccount()
+  const { address, isConnected } = useAccount()
   const { allowance, refetch } = useAllowance(address ?? `0x${''}`, MAIDS_PREDICTION_CONTRACT_ADDRESS)
   const { approve, approveTx } = useApprove(
     maidsContractConfig.address,
@@ -61,7 +61,7 @@ const PredictionForm = ({ predictionInfo, predictionText: PredictionText }: Pred
     args: [address, predictionInfo.id],
     cacheOnBlock: true,
     suspense: true,
-    enabled: !!address,
+    enabled: isConnected,
     select: (data) => convertUserInfo(data as SolidityUserInfo),
   })
 
@@ -69,6 +69,7 @@ const PredictionForm = ({ predictionInfo, predictionText: PredictionText }: Pred
     ...maidsPredictionContractConfig,
     functionName: 'predict',
     args: [predictionInfo.id, parseEther(`${debounceAmount}`), debounceChoice],
+    suspense: true,
     enabled: Boolean(allowance) && Boolean(debounceAmount),
   }).config
   const prediction = useContractWrite({ ...predictionConfig })

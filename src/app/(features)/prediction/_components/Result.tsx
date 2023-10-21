@@ -12,7 +12,7 @@ type ResultProps = {
 }
 
 const Result = ({ predictionInfo, predictionText }: ResultProps) => {
-  const { address } = useAccount()
+  const { address, isConnected } = useAccount()
 
   const { data: rewardAmount } = useContractRead({
     ...maidsPredictionContractConfig,
@@ -20,7 +20,7 @@ const Result = ({ predictionInfo, predictionText }: ResultProps) => {
     args: [address, predictionInfo.id],
     cacheOnBlock: true,
     suspense: true,
-    enabled: !!address,
+    enabled: isConnected,
     select: (data) => Math.floor(Number(formatEther(data as bigint))),
   })
 
