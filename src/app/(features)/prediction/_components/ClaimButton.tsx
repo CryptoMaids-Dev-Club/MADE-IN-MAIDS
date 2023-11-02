@@ -15,11 +15,13 @@ type ClaimButtonProps = {
 const ClaimButton = ({ predictionInfo }: ClaimButtonProps) => {
   const { open: openSnackbar, Snackbar } = useSuccessSnackbar()
 
+  const { address, isConnected } = useAccount()
+
   const claimConfig = usePrepareContractWrite({
     ...maidsPredictionContractConfig,
     functionName: 'claimReward',
     args: [predictionInfo.id],
-    enabled: predictionInfo.isSettled,
+    enabled: predictionInfo.isSettled && isConnected,
   }).config
   const claim = useContractWrite({ ...claimConfig })
   const claimTx = useWaitForTransaction({
@@ -29,13 +31,12 @@ const ClaimButton = ({ predictionInfo }: ClaimButtonProps) => {
     },
   })
 
-  const { address } = useAccount()
-
   const { data: rewardAmount } = useContractRead({
     ...maidsPredictionContractConfig,
     functionName: 'getRewardAmount',
     args: [address, predictionInfo.id],
     cacheOnBlock: true,
+    enabled: isConnected,
     select: (data) => Math.floor(Number(formatEther(data as bigint))),
   })
 
@@ -44,6 +45,7 @@ const ClaimButton = ({ predictionInfo }: ClaimButtonProps) => {
     functionName: 'getUserInfo',
     args: [address, predictionInfo.id],
     cacheOnBlock: true,
+    enabled: isConnected,
     select: (data) => convertUserInfo(data as SolidityUserInfo),
   })
 
