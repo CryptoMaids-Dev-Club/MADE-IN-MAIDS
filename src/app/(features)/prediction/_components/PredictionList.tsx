@@ -11,10 +11,10 @@ const PredictionList = async () => {
 
   return (
     <Box sx={{ border: '3px dashed hotpink', borderRadius: '20px', padding: '10px' }}>
-      <Grid container spacing={2}>
+      <Grid container spacing={2} alignItems='center' justifyContent='center'>
         {predictionInfos.reverse().map((predictionInfo) => (
           <Grid item key={predictionInfo.id}>
-            <Suspense fallback={<Skeleton />}>
+            <Suspense fallback={<Skeleton width={350} height={150} />}>
               <PredictionInfoCard predictionInfo={predictionInfo} />
             </Suspense>
           </Grid>
