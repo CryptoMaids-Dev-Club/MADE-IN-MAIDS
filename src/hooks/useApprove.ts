@@ -1,5 +1,5 @@
-import { useDebounce } from 'usehooks-ts'
 import { Address, erc20ABI, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
+import { useDebounce } from '@/hooks/useDebounce'
 
 export const useApprove = (address: Address, owner: Address, spender: Address) => {
   const enabled = useDebounce(!!address && !!owner && !!spender)
