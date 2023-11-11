@@ -9,9 +9,7 @@ import InputAdornment from '@mui/material/InputAdornment'
 import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
 import TextField from '@mui/material/TextField'
-import Typography from '@mui/material/Typography'
 import { useForm } from 'react-hook-form'
-import { useDebounce } from 'usehooks-ts'
 import { parseEther } from 'viem'
 import { useAccount, useContractRead, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import { z } from 'zod'
@@ -20,6 +18,7 @@ import { useSuccessSnackbar } from '@/app/_components/Elements/SnackBar'
 import { MAIDS_PREDICTION_CONTRACT_ADDRESS, maidsContractConfig, maidsPredictionContractConfig } from '@/config/client'
 import useAllowance from '@/hooks/useAllowance'
 import { useApprove } from '@/hooks/useApprove'
+import { useDebounce } from '@/hooks/useDebounce'
 import type { Prediction, PredictionText, SolidityUserInfo } from '@/app/api/prediction/prediction'
 
 type PredictionFormProps = {
@@ -40,7 +39,7 @@ const PredictionForm = ({ predictionInfo, predictionText: PredictionText }: Pred
   const debounceChoice = useDebounce(choice, 500)
   const debounceAmount = useDebounce(amount, 500)
 
-  const { address } = useAccount()
+  const { address, isConnected } = useAccount()
   const { allowance, refetch } = useAllowance(address ?? `0x${''}`, MAIDS_PREDICTION_CONTRACT_ADDRESS)
   const { approve, approveTx } = useApprove(
     maidsContractConfig.address,
@@ -61,6 +60,8 @@ const PredictionForm = ({ predictionInfo, predictionText: PredictionText }: Pred
     functionName: 'getUserInfo',
     args: [address, predictionInfo.id],
     cacheOnBlock: true,
+    suspense: true,
+    enabled: isConnected,
     select: (data) => convertUserInfo(data as SolidityUserInfo),
   })
 
@@ -68,6 +69,7 @@ const PredictionForm = ({ predictionInfo, predictionText: PredictionText }: Pred
     ...maidsPredictionContractConfig,
     functionName: 'predict',
     args: [predictionInfo.id, parseEther(`${debounceAmount}`), debounceChoice],
+    suspense: true,
     enabled: Boolean(allowance) && Boolean(debounceAmount),
   }).config
   const prediction = useContractWrite({ ...predictionConfig })
@@ -100,7 +102,6 @@ const PredictionForm = ({ predictionInfo, predictionText: PredictionText }: Pred
 
   return (
     <>
-      <Typography variant='h4'>Choices</Typography>
       <FormControl fullWidth>
         <RadioGroup
           value={PredictionText.choices[choice]}

@@ -1,14 +1,13 @@
+import { Suspense } from 'react'
 import Container from '@mui/material/Container'
 import Divider from '@mui/material/Divider'
 import Typography from '@mui/material/Typography'
-import dynamic from 'next/dynamic'
 import ClaimButton from '@/app/(features)/prediction/_components/ClaimButton'
+import PredictionForm from '@/app/(features)/prediction/_components/PredictionForm'
 import PredictionUserInfo from '@/app/(features)/prediction/_components/PredictionUserInfo'
 import Result from '@/app/(features)/prediction/_components/Result'
 import getPrediction from '@/app/api/prediction/[id]/getPrediction'
 import type { PredictionText } from '@/app/api/prediction/prediction'
-
-const PredictionForm = dynamic(() => import('./PredictionForm'), { ssr: false })
 
 type PredictionDetailProps = {
   id: number
@@ -42,13 +41,23 @@ const PredictionDetail = async ({ id }: PredictionDetailProps) => {
       </Typography>
       <Typography variant='body1'>Rate: x{(100 + predictionInfo.rate) / 100}</Typography>
       <br />
-      <PredictionForm predictionInfo={predictionInfo} predictionText={predictionText} />
+
+      <Typography variant='h4'>Choices</Typography>
+      <Suspense fallback={<Typography variant='body1'>Loading...</Typography>}>
+        <PredictionForm predictionInfo={predictionInfo} predictionText={predictionText} />
+      </Suspense>
 
       <Divider sx={{ mt: '20px' }} />
-      <PredictionUserInfo id={id} choices={predictionText.choices} />
-      <Divider sx={{ mt: '5px' }} />
+      <Typography variant='h4'>Your Prediction</Typography>
+      <Suspense fallback={<Typography variant='body1'>Loading...</Typography>}>
+        <PredictionUserInfo id={id} choices={predictionText.choices} />
+        <Divider sx={{ mt: '5px' }} />
+      </Suspense>
 
-      <Result predictionInfo={predictionInfo} predictionText={predictionText} />
+      <Typography variant='h4'>Result</Typography>
+      <Suspense fallback={<Typography variant='body1'>Loading...</Typography>}>
+        <Result predictionInfo={predictionInfo} predictionText={predictionText} />
+      </Suspense>
 
       <ClaimButton predictionInfo={predictionInfo} />
     </Container>

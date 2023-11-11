@@ -5,10 +5,10 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import LoadingButton from '@mui/lab/LoadingButton'
 import TextField from '@mui/material/TextField'
 import { useForm } from 'react-hook-form'
-import { useDebounce } from 'usehooks-ts'
 import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import { z } from 'zod'
 import { maidsPredictionContractConfig } from '@/config/client'
+import { useDebounce } from '@/hooks/useDebounce'
 
 const schema = z.object({
   rate: z.number().positive().int().min(1),

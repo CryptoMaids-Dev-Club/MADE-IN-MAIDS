@@ -6,16 +6,12 @@ import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
-import Typography from '@mui/material/Typography'
 import getTopUser from '@/app/api/prediction/topUser/getTopUserInfo'
 
 const RewardRanking = async () => {
   const topUserInfo = await getTopUser()
   return (
     <Container>
-      <Typography variant='h1' align='center' color='hotpink' sx={{ typography: { sm: 'h1', xs: 'h4' } }}>
-        Reward Ranking
-      </Typography>
       <TableContainer component={Paper} sx={{ mt: '10px' }}>
         <Table aria-label='simple table'>
           <TableHead>

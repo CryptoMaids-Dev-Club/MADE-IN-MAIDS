@@ -2,7 +2,7 @@ import '@rainbow-me/rainbowkit/styles.css'
 import Box from '@mui/material/Box'
 import { Analytics } from '@vercel/analytics/react'
 import { Footer } from '@/app/_components/Footer'
-import { TopBar } from './TopBar'
+import { TopBar } from './(features)/top/_components/TopBar'
 import { Providers } from './providers'
 import './index.css'
 
