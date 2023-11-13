@@ -4,13 +4,13 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import { Metadata } from 'next'
 import Image from 'next/image'
-import getAllUserInfo from '@/app/api/user/getAllUserInfo'
+import { prisma } from '@/lib/prisma'
 import MaidsHolderTable from './MaidsHolderTable'
 import NFTHolderTable from './NFTHolderTable'
 import CenteredTabs from './TabPanel'
 
 const Ranking = async () => {
-  const userInfos = await getAllUserInfo()
+  const userInfos = await prisma.user.findMany()
 
   return (
     <Grid container>

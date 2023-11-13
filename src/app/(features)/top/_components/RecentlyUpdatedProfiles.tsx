@@ -5,10 +5,15 @@ import ImageList from '@mui/material/ImageList'
 import ImageListItemBar from '@mui/material/ImageListItemBar'
 import Typography from '@mui/material/Typography'
 import Link from 'next/link'
-import { getRecentlyUpdateProfiles } from '@/app/api/maidsProfile/getRecentlyUpdateProfiles'
+import { prisma } from '@/lib/prisma'
 
 const RecentlyUpdatedProfiles = async () => {
-  const profiles = await getRecentlyUpdateProfiles()
+  const profiles = await prisma.maidProfile.findMany({
+    orderBy: {
+      updatedAt: 'desc',
+    },
+    take: 5,
+  })
   const style = {
     '&:hover': {
       opacity: '0.5',
