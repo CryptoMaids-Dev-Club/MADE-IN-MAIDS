@@ -9,4 +9,4 @@ export const metadata: Metadata = {
   title: 'Ranking',
 }
 
-export const dynamic = 'force-dynamic'
+export const revalidate = 60
