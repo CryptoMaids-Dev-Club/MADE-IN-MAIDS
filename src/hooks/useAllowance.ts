@@ -12,7 +12,7 @@ export const useAllowance = (account: Address, spender: string) => {
     select: (data) => Number(formatEther(data as bigint)),
   })
 
-  return { allowance, refetch }
+  return { allowance: allowance ?? 0, refetch }
 }
 
 export default useAllowance

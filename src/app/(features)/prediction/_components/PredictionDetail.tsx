@@ -43,9 +43,7 @@ const PredictionDetail = async ({ id }: PredictionDetailProps) => {
       <br />
 
       <Typography variant='h4'>Choices</Typography>
-      <Suspense fallback={<Typography variant='body1'>Loading...</Typography>}>
-        <PredictionForm predictionInfo={predictionInfo} predictionText={predictionText} />
-      </Suspense>
+      <PredictionForm predictionInfo={predictionInfo} predictionText={predictionText} />
 
       <Divider sx={{ mt: '20px' }} />
       <Typography variant='h4'>Your Prediction</Typography>

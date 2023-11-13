@@ -14,7 +14,7 @@ export const MARKET_PROXY_CONTRACT_ADDRESS = env.NEXT_PUBLIC_MARKET_PROXY_CONTRA
 export const MAIDS_ITEM_CONTRACT_ADDRESS = env.NEXT_PUBLIC_MAIDS_ITEM_CONTRACT_ADDRESS as Address
 export const MAIDS_VOTING_CONTRACT_ADDRESS = env.NEXT_PUBLIC_MAIDS_VOTING_CONTRACT_ADDRESS as Address
 export const MAIDS_PREDICTION_CONTRACT_ADDRESS = env.NEXT_PUBLIC_MAIDS_PREDICTION_CONTRACT_ADDRESS as Address
-export const NETWORK = env.NEXT_PUBLIC_NETWORK ? polygon : sepolia
+export const NETWORK = env.NEXT_PUBLIC_NETWORK === 'mainnet' ? polygon : sepolia
 export const CHAIN_ID = NETWORK.id
 
 export const votingContractConfig = {

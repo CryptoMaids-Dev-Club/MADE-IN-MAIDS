@@ -2,7 +2,7 @@ import { Address, erc20ABI, useContractWrite, usePrepareContractWrite, useWaitFo
 import { useDebounce } from '@/hooks/useDebounce'
 
 export const useApprove = (address: Address, owner: Address, spender: Address) => {
-  const enabled = useDebounce(!!address && !!owner && !!spender)
+  const enabled = useDebounce(address !== '0x' && !!owner && !!spender)
 
   const prepare = usePrepareContractWrite({
     address: address,

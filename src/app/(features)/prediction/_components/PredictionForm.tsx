@@ -1,7 +1,5 @@
 'use client'
 
-import { useState } from 'react'
-import { zodResolver } from '@hookform/resolvers/zod'
 import LoadingButton from '@mui/lab/LoadingButton'
 import FormControl from '@mui/material/FormControl'
 import FormControlLabel from '@mui/material/FormControlLabel'
@@ -9,96 +7,25 @@ import InputAdornment from '@mui/material/InputAdornment'
 import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
 import TextField from '@mui/material/TextField'
-import { useForm } from 'react-hook-form'
-import { parseEther } from 'viem'
-import { useAccount, useContractRead, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
-import { z } from 'zod'
-import { convertUserInfo } from '@/app/(features)/prediction/utils'
-import { useSuccessSnackbar } from '@/app/_components/Elements/SnackBar'
-import { MAIDS_PREDICTION_CONTRACT_ADDRESS, maidsContractConfig, maidsPredictionContractConfig } from '@/config/client'
-import useAllowance from '@/hooks/useAllowance'
-import { useApprove } from '@/hooks/useApprove'
-import { useDebounce } from '@/hooks/useDebounce'
-import type { Prediction, PredictionText, SolidityUserInfo } from '@/app/api/prediction/prediction'
+import usePredict from '@/app/(features)/prediction/_hooks/usePredict'
+import usePredictionForm, { PredictionForm, SubmitErrorHandler, SubmitHandler } from '../_hooks/usePredictionForm'
+import type { Prediction, PredictionText } from '@/app/api/prediction/prediction'
 
 type PredictionFormProps = {
   predictionInfo: Prediction
   predictionText: PredictionText
 }
 
-const schema = z.object({
-  amount: z.number().min(100),
-})
-type FormSchema = z.infer<typeof schema>
-
 const PredictionForm = ({ predictionInfo, predictionText: PredictionText }: PredictionFormProps) => {
-  const { open: openSnackbar, Snackbar } = useSuccessSnackbar()
+  const { handleSubmit, errors, fieldValues }: PredictionForm = usePredictionForm()
 
-  const [choice, setChoice] = useState(0)
-  const [amount, setAmount] = useState(0)
-  const debounceChoice = useDebounce(choice, 500)
-  const debounceAmount = useDebounce(amount, 500)
+  const { isPredicted, isLoading, choice, buttonMessage, predictOrApprove, setChoice, setAmount, Snackbar } =
+    usePredict(predictionInfo.id)
 
-  const { address, isConnected } = useAccount()
-  const { allowance, refetch } = useAllowance(address ?? `0x${''}`, MAIDS_PREDICTION_CONTRACT_ADDRESS)
-  const { approve, approveTx } = useApprove(
-    maidsContractConfig.address,
-    address ?? `0x${''}`,
-    MAIDS_PREDICTION_CONTRACT_ADDRESS
-  )
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormSchema>({
-    resolver: zodResolver(schema),
-  })
-
-  const { data: userInfo } = useContractRead({
-    ...maidsPredictionContractConfig,
-    functionName: 'getUserInfo',
-    args: [address, predictionInfo.id],
-    cacheOnBlock: true,
-    suspense: true,
-    enabled: isConnected,
-    select: (data) => convertUserInfo(data as SolidityUserInfo),
-  })
-
-  const predictionConfig = usePrepareContractWrite({
-    ...maidsPredictionContractConfig,
-    functionName: 'predict',
-    args: [predictionInfo.id, parseEther(`${debounceAmount}`), debounceChoice],
-    suspense: true,
-    enabled: Boolean(allowance) && Boolean(debounceAmount),
-  }).config
-  const prediction = useContractWrite({ ...predictionConfig })
-
-  const predictionTx = useWaitForTransaction({
-    hash: prediction.data?.hash,
-    onSuccess() {
-      openSnackbar()
-      refetch()
-    },
-  })
-
-  const handleChoice = () => {
-    if (allowance) {
-      prediction.write?.()
-    } else {
-      approve.write?.()
-    }
+  const handleValid: SubmitHandler = () => {
+    predictOrApprove()
   }
-
-  const buttonMessage = () => {
-    if (userInfo?.isPredicted) {
-      return 'Already Predicted'
-    } else if (allowance && allowance > Number(debounceAmount)) {
-      return 'Vote'
-    } else {
-      return 'Approve $MAIDS'
-    }
-  }
+  const handleInvalid: SubmitErrorHandler = () => console.log('handleInvalid')
 
   return (
     <>
@@ -112,12 +39,12 @@ const PredictionForm = ({ predictionInfo, predictionText: PredictionText }: Pred
         </RadioGroup>
       </FormControl>
       <TextField
-        {...register('amount', { valueAsNumber: true })}
+        {...fieldValues.amount}
         id='outlined-required'
         label='Required: Amount'
         variant='standard'
         size='medium'
-        onChange={(e) => setAmount(Number(e.target.value))}
+        onChange={(event) => setAmount(Number(event.target.value))}
         InputProps={{
           endAdornment: <InputAdornment position='start'>$MAIDS</InputAdornment>,
         }}
@@ -127,13 +54,13 @@ const PredictionForm = ({ predictionInfo, predictionText: PredictionText }: Pred
         fullWidth
       />
       <LoadingButton
+        onClick={() => handleSubmit(handleValid, handleInvalid)}
         variant='contained'
-        onClick={handleSubmit(handleChoice)}
-        loading={approve.isLoading || prediction.isLoading || approveTx.isLoading || predictionTx.isLoading}
-        disabled={userInfo?.isPredicted}
+        loading={isLoading}
+        disabled={isPredicted}
         sx={{ fontSize: '20px', border: '1px solid', mt: '20px' }}
         fullWidth>
-        {buttonMessage()}
+        {buttonMessage}
       </LoadingButton>
       <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} autoHideDuration={3000}>
         Successfully predict!
