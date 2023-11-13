@@ -82,5 +82,3 @@ export default Ranking
 export const metadata: Metadata = {
   title: 'Ranking',
 }
-
-export const dynamic = 'force-dynamic'
