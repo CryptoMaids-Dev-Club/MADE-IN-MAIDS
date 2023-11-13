@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import Alert from '@mui/material/Alert'
 import MuiSnackbar, { SnackbarProps as MuiSnackBarProps } from '@mui/material/Snackbar'
 
@@ -11,17 +11,17 @@ type SnackbarProps = Omit<MuiSnackBarProps, 'children'> & {
 export const useSuccessSnackbar = () => {
   const [isOpen, setOpen] = useState(false)
 
-  const open = () => {
+  const open = useCallback(() => {
     setOpen(true)
-  }
+  }, [])
 
-  const close = (event?: React.SyntheticEvent | Event, reason?: string) => {
+  const close = useCallback((event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return
     }
 
     setOpen(false)
-  }
+  }, [])
 
   const Snackbar = (props: SnackbarProps) => {
     const { children, sx, ...snackBarProps } = props

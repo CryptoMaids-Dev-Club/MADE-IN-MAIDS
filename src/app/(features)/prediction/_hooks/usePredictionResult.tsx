@@ -1,6 +1,4 @@
-'use client'
-
-import LoadingButton from '@mui/lab/LoadingButton'
+import { useCallback } from 'react'
 import { formatEther } from 'viem'
 import { useAccount, useContractRead, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import { convertUserInfo } from '@/app/(features)/prediction/utils'
@@ -8,11 +6,7 @@ import { useSuccessSnackbar } from '@/app/_components/Elements/SnackBar'
 import { maidsPredictionContractConfig } from '@/config/client'
 import type { Prediction, SolidityUserInfo } from '@/app/api/prediction/prediction'
 
-type ClaimButtonProps = {
-  predictionInfo: Prediction
-}
-
-const ClaimButton = ({ predictionInfo }: ClaimButtonProps) => {
+const usePredictionResult = (predictionInfo: Prediction) => {
   const { open: openSnackbar, Snackbar } = useSuccessSnackbar()
 
   const { address, isConnected } = useAccount()
@@ -49,7 +43,7 @@ const ClaimButton = ({ predictionInfo }: ClaimButtonProps) => {
     select: (data) => convertUserInfo(data as SolidityUserInfo),
   })
 
-  const buttonMessage = () => {
+  const buttonMessage = useCallback(() => {
     if (userInfo?.isClaimed) {
       return 'Already Claimed'
     } else if (!predictionInfo.isSettled) {
@@ -59,24 +53,30 @@ const ClaimButton = ({ predictionInfo }: ClaimButtonProps) => {
     } else {
       return 'Claim Reward'
     }
-  }
+  }, [predictionInfo.isSettled, rewardAmount, userInfo?.isClaimed])
 
-  return (
-    <>
-      <LoadingButton
-        variant='contained'
-        onClick={() => claim.write?.()}
-        loading={claim.isLoading || claimTx.isLoading}
-        disabled={!predictionInfo.isSettled || rewardAmount === 0 || userInfo?.isClaimed}
-        sx={{ fontSize: '20px', border: '1px solid', mt: '20px' }}
-        fullWidth>
-        {buttonMessage()}
-      </LoadingButton>
-      <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} autoHideDuration={3000}>
-        You have claimed {rewardAmount} $MAIDS!
-      </Snackbar>
-    </>
-  )
+  const resultMessage = useCallback(() => {
+    if (!predictionInfo.isSettled) {
+      return 'Reward: Pending'
+    } else if (rewardAmount === 0) {
+      return 'No Hit'
+    } else {
+      return `Reward: ${rewardAmount ?? 0}`
+    }
+  }, [predictionInfo.isSettled, rewardAmount])
+
+  const isLoading = claim.isLoading || claimTx.isLoading
+
+  return {
+    userInfo,
+    rewardAmount,
+    isLoading,
+    claim,
+    claimTx,
+    buttonMessage: buttonMessage(),
+    resultMessage: resultMessage(),
+    Snackbar,
+  }
 }
 
-export default ClaimButton
+export default usePredictionResult

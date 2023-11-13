@@ -19,7 +19,7 @@ type PredictionFormProps = {
 const PredictionForm = ({ predictionInfo, predictionText: PredictionText }: PredictionFormProps) => {
   const { handleSubmit, errors, fieldValues }: PredictionForm = usePredictionForm()
 
-  const { isPredicted, isLoading, choice, buttonMessage, predictOrApprove, setChoice, setAmount, Snackbar } =
+  const { isPredicted, isLoading, choice, buttonMessage, predictOrApprove, updateChoice, updateAmount, Snackbar } =
     usePredict(predictionInfo.id)
 
   const handleValid: SubmitHandler = () => {
@@ -32,7 +32,7 @@ const PredictionForm = ({ predictionInfo, predictionText: PredictionText }: Pred
       <FormControl fullWidth>
         <RadioGroup
           value={PredictionText.choices[choice]}
-          onChange={(event) => setChoice(PredictionText.choices.indexOf(event.target.value))}>
+          onChange={(event) => updateChoice(PredictionText.choices.indexOf(event.target.value))}>
           {PredictionText.choices.map((choice) => (
             <FormControlLabel key={choice} value={choice} control={<Radio />} label={choice} />
           ))}
@@ -44,7 +44,7 @@ const PredictionForm = ({ predictionInfo, predictionText: PredictionText }: Pred
         label='Required: Amount'
         variant='standard'
         size='medium'
-        onChange={(event) => setAmount(Number(event.target.value))}
+        onChange={(event) => updateAmount(Number(event.target.value))}
         InputProps={{
           endAdornment: <InputAdornment position='start'>$MAIDS</InputAdornment>,
         }}

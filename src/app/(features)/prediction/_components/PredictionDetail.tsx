@@ -2,12 +2,13 @@ import { Suspense } from 'react'
 import Container from '@mui/material/Container'
 import Divider from '@mui/material/Divider'
 import Typography from '@mui/material/Typography'
-import ClaimButton from '@/app/(features)/prediction/_components/ClaimButton'
-import PredictionForm from '@/app/(features)/prediction/_components/PredictionForm'
+import dynamic from 'next/dynamic'
+import PredictionResult from '@/app/(features)/prediction/_components/PredictionResult'
 import PredictionUserInfo from '@/app/(features)/prediction/_components/PredictionUserInfo'
-import Result from '@/app/(features)/prediction/_components/Result'
 import getPrediction from '@/app/api/prediction/[id]/getPrediction'
 import type { PredictionText } from '@/app/api/prediction/prediction'
+
+const PredictionForm = dynamic(() => import('./PredictionForm'), { ssr: false })
 
 type PredictionDetailProps = {
   id: number
@@ -54,10 +55,8 @@ const PredictionDetail = async ({ id }: PredictionDetailProps) => {
 
       <Typography variant='h4'>Result</Typography>
       <Suspense fallback={<Typography variant='body1'>Loading...</Typography>}>
-        <Result predictionInfo={predictionInfo} predictionText={predictionText} />
+        <PredictionResult predictionInfo={predictionInfo} predictionText={predictionText} />
       </Suspense>
-
-      <ClaimButton predictionInfo={predictionInfo} />
     </Container>
   )
 }

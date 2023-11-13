@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { parseEther } from 'viem'
 import { useAccount, useContractRead, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import { convertUserInfo } from '@/app/(features)/prediction/utils'
@@ -38,7 +38,7 @@ const usePredict = (predictionId: number) => {
     ...maidsPredictionContractConfig,
     functionName: 'predict',
     args: [predictionId, parseEther(`${debounceAmount}`), debounceChoice],
-    enabled: Boolean(allowance) && Boolean(debounceAmount),
+    enabled: Boolean(allowance) && Boolean(debounceAmount) && !userInfo?.isPredicted,
   }).config
   const predict = useContractWrite({ ...predictConfig })
 
@@ -54,15 +54,23 @@ const usePredict = (predictionId: number) => {
 
   const canPredict = Boolean(allowance) && allowance >= debounceAmount
 
-  const predictOrApprove = () => {
+  const updateChoice = useCallback((choice: number) => {
+    setChoice(choice)
+  }, [])
+
+  const updateAmount = useCallback((amount: number) => {
+    setAmount(amount)
+  }, [])
+
+  const predictOrApprove = useCallback(() => {
     if (canPredict) {
       predict.write?.()
     } else {
       approve.write?.()
     }
-  }
+  }, [approve, canPredict, predict])
 
-  const buttonMessage = () => {
+  const buttonMessage = useCallback(() => {
     if (userInfo?.isPredicted) {
       return 'Already Predicted'
     } else if (canPredict) {
@@ -70,7 +78,7 @@ const usePredict = (predictionId: number) => {
     } else {
       return 'Approve $MAIDS'
     }
-  }
+  }, [canPredict, userInfo])
 
   return {
     userInfo,
@@ -83,8 +91,8 @@ const usePredict = (predictionId: number) => {
     amount,
     predictOrApprove,
     refetch,
-    setChoice,
-    setAmount,
+    updateChoice,
+    updateAmount,
     Snackbar,
   }
 }
