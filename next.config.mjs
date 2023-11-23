@@ -1,6 +1,12 @@
 /** @type {import('next').NextConfig} */
 import './src/env/client.mjs'
 import './src/env/server.mjs'
+import analyze from '@next/bundle-analyzer'
+
+const withBundleAnalyzer = analyze({
+  enabled: false,
+  defaultSizes: 'gzip',
+})
 
 const nextConfig = {
   reactStrictMode: true,
@@ -36,4 +42,4 @@ const nextConfig = {
   },
 }
 
-export default nextConfig
+export default withBundleAnalyzer(nextConfig)
