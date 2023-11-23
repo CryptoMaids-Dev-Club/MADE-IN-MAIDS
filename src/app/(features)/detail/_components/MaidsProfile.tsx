@@ -1,7 +1,5 @@
 'use client'
 
-import { useState } from 'react'
-import { zodResolver } from '@hookform/resolvers/zod'
 import Button from '@mui/material/Button'
 import Divider from '@mui/material/Divider'
 import Grid from '@mui/material/Grid'
@@ -11,12 +9,12 @@ import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { MaidProfile } from '@prisma/client'
 import Image from 'next/image'
-import { useForm } from 'react-hook-form'
-import { useAccount, useSignMessage } from 'wagmi'
-import updateMaidProfile from '@/app/api/maidsProfile/updateMaidProfile'
-import { useDebounce } from '@/hooks/useDebounce'
-import { getSignatureFromLocalStorage, saveSignatureToLocalStorage } from '@/lib/signature'
-import { FormSchema, formSchema } from '../schema'
+import useProfileForm, {
+  ProfileForm,
+  SubmitErrorHandler,
+  SubmitHandler,
+} from '@/app/(features)/detail/_hooks/useProfileForm'
+import useUpdateProfile from '@/app/(features)/detail/_hooks/useUpdateProfile'
 import type { AssetInfo } from '@/app/api/asset/[id]/asset'
 
 type MaidsProfileProps = {
@@ -26,46 +24,19 @@ type MaidsProfileProps = {
 }
 
 const MaidsProfile = ({ profile, asset, owner }: MaidsProfileProps) => {
-  const [editing, setEditing] = useState(false)
-  const [maidsProfile, setMaidsProfile] = useState<MaidProfile>(profile)
-  const debounceProfile = useDebounce(maidsProfile, 500)
+  const { editing, isOwner, toggleEditing, maidsProfile, changeProfile, updateProfile } = useUpdateProfile(
+    profile,
+    asset,
+    owner
+  )
 
-  const { address } = useAccount()
-  const { signMessage } = useSignMessage({
-    message: 'Update Profile',
-    async onSuccess(data) {
-      if (address === undefined) return
-      try {
-        await updateMaidProfile({ ...debounceProfile, imageUrl: asset.image, address, signature: data })
-        saveSignatureToLocalStorage(address, data)
-        setEditing(false)
-      } catch (e) {
-        console.error(e)
-      }
-    },
-  })
+  const { handleSubmit, errors, fieldValues }: ProfileForm = useProfileForm(profile)
+  const handleValid: SubmitHandler = () => {
+    updateProfile()
+  }
+  const handleInvalid: SubmitErrorHandler = () => console.log('handleInvalid')
 
   const matches = useMediaQuery('(min-width: 560px)')
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormSchema>({
-    resolver: zodResolver(formSchema),
-  })
-
-  const onSubmit = async () => {
-    if (address === undefined) return
-
-    const signature = getSignatureFromLocalStorage(address)
-
-    if (signature) {
-      await updateMaidProfile({ ...debounceProfile, imageUrl: asset.image, address, signature })
-      setEditing(false)
-    } else {
-      signMessage()
-    }
-  }
 
   return (
     <>
@@ -73,12 +44,12 @@ const MaidsProfile = ({ profile, asset, owner }: MaidsProfileProps) => {
         <Grid item>
           {editing ? (
             <TextField
-              {...register('name', { required: true })}
+              {...fieldValues.name}
               label='Name'
               defaultValue={profile.name}
               variant='standard'
               size='medium'
-              onChange={(e) => setMaidsProfile({ ...debounceProfile, name: e.target.value })}
+              onChange={(e) => changeProfile({ ...maidsProfile, name: e.target.value })}
               error={'name' in errors}
               helperText={errors.name?.message}
               type='string'
@@ -86,7 +57,7 @@ const MaidsProfile = ({ profile, asset, owner }: MaidsProfileProps) => {
             />
           ) : (
             <Typography component='span' sx={{ typography: { sm: 'h4', xs: 'h5' } }}>
-              {debounceProfile.name ?? `CryptoMaids #${profile.id}`}
+              {maidsProfile.name ?? `CryptoMaids #${profile.id}`}
             </Typography>
           )}
         </Grid>
@@ -107,13 +78,13 @@ const MaidsProfile = ({ profile, asset, owner }: MaidsProfileProps) => {
       </Typography>
       {editing ? (
         <TextField
-          {...register('character', { required: true })}
+          {...fieldValues.character}
           label='Character'
           multiline
           defaultValue={profile.character}
           variant='standard'
           size='medium'
-          onChange={(e) => setMaidsProfile({ ...debounceProfile, character: e.target.value })}
+          onChange={(e) => changeProfile({ ...maidsProfile, character: e.target.value })}
           error={'character' in errors}
           helperText={errors.character?.message}
           type='string'
@@ -121,7 +92,7 @@ const MaidsProfile = ({ profile, asset, owner }: MaidsProfileProps) => {
         />
       ) : (
         <Typography variant='h5' component='span' sx={{ whiteSpace: 'pre-line' }}>
-          {debounceProfile.character ?? '???'}
+          {maidsProfile.character ?? '???'}
         </Typography>
       )}
       <Divider sx={{ mb: '10px', mt: '10px' }} />
@@ -131,13 +102,13 @@ const MaidsProfile = ({ profile, asset, owner }: MaidsProfileProps) => {
       </Typography>
       {editing ? (
         <TextField
-          {...register('description', { required: true })}
+          {...fieldValues.description}
           label='Description'
           multiline
           defaultValue={profile.description}
           variant='standard'
           size='medium'
-          onChange={(e) => setMaidsProfile({ ...debounceProfile, description: e.target.value })}
+          onChange={(e) => changeProfile({ ...maidsProfile, description: e.target.value })}
           error={'description' in errors}
           helperText={errors.description?.message}
           type='string'
@@ -145,18 +116,21 @@ const MaidsProfile = ({ profile, asset, owner }: MaidsProfileProps) => {
         />
       ) : (
         <Typography variant='h5' component='span' sx={{ whiteSpace: 'pre-line' }}>
-          {debounceProfile.description ?? '???'}
+          {maidsProfile.description ?? '???'}
         </Typography>
       )}
       <Divider sx={{ mt: '10px' }} />
-      {address?.toString() === owner && !editing && (
-        <Button onClick={() => setEditing(true)} sx={{ fontSize: '30px', border: '1px solid', mt: '20px' }} fullWidth>
+      {isOwner && !editing && (
+        <Button onClick={() => toggleEditing()} sx={{ fontSize: '30px', border: '1px solid', mt: '20px' }} fullWidth>
           Edit
         </Button>
       )}
 
-      {address?.toString() === owner && editing && (
-        <Button onClick={handleSubmit(onSubmit)} sx={{ fontSize: '30px', border: '1px solid', mt: '20px' }} fullWidth>
+      {isOwner && editing && (
+        <Button
+          onClick={() => handleSubmit(handleValid, handleInvalid)}
+          sx={{ fontSize: '30px', border: '1px solid', mt: '20px' }}
+          fullWidth>
           Save
         </Button>
       )}

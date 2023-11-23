@@ -1,88 +1,37 @@
 'use client'
 
-import { useState } from 'react'
-import { zodResolver } from '@hookform/resolvers/zod'
 import LoadingButton from '@mui/lab/LoadingButton'
 import Grid from '@mui/material/Grid'
 import TextField from '@mui/material/TextField'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import { useForm } from 'react-hook-form'
-import { parseEther } from 'viem'
-import { useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
-import { useSuccessSnackbar } from '@/app/_components/Elements/SnackBar'
+import useVote from '@/app/(features)/detail/voting/_hooks/useVote'
 import { TwitterAlert } from '@/app/_components/Elements/TwitterAlert'
-import { MAIDS_VOTING_CONTRACT_ADDRESS, maidsContractConfig, votingContractConfig } from '@/config/client'
-import { useAllowance } from '@/hooks/useAllowance'
-import { useApprove } from '@/hooks/useApprove'
-import { useDebounce } from '@/hooks/useDebounce'
-import { FormSchema, formSchema } from '../schema'
+import useVotingForm, { VotingForm, SubmitErrorHandler, SubmitHandler } from '../_hooks/useVotingForm'
 
 type VotingFormProps = {
   id: number
 }
 
-export const VotingForm = ({ id }: VotingFormProps) => {
+const VotingForm = ({ id }: VotingFormProps) => {
   const matches = useMediaQuery('(min-width: 560px)')
+  const { handleSubmit, errors, fieldValues }: VotingForm = useVotingForm()
 
-  const { open: openSnackbar, Snackbar } = useSuccessSnackbar()
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormSchema>({
-    resolver: zodResolver(formSchema),
-  })
-
-  const [amount, setAmount] = useState(0)
-  const debounceAmount = useDebounce(amount, 500)
-  const { address } = useAccount()
-
-  const { allowance, refetch } = useAllowance(address ?? `0x${''}`, MAIDS_VOTING_CONTRACT_ADDRESS)
-  const { approve, approveTx } = useApprove(
-    maidsContractConfig.address,
-    address ?? `0x${''}`,
-    MAIDS_VOTING_CONTRACT_ADDRESS
-  )
-
-  const votingConfig = usePrepareContractWrite({
-    ...votingContractConfig,
-    functionName: 'vote',
-    args: debounceAmount ? [id, parseEther(`${Number(debounceAmount)}`)] : [id, 0],
-    enabled: Boolean(allowance) && Boolean(debounceAmount),
-  }).config
-  const vote = useContractWrite({ ...votingConfig })
-
-  const voteTx = useWaitForTransaction({
-    hash: vote.data?.hash,
-    onSuccess() {
-      openSnackbar()
-      refetch()
-    },
-  })
-
-  const onSubmit = () => {
-    try {
-      if (allowance && allowance > Number(debounceAmount)) {
-        if (Number(debounceAmount) <= 0) return
-        vote.write?.()
-      } else {
-        approve.write?.()
-      }
-    } catch (e) {
-      console.error(e)
-    }
+  const handleValid: SubmitHandler = () => {
+    voteOrApprove()
   }
+  const handleInvalid: SubmitErrorHandler = () => console.log('handleInvalid')
+
+  const { amount, updateAmount, voteOrApprove, isLoading, allowance, Snackbar } = useVote(id)
 
   return (
     <>
       <TextField
-        {...register('num', { valueAsNumber: true })}
+        {...fieldValues.num}
         id='outlined-required'
         label='Required: voteAmounts'
         variant='standard'
         size='medium'
-        onChange={(e) => setAmount(Number(e.target.value))}
+        onChange={(e) => updateAmount(Number(e.target.value))}
         error={'num' in errors}
         helperText={errors.num?.message}
         type='number'
@@ -92,11 +41,11 @@ export const VotingForm = ({ id }: VotingFormProps) => {
         <Grid item xs={12}>
           <LoadingButton
             size='large'
-            onClick={handleSubmit(onSubmit)}
-            loading={approve.isLoading || vote.isLoading || approveTx.isLoading || voteTx.isLoading}
+            onClick={() => handleSubmit(handleValid, handleInvalid)}
+            loading={isLoading}
             sx={{ fontSize: '30px', border: '1px solid', mt: '20px' }}
             fullWidth>
-            {allowance && allowance > Number(debounceAmount) ? `Vote` : `Approve $MAIDS`}
+            {allowance && allowance > Number(amount) ? `Vote` : `Approve $MAIDS`}
           </LoadingButton>
         </Grid>
         <Grid item xs={12}>
