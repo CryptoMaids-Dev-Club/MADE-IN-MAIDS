@@ -7,9 +7,11 @@ import ItemList from './ItemList'
 const Market = () => (
   <>
     <Header />
-    <Suspense fallback={<CenteringCircularProgress />}>
-      <ItemList />
-    </Suspense>
+    <div className='container mx-auto max-w-max'>
+      <Suspense fallback={<CenteringCircularProgress />}>
+        <ItemList />
+      </Suspense>
+    </div>
     <br />
   </>
 )

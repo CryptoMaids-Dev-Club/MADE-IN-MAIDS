@@ -1,11 +1,7 @@
 'use client'
 
-import Button from '@mui/material/Button'
-import Divider from '@mui/material/Divider'
-import Grid from '@mui/material/Grid'
 import Link from '@mui/material/Link'
 import TextField from '@mui/material/TextField'
-import Typography from '@mui/material/Typography'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { MaidProfile } from '@prisma/client'
 import Image from 'next/image'
@@ -15,6 +11,9 @@ import useProfileForm, {
   SubmitHandler,
 } from '@/app/(features)/detail/_hooks/useProfileForm'
 import useUpdateProfile from '@/app/(features)/detail/_hooks/useUpdateProfile'
+import { Button } from '@/components/ui/Button'
+import { Divider } from '@/components/ui/Divider'
+import { Typography } from '@/components/ui/Typography'
 import type { AssetInfo } from '@/app/api/asset/[id]/asset'
 
 type MaidsProfileProps = {
@@ -40,39 +39,32 @@ const MaidsProfile = ({ profile, asset, owner }: MaidsProfileProps) => {
 
   return (
     <>
-      <Grid container>
-        <Grid item>
-          {editing ? (
-            <TextField
-              {...fieldValues.name}
-              label='Name'
-              defaultValue={profile.name}
-              variant='standard'
-              size='medium'
-              onChange={(e) => changeProfile({ ...maidsProfile, name: e.target.value })}
-              error={'name' in errors}
-              helperText={errors.name?.message}
-              type='string'
-              style={{ width: matches ? '530px' : window.innerWidth * 0.68 }}
-            />
-          ) : (
-            <Typography component='span' sx={{ typography: { sm: 'h4', xs: 'h5' } }}>
-              {maidsProfile.name ?? `CryptoMaids #${profile.id}`}
-            </Typography>
-          )}
-        </Grid>
-        {!editing && (
-          <Grid item mt='5px'>
-            <Link
-              href={`https://opensea.io/assets/ethereum/0x5703a3245ff6fad37fa2a2500f0739d4f6a234e7/${profile.id}`}
-              underline='none'>
+      <div>
+        {editing ? (
+          <TextField
+            {...fieldValues.name}
+            label='Name'
+            defaultValue={profile.name}
+            variant='standard'
+            size='medium'
+            onChange={(e) => changeProfile({ ...maidsProfile, name: e.target.value })}
+            error={'name' in errors}
+            helperText={errors.name?.message}
+            type='string'
+            style={{ width: matches ? '530px' : window.innerWidth * 0.68 }}
+          />
+        ) : (
+          <>
+            <Typography variant='h2'>{maidsProfile.name ?? `CryptoMaids #${profile.id}`}</Typography>
+            <a href={`https://opensea.io/assets/ethereum/0x5703a3245ff6fad37fa2a2500f0739d4f6a234e7/${profile.id}`}>
               <Image src='/images/Logomark-Blue.png' alt='logo' height='35' width='35' />
-            </Link>
-          </Grid>
+            </a>
+          </>
         )}
-      </Grid>
-      <Divider sx={{ mb: '10px' }} />
-      <Typography component='span' sx={{ typography: { sm: 'h4', xs: 'h5' } }}>
+      </div>
+
+      <Divider />
+      <Typography>
         Character
         <br />
       </Typography>
@@ -91,12 +83,10 @@ const MaidsProfile = ({ profile, asset, owner }: MaidsProfileProps) => {
           style={{ width: matches ? '530px' : window.innerWidth * 0.68 }}
         />
       ) : (
-        <Typography variant='h5' component='span' sx={{ whiteSpace: 'pre-line' }}>
-          {maidsProfile.character ?? '???'}
-        </Typography>
+        <Typography>{maidsProfile.character ?? '???'}</Typography>
       )}
-      <Divider sx={{ mb: '10px', mt: '10px' }} />
-      <Typography component='span' sx={{ typography: { sm: 'h4', xs: 'h5' } }}>
+      <Divider />
+      <Typography>
         Description
         <br />
       </Typography>
@@ -115,25 +105,12 @@ const MaidsProfile = ({ profile, asset, owner }: MaidsProfileProps) => {
           style={{ width: matches ? '530px' : window.innerWidth * 0.68 }}
         />
       ) : (
-        <Typography variant='h5' component='span' sx={{ whiteSpace: 'pre-line' }}>
-          {maidsProfile.description ?? '???'}
-        </Typography>
+        <Typography variant='h5'>{maidsProfile.description ?? '???'}</Typography>
       )}
-      <Divider sx={{ mt: '10px' }} />
-      {isOwner && !editing && (
-        <Button onClick={() => toggleEditing()} sx={{ fontSize: '30px', border: '1px solid', mt: '20px' }} fullWidth>
-          Edit
-        </Button>
-      )}
+      <Divider />
+      {isOwner && !editing && <Button onClick={() => toggleEditing()}>Edit</Button>}
 
-      {isOwner && editing && (
-        <Button
-          onClick={() => handleSubmit(handleValid, handleInvalid)}
-          sx={{ fontSize: '30px', border: '1px solid', mt: '20px' }}
-          fullWidth>
-          Save
-        </Button>
-      )}
+      {isOwner && editing && <Button onClick={() => handleSubmit(handleValid, handleInvalid)}>Save</Button>}
       <br />
       <br />
       <Link href={`/detail/voting/${profile.id}`}>

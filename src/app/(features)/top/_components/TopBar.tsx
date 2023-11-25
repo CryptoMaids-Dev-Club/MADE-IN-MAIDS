@@ -1,22 +1,23 @@
 'use client'
 
-import { Suspense, useState } from 'react'
-import MenuIcon from '@mui/icons-material/Menu'
-import AppBar from '@mui/material/AppBar'
-import Box from '@mui/material/Box'
-import IconButton from '@mui/material/IconButton'
-import Skeleton from '@mui/material/Skeleton'
-import Toolbar from '@mui/material/Toolbar'
+import { Suspense } from 'react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
-import { MenuLink } from '@/app/_components/Elements/MenuLink'
 import { ProfileIcon } from '@/app/_components/Elements/ProfileIcon'
+import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  navigationMenuTriggerStyle,
+} from '@/components/ui/NavigationMenu'
+import { Skeleton } from '@/components/ui/Skeleton'
 
-const SideDrawer = dynamic(() => import('@/app/_components/Elements/Drawer').then((mod) => mod.SideDrawer), {
-  ssr: false,
-})
+// const SideDrawer = dynamic(() => import('@/app/_components/Elements/Drawer').then((mod) => mod.SideDrawer), {
+//   ssr: false,
+// })
 
 const Balance = dynamic(() => import('@/app/_components/Elements/Balance').then((mod) => mod.Balance), {
   ssr: false,
@@ -34,55 +35,87 @@ export const TopBar = () => {
     'https://made-in-maids.cryptomaids.tokyo/',
   ]
 
-  const [open, setOpen] = useState(false)
+  // const [open, setOpen] = useState(false)
 
-  const handleDrawerOpen = () => {
-    setOpen(true)
-  }
+  // const handleDrawerOpen = () => {
+  //   setOpen(true)
+  // }
 
-  const handleDrawerClose = () => {
-    setOpen(false)
-  }
+  // const handleDrawerClose = () => {
+  //   setOpen(false)
+  // }
 
   return (
-    <AppBar
-      position='sticky'
-      elevation={0}
-      sx={{
-        height: 50,
-        width: '100%',
-        fontFamily: 'serif !important',
-      }}>
-      <Toolbar>
-        <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
-          <IconButton
-            aria-label='open drawer'
-            onClick={handleDrawerOpen}
-            edge='start'
-            sx={{ ...(open && { display: 'none' }) }}>
-            <MenuIcon />
-          </IconButton>
-        </Box>
-
-        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
           <Link href='/' style={{ textDecoration: 'none', color: 'inherit' }}>
             <Image src='/images/logo_set.png' width='160' height='48' alt='logo' style={{ marginTop: '10px' }} />
           </Link>
-        </Box>
+        </NavigationMenuItem>
+        {linkNames.map((name, index) => (
+          <NavigationMenuItem key={name}>
+            <Link href={linkUrls[index]} legacyBehavior passHref>
+              <NavigationMenuLink className={navigationMenuTriggerStyle()}>{name}</NavigationMenuLink>
+            </Link>
+          </NavigationMenuItem>
+        ))}
+        <NavigationMenuItem>
+          <Balance />
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <Suspense fallback={<Skeleton className='h-12 w-12 rounded-full' />}>
+            <ProfileIcon />
+          </Suspense>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <ConnectButton showBalance={false} />
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  )
+}
 
-        <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
-          <Link href='/' style={{ textDecoration: 'none', color: 'inherit' }}>
-            <Image src='/images/logo_set.png' width='160' height='48' alt='logo' style={{ marginTop: '10px' }} />
-          </Link>
-        </Box>
+export default TopBar
 
-        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-          {linkNames.map((name, index) => (
-            <MenuLink key={name} text={name} link={linkUrls[index]} />
-          ))}
-        </Box>
+{
+  /* <AppBar
+position='sticky'
+elevation={0}
+sx={{
+  height: 50,
+  width: '100%',
+  fontFamily: 'serif !important',
+}}>
+<Toolbar>
+  <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
+    <IconButton
+      aria-label='open drawer'
+      onClick={handleDrawerOpen}
+      edge='start'
+      sx={{ ...(open && { display: 'none' }) }}>
+      <MenuIcon />
+    </IconButton>
+  </Box>
 
-        <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' }, mr: '10px' }}>
+  <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+    <Link href='/' style={{ textDecoration: 'none', color: 'inherit' }}>
+      <Image src='/images/logo_set.png' width='160' height='48' alt='logo' style={{ marginTop: '10px' }} />
+    </Link>
+  </Box>
+
+  <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' } }}>
+    <Link href='/' style={{ textDecoration: 'none', color: 'inherit' }}>
+      <Image src='/images/logo_set.png' width='160' height='48' alt='logo' style={{ marginTop: '10px' }} />
+    </Link>
+  </Box>
+
+  <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+    {linkNames.map((name, index) => (
+      <MenuLink key={name} text={name} link={linkUrls[index]} />
+    ))}
+  </Box>
+  <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' }, mr: '10px' }}>
           <Balance />
         </Box>
 
@@ -97,8 +130,5 @@ export const TopBar = () => {
       <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
         <SideDrawer linkNames={linkNames} linkUrls={linkUrls} open={open} handleDrawerClose={handleDrawerClose} />
       </Box>
-    </AppBar>
-  )
+    </AppBar> */
 }
-
-export default TopBar

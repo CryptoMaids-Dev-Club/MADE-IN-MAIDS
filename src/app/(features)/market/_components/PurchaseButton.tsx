@@ -1,8 +1,8 @@
 'use client'
 
-import LoadingButton from '@mui/lab/LoadingButton'
 import { usePurchase } from '@/app/(features)/market/_hooks/usePurchase'
 import { TwitterAlert } from '@/app/_components/Elements/TwitterAlert'
+import { LoadingButton } from '@/components/ui/LoadingButton'
 import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
 
 type PurchaseButtonProps = {
@@ -21,11 +21,10 @@ const PurchaseButton = ({ item, amount, differentAddress }: PurchaseButtonProps)
   return (
     <>
       <LoadingButton
-        fullWidth
+        className='w-full bg-blue-300 hover:bg-blue-300/80'
         loading={isLoading}
         disabled={!isActive}
-        onClick={buyItemOrApprove}
-        sx={{ border: '1px solid gray', fontSize: '20px' }}>
+        onClick={buyItemOrApprove}>
         {approved ? `Purchase for ${Number(item.price) * amount} $MAIDS` : `Approve $MAIDS`}
       </LoadingButton>
       <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} autoHideDuration={10000}>

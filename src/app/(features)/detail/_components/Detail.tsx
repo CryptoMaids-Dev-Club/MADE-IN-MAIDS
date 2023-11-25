@@ -1,8 +1,5 @@
 import { Suspense } from 'react'
-import Box from '@mui/material/Box'
-import Container from '@mui/material/Container'
-import Grid from '@mui/material/Grid'
-import Skeleton from '@mui/material/Skeleton'
+import { Skeleton } from '@/components/ui/Skeleton'
 import MaidsProfileWrapper from './MaidsProfileWrapper'
 import { NFTImage } from './NFTImage'
 
@@ -18,22 +15,20 @@ const Detail = ({ id }: DetailProps) => {
   }
 
   return (
-    <Container>
-      <Box sx={style} mt='50px'>
-        <Grid container justifyContent='center' spacing={2}>
-          <Grid item md={6} xs={12}>
-            <Suspense fallback={<Skeleton animation='wave' variant='rectangular' width={500} height={800} />}>
-              <NFTImage id={id} />
-            </Suspense>
-          </Grid>
-          <Grid item md={6} xs={12}>
-            <Suspense fallback={<Skeleton />}>
-              <MaidsProfileWrapper id={id} />
-            </Suspense>
-          </Grid>
-        </Grid>
-      </Box>
-    </Container>
+    <div className='container mx-auto max-w-6xl'>
+      <div className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4'>
+        <div className='col-span-1'>
+          <Suspense fallback={<Skeleton className='w-[500px] h-[800px]' />}>
+            <NFTImage id={id} />
+          </Suspense>
+        </div>
+        <div className='col-span-1'>
+          <Suspense fallback={<Skeleton />}>
+            <MaidsProfileWrapper id={id} />
+          </Suspense>
+        </div>
+      </div>
+    </div>
   )
 }
 

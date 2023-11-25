@@ -1,8 +1,6 @@
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
-import Grid from '@mui/material/Grid'
-import Typography from '@mui/material/Typography'
 import Link from 'next/link'
+import { Card } from '@/components/ui/Card'
+import { Typography } from '@/components/ui/Typography'
 import ItemImage from './ItemImage'
 import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
 
@@ -11,21 +9,17 @@ type ItemCardProps = {
 }
 
 const ItemCard = ({ item }: ItemCardProps) => (
-  <Link href={`/market/${item.id}`} style={{ textDecoration: 'none' }}>
-    <Card sx={{ width: 370, height: 480, boxShadow: 12 }}>
-      <ItemImage item={item} />
-      <CardContent>
-        <Grid>
-          <Typography variant='h5' noWrap>
-            {item.name}
-          </Typography>
-        </Grid>
-        <Grid>
-          <Typography variant='h6'>{Math.ceil(Number(item.price))} $MAIDS</Typography>
-        </Grid>
-      </CardContent>
-    </Card>
-  </Link>
+  <Card className='w-[350px] h-[450px]'>
+    <Link href={`/market/${item.id}`}>
+      <div className='relative overflow-hidden bg-cover bg-no-repeat'>
+        <div className='transition duration-300 hover:scale-110'>
+          <ItemImage item={item} />
+        </div>
+      </div>
+    </Link>
+    <Typography variant='h5'>{item.name}</Typography>
+    <Typography variant='h6'>{Math.ceil(Number(item.price))} $MAIDS</Typography>
+  </Card>
 )
 
 export default ItemCard

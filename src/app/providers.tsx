@@ -7,12 +7,17 @@ import { RainbowKitProvider, darkTheme, getDefaultWallets } from '@rainbow-me/ra
 import '@rainbow-me/rainbowkit/styles.css'
 import { infuraProvider } from '@wagmi/core/providers/infura'
 import { publicProvider } from '@wagmi/core/providers/public'
+import { ThemeProvider as NextThemesProvider } from 'next-themes'
+import { type ThemeProviderProps } from 'next-themes/dist/types'
 import { SWRConfig } from 'swr'
 import { WagmiConfig, createConfig, configureChains } from 'wagmi'
 import { NETWORK, WALLET_CONNECT_ID } from '@/config/client'
 import { INFURA_API_KEY } from '@/config/client'
-import NextAppDirEmotionCacheProvider from './EmotionCache'
 import theme from './theme'
+
+export function ThemeProviderShadcn({ children, ...props }: ThemeProviderProps) {
+  return <NextThemesProvider {...props}>{children}</NextThemesProvider>
+}
 
 export const { chains, publicClient } = configureChains(
   [NETWORK],
@@ -37,8 +42,8 @@ export const config = createConfig({
 })
 
 export const Providers = ({ children }: { children: React.ReactNode }) => (
-  <NextAppDirEmotionCacheProvider options={{ key: 'mui' }}>
-    <ThemeProvider theme={theme}>
+  <ThemeProvider theme={theme}>
+    <ThemeProviderShadcn attribute='class' defaultTheme='dark' enableSystem disableTransitionOnChange>
       <CssBaseline />
       <SWRConfig>
         <WagmiConfig config={config}>
@@ -47,8 +52,8 @@ export const Providers = ({ children }: { children: React.ReactNode }) => (
           </RainbowKitProvider>
         </WagmiConfig>
       </SWRConfig>
-    </ThemeProvider>
-  </NextAppDirEmotionCacheProvider>
+    </ThemeProviderShadcn>
+  </ThemeProvider>
 )
 
 export default Providers

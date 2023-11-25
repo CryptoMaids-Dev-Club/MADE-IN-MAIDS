@@ -1,6 +1,5 @@
 'use client'
 
-// import LoadingButton from '@mui/lab/LoadingButton'
 import FormControl from '@mui/material/FormControl'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import InputAdornment from '@mui/material/InputAdornment'
@@ -8,7 +7,7 @@ import Radio from '@mui/material/Radio'
 import RadioGroup from '@mui/material/RadioGroup'
 import TextField from '@mui/material/TextField'
 import usePredict from '@/app/(features)/prediction/_hooks/usePredict'
-import { ButtonLoading } from '@/components/ui/loadingButton'
+import { LoadingButton } from '@/components/ui/LoadingButton'
 import usePredictionForm, { PredictionForm, SubmitErrorHandler, SubmitHandler } from '../_hooks/usePredictionForm'
 import type { Prediction, PredictionText } from '@/app/api/prediction/prediction'
 
@@ -54,12 +53,13 @@ const PredictionForm = ({ predictionInfo, predictionText: PredictionText }: Pred
         type='number'
         fullWidth
       />
-      <ButtonLoading
+      <LoadingButton
         loading={isLoading}
         onClick={() => handleSubmit(handleValid, handleInvalid)}
-        style={{ width: '300px' }}>
+        disabled={isPredicted}
+        className='w-full bg-blue-300 hover:bg-blue-300/80'>
         {buttonMessage}
-      </ButtonLoading>
+      </LoadingButton>
       <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} autoHideDuration={3000}>
         Successfully predict!
       </Snackbar>

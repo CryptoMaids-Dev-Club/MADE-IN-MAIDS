@@ -1,21 +1,19 @@
-import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
-import Skeleton from '@mui/material/Skeleton'
+import { Skeleton } from '@/components/ui/Skeleton'
 
 const PredictionListSkelton = () => (
-  <Box sx={{ border: '3px dashed hotpink', borderRadius: '20px', padding: '10px' }}>
-    <Grid container spacing={2} alignItems='center' justifyContent='center'>
-      <Grid item>
-        <Skeleton width={350} height={150} />
-      </Grid>
-      <Grid item>
-        <Skeleton width={350} height={150} />
-      </Grid>
-      <Grid item>
-        <Skeleton width={350} height={150} />
-      </Grid>
-    </Grid>
-  </Box>
+  <div className='box-border border-4 border-pink-500 border-dashed rounded-2xl p-4'>
+    <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-center items-center'>
+      <div>
+        <Skeleton className='w-96 h-40' />
+      </div>
+      <div>
+        <Skeleton className='w-96 h-40' />
+      </div>
+      <div>
+        <Skeleton className='w-96 h-40' />
+      </div>
+    </div>
+  </div>
 )
 
 export default PredictionListSkelton

@@ -1,8 +1,7 @@
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
-import Chip from '@mui/material/Chip'
-import Typography from '@mui/material/Typography'
 import Link from 'next/link'
+import { Badge } from '@/components/ui/Badge'
+import { Card, CardContent } from '@/components/ui/Card'
+import { Typography } from '@/components/ui/Typography'
 import type { Prediction, PredictionText } from '@/app/api/prediction/prediction'
 
 type PredictionProps = {
@@ -25,18 +24,12 @@ const PredictionInfoCard = async ({ predictionInfo }: PredictionProps) => {
 
   return (
     <Link href={`/prediction/${predictionInfo.id}`}>
-      <Card sx={{ border: '1px solid gray', width: 350 }}>
+      {/* <Card sx={{ border: '1px solid gray', width: 350 }}> */}
+      <Card className='border-2 bg-gray border-gray-500 w-350'>
         <CardContent>
-          <Chip
-            label={labelMessage()}
-            color={predictionInfo.isSettled ? 'error' : 'success'}
-            variant='outlined'
-            size='small'
-          />
-          <Typography variant='h5' component='div'>
-            {predictionText.title}
-          </Typography>
-          <Typography variant='body1' color='hotpink'>
+          <Badge variant={predictionInfo.isSettled ? 'destructive' : 'success'}>{labelMessage()}</Badge>
+          <Typography variant='h3'>{predictionText.title}</Typography>
+          <Typography variant='h5' className='text-pink-500'>
             {predictionText.description}
           </Typography>
         </CardContent>
