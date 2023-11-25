@@ -1,13 +1,14 @@
 import { Suspense } from 'react'
-import Grid from '@mui/material/Grid'
+import Box from '@mui/material/Box'
 import Skeleton from '@mui/material/Skeleton'
+import Stack from '@mui/material/Stack'
 import RecentlyUpdatedProfiles from './_components/RecentlyUpdatedProfiles'
 import TopCard from './_components/TopCard'
 
 const Page = () => (
   <>
-    <Grid container justifyContent='center' alignItems='center' spacing={3}>
-      <Grid item justifyContent='center' alignItems='center'>
+    <Stack direction='row' useFlexGap flexWrap='wrap' justifyContent='center' alignItems='center' spacing={3}>
+      <div>
         <TopCard
           title='MARKET'
           color='hotpink'
@@ -15,8 +16,9 @@ const Page = () => (
           description='You can spend $MAIDS tokens to mint exclusive NFT'
           link='/market'
         />
-      </Grid>
-      <Grid item>
+      </div>
+
+      <div>
         <TopCard
           title='STAKING'
           color='cyan'
@@ -24,8 +26,9 @@ const Page = () => (
           description='Hold CryptoMaids earn $MAIDS'
           link='https://made-in-maids.cryptomaids.tokyo/'
         />
-      </Grid>
-      <Grid item>
+      </div>
+
+      <div>
         <TopCard
           title='VOTING'
           color='orange'
@@ -33,8 +36,9 @@ const Page = () => (
           description='Let’s make your maid NO.1'
           link='/voting'
         />
-      </Grid>
-      <Grid item>
+      </div>
+
+      <div>
         <TopCard
           title='RANKING'
           color='gold'
@@ -42,8 +46,9 @@ const Page = () => (
           description='CryptoMaids NFT & $MAIDS holder ranking'
           link='/ranking'
         />
-      </Grid>
-      <Grid item>
+      </div>
+
+      <div>
         <TopCard
           title='PREDICTION'
           color='lightgreen'
@@ -51,14 +56,13 @@ const Page = () => (
           description='Predict the CryptoMaids event results'
           link='/prediction'
         />
-      </Grid>
-    </Grid>
-    <Grid sx={{ padding: '30px' }}>
+      </div>
+    </Stack>
+    <Box sx={{ padding: '30px' }}>
       <Suspense fallback={<Skeleton variant='circular' width={40} height={40} />}>
         <RecentlyUpdatedProfiles />
       </Suspense>
-    </Grid>
-    <br />
+    </Box>
   </>
 )
 

@@ -1,5 +1,8 @@
 import { Suspense } from 'react'
+import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
+import Divider from '@mui/material/Divider'
+import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import { Metadata } from 'next'
 import { CenteringCircularProgress } from '@/app/_components/Elements/CenteringCircularProgress'
@@ -14,7 +17,20 @@ const Voting = () => (
     <Suspense fallback={<CenteringCircularProgress />}>
       <Top5 />
     </Suspense>
-    <VotingTransitionForm />
+
+    <Box sx={{ mt: '50px' }}>
+      <Stack alignItems='center' spacing={2}>
+        <Divider flexItem sx={{ bgcolor: 'primary.light' }} />
+
+        <Typography variant='h1' color='hotpink'>
+          VOTING
+        </Typography>
+        <VotingTransitionForm />
+
+        <Divider flexItem sx={{ bgcolor: 'primary.light' }} />
+      </Stack>
+      <br />
+    </Box>
   </Container>
 )
 

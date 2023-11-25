@@ -10,7 +10,6 @@ const Market = () => (
     <Suspense fallback={<CenteringCircularProgress />}>
       <ItemList />
     </Suspense>
-    <br />
   </>
 )
 

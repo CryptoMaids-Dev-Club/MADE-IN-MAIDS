@@ -1,6 +1,5 @@
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
-import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import Link from 'next/link'
 import ItemImage from './ItemImage'
@@ -15,14 +14,14 @@ const ItemCard = ({ item }: ItemCardProps) => (
     <Card sx={{ width: 370, height: 480, boxShadow: 12 }}>
       <ItemImage item={item} />
       <CardContent>
-        <Grid>
+        <div>
           <Typography variant='h5' noWrap>
             {item.name}
           </Typography>
-        </Grid>
-        <Grid>
+        </div>
+        <div>
           <Typography variant='h6'>{Math.ceil(Number(item.price))} $MAIDS</Typography>
-        </Grid>
+        </div>
       </CardContent>
     </Card>
   </Link>

@@ -1,6 +1,7 @@
 import { Suspense } from 'react'
 import Container from '@mui/material/Container'
 import Divider from '@mui/material/Divider'
+import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import dynamic from 'next/dynamic'
 import PredictionResult from '@/app/(features)/prediction/_components/PredictionResult'
@@ -26,37 +27,44 @@ const PredictionDetail = async ({ id }: PredictionDetailProps) => {
 
   return (
     <Container maxWidth='sm'>
-      <Typography variant='h2' align='center'>
-        {predictionText.title}
-      </Typography>
-      <Divider sx={{ mt: '5px' }} />
-      <Typography variant='h4' align='center' color='hotpink'>
-        {predictionText.description}
-      </Typography>
+      <Stack spacing={2} divider={<Divider />}>
+        <Typography variant='h2' align='center'>
+          {predictionText.title}
+        </Typography>
 
-      <Typography variant='h4' sx={{ mt: '10px' }}>
-        Detail
-      </Typography>
-      <Typography variant='body1'>
-        End Date: {jstTime} (JST) / {utcTime} (UTC)
-      </Typography>
-      <Typography variant='body1'>Rate: x{(100 + predictionInfo.rate) / 100}</Typography>
-      <br />
+        <Typography variant='h4' align='center' color='hotpink'>
+          {predictionText.description}
+        </Typography>
 
-      <Typography variant='h4'>Choices</Typography>
-      <PredictionForm predictionInfo={predictionInfo} predictionText={predictionText} />
+        <div>
+          <Typography variant='h4' sx={{ mt: '10px' }}>
+            Detail
+          </Typography>
+          <Typography variant='body1'>
+            End Date: {jstTime} (JST) / {utcTime} (UTC)
+          </Typography>
+          <Typography variant='body1'>Rate: x{(100 + predictionInfo.rate) / 100}</Typography>
+        </div>
 
-      <Divider sx={{ mt: '20px' }} />
-      <Typography variant='h4'>Your Prediction</Typography>
-      <Suspense fallback={<Typography variant='body1'>Loading...</Typography>}>
-        <PredictionUserInfo id={id} choices={predictionText.choices} />
-        <Divider sx={{ mt: '5px' }} />
-      </Suspense>
+        <div>
+          <Typography variant='h4'>Choices</Typography>
+          <PredictionForm predictionInfo={predictionInfo} predictionText={predictionText} />
+        </div>
 
-      <Typography variant='h4'>Result</Typography>
-      <Suspense fallback={<Typography variant='body1'>Loading...</Typography>}>
-        <PredictionResult predictionInfo={predictionInfo} predictionText={predictionText} />
-      </Suspense>
+        <div>
+          <Typography variant='h4'>Your Prediction</Typography>
+          <Suspense fallback={<Typography variant='body1'>Loading...</Typography>}>
+            <PredictionUserInfo id={id} choices={predictionText.choices} />
+          </Suspense>
+        </div>
+
+        <div>
+          <Typography variant='h4'>Result</Typography>
+          <Suspense fallback={<Typography variant='body1'>Loading...</Typography>}>
+            <PredictionResult predictionInfo={predictionInfo} predictionText={predictionText} />
+          </Suspense>
+        </div>
+      </Stack>
     </Container>
   )
 }

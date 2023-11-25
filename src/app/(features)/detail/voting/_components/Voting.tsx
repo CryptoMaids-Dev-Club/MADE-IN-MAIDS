@@ -1,9 +1,11 @@
 import { Suspense } from 'react'
-import { Skeleton } from '@mui/material'
+
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
 import Divider from '@mui/material/Divider'
 import Grid from '@mui/material/Grid'
+import Skeleton from '@mui/material/Skeleton'
+import Stack from '@mui/material/Stack'
 import dynamic from 'next/dynamic'
 import getAsset from '@/app/api/asset/[id]/getAsset'
 import { NFTImage } from '../../_components/NFTImage'
@@ -33,29 +35,19 @@ const Voting = ({ id }: VotingProps) => {
               <NFTImage id={id} />
             </Suspense>
           </Grid>
+
           <Grid item md={6} xs={12}>
-            <Grid container spacing={1}>
+            <Stack spacing={2} divider={<Divider />}>
               <Suspense fallback={<Skeleton />}>
                 <NFTInfo id={id} />
               </Suspense>
-              <Grid item md={12} xs={12}>
-                <Divider />
-                <br />
-              </Grid>
 
               <VotingInfo id={Number(id)} />
 
-              <Grid item md={12} xs={12}>
-                <br />
-                <Divider />
-                <br />
-              </Grid>
               <VotingForm id={Number(id)} />
-              <Grid item md={12} xs={12}>
-                <br />
-              </Grid>
+
               <Induction />
-            </Grid>
+            </Stack>
           </Grid>
         </Grid>
       </Box>

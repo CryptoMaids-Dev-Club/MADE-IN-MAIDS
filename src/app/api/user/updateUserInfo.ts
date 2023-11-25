@@ -1,7 +1,7 @@
 'use server'
 
 import { recoverMessageAddress } from 'viem'
-import { prisma } from '@/lib/prisma'
+import prisma from '@/lib/prisma'
 
 async function updateName(address: string, name: string) {
   const user = await prisma.user.upsert({

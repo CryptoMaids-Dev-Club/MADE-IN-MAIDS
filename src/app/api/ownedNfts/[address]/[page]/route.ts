@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { CHAINBASE_API_KEY } from '@/config/server'
-import { prisma } from '@/lib/prisma'
+import prisma from '@/lib/prisma'
 import { OwnedAssetInfo, OwnedNFTs, OwnedResponse } from './ownedNft'
 import type { AssetInfo } from '@/app/api/asset/[id]/asset'
 
