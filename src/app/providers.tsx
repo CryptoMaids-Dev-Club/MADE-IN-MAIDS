@@ -5,9 +5,10 @@ import CssBaseline from '@mui/material/CssBaseline'
 import ThemeProvider from '@mui/material/styles/ThemeProvider'
 import { RainbowKitProvider, darkTheme, getDefaultWallets } from '@rainbow-me/rainbowkit'
 import '@rainbow-me/rainbowkit/styles.css'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { infuraProvider } from '@wagmi/core/providers/infura'
 import { publicProvider } from '@wagmi/core/providers/public'
-import { SWRConfig } from 'swr'
 import { WagmiConfig, createConfig, configureChains } from 'wagmi'
 import { NETWORK, WALLET_CONNECT_ID } from '@/config/client'
 import { INFURA_API_KEY } from '@/config/client'
@@ -36,20 +37,44 @@ export const config = createConfig({
   publicClient,
 })
 
-export const Providers = ({ children }: { children: React.ReactNode }) => (
-  <NextAppDirEmotionCacheProvider options={{ key: 'mui' }}>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <SWRConfig>
-        <WagmiConfig config={config}>
-          <RainbowKitProvider chains={chains} theme={darkTheme()}>
-            {children}
-          </RainbowKitProvider>
-        </WagmiConfig>
-      </SWRConfig>
-    </ThemeProvider>
-  </NextAppDirEmotionCacheProvider>
+const queryClient = new QueryClient()
+
+const ReactQueryDevtoolsProduction = React.lazy(() =>
+  import('@tanstack/react-query-devtools/build/modern/production.js').then((d) => ({
+    default: d.ReactQueryDevtools,
+  }))
 )
+
+export const Providers = ({ children }: { children: React.ReactNode }) => {
+  const [showDevtools, setShowDevtools] = React.useState(false)
+
+  React.useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    window.toggleDevtools = () => setShowDevtools((old) => !old)
+  }, [])
+
+  return (
+    <NextAppDirEmotionCacheProvider options={{ key: 'mui' }}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <QueryClientProvider client={queryClient}>
+          <ReactQueryDevtools initialIsOpen={false} />
+          {showDevtools && (
+            <React.Suspense fallback={null}>
+              <ReactQueryDevtoolsProduction />
+            </React.Suspense>
+          )}
+          <WagmiConfig config={config}>
+            <RainbowKitProvider chains={chains} theme={darkTheme()}>
+              {children}
+            </RainbowKitProvider>
+          </WagmiConfig>
+        </QueryClientProvider>
+      </ThemeProvider>
+    </NextAppDirEmotionCacheProvider>
+  )
+}
 
 export default Providers
 

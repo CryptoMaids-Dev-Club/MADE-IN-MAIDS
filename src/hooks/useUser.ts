@@ -1,17 +1,35 @@
 'use client'
 
 import { User } from '@prisma/client'
-import useSWRImmutable from 'swr/immutable'
+import { useSuspenseQuery } from '@tanstack/react-query'
+import { userKeys } from '@/app/api/user/keys'
+import { getBaseUrl } from '@/lib/getBaseUrl'
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json() as unknown as User)
+const fetcher = async (url: string): Promise<User> => {
+  const res = await fetch(url)
+  const userInfo = (await res.json()) as User
+  return userInfo
+}
+
+const defaultUser = {
+  id: 0,
+  address: '0x',
+  name: 'Unknown',
+  iconUrl: '',
+} as User
 
 export function useUser(address: string) {
-  const { data, isLoading } = useSWRImmutable(address ? `/api/user/${address}` : null, fetcher, {
-    suspense: true,
+  const { data, error } = useSuspenseQuery<User>({
+    queryKey: userKeys.user(address ?? '0x'),
+    queryFn: () => fetcher(`${getBaseUrl()}/api/user/${address}`),
   })
 
-  return {
-    userInfo: data,
-    isLoading,
+  if (error) {
+    console.error(error)
+    return {
+      userInfo: defaultUser,
+    }
   }
+
+  return { address, userInfo: data }
 }

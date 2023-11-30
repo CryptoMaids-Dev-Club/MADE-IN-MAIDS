@@ -11,6 +11,7 @@ import { ConnectButton } from '@rainbow-me/rainbowkit'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useAccount } from 'wagmi'
 import { MenuLink } from '@/app/_components/Elements/MenuLink'
 import { ProfileIcon } from '@/app/_components/Elements/ProfileIcon'
 
@@ -43,6 +44,8 @@ export const TopBar = () => {
   const handleDrawerClose = () => {
     setOpen(false)
   }
+
+  const { address } = useAccount()
 
   return (
     <AppBar
@@ -87,9 +90,13 @@ export const TopBar = () => {
         </Box>
 
         <Box sx={{ flexGrow: 0, display: { xs: 'none', md: 'flex' }, mr: '10px' }}>
-          <Suspense fallback={<Skeleton variant='circular' width={40} height={40} sx={{ bgcolor: 'grey.900' }} />}>
-            <ProfileIcon />
-          </Suspense>
+          {address ? (
+            <Suspense fallback={<Skeleton variant='circular' width={40} height={40} sx={{ bgcolor: 'grey.900' }} />}>
+              <ProfileIcon address={address} />
+            </Suspense>
+          ) : (
+            <Skeleton variant='circular' width={40} height={40} sx={{ bgcolor: 'grey.900' }} />
+          )}
         </Box>
 
         <ConnectButton showBalance={false} />

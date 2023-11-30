@@ -8,8 +8,10 @@ import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
+import Skeleton from '@mui/material/Skeleton'
 import styled from '@mui/material/styles/styled'
 import useTheme from '@mui/material/styles/useTheme'
+import { useAccount } from 'wagmi'
 import { Balance } from '@/app/_components/Elements/Balance'
 import { ProfileIcon } from '@/app/_components/Elements/ProfileIcon'
 
@@ -31,6 +33,7 @@ type SideDrawerProps = {
 export const SideDrawer = ({ linkNames, linkUrls, open, handleDrawerClose }: SideDrawerProps) => {
   const drawerWidth = 240
   const theme = useTheme()
+  const { address } = useAccount()
 
   return (
     <Drawer
@@ -48,7 +51,11 @@ export const SideDrawer = ({ linkNames, linkUrls, open, handleDrawerClose }: Sid
       <DrawerHeader>
         <Grid container>
           <Grid item xs={3}>
-            <ProfileIcon />
+            {address ? (
+              <ProfileIcon address={address} />
+            ) : (
+              <Skeleton variant='circular' width={40} height={40} sx={{ bgcolor: 'grey.900' }} />
+            )}
           </Grid>
           <Grid item xs={7} display='flex' alignItems='center'>
             <Balance />
