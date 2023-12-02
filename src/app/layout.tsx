@@ -1,13 +1,17 @@
 import '@rainbow-me/rainbowkit/styles.css'
 import Box from '@mui/material/Box'
 import { Analytics } from '@vercel/analytics/react'
+import { DotGothic16 } from 'next/font/google'
 import { Footer } from '@/app/_components/Footer'
 import { TopBar } from './(features)/top/_components/TopBar'
 import { Providers } from './providers'
 import './index.css'
+import './global.css'
 
 const siteName = 'Made in Maids'
 const description = 'Web site created by goshujin sama in the development team'
+
+const dotGothic = DotGothic16({ weight: '400', subsets: ['latin'] })
 
 export const metadata = {
   title: {
@@ -33,7 +37,7 @@ export const metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
   <html lang='en'>
-    <body>
+    <body className={dotGothic.className}>
       <Providers>
         <TopBar />
         <Box sx={{ marginTop: '10px', width: '100%' }}>

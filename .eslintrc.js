@@ -1,6 +1,11 @@
 module.exports = {
   root: true,
-  extends: ['plugin:@typescript-eslint/recommended', 'next/core-web-vitals', 'prettier'],
+  extends: [
+    'plugin:@typescript-eslint/recommended',
+    'next/core-web-vitals',
+    'plugin:tailwindcss/recommended',
+    'prettier',
+  ],
   plugins: ['unused-imports'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
