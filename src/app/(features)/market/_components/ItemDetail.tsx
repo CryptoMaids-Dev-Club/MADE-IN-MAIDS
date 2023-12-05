@@ -1,57 +1,31 @@
-import Box from '@mui/material/Box'
-import Container from '@mui/material/Container'
-import Grid from '@mui/material/Grid'
-import Typography from '@mui/material/Typography'
 import Image from 'next/image'
+import { Typography } from '@/components/ui/typography'
 import { PurchaseForm } from './PurchaseForm'
 import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
 
-const ItemDetail = ({ marketItem }: { marketItem: MarketItemInfo }) => {
-  const style = {
-    marginTop: '30px',
-    maxWidth: 1200,
-    boxShadow: 12,
-    p: 4,
-  }
-
-  return (
-    <Container>
-      <Box sx={style}>
-        <Grid container justifyContent='center' spacing={2}>
-          <Grid item md={6} sm={12}>
-            <Image
-              src={marketItem?.nsfw ? marketItem.external_url : marketItem.image}
-              alt='nft'
-              width={600}
-              height={600}
-              style={{
-                maxWidth: '100%',
-                height: 'auto',
-              }}
-            />
-          </Grid>
-          <Grid item md={6}>
-            <Grid>
-              <Typography component='span' sx={{ typography: { sm: 'h4', xs: 'h5' } }}>
-                {marketItem.name}
-              </Typography>
-            </Grid>
-            <Grid sx={{ overflow: 'auto', maxHeight: 300 }}>
-              <Typography variant='h6' component='span'>
-                {marketItem.description}
-              </Typography>
-            </Grid>
-            <Grid>
-              <Typography variant='h6' component='span'>
-                {`Supply: ${marketItem.supply}`}
-              </Typography>
-            </Grid>
-          </Grid>
-          <PurchaseForm item={marketItem} />
-        </Grid>
-      </Box>
-    </Container>
-  )
-}
+const ItemDetail = ({ marketItem }: { marketItem: MarketItemInfo }) => (
+  <div className='container mx-auto max-w-[1200px]'>
+    <div className='grid grid-cols-1  gap-4 md:grid-cols-2'>
+      <div className='col-span-1'>
+        <Image
+          src={marketItem?.nsfw ? marketItem.external_url : marketItem.image}
+          alt='nft'
+          width={600}
+          height={600}
+          style={{
+            maxWidth: '100%',
+            height: 'auto',
+          }}
+        />
+      </div>
+      <div className='col-span-1'>
+        <Typography variant='h2'>{marketItem.name}</Typography>
+        <Typography variant='h6'>{marketItem.description}</Typography>
+        <Typography variant='h6'>{`Supply: ${marketItem.supply}`}</Typography>
+      </div>
+    </div>
+    <PurchaseForm item={marketItem} />
+  </div>
+)
 
 export default ItemDetail

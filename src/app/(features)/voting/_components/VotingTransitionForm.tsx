@@ -1,18 +1,15 @@
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import Button from '@mui/material/Button'
-import TextField from '@mui/material/TextField'
 import { useRouter } from 'next/navigation'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { FormSchema, formSchema } from '@/app/(features)/detail/voting/schema'
+import { Button } from '@/components/ui/button'
+import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
 
 export const VotingTransitionForm = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormSchema>({
+  const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
   })
   const router = useRouter()
@@ -21,24 +18,25 @@ export const VotingTransitionForm = () => {
   }
 
   return (
-    <>
-      <TextField
-        {...register('num', { valueAsNumber: true })}
-        id='outlined-required'
-        label='Required: tokenId'
-        variant='standard'
-        size='medium'
-        error={'num' in errors}
-        helperText={errors.num?.message}
-        type='number'
-        style={{ width: '350px' }}
-      />
-      <div>
-        <Button size='large' onClick={handleSubmit(onSubmit)} sx={{ fontSize: '30px', border: '1px solid' }}>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className='w-56'>
+        <FormField
+          control={form.control}
+          name='num'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>TokenID</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+        <Button className='mt-2 w-56' type='submit'>
           Go to Voting Page
         </Button>
-      </div>
-    </>
+      </form>
+    </Form>
   )
 }
 

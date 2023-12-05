@@ -2,28 +2,16 @@ import { useCallback, useState } from 'react'
 import { MaidProfile } from '@prisma/client'
 import { useAccount, useSignMessage } from 'wagmi'
 import updateMaidProfile from '@/app/api/maidsProfile/updateMaidProfile'
-import { useDebounce } from '@/hooks/useDebounce'
 import { getSignatureFromLocalStorage, saveSignatureToLocalStorage } from '@/lib/signature'
 import type { AssetInfo } from '@/app/api/asset/[id]/asset'
 
 const useUpdateProfile = (profile: MaidProfile, asset: AssetInfo, owner: string) => {
   const [editing, setEditing] = useState(false)
   const [maidsProfile, setMaidsProfile] = useState<MaidProfile>(profile)
-  const debounceProfile = useDebounce(maidsProfile, 500)
 
   const { address } = useAccount()
-  const { signMessage } = useSignMessage({
+  const { signMessageAsync } = useSignMessage({
     message: 'Update Profile',
-    async onSuccess(data) {
-      if (address === undefined) return
-      try {
-        await updateMaidProfile({ ...debounceProfile, imageUrl: asset.image, address, signature: data })
-        saveSignatureToLocalStorage(address, data)
-        setEditing(false)
-      } catch (e) {
-        console.error(e)
-      }
-    },
   })
 
   const toggleEditing = useCallback(() => {
@@ -34,18 +22,31 @@ const useUpdateProfile = (profile: MaidProfile, asset: AssetInfo, owner: string)
     setMaidsProfile(profile)
   }, [])
 
-  const updateProfile = useCallback(async () => {
-    if (address === undefined) return
+  const updateProfile = useCallback(
+    async (profile: MaidProfile) => {
+      if (address === undefined) return
 
-    const signature = getSignatureFromLocalStorage(address)
+      const signature = getSignatureFromLocalStorage(address)
 
-    if (signature) {
-      await updateMaidProfile({ ...debounceProfile, imageUrl: asset.image, address, signature })
-      setEditing(false)
-    } else {
-      signMessage()
-    }
-  }, [address, asset.image, debounceProfile, signMessage])
+      if (signature) {
+        await updateMaidProfile({ ...profile, imageUrl: asset.image, address, signature })
+        changeProfile(profile)
+        setEditing(false)
+      } else {
+        signMessageAsync()
+          .then(async (data) => {
+            await updateMaidProfile({ ...profile, imageUrl: asset.image, address, signature: data })
+            saveSignatureToLocalStorage(address, data)
+            changeProfile(profile)
+            setEditing(false)
+          })
+          .catch((e) => {
+            console.error(e)
+          })
+      }
+    },
+    [address, asset.image, changeProfile, signMessageAsync]
+  )
 
   const isOwner = address === owner
 

@@ -1,9 +1,8 @@
 'use client'
 
-import Grid from '@mui/material/Grid'
-import Typography from '@mui/material/Typography'
 import { formatEther } from 'viem'
 import { useAccount, useContractRead } from 'wagmi'
+import { Typography } from '@/components/ui/typography'
 import { votingContractConfig } from '@/config/client'
 
 type VotingInfoProps = {
@@ -31,18 +30,10 @@ export const VotingInfo = ({ id }: VotingInfoProps) => {
   })
 
   return (
-    <Grid container>
-      <Grid item md={12} xs={12}>
-        <Typography variant='h5' component='span'>
-          {`Number of Votes:${amountOfToken ?? 0}`}
-        </Typography>
-      </Grid>
-      <Grid item md={12} xs={12}>
-        <Typography variant='h5' component='span'>
-          {`Your Votes:${amountOfUser ?? 0}`}
-        </Typography>
-      </Grid>
-    </Grid>
+    <div>
+      <Typography variant='h3'>{`Number of Votes:${amountOfToken ?? 0}`}</Typography>
+      <Typography variant='h3'>{`Your Votes:${amountOfUser ?? 0}`}</Typography>
+    </div>
   )
 }
 

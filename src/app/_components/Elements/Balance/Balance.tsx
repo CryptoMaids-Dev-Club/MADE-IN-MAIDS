@@ -1,9 +1,9 @@
 'use client'
 
-import WalletIcon from '@mui/icons-material/Wallet'
-import Typography from '@mui/material/Typography'
+import { MdWallet } from 'react-icons/md'
 import { formatEther } from 'viem'
 import { useAccount, useContractRead } from 'wagmi'
+import { Typography } from '@/components/ui/typography'
 import { maidsContractConfig } from '@/config/client'
 
 export const Balance = () => {
@@ -17,12 +17,12 @@ export const Balance = () => {
   })
 
   return (
-    <>
-      <WalletIcon sx={{ display: { xs: 'none', sm: 'block' }, marginTop: '4px', marginRight: '3px' }} />
-      <Typography variant='h6' sx={{ color: 'gold' }}>
+    <div className='flex flex-row'>
+      <MdWallet className='mt-1' size='24' />
+      <Typography className='text-yellow-400' variant='h4'>
         {balance ?? 0} $MAIDS
       </Typography>
-    </>
+    </div>
   )
 }
 

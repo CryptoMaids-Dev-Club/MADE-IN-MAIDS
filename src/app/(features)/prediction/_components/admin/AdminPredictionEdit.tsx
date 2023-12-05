@@ -1,4 +1,3 @@
-import Container from '@mui/material/Container'
 import SetChoiceLength from '@/app/(features)/prediction/_components/admin/SetChoiceLengthForm'
 import SetEndTimeForm from '@/app/(features)/prediction/_components/admin/SetEndTimeForm'
 import SetPredictionURIForm from '@/app/(features)/prediction/_components/admin/SetPredictionURIForm'
@@ -11,13 +10,13 @@ type AdminPredictionEditProps = {
 
 const AdminPredictionEdit = ({ id }: AdminPredictionEditProps) => {
   return (
-    <Container>
+    <div className='container mx-auto my-8 max-w-6xl'>
       <SettleForm id={id} />
       <SetChoiceLength id={id} />
       <SetPredictionURIForm id={id} />
       <SetRateForm id={id} />
       <SetEndTimeForm id={id} />
-    </Container>
+    </div>
   )
 }
 

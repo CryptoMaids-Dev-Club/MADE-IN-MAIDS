@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
+import { TwitterShareButton, XIcon } from 'react-share'
 import { useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
-import { useSuccessSnackbar } from '@/app/_components/Elements/SnackBar'
 import { MarketItemInfo } from '@/app/api/marketItems/marketItem'
+import { useToast } from '@/components/ui/use-toast'
 import { MARKET_PROXY_CONTRACT_ADDRESS, maidsContractConfig, marketContractConfig } from '@/config/client'
 import { useAllowance } from '@/hooks/useAllowance'
 import { useApprove } from '@/hooks/useApprove'
@@ -22,7 +23,7 @@ export const usePurchase = ({ item, amount, differentAddress }: usePurchaseProps
     address ?? `0x${''}`,
     MARKET_PROXY_CONTRACT_ADDRESS
   )
-  const { open: openSnackbar, Snackbar } = useSuccessSnackbar()
+  const { toast } = useToast()
 
   useEffect(() => {
     const checkActive = () => {
@@ -51,7 +52,18 @@ export const usePurchase = ({ item, amount, differentAddress }: usePurchaseProps
   const buyItemTx = useWaitForTransaction({
     hash: buyItem.data?.hash,
     onSuccess() {
-      openSnackbar()
+      toast({
+        title: 'Successfully bought!',
+        description: 'Share your purchase on X!',
+        duration: 10000,
+        action: (
+          <TwitterShareButton
+            url={`https://made-in-maids.vercel.app/market/item/${item.id}`}
+            title={`Successfully bought ${item.name}!`}>
+            <XIcon size={32} round />
+          </TwitterShareButton>
+        ),
+      })
       refetch()
     },
   })
@@ -73,7 +85,5 @@ export const usePurchase = ({ item, amount, differentAddress }: usePurchaseProps
     isActive,
     approved,
     isLoading: approve.isLoading || buyItem.isLoading || approveTx.isLoading || buyItemTx.isLoading,
-    open,
-    Snackbar,
   }
 }

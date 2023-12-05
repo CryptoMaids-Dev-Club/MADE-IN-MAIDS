@@ -2,11 +2,12 @@
 
 import { useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
-import LoadingButton from '@mui/lab/LoadingButton'
-import TextField from '@mui/material/TextField'
 import { useForm } from 'react-hook-form'
 import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import { z } from 'zod'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { LoadingButton } from '@/components/ui/loading-button'
 import { maidsPredictionContractConfig } from '@/config/client'
 import { useDebounce } from '@/hooks/useDebounce'
 
@@ -33,36 +34,31 @@ const SetPredictionURIForm = ({ id }: SetPredictionURIFormProps) => {
     hash: writePredictionURI.data?.hash,
   })
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormSchema>({
+  const form = useForm<FormSchema>({
     resolver: zodResolver(schema),
   })
 
   return (
-    <>
-      <TextField
-        {...register('predictionURI')}
-        id='outlined-required'
-        label='Required: PredictionURI'
-        variant='standard'
-        size='medium'
-        onChange={(e) => setPredictionURI(e.target.value)}
-        error={'predictionURI' in errors}
-        helperText={errors.predictionURI?.message}
-        fullWidth
-      />
-      <LoadingButton
-        variant='contained'
-        onClick={handleSubmit(() => writePredictionURI.write?.())}
-        loading={writePredictionURI.isLoading || writePredictionURITx.isLoading}
-        sx={{ fontSize: '20px', border: '1px solid', mt: '20px' }}
-        fullWidth>
-        Set PredictionURI
-      </LoadingButton>
-    </>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(() => writePredictionURI.write?.())} className='w-56'>
+        <FormField
+          control={form.control}
+          name='predictionURI'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>PredictionURI</FormLabel>
+              <FormControl>
+                <Input {...field} onChange={(event) => setPredictionURI(event.target.value)} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <LoadingButton loading={writePredictionURI.isLoading || writePredictionURITx.isLoading}>
+          Set PredictionURI
+        </LoadingButton>
+      </form>
+    </Form>
   )
 }
 

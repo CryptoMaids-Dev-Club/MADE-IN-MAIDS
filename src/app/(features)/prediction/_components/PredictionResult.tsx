@@ -1,8 +1,8 @@
 'use client'
 
-import LoadingButton from '@mui/lab/LoadingButton'
-import Typography from '@mui/material/Typography'
 import usePredictionResult from '@/app/(features)/prediction/_hooks/usePredictionResult'
+import { LoadingButton } from '@/components/ui/loading-button'
+import { Typography } from '@/components/ui/typography'
 import type { Prediction, PredictionText } from '@/app/api/prediction/prediction'
 
 type ResultProps = {
@@ -11,29 +11,23 @@ type ResultProps = {
 }
 
 const Result = ({ predictionInfo, predictionText }: ResultProps) => {
-  const { userInfo, rewardAmount, claim, isLoading, buttonMessage, resultMessage, Snackbar } =
-    usePredictionResult(predictionInfo)
+  const { userInfo, rewardAmount, claim, isLoading, buttonMessage, resultMessage } = usePredictionResult(predictionInfo)
 
   return (
     <>
-      <Typography variant='body1'>
+      <Typography variant='h4'>
         Correct Answer: {predictionInfo.isSettled ? predictionText.choices[predictionInfo.result] : 'Pending'}
       </Typography>
-      <Typography variant='body1' color='cyan'>
+      <Typography variant='h4' className='text-blue-300'>
         {resultMessage}
       </Typography>
       <LoadingButton
-        variant='contained'
+        className='w-full bg-blue-300 hover:bg-blue-300/80'
         onClick={() => claim.write?.()}
         loading={isLoading}
-        disabled={!predictionInfo.isSettled || rewardAmount === 0 || userInfo?.isClaimed}
-        sx={{ fontSize: '20px', border: '1px solid', mt: '20px' }}
-        fullWidth>
+        disabled={!predictionInfo.isSettled || rewardAmount === 0 || userInfo?.isClaimed}>
         {buttonMessage}
       </LoadingButton>
-      <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} autoHideDuration={3000}>
-        You have claimed {rewardAmount} $MAIDS!
-      </Snackbar>
     </>
   )
 }

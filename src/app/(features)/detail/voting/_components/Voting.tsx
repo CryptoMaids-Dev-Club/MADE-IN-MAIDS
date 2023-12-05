@@ -1,13 +1,7 @@
 import { Suspense } from 'react'
-
-import Box from '@mui/material/Box'
-import Container from '@mui/material/Container'
-import Divider from '@mui/material/Divider'
-import Grid from '@mui/material/Grid'
-import Skeleton from '@mui/material/Skeleton'
-import Stack from '@mui/material/Stack'
 import dynamic from 'next/dynamic'
 import getAsset from '@/app/api/asset/[id]/getAsset'
+import { Skeleton } from '@/components/ui/skeleton'
 import { NFTImage } from '../../_components/NFTImage'
 import { NFTInfo } from '../../_components/NFTInfo'
 import { Induction } from './Induction'
@@ -19,41 +13,29 @@ type VotingProps = {
   id: number
 }
 
-const Voting = ({ id }: VotingProps) => {
-  const style = {
-    width: '100%',
-    boxShadow: 12,
-    p: 4,
-  }
+const Voting = ({ id }: VotingProps) => (
+  <div className='container mx-auto my-8 max-w-6xl'>
+    <div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2'>
+      <div className='col-span-1'>
+        <Suspense fallback={<Skeleton className='h-[800px] w-[500px]' />}>
+          <NFTImage id={id} />
+        </Suspense>
+      </div>
 
-  return (
-    <Container>
-      <Box sx={style} mt='50px'>
-        <Grid container justifyContent='center' spacing={2}>
-          <Grid item md={6} xs={12}>
-            <Suspense fallback={<Skeleton animation='wave' variant='rectangular' width={500} height={800} />}>
-              <NFTImage id={id} />
-            </Suspense>
-          </Grid>
+      <div className='flex flex-col gap-6'>
+        <Suspense fallback={<Skeleton />}>
+          <NFTInfo id={id} />
+        </Suspense>
 
-          <Grid item md={6} xs={12}>
-            <Stack spacing={2} divider={<Divider />}>
-              <Suspense fallback={<Skeleton />}>
-                <NFTInfo id={id} />
-              </Suspense>
+        <VotingInfo id={Number(id)} />
 
-              <VotingInfo id={Number(id)} />
+        <VotingForm id={Number(id)} />
 
-              <VotingForm id={Number(id)} />
-
-              <Induction />
-            </Stack>
-          </Grid>
-        </Grid>
-      </Box>
-    </Container>
-  )
-}
+        <Induction />
+      </div>
+    </div>
+  </div>
+)
 
 export default Voting
 

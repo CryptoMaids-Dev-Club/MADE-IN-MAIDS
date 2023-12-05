@@ -2,12 +2,12 @@
 
 import { useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
-import LoadingButton from '@mui/lab/LoadingButton'
-import Container from '@mui/material/Container'
-import TextField from '@mui/material/TextField'
 import { useForm } from 'react-hook-form'
 import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import { z } from 'zod'
+import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { LoadingButton } from '@/components/ui/loading-button'
 import { maidsPredictionContractConfig } from '@/config/client'
 import { useDebounce } from '@/hooks/useDebounce'
 
@@ -40,72 +40,68 @@ const AdminPredictionFactory = () => {
     hash: createPrediction.data?.hash,
   })
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormSchema>({
+  const form = useForm<FormSchema>({
     resolver: zodResolver(schema),
   })
 
   return (
-    <Container>
-      <TextField
-        {...register('choiceLength', { valueAsNumber: true })}
-        id='outlined-required'
-        label='Required: ChoiceLength'
-        variant='standard'
-        size='medium'
-        onChange={(e) => setChoiceLength(Number(e.target.value))}
-        error={'choiceLength' in errors}
-        helperText={errors.choiceLength?.message}
-        type='number'
-        fullWidth
-      />
-      <TextField
-        {...register('predictionURI')}
-        id='outlined-required'
-        label='Required: PredictionURI'
-        variant='standard'
-        size='medium'
-        onChange={(e) => setPredictionURI(e.target.value)}
-        error={'predictionURI' in errors}
-        helperText={errors.predictionURI?.message}
-        fullWidth
-      />
-      <TextField
-        {...register('rate', { valueAsNumber: true })}
-        id='outlined-required'
-        label='Required: Rate'
-        variant='standard'
-        size='medium'
-        onChange={(e) => setRate(Number(e.target.value))}
-        error={'rate' in errors}
-        helperText={errors.rate?.message}
-        type='number'
-        fullWidth
-      />
-      <TextField
-        {...register('endTime', { valueAsNumber: true })}
-        id='outlined-required'
-        label='Required: EndTime'
-        variant='standard'
-        size='medium'
-        onChange={(e) => setEndTime(Number(e.target.value))}
-        error={'endTime' in errors}
-        helperText={errors.endTime?.message}
-        type='number'
-        fullWidth
-      />
-      <LoadingButton
-        variant='contained'
-        onClick={handleSubmit(() => createPrediction.write?.())}
-        loading={createPrediction.isLoading || createPredictionTx.isLoading}
-        sx={{ fontSize: '20px', border: '1px solid', mt: '20px' }}
-        fullWidth>
-        Create Prediction
-      </LoadingButton>
-    </Container>
+    <div className='container mx-auto my-8 max-w-6xl'>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(() => createPrediction.write?.())} className='w-56'>
+          <FormField
+            control={form.control}
+            name='choiceLength'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>ChoiceLength</FormLabel>
+                <FormControl>
+                  <Input {...field} onChange={(event) => setChoiceLength(Number(event.target.value))} />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name='predictionURI'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>PredictionURI</FormLabel>
+                <FormControl>
+                  <Input {...field} onChange={(event) => setPredictionURI(event.target.value)} />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name='rate'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Rate</FormLabel>
+                <FormControl>
+                  <Input {...field} onChange={(event) => setRate(Number(event.target.value))} />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name='endTime'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>EndTime</FormLabel>
+                <FormControl>
+                  <Input {...field} onChange={(event) => setEndTime(Number(event.target.value))} />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+          <LoadingButton loading={createPredictionTx.isLoading} className='mt-2 w-56' type='submit'>
+            Create Prediction
+          </LoadingButton>
+        </form>
+      </Form>
+    </div>
   )
 }
 

@@ -1,5 +1,3 @@
-import Container from '@mui/material/Container'
-import Grid from '@mui/material/Grid'
 import getMarketItems from '@/app/api/marketItems/getMarketItems'
 import ItemCard from './ItemCard'
 
@@ -7,15 +5,11 @@ const ItemList = async () => {
   const marketItems = await getMarketItems()
 
   return (
-    <Grid container justifyContent='center' mt='10px' spacing={2}>
+    <div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4'>
       {marketItems.map((item) => (
-        <Grid key={item.id} item>
-          <Container>
-            <ItemCard key={item.id} item={item} />
-          </Container>
-        </Grid>
+        <ItemCard key={item.id} item={item} />
       ))}
-    </Grid>
+    </div>
   )
 }
 

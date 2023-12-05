@@ -1,18 +1,13 @@
 'use client'
 
 import { useState } from 'react'
-import Avatar from '@mui/material/Avatar'
-import Table from '@mui/material/Table'
-import TableBody from '@mui/material/TableBody'
-import TableCell from '@mui/material/TableCell'
-import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
-import TableRow from '@mui/material/TableRow'
-import Typography from '@mui/material/Typography'
 import { User } from '@prisma/client'
 import NextLink from 'next/link'
 import InfiniteScroll from 'react-infinite-scroller'
 import getMaidsHolder from '@/app/api/maidsHolder/[page]/getMaidsHolder'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Table, TableBody, TableCell, TableHeader, TableRow } from '@/components/ui/table'
+import { Typography } from '@/components/ui/typography'
 import { getUserIcon, getUserName } from '../utils'
 import type { MaidsHolder } from '@/app/api/maidsHolder/[page]/maidsHolder'
 
@@ -44,38 +39,37 @@ const MaidsHolderTable = ({ userInfos }: MaidsHolderTableProps) => {
 
   return (
     <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={<Typography key={0}>Loading...</Typography>}>
-      <TableContainer>
-        <Table aria-label='simple table'>
-          <TableHead>
-            <TableRow>
-              <TableCell sx={{ fontSize: '20px' }}>Rank</TableCell>
-              <TableCell sx={{ fontSize: '20px' }}>Icon</TableCell>
-              <TableCell sx={{ fontSize: '20px' }}>Address</TableCell>
-              <TableCell sx={{ fontSize: '20px' }}>Quantity</TableCell>
+      <Table aria-label='simple table'>
+        <TableHeader>
+          <TableRow>
+            <TableCell>Rank</TableCell>
+            <TableCell>Icon</TableCell>
+            <TableCell>Address</TableCell>
+            <TableCell>Quantity</TableCell>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {holdersList.map((holder, index) => (
+            <TableRow key={holder.wallet_address}>
+              <TableCell scope='row'>{index + 1}</TableCell>
+              <TableCell>
+                <Avatar className='h-24 w-24'>
+                  <AvatarImage src={getUserIcon(holder.wallet_address, userInfos)} />
+                  <AvatarFallback>No Image</AvatarFallback>
+                </Avatar>
+              </TableCell>
+              <TableCell>
+                <NextLink
+                  href={`/account/${holder.wallet_address}`}
+                  style={{ textDecoration: 'none', color: 'inherit' }}>
+                  {getUserName(holder.wallet_address, userInfos)}
+                </NextLink>
+              </TableCell>
+              <TableCell>{Math.floor(Number(holder.amount))}</TableCell>
             </TableRow>
-          </TableHead>
-          <TableBody>
-            {holdersList.map((holder, index) => (
-              <TableRow key={holder.wallet_address} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                <TableCell sx={{ fontSize: '20px' }} component='th' scope='row'>
-                  {index + 1}
-                </TableCell>
-                <TableCell>
-                  <Avatar src={getUserIcon(holder.wallet_address, userInfos)} sx={{ width: 96, height: 96 }} />
-                </TableCell>
-                <TableCell sx={{ fontSize: '20px' }}>
-                  <NextLink
-                    href={`/account/${holder.wallet_address}`}
-                    style={{ textDecoration: 'none', color: 'inherit' }}>
-                    {getUserName(holder.wallet_address, userInfos)}
-                  </NextLink>
-                </TableCell>
-                <TableCell sx={{ fontSize: '20px' }}>{Math.floor(Number(holder.amount))}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+          ))}
+        </TableBody>
+      </Table>
     </InfiniteScroll>
   )
 }

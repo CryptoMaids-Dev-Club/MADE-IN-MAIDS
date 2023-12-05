@@ -1,22 +1,13 @@
 'use client'
 
-import Typography from '@mui/material/Typography'
+import { Typography } from '@/components/ui/typography'
 
 type MenuLinkProps = {
   text: string
   link: string
 }
 export const MenuLink = ({ text, link }: MenuLinkProps) => (
-  <Typography
-    variant='h6'
-    component='span'
-    sx={{
-      paddingLeft: '20px',
-      fontFamily: 'serif !important',
-      cursor: 'pointer',
-      my: 2,
-    }}
-    onClick={() => window.open(link, '_blank')}>
+  <Typography className='mx-2 mt-1' variant='h4' onClick={() => window.open(link, '_blank')}>
     {text}
   </Typography>
 )

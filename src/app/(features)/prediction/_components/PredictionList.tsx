@@ -1,8 +1,6 @@
 import { Suspense } from 'react'
-import Box from '@mui/material/Box'
-import Grid from '@mui/material/Grid'
-import Skeleton from '@mui/material/Skeleton'
 import getAllPredictions from '@/app/api/prediction/getAllPredictions'
+import { Skeleton } from '@/components/ui/skeleton'
 import PredictionInfoCard from './PredictionInfoCard'
 import type { Prediction } from '@/app/api/prediction/prediction'
 
@@ -10,17 +8,17 @@ const PredictionList = async () => {
   const predictionInfos = (await getAllPredictions()) as Prediction[]
 
   return (
-    <Box sx={{ border: '3px dashed hotpink', borderRadius: '20px', padding: '10px' }}>
-      <Grid container spacing={2} alignItems='center' justifyContent='center'>
+    <div className='box-border rounded-2xl border-4 border-dashed border-pink-500 p-4'>
+      <div className='grid grid-cols-1 items-center justify-center gap-4 md:grid-cols-2 lg:grid-cols-3'>
         {predictionInfos.reverse().map((predictionInfo) => (
-          <Grid item key={predictionInfo.id}>
-            <Suspense fallback={<Skeleton width={350} height={150} />}>
+          <div key={predictionInfo.id}>
+            <Suspense fallback={<Skeleton className='h-40 w-96' />}>
               <PredictionInfoCard predictionInfo={predictionInfo} />
             </Suspense>
-          </Grid>
+          </div>
         ))}
-      </Grid>
-    </Box>
+      </div>
+    </div>
   )
 }
 

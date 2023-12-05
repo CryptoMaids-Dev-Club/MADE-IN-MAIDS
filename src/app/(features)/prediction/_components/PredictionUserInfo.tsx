@@ -1,9 +1,9 @@
 'use client'
 
-import Typography from '@mui/material/Typography'
 import { useAccount, useContractRead } from 'wagmi'
 import { convertUserInfo } from '@/app/(features)/prediction/utils'
 import { SolidityUserInfo } from '@/app/api/prediction/prediction'
+import { Typography } from '@/components/ui/typography'
 import { maidsPredictionContractConfig } from '@/config/client'
 
 type PredictionUserInfoProps = {
@@ -25,13 +25,11 @@ const PredictionUserInfo = ({ id, choices }: PredictionUserInfoProps) => {
   })
 
   return (
-    <>
-      <Typography variant='body1' color='cyan'>
-        Choice: {userInfo?.isPredicted ? choices[userInfo?.choice] : 'No prediction yet'}
-        <br />
-        Amount: {userInfo?.amount ?? 0}
-      </Typography>
-    </>
+    <Typography variant='h4' className='text-blue-300'>
+      Choice: {userInfo?.isPredicted ? choices[userInfo?.choice] : 'No prediction yet'}
+      <br />
+      Amount: {userInfo?.amount ?? 0}
+    </Typography>
   )
 }
 

@@ -2,11 +2,12 @@
 
 import { useState } from 'react'
 import { zodResolver } from '@hookform/resolvers/zod'
-import LoadingButton from '@mui/lab/LoadingButton'
-import TextField from '@mui/material/TextField'
 import { useForm } from 'react-hook-form'
 import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import { z } from 'zod'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { LoadingButton } from '@/components/ui/loading-button'
 import { maidsPredictionContractConfig } from '@/config/client'
 import { useDebounce } from '@/hooks/useDebounce'
 
@@ -33,37 +34,29 @@ const SetEndTimeForm = ({ id }: SetEndTimeForm) => {
     hash: writeEndTime.data?.hash,
   })
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormSchema>({
+  const form = useForm<FormSchema>({
     resolver: zodResolver(schema),
   })
 
   return (
-    <>
-      <TextField
-        {...register('endTime', { valueAsNumber: true })}
-        id='outlined-required'
-        label='Required: EndTime'
-        variant='standard'
-        size='medium'
-        onChange={(e) => setEndTime(Number(e.target.value))}
-        error={'choice' in errors}
-        helperText={errors.endTime?.message}
-        type='number'
-        fullWidth
-      />
-      <LoadingButton
-        variant='contained'
-        onClick={handleSubmit(() => writeEndTime.write?.())}
-        loading={writeEndTime.isLoading || writeEndTimeTx.isLoading}
-        sx={{ fontSize: '20px', border: '1px solid', mt: '20px' }}
-        fullWidth>
-        Set EndTime
-      </LoadingButton>
-    </>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(() => writeEndTime.write?.())} className='w-56'>
+        <FormField
+          control={form.control}
+          name='endTime'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>EndTime</FormLabel>
+              <FormControl>
+                <Input {...field} onChange={(event) => setEndTime(Number(event.target.value))} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <LoadingButton loading={writeEndTime.isLoading || writeEndTimeTx.isLoading}>Set EndTime</LoadingButton>
+      </form>
+    </Form>
   )
 }
 

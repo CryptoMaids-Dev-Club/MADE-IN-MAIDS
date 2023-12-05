@@ -2,17 +2,15 @@
 'use client'
 
 import { useState } from 'react'
-import Chip from '@mui/material/Chip'
-import ImageList from '@mui/material/ImageList'
-import ImageListItemBar from '@mui/material/ImageListItemBar'
-import Typography from '@mui/material/Typography'
+import Image from 'next/image'
 import Link from 'next/link'
 import InfiniteScroll from 'react-infinite-scroller'
 import { useAccount, useSignMessage } from 'wagmi'
-import { ImageListItemWithStyle } from '@/app/_components/Elements/ImageListItemWithStyle'
-import { useSuccessSnackbar } from '@/app/_components/Elements/SnackBar'
 import getOwnedNfts from '@/app/api/ownedNfts/[address]/[page]/getOwnedNfts'
 import updateUserInfo from '@/app/api/user/updateUserInfo'
+import { Badge } from '@/components/ui/badge'
+import { Typography } from '@/components/ui/typography'
+import { useToast } from '@/components/ui/use-toast'
 import { getSignatureFromLocalStorage } from '@/lib/signature'
 import type { OwnedNFTs } from '@/app/api/ownedNfts/[address]/[page]/ownedNft'
 
@@ -25,7 +23,8 @@ const MaidsList = ({ targetAddress }: MaidsListProps) => {
   const [hasMore, setHasMore] = useState(true)
   const [iconUrl, setIconUrl] = useState('')
   const { address } = useAccount()
-  const { open: openSnackbar, Snackbar } = useSuccessSnackbar()
+
+  const { toast } = useToast()
 
   const { signMessage } = useSignMessage({
     message: 'Update Profile',
@@ -34,7 +33,11 @@ const MaidsList = ({ targetAddress }: MaidsListProps) => {
       try {
         await updateUserInfo({ name: '', address, iconUrl, signature: data })
         localStorage.setItem(address, JSON.stringify({ signature: data, timestamp: new Date().getTime() }))
-        openSnackbar()
+        toast({
+          title: 'Successfully updated!',
+          description: 'Please refresh the page.',
+          duration: 3000,
+        })
       } catch (e) {
         console.error(e)
       }
@@ -63,7 +66,11 @@ const MaidsList = ({ targetAddress }: MaidsListProps) => {
     const signature = getSignatureFromLocalStorage(address)
     if (signature) {
       await updateUserInfo({ name: '', address, iconUrl: newIconUrl, signature })
-      openSnackbar()
+      toast({
+        title: 'Successfully updated!',
+        description: 'Please refresh the page.',
+        duration: 3000,
+      })
     } else {
       signMessage()
     }
@@ -72,38 +79,36 @@ const MaidsList = ({ targetAddress }: MaidsListProps) => {
   }
 
   return (
-    <>
-      <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={<Typography key={0}>Loading...</Typography>}>
-        <ImageList
-          sx={{ height: 600 * Math.ceil(maidsList.length / 3) }}
-          cols={maidsList.length >= 3 ? 3 : maidsList.length + 1}>
-          {maidsList.map((nft) => (
-            <ImageListItemWithStyle key={nft.image}>
-              <Link href={`/detail/${nft.token_id}`}>
-                <img src={nft.image} srcSet={nft.image} alt={nft.name} loading='lazy' />
-              </Link>
-              <ImageListItemBar
-                title={nft.name}
-                actionIcon={
-                  address &&
-                  address.toLowerCase() === nft.owner && (
-                    <Chip
-                      label='Set As Icon'
-                      variant='outlined'
-                      size='small'
-                      onClick={() => handleSaveClick(nft.image)}
-                    />
-                  )
-                }
+    <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={<Typography key={0}>Loading...</Typography>}>
+      <div className='grid grid-cols-1 gap-4 md:grid-cols-3'>
+        {maidsList.map((nft) => (
+          <div key={nft.image} className='hover:opacity-50'>
+            <Link href={`/detail/${nft.token_id}`}>
+              <Image
+                height={600}
+                width={600}
+                src={nft.image}
+                alt={nft.name}
+                style={{
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
               />
-            </ImageListItemWithStyle>
-          ))}
-        </ImageList>
-      </InfiniteScroll>
-      <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} autoHideDuration={3000}>
-        Successfully updated! Please refresh the page.
-      </Snackbar>
-    </>
+            </Link>
+            <div className='flex w-full flex-row bg-gray-800 px-4 py-2'>
+              <Typography variant='h4' className='truncate'>
+                {nft.name}
+              </Typography>
+              {address && address.toLowerCase() === nft.owner && (
+                <Badge className='ml-4 cursor-pointer' onClick={() => handleSaveClick(nft.image)}>
+                  Set as Icon
+                </Badge>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </InfiniteScroll>
   )
 }
 

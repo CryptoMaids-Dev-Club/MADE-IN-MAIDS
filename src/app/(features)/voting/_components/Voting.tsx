@@ -1,37 +1,34 @@
 import { Suspense } from 'react'
-import Box from '@mui/material/Box'
-import Container from '@mui/material/Container'
-import Divider from '@mui/material/Divider'
-import Stack from '@mui/material/Stack'
-import Typography from '@mui/material/Typography'
 import { Metadata } from 'next'
 import { CenteringCircularProgress } from '@/app/_components/Elements/CenteringCircularProgress'
+import { Divider } from '@/components/ui/divider'
+import { Typography } from '@/components/ui/typography'
 import { Top5 } from './Top5'
 import { VotingTransitionForm } from './VotingTransitionForm'
 
 const Voting = () => (
-  <Container>
-    <Typography variant='h1' align='center' color='hotpink' sx={{ typography: { sm: 'h1', xs: 'h4' } }}>
+  <div className='container mx-auto my-8 max-w-6xl'>
+    <Typography variant='h1' className='my-2 text-center text-pink-500'>
       CryptoMaids VOTING
     </Typography>
     <Suspense fallback={<CenteringCircularProgress />}>
       <Top5 />
     </Suspense>
 
-    <Box sx={{ mt: '50px' }}>
-      <Stack alignItems='center' spacing={2}>
-        <Divider flexItem sx={{ bgcolor: 'primary.light' }} />
+    <Divider className='my-4' />
 
-        <Typography variant='h1' color='hotpink'>
-          VOTING
-        </Typography>
-        <VotingTransitionForm />
+    <Typography variant='h1' className='text-center text-pink-500'>
+      VOTING
+    </Typography>
 
-        <Divider flexItem sx={{ bgcolor: 'primary.light' }} />
-      </Stack>
-      <br />
-    </Box>
-  </Container>
+    <div className='flex justify-center'>
+      <VotingTransitionForm />
+    </div>
+
+    <Divider className='my-4' />
+
+    <br />
+  </div>
 )
 
 export default Voting

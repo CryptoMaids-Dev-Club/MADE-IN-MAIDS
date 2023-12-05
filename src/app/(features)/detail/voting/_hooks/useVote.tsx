@@ -1,14 +1,15 @@
 import { useCallback, useState } from 'react'
+import { TwitterShareButton, XIcon } from 'react-share'
 import { parseEther } from 'viem'
 import { useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
-import { useSuccessSnackbar } from '@/app/_components/Elements/SnackBar'
+import { useToast } from '@/components/ui/use-toast'
 import { MAIDS_VOTING_CONTRACT_ADDRESS, maidsContractConfig, votingContractConfig } from '@/config/client'
 import { useAllowance } from '@/hooks/useAllowance'
 import { useApprove } from '@/hooks/useApprove'
 import { useDebounce } from '@/hooks/useDebounce'
 
 const useVote = (id: number) => {
-  const { open: openSnackbar, Snackbar } = useSuccessSnackbar()
+  const { toast } = useToast()
 
   const { address } = useAccount()
   const [amount, setAmount] = useState(0)
@@ -32,6 +33,19 @@ const useVote = (id: number) => {
   const voteTx = useWaitForTransaction({
     hash: vote.data?.hash,
     onSuccess() {
+      toast({
+        title: 'Successfully voted!',
+        description: 'Share your vote on X!',
+        duration: 10000,
+        action: (
+          <TwitterShareButton
+            url={`https://made-in-maids.vercel.app/detail/${id}`}
+            title={`Voted for CryptoMaids #${id}!`}
+            hashtags={['CryptoMaids']}>
+            <XIcon size={32} round />
+          </TwitterShareButton>
+        ),
+      })
       refetch()
     },
   })
@@ -59,8 +73,6 @@ const useVote = (id: number) => {
     voteOrApprove,
     isLoading: approve.isLoading || vote.isLoading || approveTx.isLoading || voteTx.isLoading,
     allowance,
-    Snackbar,
-    openSnackbar,
   }
 }
 

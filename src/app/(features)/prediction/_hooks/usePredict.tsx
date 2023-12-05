@@ -1,8 +1,9 @@
 import { useCallback, useState } from 'react'
+import { TwitterShareButton, XIcon } from 'react-share'
 import { parseEther } from 'viem'
 import { useAccount, useContractRead, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import { convertUserInfo } from '@/app/(features)/prediction/utils'
-import { useSuccessSnackbar } from '@/app/_components/Elements/SnackBar'
+import { useToast } from '@/components/ui/use-toast'
 import { MAIDS_PREDICTION_CONTRACT_ADDRESS, maidsContractConfig, maidsPredictionContractConfig } from '@/config/client'
 import useAllowance from '@/hooks/useAllowance'
 import { useApprove } from '@/hooks/useApprove'
@@ -10,7 +11,7 @@ import { useDebounce } from '@/hooks/useDebounce'
 import type { SolidityUserInfo } from '@/app/api/prediction/prediction'
 
 const usePredict = (predictionId: number) => {
-  const { open: openSnackbar, Snackbar } = useSuccessSnackbar()
+  const { toast } = useToast()
 
   const [choice, setChoice] = useState(0)
   const [amount, setAmount] = useState(100)
@@ -45,7 +46,19 @@ const usePredict = (predictionId: number) => {
   const predictTx = useWaitForTransaction({
     hash: predict.data?.hash,
     onSuccess() {
-      openSnackbar()
+      toast({
+        title: 'Successfully predicted!',
+        description: 'Share your prediction on X!',
+        duration: 10000,
+        action: (
+          <TwitterShareButton
+            url={`https://made-in-maids.vercel.app/detail/${predictionId}`}
+            title={`Predicted for CryptoMaids #${predictionId}!`}
+            hashtags={['CryptoMaids']}>
+            <XIcon size={32} round />
+          </TwitterShareButton>
+        ),
+      })
       refetch()
     },
   })
@@ -55,10 +68,12 @@ const usePredict = (predictionId: number) => {
   const canPredict = Boolean(allowance) && allowance >= debounceAmount
 
   const updateChoice = useCallback((choice: number) => {
+    console.log('updateChoice: ', choice)
     setChoice(choice)
   }, [])
 
   const updateAmount = useCallback((amount: number) => {
+    console.log('updateAmount: ', amount)
     setAmount(amount)
   }, [])
 
@@ -93,7 +108,6 @@ const usePredict = (predictionId: number) => {
     refetch,
     updateChoice,
     updateAmount,
-    Snackbar,
   }
 }
 

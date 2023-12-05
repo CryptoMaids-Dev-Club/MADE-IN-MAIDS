@@ -7,9 +7,12 @@ import ItemList from './ItemList'
 const Market = () => (
   <>
     <Header />
-    <Suspense fallback={<CenteringCircularProgress />}>
-      <ItemList />
-    </Suspense>
+    <div className='mt-8 flex items-center justify-center'>
+      <Suspense fallback={<CenteringCircularProgress />}>
+        <ItemList />
+      </Suspense>
+    </div>
+    <br />
   </>
 )
 

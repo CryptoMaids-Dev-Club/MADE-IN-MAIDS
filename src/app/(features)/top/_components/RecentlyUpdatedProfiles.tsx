@@ -1,41 +1,46 @@
 /* eslint-disable @next/next/no-img-element */
-import { ImageListItem } from '@mui/material'
-import Box from '@mui/material/Box'
-import ImageList from '@mui/material/ImageList'
-import ImageListItemBar from '@mui/material/ImageListItemBar'
-import Typography from '@mui/material/Typography'
+
+import Image from 'next/image'
 import Link from 'next/link'
 import { getRecentlyUpdateProfiles } from '@/app/api/maidsProfile/getRecentlyUpdateProfiles'
+import { Typography } from '@/components/ui/typography'
 
 const RecentlyUpdatedProfiles = async () => {
   const profiles = await getRecentlyUpdateProfiles()
-  const style = {
-    '&:hover': {
-      opacity: '0.5',
-      transition: '0.3s',
-    },
-    img: {
-      objectFit: 'cover',
-      width: '100%',
-      height: '600px',
-    },
-  }
 
   return (
     <>
-      <Typography variant='h2'>Recently Updated Profiles</Typography>
-      <Box sx={{ border: '2px solid white', padding: '5px' }}>
-        <ImageList sx={{ height: 600 }} cols={5} gap={15}>
+      <Typography variant='h1'>Recently Updated Profiles</Typography>
+      <div className='box-border rounded-2xl border-2 border-white p-2'>
+        <div className='grid grid-cols-1 gap-2 md:grid-cols-5'>
           {profiles.map((profile) => (
-            <ImageListItem key={profile.imageUrl} sx={style}>
+            <div key={profile.imageUrl}>
               <Link href={`/detail/${profile.id}`}>
-                <img src={profile.imageUrl} srcSet={profile.imageUrl} alt={profile.name} loading='lazy' />
-                <ImageListItemBar title={profile.name} />
+                <div className='hover:opacity-50'>
+                  <Image
+                    height={600}
+                    width={600}
+                    src={profile.imageUrl}
+                    alt={profile.name}
+                    style={{
+                      maxWidth: '100%',
+                      height: 'auto',
+                    }}
+                  />
+                </div>
               </Link>
-            </ImageListItem>
+              <div className='w-full bg-gray-800 px-4 py-2'>
+                <Typography variant='h3' className='truncate text-white'>
+                  {profile.name}
+                </Typography>
+                <Typography variant='h6' className='truncate text-sm text-gray-300'>
+                  {profile.description}
+                </Typography>
+              </div>
+            </div>
           ))}
-        </ImageList>
-      </Box>
+        </div>
+      </div>
     </>
   )
 }

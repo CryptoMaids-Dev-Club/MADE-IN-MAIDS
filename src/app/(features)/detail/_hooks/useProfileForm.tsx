@@ -4,7 +4,6 @@ import {
   SubmitErrorHandler as SubmitErrorHandlerOriginal,
   SubmitHandler as SubmitHandlerOriginal,
   useForm,
-  UseFormRegisterReturn,
 } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -21,11 +20,7 @@ export type SubmitHandler = SubmitHandlerOriginal<FormSchema>
 export type SubmitErrorHandler = SubmitErrorHandlerOriginal<FormSchema>
 
 const useProfileForm = (profile: MaidProfile) => {
-  const {
-    register,
-    handleSubmit: handleSubmitOriginal,
-    formState: { errors },
-  } = useForm({
+  const form = useForm({
     mode: 'onChange',
     resolver: zodResolver(schema),
     defaultValues: {
@@ -35,23 +30,7 @@ const useProfileForm = (profile: MaidProfile) => {
     },
   })
 
-  const handleSubmit = (onValid: SubmitHandler, onInvalid: SubmitErrorHandler) => {
-    handleSubmitOriginal(onValid, onInvalid)()
-  }
-
-  return {
-    handleSubmit,
-    errors,
-    fieldValues: {
-      name: convert(register('name')),
-      character: convert(register('character')),
-      description: convert(register('description')),
-    },
-  }
-}
-
-function convert({ ref, ...others }: UseFormRegisterReturn) {
-  return { inputRef: ref, ...others }
+  return form
 }
 
 export default useProfileForm

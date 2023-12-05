@@ -1,14 +1,14 @@
 import { useCallback } from 'react'
+import { TwitterShareButton, XIcon } from 'react-share'
 import { formatEther } from 'viem'
 import { useAccount, useContractRead, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import { convertUserInfo } from '@/app/(features)/prediction/utils'
-import { useSuccessSnackbar } from '@/app/_components/Elements/SnackBar'
+import { useToast } from '@/components/ui/use-toast'
 import { maidsPredictionContractConfig } from '@/config/client'
 import type { Prediction, SolidityUserInfo } from '@/app/api/prediction/prediction'
 
 const usePredictionResult = (predictionInfo: Prediction) => {
-  const { open: openSnackbar, Snackbar } = useSuccessSnackbar()
-
+  const { toast } = useToast()
   const { address, isConnected } = useAccount()
 
   const claimConfig = usePrepareContractWrite({
@@ -21,7 +21,19 @@ const usePredictionResult = (predictionInfo: Prediction) => {
   const claimTx = useWaitForTransaction({
     hash: claim.data?.hash,
     onSuccess() {
-      openSnackbar()
+      toast({
+        title: `You have claimed ${rewardAmount} $MAIDS!`,
+        description: 'Share your claim on X!',
+        duration: 10000,
+        action: (
+          <TwitterShareButton
+            url={`https://made-in-maids.vercel.app/detail/${predictionInfo.id}`}
+            title={`Claimed ${rewardAmount} $MAIDS!`}
+            hashtags={['CryptoMaids']}>
+            <XIcon size={32} round />
+          </TwitterShareButton>
+        ),
+      })
     },
   })
 
@@ -75,7 +87,6 @@ const usePredictionResult = (predictionInfo: Prediction) => {
     claimTx,
     buttonMessage: buttonMessage(),
     resultMessage: resultMessage(),
-    Snackbar,
   }
 }
 

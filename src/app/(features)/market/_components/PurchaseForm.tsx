@@ -2,14 +2,9 @@
 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useState } from 'react'
-import FormControl from '@mui/material/FormControl'
-import Grid from '@mui/material/Grid'
-import InputLabel from '@mui/material/InputLabel'
-import MenuItem from '@mui/material/MenuItem'
-import Select, { SelectChangeEvent } from '@mui/material/Select'
-import Switch from '@mui/material/Switch'
-import TextField from '@mui/material/TextField'
-import Typography from '@mui/material/Typography'
+import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Switch } from '@/components/ui/switch'
+import { Typography } from '@/components/ui/typography'
 import PurchaseButton from './PurchaseButton'
 import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
 
@@ -22,63 +17,51 @@ export const PurchaseForm = ({ item }: PurchaseFormProps) => {
   const [checked, setChecked] = useState(false)
   const [differentAddress, setAddress] = useState('')
 
-  const handleCheckChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked(event.target.checked)
-    setAddress('')
-  }
-
-  const handleChange = (event: SelectChangeEvent<number>) => {
-    setAmount(Number(event.target.value))
-  }
-
   const range = Number(item.supply) > 10 ? 10 : Number(item.supply)
 
   return (
-    <Grid container alignItems='center' justifyContent='center' sx={{ mt: '20px' }}>
+    <div className='my-2'>
       {Number(item.supply) <= 0 ? (
-        <Typography variant='h5' component='span'>
-          SOLD OUT!
-        </Typography>
+        <Typography variant='h5'>SOLD OUT!</Typography>
       ) : (
-        <Grid container>
-          <Grid item xs={10}>
-            <PurchaseButton item={item} amount={amount} differentAddress={differentAddress} />
-          </Grid>
-          <Grid item xs={2}>
-            <FormControl fullWidth>
-              <InputLabel>Amount</InputLabel>
-              <Select value={amount} label='Amount' onChange={handleChange} sx={{ height: '50px' }}>
-                {[...Array(range)].map((_, i) => (
-                  <MenuItem key={i + 1} value={i + 1}>
-                    {i + 1}
-                  </MenuItem>
-                ))}
+        <>
+          <div className='grid grid-cols-5 gap-4'>
+            <div className='col-span-4'>
+              <PurchaseButton item={item} amount={amount} differentAddress={differentAddress} />
+            </div>
+            <div className='col-span-1'>
+              <Select value={amount.toString()} onValueChange={(e) => setAmount(Number(e))}>
+                <SelectTrigger className='w-full'>
+                  <SelectValue placeholder='Select a fruit' />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    {[...Array(range)].map((_, i) => (
+                      <SelectItem key={i + 1} value={(i + 1).toString()}>
+                        {i + 1}
+                      </SelectItem>
+                    ))}
+                  </SelectGroup>
+                </SelectContent>
               </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12}>
-            <Typography sx={{ mt: '5px' }}>Mint to a different wallet</Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <Switch checked={checked} onChange={handleCheckChange} />
-          </Grid>
+            </div>
+          </div>
+          <Typography>Mint to a different wallet</Typography>
+          <Switch checked={checked} onCheckedChange={() => setChecked(!checked)} />
           {checked && (
-            <Grid item xs={12}>
-              <TextField
-                label='Address'
-                variant='outlined'
-                size='small'
-                fullWidth
-                required
-                onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-                  setAddress(event.target.value)
-                }}
-              />
-            </Grid>
+            <input
+              type='text'
+              id='first_name'
+              className='h-8'
+              required
+              onChange={(event) => {
+                setAddress(event.target.value)
+              }}
+            />
           )}
-        </Grid>
+        </>
       )}
-    </Grid>
+    </div>
   )
 }
 

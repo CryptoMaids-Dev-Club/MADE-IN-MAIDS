@@ -1,16 +1,18 @@
 'use client'
 
 import { useState } from 'react'
-import ModeEditIcon from '@mui/icons-material/ModeEdit'
-import FormControl from '@mui/material/FormControl'
-import IconButton from '@mui/material/IconButton'
-import InputAdornment from '@mui/material/InputAdornment'
-import OutlinedInput from '@mui/material/OutlinedInput'
-import Typography from '@mui/material/Typography'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { User } from '@prisma/client'
+import { useForm } from 'react-hook-form'
+import { FaPen } from 'react-icons/fa'
 import { useAccount, useSignMessage } from 'wagmi'
-import { useSuccessSnackbar } from '@/app/_components/Elements/SnackBar'
+import { z } from 'zod'
 import updateUserInfo from '@/app/api/user/updateUserInfo'
+import { Button } from '@/components/ui/button'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { Typography } from '@/components/ui/typography'
+import { useToast } from '@/components/ui/use-toast'
 import { getSignatureFromLocalStorage, saveSignatureToLocalStorage } from '@/lib/signature'
 
 type UserNameProps = {
@@ -18,13 +20,19 @@ type UserNameProps = {
   userInfo: User
 }
 
+const schema = z.object({
+  name: z.string().min(1),
+})
+type FormSchema = z.infer<typeof schema>
+
 const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
-  const editing = Boolean(anchorEl)
-
+  const [editing, setEditing] = useState(false)
   const [userName, setUserName] = useState(userInfo.name)
+  const { toast } = useToast()
 
-  const { open: openSnackbar, Snackbar } = useSuccessSnackbar()
+  const form = useForm<FormSchema>({
+    resolver: zodResolver(schema),
+  })
 
   const { address } = useAccount()
   const { signMessage } = useSignMessage({
@@ -34,25 +42,30 @@ const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
       try {
         await updateUserInfo({ name: userName, address, iconUrl: '', signature: data })
         saveSignatureToLocalStorage(address, data)
-        openSnackbar()
+        toast({
+          title: 'Successfully updated!',
+          description: 'Please refresh the page.',
+          duration: 3000,
+        })
       } catch (e) {
         console.error(e)
       }
     },
   })
 
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget)
-  }
-
   const handleClose = async () => {
-    setAnchorEl(null)
+    // ToDo: Fix not called when click
+    setEditing(false)
     if (userInfo.name === userName || address === undefined) return
 
     const signature = getSignatureFromLocalStorage(address)
     if (signature) {
       await updateUserInfo({ name: userName, address, iconUrl: '', signature })
-      openSnackbar()
+      toast({
+        title: 'Successfully updated!',
+        description: 'Please refresh the page.',
+        duration: 3000,
+      })
     } else {
       signMessage()
     }
@@ -61,34 +74,39 @@ const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
   return (
     <div>
       {!editing ? (
-        <Typography variant='h4'>
+        <Typography className='w-auto' variant='h3'>
           {userName}
           {
-            <IconButton onClick={handleClick} disabled={address?.toLocaleLowerCase() !== targetAddress}>
-              <ModeEditIcon />
-            </IconButton>
+            <button
+              className='ml-2 bg-black'
+              onClick={() => setEditing(true)}
+              disabled={address?.toLocaleLowerCase() !== targetAddress}>
+              <FaPen className='hover:opacity-50' color='white' />
+            </button>
           }
         </Typography>
       ) : (
-        <FormControl sx={{ m: 1, width: '20ch' }} variant='outlined'>
-          <OutlinedInput
-            id='outlined-adornment-password'
-            type='text'
-            defaultValue={userName}
-            onChange={(e) => setUserName(e.target.value)}
-            endAdornment={
-              <InputAdornment position='end'>
-                <IconButton onClick={handleClose} edge='end' sx={{ color: 'hotpink' }}>
-                  Save
-                </IconButton>
-              </InputAdornment>
-            }
-          />
-        </FormControl>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(handleClose)}>
+            <FormField
+              control={form.control}
+              name='name'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Name</FormLabel>
+                  <FormControl>
+                    <Input {...field} onChange={(event) => setUserName(event.target.value)} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button className='w-full' type='submit'>
+              Update
+            </Button>
+          </form>
+        </Form>
       )}
-      <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} autoHideDuration={3000}>
-        Successfully updated! Please refresh the page.
-      </Snackbar>
     </div>
   )
 }

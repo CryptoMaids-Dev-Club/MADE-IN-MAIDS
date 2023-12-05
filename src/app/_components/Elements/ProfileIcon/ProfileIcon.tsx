@@ -1,7 +1,7 @@
 'use client'
 
-import Avatar from '@mui/material/Avatar'
 import NextLink from 'next/link'
+import { Avatar, AvatarImage } from '@/components/ui/avatar'
 import { useUser } from '@/hooks/useUser'
 
 type ProfileIconProps = {
@@ -13,7 +13,9 @@ export const ProfileIcon = ({ address }: ProfileIconProps) => {
 
   return (
     <NextLink href={`/account/${address?.toLowerCase()}`}>
-      <Avatar src={userInfo.iconUrl} sx={{ width: 40, height: 40 }} />
+      <Avatar>
+        <AvatarImage src={userInfo.iconUrl} />
+      </Avatar>
     </NextLink>
   )
 }

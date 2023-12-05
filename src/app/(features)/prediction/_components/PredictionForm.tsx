@@ -1,14 +1,11 @@
 'use client'
 
-import LoadingButton from '@mui/lab/LoadingButton'
-import FormControl from '@mui/material/FormControl'
-import FormControlLabel from '@mui/material/FormControlLabel'
-import InputAdornment from '@mui/material/InputAdornment'
-import Radio from '@mui/material/Radio'
-import RadioGroup from '@mui/material/RadioGroup'
-import TextField from '@mui/material/TextField'
 import usePredict from '@/app/(features)/prediction/_hooks/usePredict'
-import usePredictionForm, { PredictionForm, SubmitErrorHandler, SubmitHandler } from '../_hooks/usePredictionForm'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { LoadingButton } from '@/components/ui/loading-button'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import usePredictionForm, { SubmitHandler } from '../_hooks/usePredictionForm'
 import type { Prediction, PredictionText } from '@/app/api/prediction/prediction'
 
 type PredictionFormProps = {
@@ -17,55 +14,65 @@ type PredictionFormProps = {
 }
 
 const PredictionForm = ({ predictionInfo, predictionText: PredictionText }: PredictionFormProps) => {
-  const { handleSubmit, errors, fieldValues }: PredictionForm = usePredictionForm()
+  const form = usePredictionForm()
 
-  const { isPredicted, isLoading, choice, buttonMessage, predictOrApprove, updateChoice, updateAmount, Snackbar } =
-    usePredict(predictionInfo.id)
+  const { isPredicted, isLoading, choice, buttonMessage, predictOrApprove, updateChoice, updateAmount } = usePredict(
+    predictionInfo.id
+  )
 
   const handleValid: SubmitHandler = () => {
     predictOrApprove()
   }
-  const handleInvalid: SubmitErrorHandler = () => console.log('handleInvalid')
 
   return (
-    <>
-      <FormControl fullWidth>
-        <RadioGroup
-          value={PredictionText.choices[choice]}
-          onChange={(event) => updateChoice(PredictionText.choices.indexOf(event.target.value))}>
-          {PredictionText.choices.map((choice) => (
-            <FormControlLabel key={choice} value={choice} control={<Radio />} label={choice} />
-          ))}
-        </RadioGroup>
-      </FormControl>
-      <TextField
-        {...fieldValues.amount}
-        id='outlined-required'
-        label='Required: Amount'
-        variant='standard'
-        size='medium'
-        onChange={(event) => updateAmount(Number(event.target.value))}
-        InputProps={{
-          endAdornment: <InputAdornment position='start'>$MAIDS</InputAdornment>,
-        }}
-        error={'amount' in errors}
-        helperText={errors.amount?.message}
-        type='number'
-        fullWidth
-      />
-      <LoadingButton
-        onClick={() => handleSubmit(handleValid, handleInvalid)}
-        variant='contained'
-        loading={isLoading}
-        disabled={isPredicted}
-        sx={{ fontSize: '20px', border: '1px solid', mt: '20px' }}
-        fullWidth>
-        {buttonMessage}
-      </LoadingButton>
-      <Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} autoHideDuration={3000}>
-        Successfully predict!
-      </Snackbar>
-    </>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(handleValid)} className='space-y-6'>
+        <FormField
+          control={form.control}
+          name='choice'
+          render={() => (
+            <FormItem className='space-y-3'>
+              <FormControl>
+                <RadioGroup
+                  onValueChange={(value) => updateChoice(PredictionText.choices.indexOf(value))}
+                  defaultValue={PredictionText.choices[choice]}
+                  className='flex flex-col space-y-1'>
+                  {PredictionText.choices.map((choice) => (
+                    <FormItem key={choice} className='flex items-center space-x-3 space-y-0'>
+                      <FormControl>
+                        <RadioGroupItem value={choice} />
+                      </FormControl>
+                      <FormLabel className='text-white'>{choice}</FormLabel>
+                    </FormItem>
+                  ))}
+                </RadioGroup>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name='amount'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel className='text-white'>Amount</FormLabel>
+              <FormControl>
+                <Input
+                  className='text-white'
+                  {...field}
+                  onChange={(event) => updateAmount(Number(event.target.value))}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <LoadingButton className='w-full' type='submit' loading={isLoading} disabled={isPredicted}>
+          {buttonMessage}
+        </LoadingButton>
+      </form>
+    </Form>
   )
 }
 

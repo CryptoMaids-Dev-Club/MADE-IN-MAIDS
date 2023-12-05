@@ -1,7 +1,6 @@
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
-import Typography from '@mui/material/Typography'
 import Link from 'next/link'
+import { Card } from '@/components/ui/card'
+import { Typography } from '@/components/ui/typography'
 import ItemImage from './ItemImage'
 import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
 
@@ -10,21 +9,23 @@ type ItemCardProps = {
 }
 
 const ItemCard = ({ item }: ItemCardProps) => (
-  <Link href={`/market/${item.id}`} style={{ textDecoration: 'none' }}>
-    <Card sx={{ width: 370, height: 480, boxShadow: 12 }}>
-      <ItemImage item={item} />
-      <CardContent>
-        <div>
-          <Typography variant='h5' noWrap>
-            {item.name}
-          </Typography>
+  <Card className='w-96'>
+    <Link href={`/market/${item.id}`}>
+      <div className='relative overflow-hidden bg-cover bg-no-repeat'>
+        <div className='transition duration-300 hover:scale-110'>
+          <ItemImage item={item} />
         </div>
-        <div>
-          <Typography variant='h6'>{Math.ceil(Number(item.price))} $MAIDS</Typography>
-        </div>
-      </CardContent>
-    </Card>
-  </Link>
+      </div>
+    </Link>
+    <div className='h-20 w-full bg-gray-800'>
+      <Typography variant='h5' className='mx-2 truncate text-white'>
+        {item.name}
+      </Typography>
+      <Typography variant='h6' className='mx-2 text-white'>
+        {Math.ceil(Number(item.price))} $MAIDS
+      </Typography>
+    </div>
+  </Card>
 )
 
 export default ItemCard

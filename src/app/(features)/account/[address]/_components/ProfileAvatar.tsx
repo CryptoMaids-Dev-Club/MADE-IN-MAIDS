@@ -1,12 +1,15 @@
-import Avatar from '@mui/material/Avatar'
 import { User } from '@prisma/client'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 type ProfileAvatarProps = {
   userInfo: User
 }
 
 const ProfileAvatar = ({ userInfo }: ProfileAvatarProps) => (
-  <Avatar src={userInfo ? userInfo.iconUrl : ''} sx={{ width: 150, height: 150 }} />
+  <Avatar className='h-40 w-40'>
+    <AvatarImage src={userInfo ? userInfo.iconUrl : ''} />
+    <AvatarFallback>NoImage</AvatarFallback>
+  </Avatar>
 )
 
 export default ProfileAvatar

@@ -3,7 +3,6 @@ import {
   SubmitErrorHandler as SubmitErrorHandlerOriginal,
   SubmitHandler as SubmitHandlerOriginal,
   useForm,
-  UseFormRegisterReturn,
 } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -20,29 +19,13 @@ export type SubmitHandler = SubmitHandlerOriginal<FormSchema>
 export type SubmitErrorHandler = SubmitErrorHandlerOriginal<FormSchema>
 
 const useVotingForm = () => {
-  const {
-    register,
-    handleSubmit: handleSubmitOriginal,
-    formState: { errors },
-  } = useForm({
+  const form = useForm({
     mode: 'onChange',
     resolver: zodResolver(schema),
     defaultValues,
   })
 
-  const handleSubmit = (onValid: SubmitHandler, onInvalid: SubmitErrorHandler) => {
-    handleSubmitOriginal(onValid, onInvalid)()
-  }
-
-  return {
-    handleSubmit,
-    errors,
-    fieldValues: { num: convert(register('num', { valueAsNumber: true })) },
-  }
-}
-
-function convert({ ref, ...others }: UseFormRegisterReturn) {
-  return { inputRef: ref, ...others }
+  return form
 }
 
 export default useVotingForm
