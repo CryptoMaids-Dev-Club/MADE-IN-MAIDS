@@ -3,6 +3,7 @@ import { z } from 'zod'
 
 export const env = createEnv({
   client: {
+    NEXT_PUBLIC_VERCEL_URL: z.string().min(1),
     NEXT_PUBLIC_MAIDS_CONTRACT_ADDRESS: z.string().min(42),
     NEXT_PUBLIC_MAIDS_ITEM_CONTRACT_ADDRESS: z.string().min(42),
     NEXT_PUBLIC_MAIDS_VOTING_CONTRACT_ADDRESS: z.string().min(42),

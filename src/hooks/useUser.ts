@@ -3,7 +3,7 @@
 import { User } from '@prisma/client'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { userKeys } from '@/app/api/user/keys'
-import { getBaseUrl } from '@/lib/getBaseUrl'
+import { VERCEL_URL } from '@/config/client'
 
 const fetcher = async (url: string): Promise<User> => {
   const res = await fetch(url)
@@ -21,7 +21,7 @@ const defaultUser = {
 export function useUser(address: string) {
   const { data, error } = useSuspenseQuery<User>({
     queryKey: userKeys.user(address ?? '0x'),
-    queryFn: () => fetcher(`${getBaseUrl()}/api/user/${address}`),
+    queryFn: () => fetcher(`${VERCEL_URL}/api/user/${address}`),
   })
 
   if (error) {

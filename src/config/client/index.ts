@@ -7,6 +7,7 @@ import MaidsVotingContract from '@/assets/contracts/MaidsVoting.json'
 import { env } from '@/env/client.mjs'
 import type { Address } from 'wagmi'
 
+export const VERCEL_URL = env.NEXT_PUBLIC_VERCEL_URL as string
 export const INFURA_API_KEY = env.NEXT_PUBLIC_INFURA_API_KEY
 export const WALLET_CONNECT_ID = env.NEXT_PUBLIC_WALLET_CONNECT_ID
 export const MAIDS_CONTRACT_ADDRESS = env.NEXT_PUBLIC_MAIDS_CONTRACT_ADDRESS as Address
