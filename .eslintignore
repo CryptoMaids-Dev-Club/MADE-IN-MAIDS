@@ -11,3 +11,4 @@ node_modules
 config-overrides.js
 .next
 .vercel
+/src/components/ui

@@ -82,18 +82,21 @@ const MaidsList = ({ targetAddress }: MaidsListProps) => {
     <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={<Typography key={0}>Loading...</Typography>}>
       <div className='grid grid-cols-1 gap-4 md:grid-cols-3'>
         {maidsList.map((nft) => (
-          <div key={nft.image} className='hover:opacity-50'>
+          <div key={nft.image}>
             <Link href={`/detail/${nft.token_id}`}>
-              <Image
-                height={600}
-                width={600}
-                src={nft.image}
-                alt={nft.name}
-                style={{
-                  maxWidth: '100%',
-                  height: 'auto',
-                }}
-              />
+              <div className='relative overflow-hidden bg-cover bg-no-repeat'>
+                <Image
+                  className='transition duration-300 hover:scale-110'
+                  height={600}
+                  width={600}
+                  src={nft.image}
+                  alt={nft.name}
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
+                />
+              </div>
             </Link>
             <div className='flex w-full flex-row bg-gray-800 px-4 py-2'>
               <Typography variant='h4' className='truncate'>

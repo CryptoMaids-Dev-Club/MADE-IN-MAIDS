@@ -1,6 +1,6 @@
 'use client'
 
-import { MdWallet } from 'react-icons/md'
+import { Wallet2 } from 'lucide-react'
 import { formatEther } from 'viem'
 import { useAccount, useContractRead } from 'wagmi'
 import { Typography } from '@/components/ui/typography'
@@ -18,7 +18,7 @@ export const Balance = () => {
 
   return (
     <div className='flex flex-row'>
-      <MdWallet className='mt-1' size='24' />
+      <Wallet2 className='mr-1 mt-1' />
       <Typography className='text-yellow-400' variant='h4'>
         {balance ?? 0} $MAIDS
       </Typography>

@@ -9,7 +9,7 @@ export async function GET(_req: NextRequest, { params }: { params: { address: st
     },
   })
 
-  return NextResponse.json(user)
+  return NextResponse.json(user ?? { id: 0, name: 'NO NAME', address: '0x...', iconUrl: '' })
 }
 
 export const revalidate = 60 // 1 minute

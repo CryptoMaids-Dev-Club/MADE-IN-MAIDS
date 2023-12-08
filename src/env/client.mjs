@@ -3,7 +3,6 @@ import { z } from 'zod'
 
 export const env = createEnv({
   client: {
-    NEXT_PUBLIC_VERCEL_URL: z.string().min(1),
     NEXT_PUBLIC_MAIDS_CONTRACT_ADDRESS: z.string().min(42),
     NEXT_PUBLIC_MAIDS_ITEM_CONTRACT_ADDRESS: z.string().min(42),
     NEXT_PUBLIC_MAIDS_VOTING_CONTRACT_ADDRESS: z.string().min(42),
@@ -14,7 +13,6 @@ export const env = createEnv({
     NEXT_PUBLIC_INFURA_API_KEY: z.string().min(1),
   },
   experimental__runtimeEnv: {
-    NEXT_PUBLIC_VERCEL_URL: process.env.NEXT_PUBLIC_VERCEL_URL,
     NEXT_PUBLIC_MAIDS_CONTRACT_ADDRESS: process.env.NEXT_PUBLIC_MAIDS_CONTRACT_ADDRESS,
     NEXT_PUBLIC_MAIDS_ITEM_CONTRACT_ADDRESS: process.env.NEXT_PUBLIC_MAIDS_ITEM_CONTRACT_ADDRESS,
     NEXT_PUBLIC_MAIDS_VOTING_CONTRACT_ADDRESS: process.env.NEXT_PUBLIC_MAIDS_VOTING_CONTRACT_ADDRESS,

@@ -1,7 +1,8 @@
 'use client'
 
+import { UserRound } from 'lucide-react'
 import NextLink from 'next/link'
-import { Avatar, AvatarImage } from '@/components/ui/avatar'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { useUser } from '@/hooks/useUser'
 
 type ProfileIconProps = {
@@ -15,6 +16,9 @@ export const ProfileIcon = ({ address }: ProfileIconProps) => {
     <NextLink href={`/account/${address?.toLowerCase()}`}>
       <Avatar>
         <AvatarImage src={userInfo.iconUrl} />
+        <AvatarFallback>
+          <UserRound />
+        </AvatarFallback>
       </Avatar>
     </NextLink>
   )

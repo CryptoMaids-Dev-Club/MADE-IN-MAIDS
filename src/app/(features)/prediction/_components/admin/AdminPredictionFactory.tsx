@@ -1,12 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
 import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import { z } from 'zod'
-import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
+import AutoForm from '@/components/ui/auto-form'
 import { LoadingButton } from '@/components/ui/loading-button'
 import { maidsPredictionContractConfig } from '@/config/client'
 import { useDebounce } from '@/hooks/useDebounce'
@@ -17,7 +14,6 @@ const schema = z.object({
   rate: z.number().positive().int().min(1),
   endTime: z.number().positive().int().min(1),
 })
-type FormSchema = z.infer<typeof schema>
 
 const AdminPredictionFactory = () => {
   const [choiceLength, setChoiceLength] = useState(0)
@@ -40,67 +36,44 @@ const AdminPredictionFactory = () => {
     hash: createPrediction.data?.hash,
   })
 
-  const form = useForm<FormSchema>({
-    resolver: zodResolver(schema),
-  })
-
   return (
     <div className='container mx-auto my-8 max-w-6xl'>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(() => createPrediction.write?.())} className='w-56'>
-          <FormField
-            control={form.control}
-            name='choiceLength'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>ChoiceLength</FormLabel>
-                <FormControl>
-                  <Input {...field} onChange={(event) => setChoiceLength(Number(event.target.value))} />
-                </FormControl>
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name='predictionURI'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>PredictionURI</FormLabel>
-                <FormControl>
-                  <Input {...field} onChange={(event) => setPredictionURI(event.target.value)} />
-                </FormControl>
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name='rate'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Rate</FormLabel>
-                <FormControl>
-                  <Input {...field} onChange={(event) => setRate(Number(event.target.value))} />
-                </FormControl>
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name='endTime'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>EndTime</FormLabel>
-                <FormControl>
-                  <Input {...field} onChange={(event) => setEndTime(Number(event.target.value))} />
-                </FormControl>
-              </FormItem>
-            )}
-          />
-          <LoadingButton loading={createPredictionTx.isLoading} className='mt-2 w-56' type='submit'>
-            Create Prediction
-          </LoadingButton>
-        </form>
-      </Form>
+      <AutoForm
+        formSchema={schema}
+        onSubmit={() => createPrediction.write?.()}
+        fieldConfig={{
+          choiceLength: {
+            inputProps: {
+              placeholder: 'ChoiceLength',
+            },
+          },
+          predictionURI: {
+            inputProps: {
+              placeholder: 'PredictionURI',
+            },
+          },
+          rate: {
+            inputProps: {
+              placeholder: 'Rate',
+            },
+          },
+          endTime: {
+            inputProps: {
+              placeholder: 'EndTime',
+            },
+          },
+        }}
+        values={{ choiceLength, predictionURI, rate, endTime }}
+        onParsedValuesChange={(values) => {
+          setChoiceLength(values.choiceLength ?? 0)
+          setPredictionURI(values.predictionURI ?? '')
+          setRate(values.rate ?? 0)
+          setEndTime(values.endTime ?? 0)
+        }}>
+        <LoadingButton loading={createPredictionTx.isLoading} className='mt-2 w-56' type='submit'>
+          Create Prediction
+        </LoadingButton>
+      </AutoForm>
     </div>
   )
 }

@@ -10,7 +10,7 @@ type MyPageProps = {
 }
 
 const MyPage = ({ address }: MyPageProps) => (
-  <div className='container mx-auto max-w-7xl'>
+  <div className='container mx-auto mt-4 max-w-7xl'>
     <Suspense fallback={<ProfileSkelton />}>
       <Profile address={address} />
     </Suspense>

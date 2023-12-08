@@ -2,6 +2,7 @@
 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useState } from 'react'
+import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Switch } from '@/components/ui/switch'
 import { Typography } from '@/components/ui/typography'
@@ -49,11 +50,12 @@ export const PurchaseForm = ({ item }: PurchaseFormProps) => {
           <Typography>Mint to a different wallet</Typography>
           <Switch checked={checked} onCheckedChange={() => setChecked(!checked)} />
           {checked && (
-            <input
+            <Input
               type='text'
               id='first_name'
               className='h-8'
               required
+              placeholder='Enter address'
               onChange={(event) => {
                 setAddress(event.target.value)
               }}

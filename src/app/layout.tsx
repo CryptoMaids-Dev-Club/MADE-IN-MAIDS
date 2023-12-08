@@ -12,7 +12,7 @@ import './global.css'
 const siteName = 'Made in Maids'
 const description = 'Web site created by goshujin sama in the development team'
 
-const dotGothic = DotGothic16({ weight: '400', subsets: ['latin'], variable: '--font-dot-gothic-16' })
+const dotGothic = DotGothic16({ weight: '400', subsets: ['latin'], variable: '--font-DotGothic16' })
 
 export const metadata = {
   title: {
@@ -38,7 +38,7 @@ export const metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
   <html lang='en'>
-    <body className={cn('min-h-screen bg-background font-sans antialiased', dotGothic.variable)}>
+    <body className={cn('min-h-screen bg-background antialiased', dotGothic.className)}>
       <Providers>
         <TopBar />
         {children}

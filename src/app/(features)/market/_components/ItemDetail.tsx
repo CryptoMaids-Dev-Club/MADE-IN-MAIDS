@@ -4,7 +4,7 @@ import { PurchaseForm } from './PurchaseForm'
 import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
 
 const ItemDetail = ({ marketItem }: { marketItem: MarketItemInfo }) => (
-  <div className='container mx-auto max-w-[1200px]'>
+  <div className='container mx-auto mt-4 max-w-[1200px]'>
     <div className='grid grid-cols-1  gap-4 md:grid-cols-2'>
       <div className='col-span-1'>
         <Image

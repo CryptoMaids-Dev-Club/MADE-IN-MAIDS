@@ -29,7 +29,7 @@ export const TopBar = () => {
   const { address } = useAccount()
 
   return (
-    <nav className='bg-gray-800'>
+    <nav className='bg-gray-900'>
       <div className='mx-auto w-auto max-w-full px-2 sm:px-6 lg:px-8'>
         <div className='relative flex h-16 items-center justify-between'>
           <div className='absolute inset-y-0 left-0 flex items-center sm:hidden'>
@@ -47,12 +47,12 @@ export const TopBar = () => {
                     className='block h-6 w-6'
                     fill='none'
                     viewBox='0 0 24 24'
-                    stroke-width='1.5'
+                    strokeWidth='1.5'
                     stroke='currentColor'
                     aria-hidden='true'>
                     <path
-                      stroke-linecap='round'
-                      stroke-linejoin='round'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
                       d='M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5'
                     />
                   </svg>
@@ -60,10 +60,10 @@ export const TopBar = () => {
                     className='hidden h-6 w-6'
                     fill='none'
                     viewBox='0 0 24 24'
-                    stroke-width='1.5'
+                    strokeWidth='1.5'
                     stroke='currentColor'
                     aria-hidden='true'>
-                    <path stroke-linecap='round' stroke-linejoin='round' d='M6 18L18 6M6 6l12 12' />
+                    <path strokeLinecap='round' strokeLinejoin='round' d='M6 18L18 6M6 6l12 12' />
                   </svg>
                 </button>
               </SheetTrigger>

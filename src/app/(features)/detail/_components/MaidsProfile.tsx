@@ -3,11 +3,10 @@
 import { MaidProfile } from '@prisma/client'
 import Image from 'next/image'
 import Link from 'next/link'
-import useProfileForm, { SubmitHandler } from '@/app/(features)/detail/_hooks/useProfileForm'
+import { z } from 'zod'
 import useUpdateProfile from '@/app/(features)/detail/_hooks/useUpdateProfile'
+import AutoForm from '@/components/ui/auto-form'
 import { Button } from '@/components/ui/button'
-import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
 import { Typography } from '@/components/ui/typography'
 import type { AssetInfo } from '@/app/api/asset/[id]/asset'
 
@@ -17,64 +16,50 @@ type MaidsProfileProps = {
   owner: string
 }
 
+const createSchema = (profile: MaidProfile) => {
+  return z.object({
+    name: z.string().min(1).default(profile.name),
+    character: z.string().min(1).default(profile.character),
+    description: z.string().min(1).default(profile.description),
+  })
+}
+
 const MaidsProfile = ({ profile, asset, owner }: MaidsProfileProps) => {
   const { editing, isOwner, toggleEditing, maidsProfile, updateProfile } = useUpdateProfile(profile, asset, owner)
 
-  const form = useProfileForm(profile)
-  const handleValid: SubmitHandler = (data) => {
+  const handleSubmit = (data: { name: string; character: string; description: string }) => {
     updateProfile({ ...maidsProfile, ...data })
   }
 
   return (
     <div className='flex flex-col gap-6'>
       {editing ? (
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleValid)}>
-            <FormField
-              control={form.control}
-              name='name'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Name</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name='character'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Character</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name='description'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Description</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-            {isOwner && (
-              <Button type='submit' className='w-full'>
-                Save
-              </Button>
-            )}
-          </form>
-        </Form>
+        <AutoForm
+          formSchema={createSchema(profile)}
+          onSubmit={(data) => handleSubmit(data)}
+          fieldConfig={{
+            name: {
+              inputProps: {
+                placeholder: 'Name',
+              },
+            },
+            character: {
+              inputProps: {
+                placeholder: 'Character',
+              },
+            },
+            description: {
+              inputProps: {
+                placeholder: 'Description',
+              },
+            },
+          }}>
+          {isOwner && (
+            <Button type='submit' className='w-full'>
+              Save
+            </Button>
+          )}
+        </AutoForm>
       ) : (
         <>
           <div className='flex flex-row'>

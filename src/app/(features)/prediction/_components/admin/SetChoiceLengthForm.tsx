@@ -1,12 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
 import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import { z } from 'zod'
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
+import AutoForm from '@/components/ui/auto-form'
 import { LoadingButton } from '@/components/ui/loading-button'
 import { maidsPredictionContractConfig } from '@/config/client'
 import { useDebounce } from '@/hooks/useDebounce'
@@ -14,7 +11,6 @@ import { useDebounce } from '@/hooks/useDebounce'
 const schema = z.object({
   choiceLength: z.number().positive().int().min(1),
 })
-type FormSchema = z.infer<typeof schema>
 
 type SetChoiceLength = {
   id: number
@@ -34,31 +30,23 @@ const SetChoiceLength = ({ id }: SetChoiceLength) => {
     hash: writeChoiceLength.data?.hash,
   })
 
-  const form = useForm<FormSchema>({
-    resolver: zodResolver(schema),
-  })
-
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(() => writeChoiceLength.write?.())} className='w-56'>
-        <FormField
-          control={form.control}
-          name='choiceLength'
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>ChoiceLength</FormLabel>
-              <FormControl>
-                <Input {...field} onChange={(event) => setChoiceLength(Number(event.target.value))} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <LoadingButton loading={writeChoiceLength.isLoading || writeChoiceLengthTx.isLoading}>
-          Set ChoiceLength
-        </LoadingButton>
-      </form>
-    </Form>
+    <AutoForm
+      formSchema={schema}
+      onSubmit={() => writeChoiceLength.write?.()}
+      fieldConfig={{
+        choiceLength: {
+          inputProps: {
+            placeholder: 'ChoiceLength',
+          },
+        },
+      }}
+      values={{ choiceLength }}
+      onParsedValuesChange={(values) => setChoiceLength(values.choiceLength ?? 1)}>
+      <LoadingButton loading={writeChoiceLength.isLoading || writeChoiceLengthTx.isLoading}>
+        Set ChoiceLength
+      </LoadingButton>
+    </AutoForm>
   )
 }
 
