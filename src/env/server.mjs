@@ -19,7 +19,6 @@ export const env = createEnv({
     POSTGRES_URL: z.string().min(1),
     POSTGRES_URL_NON_POOLING: z.string().min(1),
     POSTGRES_USER: z.string().min(1),
-    VERCEL_ANALYTICS_ID: z.string().min(1),
     VERCEL_WEB_ANALYTICS_ID: z.string().min(1),
   },
   experimental__runtimeEnv: {
