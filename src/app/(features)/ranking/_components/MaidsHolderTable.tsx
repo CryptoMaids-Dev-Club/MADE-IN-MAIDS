@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { User } from '@prisma/client'
+import { UserRound } from 'lucide-react'
 import NextLink from 'next/link'
 import InfiniteScroll from 'react-infinite-scroller'
 import getMaidsHolder from '@/app/api/maidsHolder/[page]/getMaidsHolder'
@@ -55,7 +56,9 @@ const MaidsHolderTable = ({ userInfos }: MaidsHolderTableProps) => {
               <TableCell>
                 <Avatar className='h-24 w-24'>
                   <AvatarImage src={getUserIcon(holder.wallet_address, userInfos)} />
-                  <AvatarFallback>No Image</AvatarFallback>
+                  <AvatarFallback>
+                    <UserRound size={50} />
+                  </AvatarFallback>
                 </Avatar>
               </TableCell>
               <TableCell>

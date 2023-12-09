@@ -2,11 +2,13 @@
 
 import { Suspense } from 'react'
 import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { UserRound } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useAccount } from 'wagmi'
 import { ProfileIcon } from '@/app/_components/Elements/ProfileIcon'
+import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { Skeleton } from '@/components/ui/skeleton'
 
@@ -15,7 +17,7 @@ const Balance = dynamic(() => import('@/app/_components/Elements/Balance').then(
 })
 
 export const TopBar = () => {
-  const linkNames = ['Discord', 'Twitter', 'WebSite', 'TACHIYOMI', 'OS', 'SHOOTING', 'STAKING']
+  const linkNames = ['Discord', 'X', 'WebSite', 'TACHIYOMI', 'OS', 'SHOOTING']
   const linkUrls = [
     'https://discord.gg/cryptomaids',
     'https://twitter.com/CryptoMaids',
@@ -23,7 +25,6 @@ export const TopBar = () => {
     'https://cryptomaids.tokyo/tachiyomi',
     'https://opensea.io/collection/cryptomaids',
     'https://cryptomaids-shooting.netlify.app/',
-    'https://made-in-maids.cryptomaids.tokyo/',
   ]
 
   const { address } = useAccount()
@@ -31,8 +32,8 @@ export const TopBar = () => {
   return (
     <nav className='bg-gray-900'>
       <div className='mx-auto w-auto max-w-full px-2 sm:px-6 lg:px-8'>
-        <div className='relative flex h-16 items-center justify-between'>
-          <div className='absolute inset-y-0 left-0 flex items-center sm:hidden'>
+        <div className='relative flex h-12 items-center justify-between'>
+          <div className='absolute inset-y-0 left-0 flex items-center lg:hidden'>
             <Sheet>
               <SheetTrigger asChild>
                 <button
@@ -90,7 +91,7 @@ export const TopBar = () => {
                       <a
                         key={name}
                         href={linkUrls[index]}
-                        className='rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'>
+                        className='rounded-md px-3 py-1 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'>
                         {name}
                       </a>
                     </div>
@@ -100,19 +101,19 @@ export const TopBar = () => {
             </Sheet>
           </div>
 
-          <div className='flex flex-1 items-center sm:items-stretch sm:justify-start'>
+          <div className='flex flex-1 items-center xl:items-stretch xl:justify-start'>
             <div className='ml-10 flex shrink-0 items-center'>
-              <Link href='/top'>
-                <Image src='/images/logo_set.png' width='130' height='39' alt='logo' />
+              <Link href='/top' className='h-9 w-40'>
+                <Image src='/images/logo_set.png' width='160' height='48' alt='logo' />
               </Link>
             </div>
-            <div className='hidden sm:ml-6 sm:block'>
+            <div className='hidden sm:ml-6 lg:block'>
               <div className='flex space-x-1'>
                 {linkNames.map((name, index) => (
                   <a
                     key={name}
                     href={linkUrls[index]}
-                    className='rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'>
+                    className='rounded-md p-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white xl:text-xl'>
                     {name}
                   </a>
                 ))}
@@ -130,7 +131,11 @@ export const TopBar = () => {
                   <ProfileIcon address={address} />
                 </Suspense>
               ) : (
-                <Skeleton className='h-10 w-10 rounded-full' />
+                <Avatar>
+                  <AvatarFallback>
+                    <UserRound />
+                  </AvatarFallback>
+                </Avatar>
               )}
             </div>
 
