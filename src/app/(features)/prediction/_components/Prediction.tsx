@@ -1,8 +1,7 @@
 import { Suspense } from 'react'
 import { CenteringCircularProgress } from '@/app/_components/Elements/CenteringCircularProgress'
 import { Typography } from '@/components/ui/typography'
-import PredictionList from './PredictionList'
-import PredictionListSkelton from './PredictionListSkeleton'
+import PredictionList, { PredictionListSkelton } from './PredictionList'
 import RewardRanking from './RewardRanking'
 
 const Prediction = () => (

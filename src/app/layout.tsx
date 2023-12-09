@@ -1,5 +1,6 @@
 import '@rainbow-me/rainbowkit/styles.css'
 import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import { DotGothic16 } from 'next/font/google'
 import { TopBar } from '@/app/(features)/top/_components/TopBar'
 import { Footer } from '@/app/_components/Footer'
@@ -44,6 +45,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
         {children}
         <Toaster />
         <Analytics />
+        <SpeedInsights />
         <Footer />
       </Providers>
     </body>

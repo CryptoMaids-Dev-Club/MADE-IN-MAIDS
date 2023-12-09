@@ -24,7 +24,6 @@ const PredictionInfoCard = async ({ predictionInfo }: PredictionProps) => {
 
   return (
     <Link href={`/prediction/${predictionInfo.id}`}>
-      {/* <Card sx={{ border: '1px solid gray', width: 350 }}> */}
       <Card className='w-96 border-2 border-gray-500 bg-gray-900'>
         <CardContent>
           <Badge variant={predictionInfo.isSettled ? 'destructive' : 'success'}>{labelMessage()}</Badge>

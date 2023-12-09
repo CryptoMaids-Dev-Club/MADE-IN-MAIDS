@@ -1,11 +1,12 @@
 import { Suspense } from 'react'
 import { CenteringCircularProgress } from '@/app/_components/Elements/CenteringCircularProgress'
+import { Typography } from '@/components/ui/typography'
 import RecentlyUpdatedProfiles from './_components/RecentlyUpdatedProfiles'
 import TopCard from './_components/TopCard'
 
 const Page = () => (
-  <>
-    <div className='grid items-center justify-center gap-4 md:grid-cols-2 lg:grid-cols-3'>
+  <div>
+    <div className='mx-10 grid justify-items-center gap-4 md:grid-cols-2 lg:grid-cols-3'>
       <TopCard
         title='MARKET'
         color='text-pink-500'
@@ -42,13 +43,14 @@ const Page = () => (
         link='/prediction'
       />
     </div>
-    <div>
+    <div className='m-10'>
+      <Typography variant='h1'>Recently Updated Profiles</Typography>
       <Suspense fallback={<CenteringCircularProgress />}>
         <RecentlyUpdatedProfiles />
       </Suspense>
     </div>
     <br />
-  </>
+  </div>
 )
 
 export default Page
