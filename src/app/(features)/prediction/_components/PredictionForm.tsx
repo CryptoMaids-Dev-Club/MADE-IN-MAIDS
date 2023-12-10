@@ -2,9 +2,9 @@
 
 import { z } from 'zod'
 import usePredict from '@/app/(features)/prediction/_hooks/usePredict'
+import LoadingButtonForWeb3 from '@/app/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
 import AutoForm from '@/components/ui/auto-form'
 import { FormItem, FormControl, FormLabel } from '@/components/ui/form'
-import { LoadingButton } from '@/components/ui/loading-button'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import type { Prediction, PredictionText } from '@/app/api/prediction/prediction'
 
@@ -60,9 +60,9 @@ const PredictionForm = ({ predictionInfo, predictionText: PredictionText }: Pred
         updateChoice(values.choice ?? 0)
         updateAmount(values.amount ?? 100)
       }}>
-      <LoadingButton className='w-full' type='submit' loading={isLoading} disabled={isPredicted}>
+      <LoadingButtonForWeb3 className='w-full' type='submit' loading={isLoading} disabled={isPredicted}>
         {buttonMessage}
-      </LoadingButton>
+      </LoadingButtonForWeb3>
     </AutoForm>
   )
 }

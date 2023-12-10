@@ -3,8 +3,8 @@
 import { useState } from 'react'
 import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import { z } from 'zod'
+import LoadingButtonForWeb3 from '@/app/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
 import AutoForm from '@/components/ui/auto-form'
-import { LoadingButton } from '@/components/ui/loading-button'
 import { maidsPredictionContractConfig } from '@/config/client'
 import { useDebounce } from '@/hooks/useDebounce'
 
@@ -44,7 +44,7 @@ const SettleForm = ({ id }: SettleForm) => {
       }}
       values={{ choice }}
       onParsedValuesChange={(values) => setChoice(values.choice ?? 1)}>
-      <LoadingButton loading={settle.isLoading || settleTx.isLoading}>Settle</LoadingButton>
+      <LoadingButtonForWeb3 loading={settle.isLoading || settleTx.isLoading}>Settle</LoadingButtonForWeb3>
     </AutoForm>
   )
 }

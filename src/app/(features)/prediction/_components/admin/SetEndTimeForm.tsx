@@ -3,8 +3,8 @@
 import { useState } from 'react'
 import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import { z } from 'zod'
+import LoadingButtonForWeb3 from '@/app/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
 import AutoForm from '@/components/ui/auto-form'
-import { LoadingButton } from '@/components/ui/loading-button'
 import { maidsPredictionContractConfig } from '@/config/client'
 import { useDebounce } from '@/hooks/useDebounce'
 
@@ -43,7 +43,9 @@ const SetEndTimeForm = ({ id }: SetEndTimeForm) => {
       }}
       values={{ endTime }}
       onParsedValuesChange={(values) => setEndTime(values.endTime ?? 1)}>
-      <LoadingButton loading={writeEndTime.isLoading || writeEndTimeTx.isLoading}>Set EndTime</LoadingButton>
+      <LoadingButtonForWeb3 loading={writeEndTime.isLoading || writeEndTimeTx.isLoading}>
+        Set EndTime
+      </LoadingButtonForWeb3>
     </AutoForm>
   )
 }

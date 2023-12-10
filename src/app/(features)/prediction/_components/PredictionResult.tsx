@@ -1,7 +1,7 @@
 'use client'
 
 import usePredictionResult from '@/app/(features)/prediction/_hooks/usePredictionResult'
-import { LoadingButton } from '@/components/ui/loading-button'
+import LoadingButtonForWeb3 from '@/app/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
 import { Typography } from '@/components/ui/typography'
 import type { Prediction, PredictionText } from '@/app/api/prediction/prediction'
 
@@ -21,13 +21,13 @@ const Result = ({ predictionInfo, predictionText }: ResultProps) => {
       <Typography variant='h4' className='text-blue-300'>
         {resultMessage}
       </Typography>
-      <LoadingButton
+      <LoadingButtonForWeb3
         className='w-full bg-blue-300 hover:bg-blue-300/80'
         onClick={() => claim.write?.()}
         loading={isLoading}
         disabled={!predictionInfo.isSettled || rewardAmount === 0 || userInfo?.isClaimed}>
         {buttonMessage}
-      </LoadingButton>
+      </LoadingButtonForWeb3>
     </>
   )
 }

@@ -3,8 +3,8 @@
 import { useState } from 'react'
 import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import { z } from 'zod'
+import LoadingButtonForWeb3 from '@/app/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
 import AutoForm from '@/components/ui/auto-form'
-import { LoadingButton } from '@/components/ui/loading-button'
 import { maidsPredictionContractConfig } from '@/config/client'
 import { useDebounce } from '@/hooks/useDebounce'
 
@@ -43,9 +43,9 @@ const SetPredictionURIForm = ({ id }: SetPredictionURIFormProps) => {
       }}
       values={{ predictionURI }}
       onParsedValuesChange={(values) => setPredictionURI(values.predictionURI ?? '')}>
-      <LoadingButton loading={writePredictionURI.isLoading || writePredictionURITx.isLoading}>
+      <LoadingButtonForWeb3 loading={writePredictionURI.isLoading || writePredictionURITx.isLoading}>
         Set PredictionURI
-      </LoadingButton>
+      </LoadingButtonForWeb3>
     </AutoForm>
   )
 }

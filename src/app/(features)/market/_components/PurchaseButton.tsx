@@ -1,7 +1,7 @@
 'use client'
 
 import { usePurchase } from '@/app/(features)/market/_hooks/usePurchase'
-import { LoadingButton } from '@/components/ui/loading-button'
+import LoadingButtonForWeb3 from '@/app/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
 import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
 
 type PurchaseButtonProps = {
@@ -18,9 +18,9 @@ const PurchaseButton = ({ item, amount, differentAddress }: PurchaseButtonProps)
   })
 
   return (
-    <LoadingButton className='w-full' loading={isLoading} disabled={!isActive} onClick={buyItemOrApprove}>
+    <LoadingButtonForWeb3 className='w-full' loading={isLoading} disabled={!isActive} onClick={buyItemOrApprove}>
       {approved ? `Purchase for ${Number(item.price) * amount} $MAIDS` : `Approve $MAIDS`}
-    </LoadingButton>
+    </LoadingButtonForWeb3>
   )
 }
 

@@ -3,8 +3,8 @@
 import { useState } from 'react'
 import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
 import { z } from 'zod'
+import LoadingButtonForWeb3 from '@/app/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
 import AutoForm from '@/components/ui/auto-form'
-import { LoadingButton } from '@/components/ui/loading-button'
 import { maidsPredictionContractConfig } from '@/config/client'
 import { useDebounce } from '@/hooks/useDebounce'
 
@@ -70,9 +70,9 @@ const AdminPredictionFactory = () => {
           setRate(values.rate ?? 0)
           setEndTime(values.endTime ?? 0)
         }}>
-        <LoadingButton loading={createPredictionTx.isLoading} className='mt-2 w-56' type='submit'>
+        <LoadingButtonForWeb3 loading={createPredictionTx.isLoading} className='mt-2 w-56' type='submit'>
           Create Prediction
-        </LoadingButton>
+        </LoadingButtonForWeb3>
       </AutoForm>
     </div>
   )
