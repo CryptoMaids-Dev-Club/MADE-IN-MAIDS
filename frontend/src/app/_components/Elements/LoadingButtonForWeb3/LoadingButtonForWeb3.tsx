@@ -15,7 +15,7 @@ const LoadingButtonForWeb3 = ({ loading, ...props }: ButtonLoadingProps) => {
 
   if (!isConnected) {
     return (
-      <LoadingButton {...props} loading={isLoading} onClick={openConnectModal}>
+      <LoadingButton className={props.className} loading={isLoading} onClick={openConnectModal}>
         Connect Wallet
       </LoadingButton>
     )
@@ -23,7 +23,7 @@ const LoadingButtonForWeb3 = ({ loading, ...props }: ButtonLoadingProps) => {
 
   if (chain && chain.id !== chains[0].id) {
     return (
-      <LoadingButton {...props} loading={isLoading} onClick={() => switchNetwork?.(chains[0].id)}>
+      <LoadingButton className={props.className} loading={isLoading} onClick={() => switchNetwork?.(chains[0].id)}>
         Switch to {chains[0].name} Network
       </LoadingButton>
     )
