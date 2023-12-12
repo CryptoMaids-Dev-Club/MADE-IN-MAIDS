@@ -11,6 +11,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
+      with:
+        target: 'contracts/'
 
     - name: Run Slither
       uses: crytic/slither-action@v0.3.0
