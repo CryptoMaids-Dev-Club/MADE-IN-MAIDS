@@ -1,9 +1,9 @@
 'use client'
 
 import { formatEther } from 'viem'
-import { useAccount, useContractRead } from 'wagmi'
+import { useAccount } from 'wagmi'
 import { Typography } from '@/components/ui/typography'
-import { votingContractConfig } from '@/config/client'
+import { useMaidsVotingGetVoteAmountsOfToken, useMaidsVotingGetVoteAmountsOfUser } from '@/lib/generated'
 
 type VotingInfoProps = {
   id: number
@@ -12,19 +12,13 @@ type VotingInfoProps = {
 export const VotingInfo = ({ id }: VotingInfoProps) => {
   const { address } = useAccount()
 
-  const { data: amountOfToken } = useContractRead({
-    ...votingContractConfig,
-    functionName: 'getVoteAmountsOfToken',
-    args: [id],
-    cacheOnBlock: true,
+  const { data: amountOfToken } = useMaidsVotingGetVoteAmountsOfToken({
+    args: [BigInt(id)],
     select: (data) => Math.floor(Number(formatEther(data as bigint))),
   })
 
-  const { data: amountOfUser } = useContractRead({
-    ...votingContractConfig,
-    functionName: 'getVoteAmountsOfUser',
-    args: [address, id],
-    cacheOnBlock: true,
+  const { data: amountOfUser } = useMaidsVotingGetVoteAmountsOfUser({
+    args: [address ?? '0x0', BigInt(id)],
     enabled: address !== undefined,
     select: (data) => Math.floor(Number(formatEther(data as bigint))),
   })

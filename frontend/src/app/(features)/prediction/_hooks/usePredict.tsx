@@ -1,13 +1,14 @@
 import { useCallback, useState } from 'react'
 import { TwitterShareButton, XIcon } from 'react-share'
 import { parseEther } from 'viem'
-import { useAccount, useContractRead, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
+import { useAccount, useWaitForTransaction } from 'wagmi'
 import { convertUserInfo } from '@/app/(features)/prediction/utils'
 import { useToast } from '@/components/ui/use-toast'
-import { MAIDS_PREDICTION_CONTRACT_ADDRESS, maidsContractConfig, maidsPredictionContractConfig } from '@/config/client'
+import { NETWORK } from '@/config/client'
 import useAllowance from '@/hooks/useAllowance'
 import { useApprove } from '@/hooks/useApprove'
 import { useDebounce } from '@/hooks/useDebounce'
+import { maidsPredictionAddress, useMaidsPredictionGetUserInfo, useMaidsPredictionPredict } from '@/lib/generated'
 import type { SolidityUserInfo } from '@/app/api/prediction/prediction'
 
 const usePredict = (predictionId: number) => {
@@ -19,32 +20,25 @@ const usePredict = (predictionId: number) => {
   const debounceAmount = useDebounce(amount, 500)
 
   const { address, isConnected } = useAccount()
-  const { allowance, refetch } = useAllowance(address ?? `0x${''}`, MAIDS_PREDICTION_CONTRACT_ADDRESS)
-  const { approve, approveTx } = useApprove(
-    maidsContractConfig.address,
-    address ?? `0x${''}`,
-    MAIDS_PREDICTION_CONTRACT_ADDRESS
-  )
+  const { allowance, refetch } = useAllowance(address ?? `0x${''}`, maidsPredictionAddress[NETWORK.id])
+  const { approve, isLoading: isLoadingApprove, approveTx } = useApprove(maidsPredictionAddress[NETWORK.id])
 
-  const { data: userInfo } = useContractRead({
-    ...maidsPredictionContractConfig,
-    functionName: 'getUserInfo',
-    args: [address, predictionId],
-    cacheOnBlock: true,
+  const { data: userInfo } = useMaidsPredictionGetUserInfo({
+    args: [address ?? '0x0', BigInt(predictionId)],
     enabled: isConnected,
     select: (data) => convertUserInfo(data as SolidityUserInfo),
   })
 
-  const predictConfig = usePrepareContractWrite({
-    ...maidsPredictionContractConfig,
-    functionName: 'predict',
-    args: [predictionId, parseEther(`${debounceAmount}`), debounceChoice],
-    enabled: Boolean(allowance) && Boolean(debounceAmount) && !userInfo?.isPredicted,
-  }).config
-  const predict = useContractWrite({ ...predictConfig })
+  const {
+    data: predictData,
+    isLoading: isLoadingPredict,
+    write: predict,
+  } = useMaidsPredictionPredict({
+    args: [BigInt(predictionId), parseEther(`${debounceAmount}`), BigInt(debounceChoice)],
+  })
 
   const predictTx = useWaitForTransaction({
-    hash: predict.data?.hash,
+    hash: predictData?.hash,
     onSuccess() {
       toast({
         title: 'Successfully predicted!',
@@ -52,7 +46,7 @@ const usePredict = (predictionId: number) => {
         duration: 10000,
         action: (
           <TwitterShareButton
-            url={`https://made-in-maids.vercel.app/detail/${predictionId}`}
+            url={`https://market.cryptomaids.tokyo/detail/${predictionId}`}
             title={`Predicted for CryptoMaids #${predictionId}!`}
             hashtags={['CryptoMaids']}>
             <XIcon size={32} round />
@@ -63,7 +57,7 @@ const usePredict = (predictionId: number) => {
     },
   })
 
-  const isLoading = approve.isLoading || predict.isLoading || approveTx.isLoading || predictTx.isLoading
+  const isLoading = isLoadingApprove || isLoadingPredict || approveTx.isLoading || predictTx.isLoading
 
   const canPredict = Boolean(allowance) && allowance >= debounceAmount
 
@@ -79,9 +73,9 @@ const usePredict = (predictionId: number) => {
 
   const predictOrApprove = useCallback(() => {
     if (canPredict) {
-      predict.write?.()
+      predict()
     } else {
-      approve.write?.()
+      approve()
     }
   }, [approve, canPredict, predict])
 

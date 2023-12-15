@@ -1,8 +1,9 @@
 import { createConfig, readContract } from '@wagmi/core'
 import { NextResponse } from 'next/server'
-import { formatEther } from 'viem'
+import { Address, formatEther } from 'viem'
 import { SolidityTopUserInfo, TopUserInfo } from '@/app/api/prediction/prediction'
-import { maidsPredictionContractConfig } from '@/config/server'
+import { NETWORK } from '@/config/server'
+import { maidsPredictionABI, maidsPredictionAddress } from '@/lib/generated'
 import { publicClient } from '@/lib/wagmicore'
 
 createConfig({ publicClient })
@@ -22,11 +23,12 @@ function convertToTopUserInfo(data: SolidityTopUserInfo[]) {
 
 export async function GET() {
   const data = await readContract({
-    ...maidsPredictionContractConfig,
+    address: maidsPredictionAddress[NETWORK.id] as Address,
+    abi: maidsPredictionABI,
     functionName: 'getTop3Info',
   })
 
-  return NextResponse.json(convertToTopUserInfo(data as SolidityTopUserInfo[]))
+  return NextResponse.json(convertToTopUserInfo(data as unknown as SolidityTopUserInfo[]))
 }
 
 export const dynamic = 'force-dynamic'

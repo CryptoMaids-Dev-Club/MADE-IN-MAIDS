@@ -2,8 +2,9 @@ import { readContract, configureChains, createConfig } from '@wagmi/core'
 import { infuraProvider } from '@wagmi/core/providers/infura'
 import { publicProvider } from '@wagmi/core/providers/public'
 import { NextResponse } from 'next/server'
-import { formatEther, formatUnits } from 'viem'
-import { INFURA_API_KEY, NETWORK, marketContractConfig } from '@/config/server'
+import { Address, formatEther, formatUnits } from 'viem'
+import { INFURA_API_KEY, NETWORK } from '@/config/server'
+import { maidsMarketABI, maidsMarketAddress } from '@/lib/generated'
 import type { ItemInfo, MarketItemInfo, SolidityItemInfo } from './marketItem'
 import type { NFTMetadata } from '@/app/api/marketItems/marketItem'
 
@@ -57,10 +58,11 @@ const getMarketItems = async (items: ItemInfo[]): Promise<MarketItemInfo[]> => {
 
 export async function GET() {
   const data = await readContract({
-    ...marketContractConfig,
+    address: maidsMarketAddress[NETWORK.id] as Address,
+    abi: maidsMarketABI,
     functionName: 'fetchMarketItems',
   })
-  const convertedItems = convert(data as SolidityItemInfo[])
+  const convertedItems = convert(data as unknown as SolidityItemInfo[])
   const marketItems = await getMarketItems(convertedItems)
 
   return NextResponse.json(marketItems)

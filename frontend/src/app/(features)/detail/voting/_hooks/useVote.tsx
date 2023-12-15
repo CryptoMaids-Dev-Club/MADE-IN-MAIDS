@@ -1,12 +1,13 @@
 import { useCallback, useState } from 'react'
 import { TwitterShareButton, XIcon } from 'react-share'
 import { parseEther } from 'viem'
-import { useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
+import { useAccount, useWaitForTransaction } from 'wagmi'
 import { useToast } from '@/components/ui/use-toast'
-import { MAIDS_VOTING_CONTRACT_ADDRESS, maidsContractConfig, votingContractConfig } from '@/config/client'
+import { NETWORK } from '@/config/client'
 import { useAllowance } from '@/hooks/useAllowance'
 import { useApprove } from '@/hooks/useApprove'
 import { useDebounce } from '@/hooks/useDebounce'
+import { maidsVotingAddress, useMaidsVotingVote } from '@/lib/generated'
 
 const useVote = (id: number) => {
   const { toast } = useToast()
@@ -15,23 +16,19 @@ const useVote = (id: number) => {
   const [amount, setAmount] = useState(0)
   const debounceAmount = useDebounce(amount, 500)
 
-  const { allowance, refetch } = useAllowance(address ?? `0x${''}`, MAIDS_VOTING_CONTRACT_ADDRESS)
-  const { approve, approveTx } = useApprove(
-    maidsContractConfig.address,
-    address ?? `0x${''}`,
-    MAIDS_VOTING_CONTRACT_ADDRESS
-  )
+  const { allowance, refetch } = useAllowance(address ?? `0x${''}`, maidsVotingAddress[NETWORK.id])
+  const { approve, isLoading: isLoadingApprove, approveTx } = useApprove(maidsVotingAddress[NETWORK.id])
 
-  const votingConfig = usePrepareContractWrite({
-    ...votingContractConfig,
-    functionName: 'vote',
-    args: debounceAmount ? [id, parseEther(`${Number(debounceAmount)}`)] : [id, 0],
-    enabled: Boolean(allowance) && Boolean(debounceAmount),
-  }).config
-  const vote = useContractWrite({ ...votingConfig })
+  const {
+    data: votingData,
+    isLoading: isLoadingVote,
+    write: vote,
+  } = useMaidsVotingVote({
+    args: debounceAmount ? [BigInt(id), parseEther(`${Number(debounceAmount)}`)] : [BigInt(id), 0n],
+  })
 
   const voteTx = useWaitForTransaction({
-    hash: vote.data?.hash,
+    hash: votingData?.hash,
     onSuccess() {
       toast({
         title: 'Successfully voted!',
@@ -39,7 +36,7 @@ const useVote = (id: number) => {
         duration: 10000,
         action: (
           <TwitterShareButton
-            url={`https://made-in-maids.vercel.app/detail/${id}`}
+            url={`https://market.cryptomaids.tokyo/detail/${id}`}
             title={`Voted for CryptoMaids #${id}!`}
             hashtags={['CryptoMaids']}>
             <XIcon size={32} round />
@@ -55,15 +52,11 @@ const useVote = (id: number) => {
   }, [])
 
   const voteOrApprove = useCallback(() => {
-    try {
-      if (allowance && allowance > Number(debounceAmount)) {
-        if (Number(debounceAmount) <= 0) return
-        vote.write?.()
-      } else {
-        approve.write?.()
-      }
-    } catch (e) {
-      console.error(e)
+    if (allowance && allowance > Number(debounceAmount)) {
+      if (Number(debounceAmount) <= 0) return
+      vote()
+    } else {
+      approve()
     }
   }, [allowance, approve, debounceAmount, vote])
 
@@ -71,7 +64,7 @@ const useVote = (id: number) => {
     amount,
     updateAmount,
     voteOrApprove,
-    isLoading: approve.isLoading || vote.isLoading || approveTx.isLoading || voteTx.isLoading,
+    isLoading: isLoadingApprove || isLoadingVote || approveTx.isLoading || voteTx.isLoading,
     allowance,
   }
 }

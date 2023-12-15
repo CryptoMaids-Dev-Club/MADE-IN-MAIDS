@@ -1,18 +1,14 @@
 import { formatEther } from 'viem'
-import { useContractRead } from 'wagmi'
-import { maidsContractConfig } from '@/config/client'
+import { useMaidsTokenAllowance } from '@/lib/generated'
 import type { Address } from 'wagmi'
 
 export const useAllowance = (account: Address, spender: string) => {
-  const { data: allowance, refetch } = useContractRead({
-    ...maidsContractConfig,
-    functionName: 'allowance',
-    args: [account, spender],
-    enabled: account !== '0x',
-    select: (data) => Number(formatEther(data as bigint)),
+  const { data: allowance, refetch } = useMaidsTokenAllowance({
+    args: [account, spender as Address],
+    enabled: account !== '0x0',
   })
 
-  return { allowance: allowance ?? 0, refetch }
+  return { allowance: allowance ? Number(formatEther(allowance)) : 0, refetch }
 }
 
 export default useAllowance

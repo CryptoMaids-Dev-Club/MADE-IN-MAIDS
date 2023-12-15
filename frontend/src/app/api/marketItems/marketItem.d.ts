@@ -27,4 +27,5 @@ export type SolidityItemInfo = {
   price: bigint
   supply: bigint
   tokenURI: string
+  limitPerWallet: bigint
 }

@@ -1,11 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
+import { useWaitForTransaction } from 'wagmi'
 import { z } from 'zod'
 import LoadingButtonForWeb3 from '@/app/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
 import AutoForm from '@/components/ui/auto-form'
-import { maidsPredictionContractConfig } from '@/config/client'
+import { useMaidsPredictionSettle } from '@/lib/generated'
 import { useDebounce } from '@/hooks/useDebounce'
 
 const schema = z.object({
@@ -20,21 +20,18 @@ const SettleForm = ({ id }: SettleForm) => {
   const [choice, setChoice] = useState(0)
   const debounceChoice = useDebounce(choice, 500)
 
-  // Settle
-  const settleConfig = usePrepareContractWrite({
-    ...maidsPredictionContractConfig,
-    functionName: 'settle',
-    args: [id, debounceChoice],
-  }).config
-  const settle = useContractWrite({ ...settleConfig })
+  const { data, isLoading, write } = useMaidsPredictionSettle({
+    args: [BigInt(id), BigInt(debounceChoice)],
+  })
+
   const settleTx = useWaitForTransaction({
-    hash: settle.data?.hash,
+    hash: data?.hash,
   })
 
   return (
     <AutoForm
       formSchema={schema}
-      onSubmit={() => settle.write?.()}
+      onSubmit={() => write()}
       fieldConfig={{
         choice: {
           inputProps: {
@@ -44,7 +41,7 @@ const SettleForm = ({ id }: SettleForm) => {
       }}
       values={{ choice }}
       onParsedValuesChange={(values) => setChoice(values.choice ?? 1)}>
-      <LoadingButtonForWeb3 loading={settle.isLoading || settleTx.isLoading}>Settle</LoadingButtonForWeb3>
+      <LoadingButtonForWeb3 loading={isLoading || settleTx.isLoading}>Settle</LoadingButtonForWeb3>
     </AutoForm>
   )
 }

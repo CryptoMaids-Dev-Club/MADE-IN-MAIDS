@@ -1,10 +1,10 @@
 'use client'
 
-import { useAccount, useContractRead } from 'wagmi'
+import { useAccount } from 'wagmi'
 import { convertUserInfo } from '@/app/(features)/prediction/utils'
 import { SolidityUserInfo } from '@/app/api/prediction/prediction'
 import { Typography } from '@/components/ui/typography'
-import { maidsPredictionContractConfig } from '@/config/client'
+import { useMaidsPredictionGetUserInfo } from '@/lib/generated'
 
 type PredictionUserInfoProps = {
   id: number
@@ -14,12 +14,8 @@ type PredictionUserInfoProps = {
 const PredictionUserInfo = ({ id, choices }: PredictionUserInfoProps) => {
   const { address, isConnected } = useAccount()
 
-  const { data: userInfo } = useContractRead({
-    ...maidsPredictionContractConfig,
-    functionName: 'getUserInfo',
-    args: [address, id],
-    cacheOnBlock: true,
-    suspense: true,
+  const { data: userInfo } = useMaidsPredictionGetUserInfo({
+    args: [address ?? '0x0', BigInt(id)],
     enabled: isConnected,
     select: (data) => convertUserInfo(data as SolidityUserInfo),
   })

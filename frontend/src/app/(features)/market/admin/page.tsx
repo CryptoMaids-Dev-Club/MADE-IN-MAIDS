@@ -1,11 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import { useAccount, usePrepareContractWrite, useContractWrite } from 'wagmi'
 import { z } from 'zod'
 import AutoForm from '@/components/ui/auto-form'
 import { Button } from '@/components/ui/button'
-import { marketContractConfig } from '@/config/client'
+import { useMaidsMarketCreateMarketItem } from '@/lib/generated'
 
 const schema = z.object({
   price: z.coerce.number().min(1).optional(),
@@ -16,7 +15,6 @@ const schema = z.object({
 })
 
 const ItemCreate = () => {
-  const { address } = useAccount()
   const [itemInfo, setItemInfo] = useState<z.infer<typeof schema>>({
     price: 0,
     supply: 0,
@@ -25,17 +23,21 @@ const ItemCreate = () => {
     limitPerWallet: 0,
   })
 
-  const { config } = usePrepareContractWrite({
-    ...marketContractConfig,
-    functionName: 'createMarketItem',
-    args: itemInfo && address ? [itemInfo] : [],
-  })
-  const { write } = useContractWrite({
-    ...config,
+  const { write } = useMaidsMarketCreateMarketItem({
+    args: [
+      {
+        ...itemInfo,
+        price: BigInt(itemInfo.price ?? 0),
+        supply: BigInt(itemInfo.supply ?? 0),
+        tokenURI: itemInfo.tokenURI ?? '',
+        startTime: BigInt(itemInfo.startTime ?? 0),
+        limitPerWallet: BigInt(itemInfo.limitPerWallet ?? 0),
+      },
+    ],
   })
 
   const handleSubmit = () => {
-    write?.()
+    write()
   }
 
   return (

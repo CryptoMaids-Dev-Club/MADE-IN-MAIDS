@@ -12,3 +12,4 @@ config-overrides.js
 .next
 .vercel
 /src/components/ui
+/src/lib/generated.ts

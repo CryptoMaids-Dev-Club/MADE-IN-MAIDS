@@ -1,8 +1,10 @@
 import { readContract, createConfig } from '@wagmi/core'
 import { NextRequest, NextResponse } from 'next/server'
 import { SolidityPrediction } from '@/app/api/prediction/prediction'
-import { maidsPredictionContractConfig } from '@/config/server'
+import { NETWORK } from '@/config/server'
+import { maidsPredictionABI, maidsPredictionAddress } from '@/lib/generated'
 import { publicClient } from '@/lib/wagmicore'
+import type { Address } from 'wagmi'
 
 createConfig({ publicClient })
 
@@ -22,9 +24,10 @@ function convertToPredictions(data: SolidityPrediction) {
 
 export async function GET(_req: NextRequest, { params }: { params: { id: string } }) {
   const data = await readContract({
-    ...maidsPredictionContractConfig,
+    address: maidsPredictionAddress[NETWORK.id] as Address,
+    abi: maidsPredictionABI,
     functionName: 'getPrediction',
-    args: [params.id],
+    args: [BigInt(params.id)],
   })
 
   return NextResponse.json(convertToPredictions(data as SolidityPrediction))

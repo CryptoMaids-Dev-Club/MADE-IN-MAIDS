@@ -23,7 +23,7 @@ const Result = ({ predictionInfo, predictionText }: ResultProps) => {
       </Typography>
       <LoadingButtonForWeb3
         className='w-full bg-blue-300 hover:bg-blue-300/80'
-        onClick={() => claim.write?.()}
+        onClick={() => claim()}
         loading={isLoading}
         disabled={!predictionInfo.isSettled || rewardAmount === 0 || userInfo?.isClaimed}>
         {buttonMessage}

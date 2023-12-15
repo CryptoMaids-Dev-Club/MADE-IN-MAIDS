@@ -1,25 +1,30 @@
 import { useCallback } from 'react'
 import { TwitterShareButton, XIcon } from 'react-share'
 import { formatEther } from 'viem'
-import { useAccount, useContractRead, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
+import { useAccount, useWaitForTransaction } from 'wagmi'
 import { convertUserInfo } from '@/app/(features)/prediction/utils'
 import { useToast } from '@/components/ui/use-toast'
-import { maidsPredictionContractConfig } from '@/config/client'
+import {
+  useMaidsPredictionClaimReward,
+  useMaidsPredictionGetRewardAmount,
+  useMaidsPredictionGetUserInfo,
+} from '@/lib/generated'
 import type { Prediction, SolidityUserInfo } from '@/app/api/prediction/prediction'
 
 const usePredictionResult = (predictionInfo: Prediction) => {
   const { toast } = useToast()
   const { address, isConnected } = useAccount()
 
-  const claimConfig = usePrepareContractWrite({
-    ...maidsPredictionContractConfig,
-    functionName: 'claimReward',
-    args: [predictionInfo.id],
-    enabled: predictionInfo.isSettled && isConnected,
-  }).config
-  const claim = useContractWrite({ ...claimConfig })
+  const {
+    data: claimData,
+    isLoading: isLoadingClaim,
+    write: claim,
+  } = useMaidsPredictionClaimReward({
+    args: [BigInt(predictionInfo.id)],
+  })
+
   const claimTx = useWaitForTransaction({
-    hash: claim.data?.hash,
+    hash: claimData?.hash,
     onSuccess() {
       toast({
         title: `You have claimed ${rewardAmount} $MAIDS!`,
@@ -27,7 +32,7 @@ const usePredictionResult = (predictionInfo: Prediction) => {
         duration: 10000,
         action: (
           <TwitterShareButton
-            url={`https://made-in-maids.vercel.app/detail/${predictionInfo.id}`}
+            url={`https://market.cryptomaids.tokyo/detail/${predictionInfo.id}`}
             title={`Claimed ${rewardAmount} $MAIDS!`}
             hashtags={['CryptoMaids']}>
             <XIcon size={32} round />
@@ -37,21 +42,15 @@ const usePredictionResult = (predictionInfo: Prediction) => {
     },
   })
 
-  const { data: rewardAmount } = useContractRead({
-    ...maidsPredictionContractConfig,
-    functionName: 'getRewardAmount',
-    args: [address, predictionInfo.id],
-    cacheOnBlock: true,
-    enabled: isConnected,
+  const { data: rewardAmount } = useMaidsPredictionGetRewardAmount({
+    args: [address ?? '0x0', BigInt(predictionInfo.id)],
+    enabled: address && isConnected,
     select: (data) => Math.floor(Number(formatEther(data as bigint))),
   })
 
-  const { data: userInfo } = useContractRead({
-    ...maidsPredictionContractConfig,
-    functionName: 'getUserInfo',
-    args: [address, predictionInfo.id],
-    cacheOnBlock: true,
-    enabled: isConnected,
+  const { data: userInfo } = useMaidsPredictionGetUserInfo({
+    args: [address ?? '0x0', BigInt(predictionInfo.id)],
+    enabled: address && isConnected,
     select: (data) => convertUserInfo(data as SolidityUserInfo),
   })
 
@@ -77,7 +76,7 @@ const usePredictionResult = (predictionInfo: Prediction) => {
     }
   }, [predictionInfo.isSettled, rewardAmount])
 
-  const isLoading = claim.isLoading || claimTx.isLoading
+  const isLoading = isLoadingClaim || claimTx.isLoading
 
   return {
     userInfo,

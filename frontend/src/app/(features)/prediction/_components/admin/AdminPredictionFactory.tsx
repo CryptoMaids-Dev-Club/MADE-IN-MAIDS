@@ -1,11 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
+import { useWaitForTransaction } from 'wagmi'
 import { z } from 'zod'
 import LoadingButtonForWeb3 from '@/app/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
 import AutoForm from '@/components/ui/auto-form'
-import { maidsPredictionContractConfig } from '@/config/client'
+import { useMaidsPredictionCreatePrediction } from '@/lib/generated'
 import { useDebounce } from '@/hooks/useDebounce'
 
 const schema = z.object({
@@ -25,22 +25,19 @@ const AdminPredictionFactory = () => {
   const debounceRate = useDebounce(rate, 500)
   const debounceEndTime = useDebounce(endTime, 500)
 
-  const predictionConfig = usePrepareContractWrite({
-    ...maidsPredictionContractConfig,
-    functionName: 'createPrediction',
-    args: [debounceChoiceLength, debouncePredictionURI, debounceRate, debounceEndTime],
-  }).config
-  const createPrediction = useContractWrite({ ...predictionConfig })
+  const { data: createPredictionData, write: createPrediction } = useMaidsPredictionCreatePrediction({
+    args: [BigInt(debounceChoiceLength), debouncePredictionURI, BigInt(debounceRate), BigInt(debounceEndTime)],
+  })
 
   const createPredictionTx = useWaitForTransaction({
-    hash: createPrediction.data?.hash,
+    hash: createPredictionData?.hash,
   })
 
   return (
     <div className='container mx-auto my-8 max-w-6xl'>
       <AutoForm
         formSchema={schema}
-        onSubmit={() => createPrediction.write?.()}
+        onSubmit={() => createPrediction()}
         fieldConfig={{
           choiceLength: {
             inputProps: {

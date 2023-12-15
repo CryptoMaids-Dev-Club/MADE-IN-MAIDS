@@ -1,11 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import { useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
+import { useWaitForTransaction } from 'wagmi'
 import { z } from 'zod'
 import LoadingButtonForWeb3 from '@/app/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
 import AutoForm from '@/components/ui/auto-form'
-import { maidsPredictionContractConfig } from '@/config/client'
+import { useMaidsPredictionSetChoicesLength } from '@/lib/generated'
 import { useDebounce } from '@/hooks/useDebounce'
 
 const schema = z.object({
@@ -20,20 +20,22 @@ const SetChoiceLength = ({ id }: SetChoiceLength) => {
   const [choiceLength, setChoiceLength] = useState(0)
   const debounceChoiceLength = useDebounce(choiceLength, 500)
 
-  const setChoiceLengthConfig = usePrepareContractWrite({
-    ...maidsPredictionContractConfig,
-    functionName: 'setChoicesLength',
-    args: [id, debounceChoiceLength],
-  }).config
-  const writeChoiceLength = useContractWrite({ ...setChoiceLengthConfig })
+  const {
+    data: choiceLengthData,
+    isLoading,
+    write: writeChoiceLength,
+  } = useMaidsPredictionSetChoicesLength({
+    args: [BigInt(id), BigInt(debounceChoiceLength)],
+  })
+
   const writeChoiceLengthTx = useWaitForTransaction({
-    hash: writeChoiceLength.data?.hash,
+    hash: choiceLengthData?.hash,
   })
 
   return (
     <AutoForm
       formSchema={schema}
-      onSubmit={() => writeChoiceLength.write?.()}
+      onSubmit={() => writeChoiceLength()}
       fieldConfig={{
         choiceLength: {
           inputProps: {
@@ -43,9 +45,7 @@ const SetChoiceLength = ({ id }: SetChoiceLength) => {
       }}
       values={{ choiceLength }}
       onParsedValuesChange={(values) => setChoiceLength(values.choiceLength ?? 1)}>
-      <LoadingButtonForWeb3 loading={writeChoiceLength.isLoading || writeChoiceLengthTx.isLoading}>
-        Set ChoiceLength
-      </LoadingButtonForWeb3>
+      <LoadingButtonForWeb3 loading={isLoading || writeChoiceLengthTx.isLoading}>Set ChoiceLength</LoadingButtonForWeb3>
     </AutoForm>
   )
 }

@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
 import { TwitterShareButton, XIcon } from 'react-share'
-import { useAccount, useContractWrite, usePrepareContractWrite, useWaitForTransaction } from 'wagmi'
+import { Address, useAccount, useWaitForTransaction } from 'wagmi'
 import { MarketItemInfo } from '@/app/api/marketItems/marketItem'
 import { useToast } from '@/components/ui/use-toast'
-import { MARKET_PROXY_CONTRACT_ADDRESS, maidsContractConfig, marketContractConfig } from '@/config/client'
+import { NETWORK } from '@/config/client'
 import { useAllowance } from '@/hooks/useAllowance'
 import { useApprove } from '@/hooks/useApprove'
+import { maidsTokenAddress, useMaidsMarketBuyItem } from '@/lib/generated'
 
 type usePurchaseProps = {
   item: MarketItemInfo
@@ -17,12 +18,8 @@ export const usePurchase = ({ item, amount, differentAddress }: usePurchaseProps
   const [isActive, setIsActive] = useState(false)
   const [approved, setApproved] = useState(false)
   const { address } = useAccount()
-  const { allowance, refetch } = useAllowance(address ?? `0x${''}`, MARKET_PROXY_CONTRACT_ADDRESS)
-  const { approve, approveTx } = useApprove(
-    maidsContractConfig.address,
-    address ?? `0x${''}`,
-    MARKET_PROXY_CONTRACT_ADDRESS
-  )
+  const { allowance, refetch } = useAllowance(address ?? `0x${''}`, maidsTokenAddress[NETWORK.id])
+  const { approve, isLoading: isLoadingApprove, approveTx } = useApprove(maidsTokenAddress[NETWORK.id])
   const { toast } = useToast()
 
   useEffect(() => {
@@ -41,16 +38,19 @@ export const usePurchase = ({ item, amount, differentAddress }: usePurchaseProps
     setApproved((allowance ?? 0) >= totalPrice)
   }, [allowance, amount, item.price])
 
-  const { config: buyItemConfig } = usePrepareContractWrite({
-    ...marketContractConfig,
-    functionName: 'buyItem',
-    args: differentAddress !== '' ? [differentAddress, item.id, amount] : [address, item.id, amount],
-    enabled: approved,
+  const {
+    data: buyItemData,
+    isLoading: isLoadingBuyItem,
+    write: buyItem,
+  } = useMaidsMarketBuyItem({
+    args:
+      differentAddress !== ''
+        ? [differentAddress as Address, BigInt(item.id), BigInt(amount)]
+        : [address ?? ('0x0' as Address), BigInt(item.id), BigInt(amount)],
   })
-  const buyItem = useContractWrite(buyItemConfig)
 
   const buyItemTx = useWaitForTransaction({
-    hash: buyItem.data?.hash,
+    hash: buyItemData?.hash,
     onSuccess() {
       toast({
         title: 'Successfully bought!',
@@ -58,7 +58,7 @@ export const usePurchase = ({ item, amount, differentAddress }: usePurchaseProps
         duration: 10000,
         action: (
           <TwitterShareButton
-            url={`https://made-in-maids.vercel.app/market/item/${item.id}`}
+            url={`https://market.cryptomaids.tokyo/market/item/${item.id}`}
             title={`Successfully bought ${item.name}!`}>
             <XIcon size={32} round />
           </TwitterShareButton>
@@ -69,14 +69,10 @@ export const usePurchase = ({ item, amount, differentAddress }: usePurchaseProps
   })
 
   const buyItemOrApprove = () => {
-    try {
-      if (approved) {
-        buyItem.write?.()
-      } else {
-        approve.write?.()
-      }
-    } catch (e) {
-      console.error(e)
+    if (approved) {
+      buyItem()
+    } else {
+      approve()
     }
   }
 
@@ -84,6 +80,6 @@ export const usePurchase = ({ item, amount, differentAddress }: usePurchaseProps
     buyItemOrApprove,
     isActive,
     approved,
-    isLoading: approve.isLoading || buyItem.isLoading || approveTx.isLoading || buyItemTx.isLoading,
+    isLoading: isLoadingApprove || isLoadingBuyItem || approveTx.isLoading || buyItemTx.isLoading,
   }
 }

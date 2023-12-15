@@ -12,14 +12,14 @@ const fetcher = async (url: string): Promise<User> => {
 
 const defaultUser = {
   id: 0,
-  address: '0x',
+  address: '0x0',
   name: 'Unknown',
   iconUrl: '',
 } as User
 
 export function useUser(address: string) {
   const { data, error } = useSuspenseQuery<User>({
-    queryKey: userKeys.user(address ?? '0x'),
+    queryKey: userKeys.user(address ?? '0x0'),
     queryFn: () => fetcher(`/api/user/${address}`),
   })
 
