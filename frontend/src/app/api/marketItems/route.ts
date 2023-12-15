@@ -68,4 +68,4 @@ export async function GET() {
   return NextResponse.json(marketItems)
 }
 
-export const revalidate = 600
+export const dynamic = 'force-dynamic'
