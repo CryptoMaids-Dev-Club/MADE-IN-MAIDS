@@ -23,7 +23,9 @@ export const PurchaseForm = ({ item }: PurchaseFormProps) => {
   return (
     <div className='my-2'>
       {Number(item.supply) <= 0 ? (
-        <Typography variant='h5'>SOLD OUT!</Typography>
+        <Typography variant='h5' className='w-full text-center'>
+          SOLD OUT!
+        </Typography>
       ) : (
         <>
           <div className='grid grid-cols-5 gap-4'>

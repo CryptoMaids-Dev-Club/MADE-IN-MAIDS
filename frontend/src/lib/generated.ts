@@ -1277,11 +1277,11 @@ export const maidsVotingConfig = { address: maidsVotingAddress, abi: maidsVoting
  */
 export function useMaidsItemRead<
   TFunctionName extends string,
-  TSelectData = ReadContractResult<typeof maidsItemABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsItemABI, TFunctionName>
 >(
   config: Omit<UseContractReadConfig<typeof maidsItemABI, TFunctionName, TSelectData>, 'abi' | 'address'> & {
     chainId?: keyof typeof maidsItemAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -1301,12 +1301,12 @@ export function useMaidsItemRead<
  */
 export function useMaidsItemBalanceOf<
   TFunctionName extends 'balanceOf',
-  TSelectData = ReadContractResult<typeof maidsItemABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsItemABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsItemABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsItemAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsItemAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -1327,12 +1327,12 @@ export function useMaidsItemBalanceOf<
  */
 export function useMaidsItemBalanceOfBatch<
   TFunctionName extends 'balanceOfBatch',
-  TSelectData = ReadContractResult<typeof maidsItemABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsItemABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsItemABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsItemAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsItemAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -1353,12 +1353,12 @@ export function useMaidsItemBalanceOfBatch<
  */
 export function useMaidsItemIsApprovedForAll<
   TFunctionName extends 'isApprovedForAll',
-  TSelectData = ReadContractResult<typeof maidsItemABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsItemABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsItemABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsItemAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsItemAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -1379,12 +1379,12 @@ export function useMaidsItemIsApprovedForAll<
  */
 export function useMaidsItemOwner<
   TFunctionName extends 'owner',
-  TSelectData = ReadContractResult<typeof maidsItemABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsItemABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsItemABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsItemAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsItemAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -1405,12 +1405,12 @@ export function useMaidsItemOwner<
  */
 export function useMaidsItemSupportsInterface<
   TFunctionName extends 'supportsInterface',
-  TSelectData = ReadContractResult<typeof maidsItemABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsItemABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsItemABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsItemAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsItemAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -1431,12 +1431,12 @@ export function useMaidsItemSupportsInterface<
  */
 export function useMaidsItemUri<
   TFunctionName extends 'uri',
-  TSelectData = ReadContractResult<typeof maidsItemABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsItemABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsItemABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsItemAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsItemAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -1458,7 +1458,7 @@ export function useMaidsItemUri<
 export function useMaidsItemWrite<
   TFunctionName extends string,
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsItemAddress,
+  TChainId extends number = keyof typeof maidsItemAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -1470,7 +1470,7 @@ export function useMaidsItemWrite<
         abi?: never
         address?: never
         chainId?: TChainId
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -1490,7 +1490,7 @@ export function useMaidsItemWrite<
  */
 export function useMaidsItemAddOperator<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsItemAddress,
+  TChainId extends number = keyof typeof maidsItemAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -1503,7 +1503,7 @@ export function useMaidsItemAddOperator<
         address?: never
         chainId?: TChainId
         functionName?: 'addOperator'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -1524,7 +1524,7 @@ export function useMaidsItemAddOperator<
  */
 export function useMaidsItemMint<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsItemAddress,
+  TChainId extends number = keyof typeof maidsItemAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -1537,7 +1537,7 @@ export function useMaidsItemMint<
         address?: never
         chainId?: TChainId
         functionName?: 'mint'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -1558,7 +1558,7 @@ export function useMaidsItemMint<
  */
 export function useMaidsItemRemoveOperator<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsItemAddress,
+  TChainId extends number = keyof typeof maidsItemAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -1571,7 +1571,7 @@ export function useMaidsItemRemoveOperator<
         address?: never
         chainId?: TChainId
         functionName?: 'removeOperator'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -1592,7 +1592,7 @@ export function useMaidsItemRemoveOperator<
  */
 export function useMaidsItemRenounceOwnership<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsItemAddress,
+  TChainId extends number = keyof typeof maidsItemAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -1605,7 +1605,7 @@ export function useMaidsItemRenounceOwnership<
         address?: never
         chainId?: TChainId
         functionName?: 'renounceOwnership'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -1626,7 +1626,7 @@ export function useMaidsItemRenounceOwnership<
  */
 export function useMaidsItemSafeBatchTransferFrom<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsItemAddress,
+  TChainId extends number = keyof typeof maidsItemAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -1639,7 +1639,7 @@ export function useMaidsItemSafeBatchTransferFrom<
         address?: never
         chainId?: TChainId
         functionName?: 'safeBatchTransferFrom'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -1660,7 +1660,7 @@ export function useMaidsItemSafeBatchTransferFrom<
  */
 export function useMaidsItemSafeTransferFrom<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsItemAddress,
+  TChainId extends number = keyof typeof maidsItemAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -1673,7 +1673,7 @@ export function useMaidsItemSafeTransferFrom<
         address?: never
         chainId?: TChainId
         functionName?: 'safeTransferFrom'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -1694,7 +1694,7 @@ export function useMaidsItemSafeTransferFrom<
  */
 export function useMaidsItemSetApprovalForAll<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsItemAddress,
+  TChainId extends number = keyof typeof maidsItemAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -1707,7 +1707,7 @@ export function useMaidsItemSetApprovalForAll<
         address?: never
         chainId?: TChainId
         functionName?: 'setApprovalForAll'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -1728,7 +1728,7 @@ export function useMaidsItemSetApprovalForAll<
  */
 export function useMaidsItemSetUri<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsItemAddress,
+  TChainId extends number = keyof typeof maidsItemAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -1741,7 +1741,7 @@ export function useMaidsItemSetUri<
         address?: never
         chainId?: TChainId
         functionName?: 'setURI'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -1762,7 +1762,7 @@ export function useMaidsItemSetUri<
  */
 export function useMaidsItemTransferOwnership<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsItemAddress,
+  TChainId extends number = keyof typeof maidsItemAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -1775,7 +1775,7 @@ export function useMaidsItemTransferOwnership<
         address?: never
         chainId?: TChainId
         functionName?: 'transferOwnership'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -1797,7 +1797,7 @@ export function useMaidsItemTransferOwnership<
 export function usePrepareMaidsItemWrite<TFunctionName extends string>(
   config: Omit<UsePrepareContractWriteConfig<typeof maidsItemABI, TFunctionName>, 'abi' | 'address'> & {
     chainId?: keyof typeof maidsItemAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -1819,7 +1819,7 @@ export function usePrepareMaidsItemAddOperator(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsItemABI, 'addOperator'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsItemAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsItemAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -1841,7 +1841,7 @@ export function usePrepareMaidsItemAddOperator(
 export function usePrepareMaidsItemMint(
   config: Omit<UsePrepareContractWriteConfig<typeof maidsItemABI, 'mint'>, 'abi' | 'address' | 'functionName'> & {
     chainId?: keyof typeof maidsItemAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -1864,7 +1864,7 @@ export function usePrepareMaidsItemRemoveOperator(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsItemABI, 'removeOperator'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsItemAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsItemAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -1887,7 +1887,7 @@ export function usePrepareMaidsItemRenounceOwnership(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsItemABI, 'renounceOwnership'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsItemAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsItemAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -1910,7 +1910,7 @@ export function usePrepareMaidsItemSafeBatchTransferFrom(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsItemABI, 'safeBatchTransferFrom'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsItemAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsItemAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -1933,7 +1933,7 @@ export function usePrepareMaidsItemSafeTransferFrom(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsItemABI, 'safeTransferFrom'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsItemAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsItemAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -1956,7 +1956,7 @@ export function usePrepareMaidsItemSetApprovalForAll(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsItemABI, 'setApprovalForAll'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsItemAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsItemAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -1978,7 +1978,7 @@ export function usePrepareMaidsItemSetApprovalForAll(
 export function usePrepareMaidsItemSetUri(
   config: Omit<UsePrepareContractWriteConfig<typeof maidsItemABI, 'setURI'>, 'abi' | 'address' | 'functionName'> & {
     chainId?: keyof typeof maidsItemAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2001,7 +2001,7 @@ export function usePrepareMaidsItemTransferOwnership(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsItemABI, 'transferOwnership'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsItemAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsItemAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2023,7 +2023,7 @@ export function usePrepareMaidsItemTransferOwnership(
 export function useMaidsItemEvent<TEventName extends string>(
   config: Omit<UseContractEventConfig<typeof maidsItemABI, TEventName>, 'abi' | 'address'> & {
     chainId?: keyof typeof maidsItemAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2044,7 +2044,7 @@ export function useMaidsItemEvent<TEventName extends string>(
 export function useMaidsItemApprovalForAllEvent(
   config: Omit<UseContractEventConfig<typeof maidsItemABI, 'ApprovalForAll'>, 'abi' | 'address' | 'eventName'> & {
     chainId?: keyof typeof maidsItemAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2066,7 +2066,7 @@ export function useMaidsItemApprovalForAllEvent(
 export function useMaidsItemOwnershipTransferredEvent(
   config: Omit<UseContractEventConfig<typeof maidsItemABI, 'OwnershipTransferred'>, 'abi' | 'address' | 'eventName'> & {
     chainId?: keyof typeof maidsItemAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2088,7 +2088,7 @@ export function useMaidsItemOwnershipTransferredEvent(
 export function useMaidsItemTransferBatchEvent(
   config: Omit<UseContractEventConfig<typeof maidsItemABI, 'TransferBatch'>, 'abi' | 'address' | 'eventName'> & {
     chainId?: keyof typeof maidsItemAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2110,7 +2110,7 @@ export function useMaidsItemTransferBatchEvent(
 export function useMaidsItemTransferSingleEvent(
   config: Omit<UseContractEventConfig<typeof maidsItemABI, 'TransferSingle'>, 'abi' | 'address' | 'eventName'> & {
     chainId?: keyof typeof maidsItemAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2132,7 +2132,7 @@ export function useMaidsItemTransferSingleEvent(
 export function useMaidsItemUriEvent(
   config: Omit<UseContractEventConfig<typeof maidsItemABI, 'URI'>, 'abi' | 'address' | 'eventName'> & {
     chainId?: keyof typeof maidsItemAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2153,11 +2153,11 @@ export function useMaidsItemUriEvent(
  */
 export function useMaidsMarketRead<
   TFunctionName extends string,
-  TSelectData = ReadContractResult<typeof maidsMarketABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsMarketABI, TFunctionName>
 >(
   config: Omit<UseContractReadConfig<typeof maidsMarketABI, TFunctionName, TSelectData>, 'abi' | 'address'> & {
     chainId?: keyof typeof maidsMarketAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2177,12 +2177,12 @@ export function useMaidsMarketRead<
  */
 export function useMaidsMarketFetchMarketItems<
   TFunctionName extends 'fetchMarketItems',
-  TSelectData = ReadContractResult<typeof maidsMarketABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsMarketABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsMarketABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2203,12 +2203,12 @@ export function useMaidsMarketFetchMarketItems<
  */
 export function useMaidsMarketGetImplementation<
   TFunctionName extends 'getImplementation',
-  TSelectData = ReadContractResult<typeof maidsMarketABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsMarketABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsMarketABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2229,12 +2229,12 @@ export function useMaidsMarketGetImplementation<
  */
 export function useMaidsMarketNft<
   TFunctionName extends 'nft',
-  TSelectData = ReadContractResult<typeof maidsMarketABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsMarketABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsMarketABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2255,12 +2255,12 @@ export function useMaidsMarketNft<
  */
 export function useMaidsMarketOwner<
   TFunctionName extends 'owner',
-  TSelectData = ReadContractResult<typeof maidsMarketABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsMarketABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsMarketABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2281,12 +2281,12 @@ export function useMaidsMarketOwner<
  */
 export function useMaidsMarketPaused<
   TFunctionName extends 'paused',
-  TSelectData = ReadContractResult<typeof maidsMarketABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsMarketABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsMarketABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2307,12 +2307,12 @@ export function useMaidsMarketPaused<
  */
 export function useMaidsMarketProxiableUuid<
   TFunctionName extends 'proxiableUUID',
-  TSelectData = ReadContractResult<typeof maidsMarketABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsMarketABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsMarketABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2333,12 +2333,12 @@ export function useMaidsMarketProxiableUuid<
  */
 export function useMaidsMarketToken<
   TFunctionName extends 'token',
-  TSelectData = ReadContractResult<typeof maidsMarketABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsMarketABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsMarketABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2360,7 +2360,7 @@ export function useMaidsMarketToken<
 export function useMaidsMarketWrite<
   TFunctionName extends string,
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsMarketAddress,
+  TChainId extends number = keyof typeof maidsMarketAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -2372,7 +2372,7 @@ export function useMaidsMarketWrite<
         abi?: never
         address?: never
         chainId?: TChainId
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2392,7 +2392,7 @@ export function useMaidsMarketWrite<
  */
 export function useMaidsMarketAddOperator<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsMarketAddress,
+  TChainId extends number = keyof typeof maidsMarketAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -2405,7 +2405,7 @@ export function useMaidsMarketAddOperator<
         address?: never
         chainId?: TChainId
         functionName?: 'addOperator'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2426,7 +2426,7 @@ export function useMaidsMarketAddOperator<
  */
 export function useMaidsMarketAirdrop<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsMarketAddress,
+  TChainId extends number = keyof typeof maidsMarketAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -2439,7 +2439,7 @@ export function useMaidsMarketAirdrop<
         address?: never
         chainId?: TChainId
         functionName?: 'airdrop'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2460,7 +2460,7 @@ export function useMaidsMarketAirdrop<
  */
 export function useMaidsMarketBuyItem<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsMarketAddress,
+  TChainId extends number = keyof typeof maidsMarketAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -2473,7 +2473,7 @@ export function useMaidsMarketBuyItem<
         address?: never
         chainId?: TChainId
         functionName?: 'buyItem'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2494,7 +2494,7 @@ export function useMaidsMarketBuyItem<
  */
 export function useMaidsMarketCreateMarketItem<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsMarketAddress,
+  TChainId extends number = keyof typeof maidsMarketAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -2507,7 +2507,7 @@ export function useMaidsMarketCreateMarketItem<
         address?: never
         chainId?: TChainId
         functionName?: 'createMarketItem'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2528,7 +2528,7 @@ export function useMaidsMarketCreateMarketItem<
  */
 export function useMaidsMarketInitialize<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsMarketAddress,
+  TChainId extends number = keyof typeof maidsMarketAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -2541,7 +2541,7 @@ export function useMaidsMarketInitialize<
         address?: never
         chainId?: TChainId
         functionName?: 'initialize'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2562,7 +2562,7 @@ export function useMaidsMarketInitialize<
  */
 export function useMaidsMarketPause<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsMarketAddress,
+  TChainId extends number = keyof typeof maidsMarketAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -2575,7 +2575,7 @@ export function useMaidsMarketPause<
         address?: never
         chainId?: TChainId
         functionName?: 'pause'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2596,7 +2596,7 @@ export function useMaidsMarketPause<
  */
 export function useMaidsMarketRemoveOperator<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsMarketAddress,
+  TChainId extends number = keyof typeof maidsMarketAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -2609,7 +2609,7 @@ export function useMaidsMarketRemoveOperator<
         address?: never
         chainId?: TChainId
         functionName?: 'removeOperator'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2630,7 +2630,7 @@ export function useMaidsMarketRemoveOperator<
  */
 export function useMaidsMarketRenounceOwnership<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsMarketAddress,
+  TChainId extends number = keyof typeof maidsMarketAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -2643,7 +2643,7 @@ export function useMaidsMarketRenounceOwnership<
         address?: never
         chainId?: TChainId
         functionName?: 'renounceOwnership'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2664,7 +2664,7 @@ export function useMaidsMarketRenounceOwnership<
  */
 export function useMaidsMarketSetNft<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsMarketAddress,
+  TChainId extends number = keyof typeof maidsMarketAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -2677,7 +2677,7 @@ export function useMaidsMarketSetNft<
         address?: never
         chainId?: TChainId
         functionName?: 'setNFT'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2698,7 +2698,7 @@ export function useMaidsMarketSetNft<
  */
 export function useMaidsMarketSetPrice<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsMarketAddress,
+  TChainId extends number = keyof typeof maidsMarketAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -2711,7 +2711,7 @@ export function useMaidsMarketSetPrice<
         address?: never
         chainId?: TChainId
         functionName?: 'setPrice'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2732,7 +2732,7 @@ export function useMaidsMarketSetPrice<
  */
 export function useMaidsMarketSetSupply<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsMarketAddress,
+  TChainId extends number = keyof typeof maidsMarketAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -2745,7 +2745,7 @@ export function useMaidsMarketSetSupply<
         address?: never
         chainId?: TChainId
         functionName?: 'setSupply'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2766,7 +2766,7 @@ export function useMaidsMarketSetSupply<
  */
 export function useMaidsMarketSetToken<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsMarketAddress,
+  TChainId extends number = keyof typeof maidsMarketAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -2779,7 +2779,7 @@ export function useMaidsMarketSetToken<
         address?: never
         chainId?: TChainId
         functionName?: 'setToken'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2800,7 +2800,7 @@ export function useMaidsMarketSetToken<
  */
 export function useMaidsMarketSetTokenUri<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsMarketAddress,
+  TChainId extends number = keyof typeof maidsMarketAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -2813,7 +2813,7 @@ export function useMaidsMarketSetTokenUri<
         address?: never
         chainId?: TChainId
         functionName?: 'setTokenURI'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2834,7 +2834,7 @@ export function useMaidsMarketSetTokenUri<
  */
 export function useMaidsMarketTransferOwnership<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsMarketAddress,
+  TChainId extends number = keyof typeof maidsMarketAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -2847,7 +2847,7 @@ export function useMaidsMarketTransferOwnership<
         address?: never
         chainId?: TChainId
         functionName?: 'transferOwnership'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2868,7 +2868,7 @@ export function useMaidsMarketTransferOwnership<
  */
 export function useMaidsMarketUnpause<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsMarketAddress,
+  TChainId extends number = keyof typeof maidsMarketAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -2881,7 +2881,7 @@ export function useMaidsMarketUnpause<
         address?: never
         chainId?: TChainId
         functionName?: 'unpause'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2902,7 +2902,7 @@ export function useMaidsMarketUnpause<
  */
 export function useMaidsMarketUpgradeTo<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsMarketAddress,
+  TChainId extends number = keyof typeof maidsMarketAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -2915,7 +2915,7 @@ export function useMaidsMarketUpgradeTo<
         address?: never
         chainId?: TChainId
         functionName?: 'upgradeTo'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2936,7 +2936,7 @@ export function useMaidsMarketUpgradeTo<
  */
 export function useMaidsMarketUpgradeToAndCall<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsMarketAddress,
+  TChainId extends number = keyof typeof maidsMarketAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -2949,7 +2949,7 @@ export function useMaidsMarketUpgradeToAndCall<
         address?: never
         chainId?: TChainId
         functionName?: 'upgradeToAndCall'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2971,7 +2971,7 @@ export function useMaidsMarketUpgradeToAndCall<
 export function usePrepareMaidsMarketWrite<TFunctionName extends string>(
   config: Omit<UsePrepareContractWriteConfig<typeof maidsMarketABI, TFunctionName>, 'abi' | 'address'> & {
     chainId?: keyof typeof maidsMarketAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -2993,7 +2993,7 @@ export function usePrepareMaidsMarketAddOperator(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsMarketABI, 'addOperator'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3015,7 +3015,7 @@ export function usePrepareMaidsMarketAddOperator(
 export function usePrepareMaidsMarketAirdrop(
   config: Omit<UsePrepareContractWriteConfig<typeof maidsMarketABI, 'airdrop'>, 'abi' | 'address' | 'functionName'> & {
     chainId?: keyof typeof maidsMarketAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3037,7 +3037,7 @@ export function usePrepareMaidsMarketAirdrop(
 export function usePrepareMaidsMarketBuyItem(
   config: Omit<UsePrepareContractWriteConfig<typeof maidsMarketABI, 'buyItem'>, 'abi' | 'address' | 'functionName'> & {
     chainId?: keyof typeof maidsMarketAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3060,7 +3060,7 @@ export function usePrepareMaidsMarketCreateMarketItem(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsMarketABI, 'createMarketItem'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3083,7 +3083,7 @@ export function usePrepareMaidsMarketInitialize(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsMarketABI, 'initialize'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3105,7 +3105,7 @@ export function usePrepareMaidsMarketInitialize(
 export function usePrepareMaidsMarketPause(
   config: Omit<UsePrepareContractWriteConfig<typeof maidsMarketABI, 'pause'>, 'abi' | 'address' | 'functionName'> & {
     chainId?: keyof typeof maidsMarketAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3128,7 +3128,7 @@ export function usePrepareMaidsMarketRemoveOperator(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsMarketABI, 'removeOperator'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3151,7 +3151,7 @@ export function usePrepareMaidsMarketRenounceOwnership(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsMarketABI, 'renounceOwnership'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3173,7 +3173,7 @@ export function usePrepareMaidsMarketRenounceOwnership(
 export function usePrepareMaidsMarketSetNft(
   config: Omit<UsePrepareContractWriteConfig<typeof maidsMarketABI, 'setNFT'>, 'abi' | 'address' | 'functionName'> & {
     chainId?: keyof typeof maidsMarketAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3195,7 +3195,7 @@ export function usePrepareMaidsMarketSetNft(
 export function usePrepareMaidsMarketSetPrice(
   config: Omit<UsePrepareContractWriteConfig<typeof maidsMarketABI, 'setPrice'>, 'abi' | 'address' | 'functionName'> & {
     chainId?: keyof typeof maidsMarketAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3218,7 +3218,7 @@ export function usePrepareMaidsMarketSetSupply(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsMarketABI, 'setSupply'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3240,7 +3240,7 @@ export function usePrepareMaidsMarketSetSupply(
 export function usePrepareMaidsMarketSetToken(
   config: Omit<UsePrepareContractWriteConfig<typeof maidsMarketABI, 'setToken'>, 'abi' | 'address' | 'functionName'> & {
     chainId?: keyof typeof maidsMarketAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3263,7 +3263,7 @@ export function usePrepareMaidsMarketSetTokenUri(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsMarketABI, 'setTokenURI'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3286,7 +3286,7 @@ export function usePrepareMaidsMarketTransferOwnership(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsMarketABI, 'transferOwnership'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3308,7 +3308,7 @@ export function usePrepareMaidsMarketTransferOwnership(
 export function usePrepareMaidsMarketUnpause(
   config: Omit<UsePrepareContractWriteConfig<typeof maidsMarketABI, 'unpause'>, 'abi' | 'address' | 'functionName'> & {
     chainId?: keyof typeof maidsMarketAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3331,7 +3331,7 @@ export function usePrepareMaidsMarketUpgradeTo(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsMarketABI, 'upgradeTo'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3354,7 +3354,7 @@ export function usePrepareMaidsMarketUpgradeToAndCall(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsMarketABI, 'upgradeToAndCall'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3376,7 +3376,7 @@ export function usePrepareMaidsMarketUpgradeToAndCall(
 export function useMaidsMarketEvent<TEventName extends string>(
   config: Omit<UseContractEventConfig<typeof maidsMarketABI, TEventName>, 'abi' | 'address'> & {
     chainId?: keyof typeof maidsMarketAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3397,7 +3397,7 @@ export function useMaidsMarketEvent<TEventName extends string>(
 export function useMaidsMarketAdminChangedEvent(
   config: Omit<UseContractEventConfig<typeof maidsMarketABI, 'AdminChanged'>, 'abi' | 'address' | 'eventName'> & {
     chainId?: keyof typeof maidsMarketAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3419,7 +3419,7 @@ export function useMaidsMarketAdminChangedEvent(
 export function useMaidsMarketBeaconUpgradedEvent(
   config: Omit<UseContractEventConfig<typeof maidsMarketABI, 'BeaconUpgraded'>, 'abi' | 'address' | 'eventName'> & {
     chainId?: keyof typeof maidsMarketAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3441,7 +3441,7 @@ export function useMaidsMarketBeaconUpgradedEvent(
 export function useMaidsMarketBuyItemEvent(
   config: Omit<UseContractEventConfig<typeof maidsMarketABI, 'BuyItem'>, 'abi' | 'address' | 'eventName'> & {
     chainId?: keyof typeof maidsMarketAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3463,7 +3463,7 @@ export function useMaidsMarketBuyItemEvent(
 export function useMaidsMarketInitializedEvent(
   config: Omit<UseContractEventConfig<typeof maidsMarketABI, 'Initialized'>, 'abi' | 'address' | 'eventName'> & {
     chainId?: keyof typeof maidsMarketAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3486,7 +3486,7 @@ export function useMaidsMarketOwnershipTransferredEvent(
   config: Omit<
     UseContractEventConfig<typeof maidsMarketABI, 'OwnershipTransferred'>,
     'abi' | 'address' | 'eventName'
-  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsMarketAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3508,7 +3508,7 @@ export function useMaidsMarketOwnershipTransferredEvent(
 export function useMaidsMarketPausedEvent(
   config: Omit<UseContractEventConfig<typeof maidsMarketABI, 'Paused'>, 'abi' | 'address' | 'eventName'> & {
     chainId?: keyof typeof maidsMarketAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3530,7 +3530,7 @@ export function useMaidsMarketPausedEvent(
 export function useMaidsMarketUnpausedEvent(
   config: Omit<UseContractEventConfig<typeof maidsMarketABI, 'Unpaused'>, 'abi' | 'address' | 'eventName'> & {
     chainId?: keyof typeof maidsMarketAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3552,7 +3552,7 @@ export function useMaidsMarketUnpausedEvent(
 export function useMaidsMarketUpgradedEvent(
   config: Omit<UseContractEventConfig<typeof maidsMarketABI, 'Upgraded'>, 'abi' | 'address' | 'eventName'> & {
     chainId?: keyof typeof maidsMarketAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3573,11 +3573,11 @@ export function useMaidsMarketUpgradedEvent(
  */
 export function useMaidsPredictionRead<
   TFunctionName extends string,
-  TSelectData = ReadContractResult<typeof maidsPredictionABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsPredictionABI, TFunctionName>
 >(
   config: Omit<UseContractReadConfig<typeof maidsPredictionABI, TFunctionName, TSelectData>, 'abi' | 'address'> & {
     chainId?: keyof typeof maidsPredictionAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3597,12 +3597,12 @@ export function useMaidsPredictionRead<
  */
 export function useMaidsPredictionGetAllPredictions<
   TFunctionName extends 'getAllPredictions',
-  TSelectData = ReadContractResult<typeof maidsPredictionABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsPredictionABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsPredictionABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3623,12 +3623,12 @@ export function useMaidsPredictionGetAllPredictions<
  */
 export function useMaidsPredictionGetImplementation<
   TFunctionName extends 'getImplementation',
-  TSelectData = ReadContractResult<typeof maidsPredictionABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsPredictionABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsPredictionABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3649,12 +3649,12 @@ export function useMaidsPredictionGetImplementation<
  */
 export function useMaidsPredictionGetPrediction<
   TFunctionName extends 'getPrediction',
-  TSelectData = ReadContractResult<typeof maidsPredictionABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsPredictionABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsPredictionABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3675,12 +3675,12 @@ export function useMaidsPredictionGetPrediction<
  */
 export function useMaidsPredictionGetRewardAmount<
   TFunctionName extends 'getRewardAmount',
-  TSelectData = ReadContractResult<typeof maidsPredictionABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsPredictionABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsPredictionABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3701,12 +3701,12 @@ export function useMaidsPredictionGetRewardAmount<
  */
 export function useMaidsPredictionGetTop3Info<
   TFunctionName extends 'getTop3Info',
-  TSelectData = ReadContractResult<typeof maidsPredictionABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsPredictionABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsPredictionABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3727,12 +3727,12 @@ export function useMaidsPredictionGetTop3Info<
  */
 export function useMaidsPredictionGetUserInfo<
   TFunctionName extends 'getUserInfo',
-  TSelectData = ReadContractResult<typeof maidsPredictionABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsPredictionABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsPredictionABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3753,12 +3753,12 @@ export function useMaidsPredictionGetUserInfo<
  */
 export function useMaidsPredictionGetUserInfoOfPrediction<
   TFunctionName extends 'getUserInfoOfPrediction',
-  TSelectData = ReadContractResult<typeof maidsPredictionABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsPredictionABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsPredictionABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3779,12 +3779,12 @@ export function useMaidsPredictionGetUserInfoOfPrediction<
  */
 export function useMaidsPredictionOwner<
   TFunctionName extends 'owner',
-  TSelectData = ReadContractResult<typeof maidsPredictionABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsPredictionABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsPredictionABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3805,12 +3805,12 @@ export function useMaidsPredictionOwner<
  */
 export function useMaidsPredictionPredictions<
   TFunctionName extends 'predictions',
-  TSelectData = ReadContractResult<typeof maidsPredictionABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsPredictionABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsPredictionABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3831,12 +3831,12 @@ export function useMaidsPredictionPredictions<
  */
 export function useMaidsPredictionProxiableUuid<
   TFunctionName extends 'proxiableUUID',
-  TSelectData = ReadContractResult<typeof maidsPredictionABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsPredictionABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsPredictionABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3857,12 +3857,12 @@ export function useMaidsPredictionProxiableUuid<
  */
 export function useMaidsPredictionToken<
   TFunctionName extends 'token',
-  TSelectData = ReadContractResult<typeof maidsPredictionABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsPredictionABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsPredictionABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3883,12 +3883,12 @@ export function useMaidsPredictionToken<
  */
 export function useMaidsPredictionTop3Users<
   TFunctionName extends 'top3Users',
-  TSelectData = ReadContractResult<typeof maidsPredictionABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsPredictionABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsPredictionABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3909,12 +3909,12 @@ export function useMaidsPredictionTop3Users<
  */
 export function useMaidsPredictionUserInfo<
   TFunctionName extends 'userInfo',
-  TSelectData = ReadContractResult<typeof maidsPredictionABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsPredictionABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsPredictionABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3935,12 +3935,12 @@ export function useMaidsPredictionUserInfo<
  */
 export function useMaidsPredictionUserInfos<
   TFunctionName extends 'userInfos',
-  TSelectData = ReadContractResult<typeof maidsPredictionABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsPredictionABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsPredictionABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3962,7 +3962,7 @@ export function useMaidsPredictionUserInfos<
 export function useMaidsPredictionWrite<
   TFunctionName extends string,
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsPredictionAddress,
+  TChainId extends number = keyof typeof maidsPredictionAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -3974,7 +3974,7 @@ export function useMaidsPredictionWrite<
         abi?: never
         address?: never
         chainId?: TChainId
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -3994,7 +3994,7 @@ export function useMaidsPredictionWrite<
  */
 export function useMaidsPredictionClaimReward<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsPredictionAddress,
+  TChainId extends number = keyof typeof maidsPredictionAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -4007,7 +4007,7 @@ export function useMaidsPredictionClaimReward<
         address?: never
         chainId?: TChainId
         functionName?: 'claimReward'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4028,7 +4028,7 @@ export function useMaidsPredictionClaimReward<
  */
 export function useMaidsPredictionCreatePrediction<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsPredictionAddress,
+  TChainId extends number = keyof typeof maidsPredictionAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -4041,7 +4041,7 @@ export function useMaidsPredictionCreatePrediction<
         address?: never
         chainId?: TChainId
         functionName?: 'createPrediction'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4062,7 +4062,7 @@ export function useMaidsPredictionCreatePrediction<
  */
 export function useMaidsPredictionInitialize<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsPredictionAddress,
+  TChainId extends number = keyof typeof maidsPredictionAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -4075,7 +4075,7 @@ export function useMaidsPredictionInitialize<
         address?: never
         chainId?: TChainId
         functionName?: 'initialize'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4096,7 +4096,7 @@ export function useMaidsPredictionInitialize<
  */
 export function useMaidsPredictionPredict<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsPredictionAddress,
+  TChainId extends number = keyof typeof maidsPredictionAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -4109,7 +4109,7 @@ export function useMaidsPredictionPredict<
         address?: never
         chainId?: TChainId
         functionName?: 'predict'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4130,7 +4130,7 @@ export function useMaidsPredictionPredict<
  */
 export function useMaidsPredictionRenounceOwnership<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsPredictionAddress,
+  TChainId extends number = keyof typeof maidsPredictionAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -4143,7 +4143,7 @@ export function useMaidsPredictionRenounceOwnership<
         address?: never
         chainId?: TChainId
         functionName?: 'renounceOwnership'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4164,7 +4164,7 @@ export function useMaidsPredictionRenounceOwnership<
  */
 export function useMaidsPredictionSetChoicesLength<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsPredictionAddress,
+  TChainId extends number = keyof typeof maidsPredictionAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -4177,7 +4177,7 @@ export function useMaidsPredictionSetChoicesLength<
         address?: never
         chainId?: TChainId
         functionName?: 'setChoicesLength'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4198,7 +4198,7 @@ export function useMaidsPredictionSetChoicesLength<
  */
 export function useMaidsPredictionSetEndTime<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsPredictionAddress,
+  TChainId extends number = keyof typeof maidsPredictionAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -4211,7 +4211,7 @@ export function useMaidsPredictionSetEndTime<
         address?: never
         chainId?: TChainId
         functionName?: 'setEndTime'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4232,7 +4232,7 @@ export function useMaidsPredictionSetEndTime<
  */
 export function useMaidsPredictionSetPredictionUri<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsPredictionAddress,
+  TChainId extends number = keyof typeof maidsPredictionAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -4245,7 +4245,7 @@ export function useMaidsPredictionSetPredictionUri<
         address?: never
         chainId?: TChainId
         functionName?: 'setPredictionURI'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4266,7 +4266,7 @@ export function useMaidsPredictionSetPredictionUri<
  */
 export function useMaidsPredictionSetRate<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsPredictionAddress,
+  TChainId extends number = keyof typeof maidsPredictionAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -4279,7 +4279,7 @@ export function useMaidsPredictionSetRate<
         address?: never
         chainId?: TChainId
         functionName?: 'setRate'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4300,7 +4300,7 @@ export function useMaidsPredictionSetRate<
  */
 export function useMaidsPredictionSetToken<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsPredictionAddress,
+  TChainId extends number = keyof typeof maidsPredictionAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -4313,7 +4313,7 @@ export function useMaidsPredictionSetToken<
         address?: never
         chainId?: TChainId
         functionName?: 'setToken'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4334,7 +4334,7 @@ export function useMaidsPredictionSetToken<
  */
 export function useMaidsPredictionSettle<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsPredictionAddress,
+  TChainId extends number = keyof typeof maidsPredictionAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -4347,7 +4347,7 @@ export function useMaidsPredictionSettle<
         address?: never
         chainId?: TChainId
         functionName?: 'settle'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4368,7 +4368,7 @@ export function useMaidsPredictionSettle<
  */
 export function useMaidsPredictionTransferOwnership<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsPredictionAddress,
+  TChainId extends number = keyof typeof maidsPredictionAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -4381,7 +4381,7 @@ export function useMaidsPredictionTransferOwnership<
         address?: never
         chainId?: TChainId
         functionName?: 'transferOwnership'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4402,7 +4402,7 @@ export function useMaidsPredictionTransferOwnership<
  */
 export function useMaidsPredictionUpgradeTo<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsPredictionAddress,
+  TChainId extends number = keyof typeof maidsPredictionAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -4415,7 +4415,7 @@ export function useMaidsPredictionUpgradeTo<
         address?: never
         chainId?: TChainId
         functionName?: 'upgradeTo'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4436,7 +4436,7 @@ export function useMaidsPredictionUpgradeTo<
  */
 export function useMaidsPredictionUpgradeToAndCall<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsPredictionAddress,
+  TChainId extends number = keyof typeof maidsPredictionAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -4449,7 +4449,7 @@ export function useMaidsPredictionUpgradeToAndCall<
         address?: never
         chainId?: TChainId
         functionName?: 'upgradeToAndCall'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4471,7 +4471,7 @@ export function useMaidsPredictionUpgradeToAndCall<
 export function usePrepareMaidsPredictionWrite<TFunctionName extends string>(
   config: Omit<UsePrepareContractWriteConfig<typeof maidsPredictionABI, TFunctionName>, 'abi' | 'address'> & {
     chainId?: keyof typeof maidsPredictionAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4493,7 +4493,7 @@ export function usePrepareMaidsPredictionClaimReward(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsPredictionABI, 'claimReward'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4516,7 +4516,7 @@ export function usePrepareMaidsPredictionCreatePrediction(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsPredictionABI, 'createPrediction'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4539,7 +4539,7 @@ export function usePrepareMaidsPredictionInitialize(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsPredictionABI, 'initialize'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4562,7 +4562,7 @@ export function usePrepareMaidsPredictionPredict(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsPredictionABI, 'predict'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4585,7 +4585,7 @@ export function usePrepareMaidsPredictionRenounceOwnership(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsPredictionABI, 'renounceOwnership'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4608,7 +4608,7 @@ export function usePrepareMaidsPredictionSetChoicesLength(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsPredictionABI, 'setChoicesLength'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4631,7 +4631,7 @@ export function usePrepareMaidsPredictionSetEndTime(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsPredictionABI, 'setEndTime'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4654,7 +4654,7 @@ export function usePrepareMaidsPredictionSetPredictionUri(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsPredictionABI, 'setPredictionURI'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4677,7 +4677,7 @@ export function usePrepareMaidsPredictionSetRate(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsPredictionABI, 'setRate'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4700,7 +4700,7 @@ export function usePrepareMaidsPredictionSetToken(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsPredictionABI, 'setToken'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4723,7 +4723,7 @@ export function usePrepareMaidsPredictionSettle(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsPredictionABI, 'settle'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4746,7 +4746,7 @@ export function usePrepareMaidsPredictionTransferOwnership(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsPredictionABI, 'transferOwnership'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4769,7 +4769,7 @@ export function usePrepareMaidsPredictionUpgradeTo(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsPredictionABI, 'upgradeTo'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4792,7 +4792,7 @@ export function usePrepareMaidsPredictionUpgradeToAndCall(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsPredictionABI, 'upgradeToAndCall'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4814,7 +4814,7 @@ export function usePrepareMaidsPredictionUpgradeToAndCall(
 export function useMaidsPredictionEvent<TEventName extends string>(
   config: Omit<UseContractEventConfig<typeof maidsPredictionABI, TEventName>, 'abi' | 'address'> & {
     chainId?: keyof typeof maidsPredictionAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4835,7 +4835,7 @@ export function useMaidsPredictionEvent<TEventName extends string>(
 export function useMaidsPredictionAdminChangedEvent(
   config: Omit<UseContractEventConfig<typeof maidsPredictionABI, 'AdminChanged'>, 'abi' | 'address' | 'eventName'> & {
     chainId?: keyof typeof maidsPredictionAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4857,7 +4857,7 @@ export function useMaidsPredictionAdminChangedEvent(
 export function useMaidsPredictionBeaconUpgradedEvent(
   config: Omit<UseContractEventConfig<typeof maidsPredictionABI, 'BeaconUpgraded'>, 'abi' | 'address' | 'eventName'> & {
     chainId?: keyof typeof maidsPredictionAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4879,7 +4879,7 @@ export function useMaidsPredictionBeaconUpgradedEvent(
 export function useMaidsPredictionInitializedEvent(
   config: Omit<UseContractEventConfig<typeof maidsPredictionABI, 'Initialized'>, 'abi' | 'address' | 'eventName'> & {
     chainId?: keyof typeof maidsPredictionAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4902,7 +4902,7 @@ export function useMaidsPredictionOwnershipTransferredEvent(
   config: Omit<
     UseContractEventConfig<typeof maidsPredictionABI, 'OwnershipTransferred'>,
     'abi' | 'address' | 'eventName'
-  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4925,7 +4925,7 @@ export function useMaidsPredictionPredictionCreatedEvent(
   config: Omit<
     UseContractEventConfig<typeof maidsPredictionABI, 'PredictionCreated'>,
     'abi' | 'address' | 'eventName'
-  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsPredictionAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4947,7 +4947,7 @@ export function useMaidsPredictionPredictionCreatedEvent(
 export function useMaidsPredictionSettleEvent(
   config: Omit<UseContractEventConfig<typeof maidsPredictionABI, 'Settle'>, 'abi' | 'address' | 'eventName'> & {
     chainId?: keyof typeof maidsPredictionAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4969,7 +4969,7 @@ export function useMaidsPredictionSettleEvent(
 export function useMaidsPredictionUpgradedEvent(
   config: Omit<UseContractEventConfig<typeof maidsPredictionABI, 'Upgraded'>, 'abi' | 'address' | 'eventName'> & {
     chainId?: keyof typeof maidsPredictionAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -4990,11 +4990,11 @@ export function useMaidsPredictionUpgradedEvent(
  */
 export function useMaidsTokenRead<
   TFunctionName extends string,
-  TSelectData = ReadContractResult<typeof maidsTokenABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsTokenABI, TFunctionName>
 >(
   config: Omit<UseContractReadConfig<typeof maidsTokenABI, TFunctionName, TSelectData>, 'abi' | 'address'> & {
     chainId?: keyof typeof maidsTokenAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5014,12 +5014,12 @@ export function useMaidsTokenRead<
  */
 export function useMaidsTokenAllowance<
   TFunctionName extends 'allowance',
-  TSelectData = ReadContractResult<typeof maidsTokenABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsTokenABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsTokenAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsTokenAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5040,12 +5040,12 @@ export function useMaidsTokenAllowance<
  */
 export function useMaidsTokenBalanceOf<
   TFunctionName extends 'balanceOf',
-  TSelectData = ReadContractResult<typeof maidsTokenABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsTokenABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsTokenAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsTokenAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5066,12 +5066,12 @@ export function useMaidsTokenBalanceOf<
  */
 export function useMaidsTokenDecimals<
   TFunctionName extends 'decimals',
-  TSelectData = ReadContractResult<typeof maidsTokenABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsTokenABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsTokenAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsTokenAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5092,12 +5092,12 @@ export function useMaidsTokenDecimals<
  */
 export function useMaidsTokenName<
   TFunctionName extends 'name',
-  TSelectData = ReadContractResult<typeof maidsTokenABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsTokenABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsTokenAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsTokenAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5118,12 +5118,12 @@ export function useMaidsTokenName<
  */
 export function useMaidsTokenOwner<
   TFunctionName extends 'owner',
-  TSelectData = ReadContractResult<typeof maidsTokenABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsTokenABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsTokenAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsTokenAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5144,12 +5144,12 @@ export function useMaidsTokenOwner<
  */
 export function useMaidsTokenSymbol<
   TFunctionName extends 'symbol',
-  TSelectData = ReadContractResult<typeof maidsTokenABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsTokenABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsTokenAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsTokenAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5170,12 +5170,12 @@ export function useMaidsTokenSymbol<
  */
 export function useMaidsTokenTotalSupply<
   TFunctionName extends 'totalSupply',
-  TSelectData = ReadContractResult<typeof maidsTokenABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsTokenABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsTokenABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsTokenAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsTokenAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5197,7 +5197,7 @@ export function useMaidsTokenTotalSupply<
 export function useMaidsTokenWrite<
   TFunctionName extends string,
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsTokenAddress,
+  TChainId extends number = keyof typeof maidsTokenAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -5209,7 +5209,7 @@ export function useMaidsTokenWrite<
         abi?: never
         address?: never
         chainId?: TChainId
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5229,7 +5229,7 @@ export function useMaidsTokenWrite<
  */
 export function useMaidsTokenAddOperator<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsTokenAddress,
+  TChainId extends number = keyof typeof maidsTokenAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -5242,7 +5242,7 @@ export function useMaidsTokenAddOperator<
         address?: never
         chainId?: TChainId
         functionName?: 'addOperator'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5263,7 +5263,7 @@ export function useMaidsTokenAddOperator<
  */
 export function useMaidsTokenAirdrop<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsTokenAddress,
+  TChainId extends number = keyof typeof maidsTokenAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -5276,7 +5276,7 @@ export function useMaidsTokenAirdrop<
         address?: never
         chainId?: TChainId
         functionName?: 'airdrop'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5297,7 +5297,7 @@ export function useMaidsTokenAirdrop<
  */
 export function useMaidsTokenApprove<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsTokenAddress,
+  TChainId extends number = keyof typeof maidsTokenAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -5310,7 +5310,7 @@ export function useMaidsTokenApprove<
         address?: never
         chainId?: TChainId
         functionName?: 'approve'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5331,7 +5331,7 @@ export function useMaidsTokenApprove<
  */
 export function useMaidsTokenDecreaseAllowance<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsTokenAddress,
+  TChainId extends number = keyof typeof maidsTokenAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -5344,7 +5344,7 @@ export function useMaidsTokenDecreaseAllowance<
         address?: never
         chainId?: TChainId
         functionName?: 'decreaseAllowance'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5365,7 +5365,7 @@ export function useMaidsTokenDecreaseAllowance<
  */
 export function useMaidsTokenIncreaseAllowance<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsTokenAddress,
+  TChainId extends number = keyof typeof maidsTokenAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -5378,7 +5378,7 @@ export function useMaidsTokenIncreaseAllowance<
         address?: never
         chainId?: TChainId
         functionName?: 'increaseAllowance'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5399,7 +5399,7 @@ export function useMaidsTokenIncreaseAllowance<
  */
 export function useMaidsTokenMint<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsTokenAddress,
+  TChainId extends number = keyof typeof maidsTokenAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -5412,7 +5412,7 @@ export function useMaidsTokenMint<
         address?: never
         chainId?: TChainId
         functionName?: 'mint'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5433,7 +5433,7 @@ export function useMaidsTokenMint<
  */
 export function useMaidsTokenRemoveOperator<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsTokenAddress,
+  TChainId extends number = keyof typeof maidsTokenAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -5446,7 +5446,7 @@ export function useMaidsTokenRemoveOperator<
         address?: never
         chainId?: TChainId
         functionName?: 'removeOperator'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5467,7 +5467,7 @@ export function useMaidsTokenRemoveOperator<
  */
 export function useMaidsTokenRenounceOwnership<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsTokenAddress,
+  TChainId extends number = keyof typeof maidsTokenAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -5480,7 +5480,7 @@ export function useMaidsTokenRenounceOwnership<
         address?: never
         chainId?: TChainId
         functionName?: 'renounceOwnership'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5501,7 +5501,7 @@ export function useMaidsTokenRenounceOwnership<
  */
 export function useMaidsTokenTransfer<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsTokenAddress,
+  TChainId extends number = keyof typeof maidsTokenAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -5514,7 +5514,7 @@ export function useMaidsTokenTransfer<
         address?: never
         chainId?: TChainId
         functionName?: 'transfer'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5535,7 +5535,7 @@ export function useMaidsTokenTransfer<
  */
 export function useMaidsTokenTransferFrom<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsTokenAddress,
+  TChainId extends number = keyof typeof maidsTokenAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -5548,7 +5548,7 @@ export function useMaidsTokenTransferFrom<
         address?: never
         chainId?: TChainId
         functionName?: 'transferFrom'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5569,7 +5569,7 @@ export function useMaidsTokenTransferFrom<
  */
 export function useMaidsTokenTransferOwnership<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsTokenAddress,
+  TChainId extends number = keyof typeof maidsTokenAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -5582,7 +5582,7 @@ export function useMaidsTokenTransferOwnership<
         address?: never
         chainId?: TChainId
         functionName?: 'transferOwnership'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5604,7 +5604,7 @@ export function useMaidsTokenTransferOwnership<
 export function usePrepareMaidsTokenWrite<TFunctionName extends string>(
   config: Omit<UsePrepareContractWriteConfig<typeof maidsTokenABI, TFunctionName>, 'abi' | 'address'> & {
     chainId?: keyof typeof maidsTokenAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5626,7 +5626,7 @@ export function usePrepareMaidsTokenAddOperator(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsTokenABI, 'addOperator'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsTokenAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsTokenAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5648,7 +5648,7 @@ export function usePrepareMaidsTokenAddOperator(
 export function usePrepareMaidsTokenAirdrop(
   config: Omit<UsePrepareContractWriteConfig<typeof maidsTokenABI, 'airdrop'>, 'abi' | 'address' | 'functionName'> & {
     chainId?: keyof typeof maidsTokenAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5670,7 +5670,7 @@ export function usePrepareMaidsTokenAirdrop(
 export function usePrepareMaidsTokenApprove(
   config: Omit<UsePrepareContractWriteConfig<typeof maidsTokenABI, 'approve'>, 'abi' | 'address' | 'functionName'> & {
     chainId?: keyof typeof maidsTokenAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5693,7 +5693,7 @@ export function usePrepareMaidsTokenDecreaseAllowance(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsTokenABI, 'decreaseAllowance'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsTokenAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsTokenAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5716,7 +5716,7 @@ export function usePrepareMaidsTokenIncreaseAllowance(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsTokenABI, 'increaseAllowance'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsTokenAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsTokenAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5738,7 +5738,7 @@ export function usePrepareMaidsTokenIncreaseAllowance(
 export function usePrepareMaidsTokenMint(
   config: Omit<UsePrepareContractWriteConfig<typeof maidsTokenABI, 'mint'>, 'abi' | 'address' | 'functionName'> & {
     chainId?: keyof typeof maidsTokenAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5761,7 +5761,7 @@ export function usePrepareMaidsTokenRemoveOperator(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsTokenABI, 'removeOperator'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsTokenAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsTokenAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5784,7 +5784,7 @@ export function usePrepareMaidsTokenRenounceOwnership(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsTokenABI, 'renounceOwnership'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsTokenAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsTokenAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5806,7 +5806,7 @@ export function usePrepareMaidsTokenRenounceOwnership(
 export function usePrepareMaidsTokenTransfer(
   config: Omit<UsePrepareContractWriteConfig<typeof maidsTokenABI, 'transfer'>, 'abi' | 'address' | 'functionName'> & {
     chainId?: keyof typeof maidsTokenAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5829,7 +5829,7 @@ export function usePrepareMaidsTokenTransferFrom(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsTokenABI, 'transferFrom'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsTokenAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsTokenAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5852,7 +5852,7 @@ export function usePrepareMaidsTokenTransferOwnership(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsTokenABI, 'transferOwnership'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsTokenAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsTokenAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5874,7 +5874,7 @@ export function usePrepareMaidsTokenTransferOwnership(
 export function useMaidsTokenEvent<TEventName extends string>(
   config: Omit<UseContractEventConfig<typeof maidsTokenABI, TEventName>, 'abi' | 'address'> & {
     chainId?: keyof typeof maidsTokenAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5895,7 +5895,7 @@ export function useMaidsTokenEvent<TEventName extends string>(
 export function useMaidsTokenApprovalEvent(
   config: Omit<UseContractEventConfig<typeof maidsTokenABI, 'Approval'>, 'abi' | 'address' | 'eventName'> & {
     chainId?: keyof typeof maidsTokenAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5918,7 +5918,7 @@ export function useMaidsTokenOwnershipTransferredEvent(
   config: Omit<
     UseContractEventConfig<typeof maidsTokenABI, 'OwnershipTransferred'>,
     'abi' | 'address' | 'eventName'
-  > & { chainId?: keyof typeof maidsTokenAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsTokenAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5940,7 +5940,7 @@ export function useMaidsTokenOwnershipTransferredEvent(
 export function useMaidsTokenTransferEvent(
   config: Omit<UseContractEventConfig<typeof maidsTokenABI, 'Transfer'>, 'abi' | 'address' | 'eventName'> & {
     chainId?: keyof typeof maidsTokenAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5961,11 +5961,11 @@ export function useMaidsTokenTransferEvent(
  */
 export function useMaidsVotingRead<
   TFunctionName extends string,
-  TSelectData = ReadContractResult<typeof maidsVotingABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsVotingABI, TFunctionName>
 >(
   config: Omit<UseContractReadConfig<typeof maidsVotingABI, TFunctionName, TSelectData>, 'abi' | 'address'> & {
     chainId?: keyof typeof maidsVotingAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -5985,12 +5985,12 @@ export function useMaidsVotingRead<
  */
 export function useMaidsVotingGetAllVotes<
   TFunctionName extends 'getAllVotes',
-  TSelectData = ReadContractResult<typeof maidsVotingABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsVotingABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsVotingABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsVotingAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsVotingAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -6011,12 +6011,12 @@ export function useMaidsVotingGetAllVotes<
  */
 export function useMaidsVotingGetVoteAmountsOfToken<
   TFunctionName extends 'getVoteAmountsOfToken',
-  TSelectData = ReadContractResult<typeof maidsVotingABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsVotingABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsVotingABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsVotingAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsVotingAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -6037,12 +6037,12 @@ export function useMaidsVotingGetVoteAmountsOfToken<
  */
 export function useMaidsVotingGetVoteAmountsOfUser<
   TFunctionName extends 'getVoteAmountsOfUser',
-  TSelectData = ReadContractResult<typeof maidsVotingABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsVotingABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsVotingABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsVotingAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsVotingAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -6063,12 +6063,12 @@ export function useMaidsVotingGetVoteAmountsOfUser<
  */
 export function useMaidsVotingGetVotedAddress<
   TFunctionName extends 'getVotedAddress',
-  TSelectData = ReadContractResult<typeof maidsVotingABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsVotingABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsVotingABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsVotingAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsVotingAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -6089,12 +6089,12 @@ export function useMaidsVotingGetVotedAddress<
  */
 export function useMaidsVotingGetVotedAddressOfToken<
   TFunctionName extends 'getVotedAddressOfToken',
-  TSelectData = ReadContractResult<typeof maidsVotingABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsVotingABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsVotingABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsVotingAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsVotingAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -6115,12 +6115,12 @@ export function useMaidsVotingGetVotedAddressOfToken<
  */
 export function useMaidsVotingOwner<
   TFunctionName extends 'owner',
-  TSelectData = ReadContractResult<typeof maidsVotingABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsVotingABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsVotingABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsVotingAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsVotingAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -6141,12 +6141,12 @@ export function useMaidsVotingOwner<
  */
 export function useMaidsVotingToken<
   TFunctionName extends 'token',
-  TSelectData = ReadContractResult<typeof maidsVotingABI, TFunctionName>,
+  TSelectData = ReadContractResult<typeof maidsVotingABI, TFunctionName>
 >(
   config: Omit<
     UseContractReadConfig<typeof maidsVotingABI, TFunctionName, TSelectData>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsVotingAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsVotingAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -6168,7 +6168,7 @@ export function useMaidsVotingToken<
 export function useMaidsVotingWrite<
   TFunctionName extends string,
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsVotingAddress,
+  TChainId extends number = keyof typeof maidsVotingAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -6180,7 +6180,7 @@ export function useMaidsVotingWrite<
         abi?: never
         address?: never
         chainId?: TChainId
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -6200,7 +6200,7 @@ export function useMaidsVotingWrite<
  */
 export function useMaidsVotingRenounceOwnership<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsVotingAddress,
+  TChainId extends number = keyof typeof maidsVotingAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -6213,7 +6213,7 @@ export function useMaidsVotingRenounceOwnership<
         address?: never
         chainId?: TChainId
         functionName?: 'renounceOwnership'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -6234,7 +6234,7 @@ export function useMaidsVotingRenounceOwnership<
  */
 export function useMaidsVotingSetEndTime<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsVotingAddress,
+  TChainId extends number = keyof typeof maidsVotingAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -6247,7 +6247,7 @@ export function useMaidsVotingSetEndTime<
         address?: never
         chainId?: TChainId
         functionName?: 'setEndTime'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -6268,7 +6268,7 @@ export function useMaidsVotingSetEndTime<
  */
 export function useMaidsVotingTransferOwnership<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsVotingAddress,
+  TChainId extends number = keyof typeof maidsVotingAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -6281,7 +6281,7 @@ export function useMaidsVotingTransferOwnership<
         address?: never
         chainId?: TChainId
         functionName?: 'transferOwnership'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -6302,7 +6302,7 @@ export function useMaidsVotingTransferOwnership<
  */
 export function useMaidsVotingVote<
   TMode extends WriteContractMode = undefined,
-  TChainId extends number = keyof typeof maidsVotingAddress,
+  TChainId extends number = keyof typeof maidsVotingAddress
 >(
   config: TMode extends 'prepared'
     ? UseContractWriteConfig<
@@ -6315,7 +6315,7 @@ export function useMaidsVotingVote<
         address?: never
         chainId?: TChainId
         functionName?: 'vote'
-      } = {} as any,
+      } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -6337,7 +6337,7 @@ export function useMaidsVotingVote<
 export function usePrepareMaidsVotingWrite<TFunctionName extends string>(
   config: Omit<UsePrepareContractWriteConfig<typeof maidsVotingABI, TFunctionName>, 'abi' | 'address'> & {
     chainId?: keyof typeof maidsVotingAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -6359,7 +6359,7 @@ export function usePrepareMaidsVotingRenounceOwnership(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsVotingABI, 'renounceOwnership'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsVotingAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsVotingAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -6382,7 +6382,7 @@ export function usePrepareMaidsVotingSetEndTime(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsVotingABI, 'setEndTime'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsVotingAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsVotingAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -6405,7 +6405,7 @@ export function usePrepareMaidsVotingTransferOwnership(
   config: Omit<
     UsePrepareContractWriteConfig<typeof maidsVotingABI, 'transferOwnership'>,
     'abi' | 'address' | 'functionName'
-  > & { chainId?: keyof typeof maidsVotingAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsVotingAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -6427,7 +6427,7 @@ export function usePrepareMaidsVotingTransferOwnership(
 export function usePrepareMaidsVotingVote(
   config: Omit<UsePrepareContractWriteConfig<typeof maidsVotingABI, 'vote'>, 'abi' | 'address' | 'functionName'> & {
     chainId?: keyof typeof maidsVotingAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -6449,7 +6449,7 @@ export function usePrepareMaidsVotingVote(
 export function useMaidsVotingEvent<TEventName extends string>(
   config: Omit<UseContractEventConfig<typeof maidsVotingABI, TEventName>, 'abi' | 'address'> & {
     chainId?: keyof typeof maidsVotingAddress
-  } = {} as any,
+  } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()
@@ -6471,7 +6471,7 @@ export function useMaidsVotingOwnershipTransferredEvent(
   config: Omit<
     UseContractEventConfig<typeof maidsVotingABI, 'OwnershipTransferred'>,
     'abi' | 'address' | 'eventName'
-  > & { chainId?: keyof typeof maidsVotingAddress } = {} as any,
+  > & { chainId?: keyof typeof maidsVotingAddress } = {} as any
 ) {
   const { chain } = useNetwork()
   const defaultChainId = useChainId()

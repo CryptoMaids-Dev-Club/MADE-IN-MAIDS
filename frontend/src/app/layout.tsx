@@ -39,7 +39,7 @@ export const metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
   <html lang='en'>
-    <body className={cn('min-h-screen bg-background antialiased', dotGothic.className)}>
+    <body className={cn('min-h-screen w-screen bg-background antialiased', dotGothic.className)}>
       <Providers>
         <TopBar />
         {children}

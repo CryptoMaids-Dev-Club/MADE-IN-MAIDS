@@ -5,8 +5,8 @@ import { useWaitForTransaction } from 'wagmi'
 import { z } from 'zod'
 import LoadingButtonForWeb3 from '@/app/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
 import AutoForm from '@/components/ui/auto-form'
-import { useMaidsPredictionCreatePrediction } from '@/lib/generated'
 import { useDebounce } from '@/hooks/useDebounce'
+import { useMaidsPredictionCreatePrediction } from '@/lib/generated'
 
 const schema = z.object({
   choiceLength: z.number().positive().int().min(1),
