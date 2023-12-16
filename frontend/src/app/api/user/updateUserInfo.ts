@@ -1,5 +1,6 @@
 'use server'
 
+import { revalidatePath } from 'next/cache'
 import { recoverMessageAddress } from 'viem'
 import prisma from '@/lib/prisma'
 
@@ -67,6 +68,7 @@ export default async function updateUserInfo({
   } else if (iconUrl !== '') {
     user = await updateIconUrl(address.toLowerCase(), iconUrl)
   }
+  revalidatePath('/')
 
   return user
 }

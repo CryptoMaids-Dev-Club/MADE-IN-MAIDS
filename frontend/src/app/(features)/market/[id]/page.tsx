@@ -4,7 +4,7 @@ import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
 
 const AssetDetail = async ({ params }: { params: { id: string } }) => {
   const marketItems = await getMarketItems()
-  const marketItem = marketItems[Number(params.id)] as unknown as MarketItemInfo
+  const marketItem = marketItems[Number(params.id)] as MarketItemInfo
 
   return <ItemDetail marketItem={marketItem} />
 }
@@ -13,7 +13,7 @@ export default AssetDetail
 
 export const generateMetadata = async ({ params }: { params: { id: string } }) => {
   const marketItems = await getMarketItems()
-  const meta = marketItems[Number(params.id)] as unknown as MarketItemInfo
+  const meta = marketItems[Number(params.id)] as MarketItemInfo
 
   return {
     title: 'Item',
