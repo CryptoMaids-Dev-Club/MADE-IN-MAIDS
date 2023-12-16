@@ -5,7 +5,7 @@ import PredictionList, { PredictionListSkelton } from './PredictionList'
 import RewardRanking from './RewardRanking'
 
 const Prediction = () => (
-  <div className='container mx-auto max-w-7xl'>
+  <div className='container mx-auto max-w-7xl pb-12'>
     <Typography variant='h1' className='my-2 text-center text-pink-500'>
       CryptoMaids Prediction
     </Typography>

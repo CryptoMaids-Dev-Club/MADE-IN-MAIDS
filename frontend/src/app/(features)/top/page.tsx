@@ -43,13 +43,12 @@ const Page = () => (
         link='/prediction'
       />
     </div>
-    <div className='m-10'>
+    <div className='m-10 pb-4'>
       <Typography variant='h1'>Recently Updated Profiles</Typography>
       <Suspense fallback={<CenteringCircularProgress />}>
         <RecentlyUpdatedProfiles />
       </Suspense>
     </div>
-    <br />
   </div>
 )
 

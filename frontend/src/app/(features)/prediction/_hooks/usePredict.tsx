@@ -62,12 +62,10 @@ const usePredict = (predictionId: number) => {
   const canPredict = Boolean(allowance) && allowance >= debounceAmount
 
   const updateChoice = useCallback((choice: number) => {
-    console.log('updateChoice: ', choice)
     setChoice(choice)
   }, [])
 
   const updateAmount = useCallback((amount: number) => {
-    console.log('updateAmount: ', amount)
     setAmount(amount)
   }, [])
 

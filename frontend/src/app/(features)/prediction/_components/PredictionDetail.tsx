@@ -24,7 +24,7 @@ const PredictionDetail = async ({ id }: PredictionDetailProps) => {
   const utcTime = new Date(predictionInfo.endTime * 1000).toLocaleString('en-US')
 
   return (
-    <div className='container mx-auto max-w-xl'>
+    <div className='container mx-auto max-w-xl pb-12'>
       <Typography variant='h2' className='text-center'>
         {predictionText.title}
       </Typography>

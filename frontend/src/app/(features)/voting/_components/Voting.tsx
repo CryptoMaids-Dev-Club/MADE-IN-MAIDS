@@ -7,7 +7,7 @@ import { Top5 } from './Top5'
 import { VotingTransitionForm } from './VotingTransitionForm'
 
 const Voting = () => (
-  <div className='container mx-auto my-8 max-w-6xl'>
+  <div className='container mx-auto my-8 max-w-6xl pb-12'>
     <Typography variant='h1' className='my-2 text-center text-pink-500'>
       CryptoMaids VOTING
     </Typography>
@@ -26,8 +26,6 @@ const Voting = () => (
     </div>
 
     <Divider className='my-4' />
-
-    <br />
   </div>
 )
 
