@@ -1,0 +1,118 @@
+/* eslint-disable @next/next/no-img-element */
+'use client'
+
+import { useState } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+import InfiniteScroll from 'react-infinite-scroller'
+import { useAccount, useSignMessage } from 'wagmi'
+import getOwnedNfts from '@/app/api/ownedNfts/[address]/[page]/getOwnedNfts'
+import updateUserInfo from '@/app/api/user/updateUserInfo'
+import { Badge } from '@/components/ui/badge'
+import { Typography } from '@/components/ui/typography'
+import { useToast } from '@/components/ui/use-toast'
+import { getSignatureFromLocalStorage } from '@/lib/signature'
+import type { OwnedNFTs } from '@/app/api/ownedNfts/[address]/[page]/ownedNft'
+
+type MaidsListProps = {
+  targetAddress: string
+}
+
+const MaidsList = ({ targetAddress }: MaidsListProps) => {
+  const [maidsList, setMaidsList] = useState<OwnedNFTs[]>([])
+  const [hasMore, setHasMore] = useState(true)
+  const [iconUrl, setIconUrl] = useState('')
+  const { address } = useAccount()
+
+  const { toast } = useToast()
+
+  const { signMessage } = useSignMessage({
+    message: 'Update Profile',
+    async onSuccess(data) {
+      if (address === undefined) return
+      try {
+        await updateUserInfo({ name: '', address, iconUrl, signature: data })
+        localStorage.setItem(address, JSON.stringify({ signature: data, timestamp: new Date().getTime() }))
+        toast({
+          title: 'Successfully updated!',
+          description: 'Please refresh the page.',
+          duration: 3000,
+        })
+      } catch (e) {
+        console.error(e)
+      }
+    },
+  })
+
+  if (targetAddress === undefined) return <Typography>Invalid Address</Typography>
+
+  const loadMore = async (page: number) => {
+    const ownedNfts = await getOwnedNfts({ address: targetAddress, page })
+    if (ownedNfts === undefined || ownedNfts.assets === undefined) {
+      setHasMore(false)
+
+      return
+    }
+    setMaidsList([...maidsList, ...ownedNfts.assets])
+
+    if (ownedNfts.next_page === undefined) {
+      setHasMore(false)
+    }
+  }
+
+  const handleSaveClick = async (newIconUrl: string) => {
+    if (address === undefined) return
+
+    const signature = getSignatureFromLocalStorage(address)
+    if (signature) {
+      await updateUserInfo({ name: '', address, iconUrl: newIconUrl, signature })
+      toast({
+        title: 'Successfully updated!',
+        description: 'Please refresh the page.',
+        duration: 3000,
+      })
+    } else {
+      signMessage()
+    }
+
+    setIconUrl(newIconUrl)
+  }
+
+  return (
+    <InfiniteScroll loadMore={loadMore} hasMore={hasMore} loader={<Typography key={0}>Loading...</Typography>}>
+      <div className='grid grid-cols-1 gap-4 md:grid-cols-3'>
+        {maidsList.map((nft) => (
+          <div key={nft.image}>
+            <Link href={`/detail/${nft.token_id}`}>
+              <div className='relative overflow-hidden bg-cover bg-no-repeat'>
+                <Image
+                  className='transition duration-300 hover:scale-110'
+                  height={600}
+                  width={600}
+                  src={nft.image}
+                  alt={nft.name}
+                  style={{
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
+                />
+              </div>
+            </Link>
+            <div className='flex w-full flex-row bg-gray-800 px-4 py-2'>
+              <Typography variant='h4' className='truncate'>
+                {nft.name}
+              </Typography>
+              {address && address.toLowerCase() === nft.owner && (
+                <Badge className='ml-4 cursor-pointer' onClick={() => handleSaveClick(nft.image)}>
+                  Set as Icon
+                </Badge>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </InfiniteScroll>
+  )
+}
+
+export default MaidsList

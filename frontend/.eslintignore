@@ -1,0 +1,15 @@
+/.eslintrc.js
+/next.config.js
+/next.config.mjs
+build
+**/@types/*.d.ts
+node_modules
+*.css
+*.json
+*.snap
+*.svg
+config-overrides.js
+.next
+.vercel
+/src/components/ui
+/src/lib/generated.ts
