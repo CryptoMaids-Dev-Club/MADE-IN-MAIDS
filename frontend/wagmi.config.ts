@@ -2,10 +2,10 @@ import { defineConfig } from '@wagmi/cli'
 import { react } from '@wagmi/cli/plugins'
 import { Abi } from 'viem'
 import { polygon, sepolia } from 'wagmi/chains'
-import MaidsMarket from '@/assets/contracts/MaidsMarketPlace.json'
-import MaidsToken from '@/assets/contracts/MaidsToken.json'
 import MaidsItem from '../contracts/artifacts/contracts/MaidsItem1155.sol/MaidsItem1155.json'
+import MaidsMarket from '../contracts/artifacts/contracts/MaidsMarketPlace.sol/MaidsMarketPlace.json'
 import MaidsPrediction from '../contracts/artifacts/contracts/MaidsPrediction.sol/MaidsPrediction.json'
+import MaidsToken from '../contracts/artifacts/contracts/MaidsToken.sol/MaidsToken.json'
 import MaidsVoting from '../contracts/artifacts/contracts/MaidsVoting.sol/MaidsVoting.json'
 
 export default defineConfig({

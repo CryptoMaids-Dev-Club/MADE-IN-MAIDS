@@ -18,7 +18,7 @@ export const PurchaseForm = ({ item }: PurchaseFormProps) => {
   const [checked, setChecked] = useState(false)
   const [differentAddress, setAddress] = useState('')
 
-  const range = Number(item.supply) > 10 ? 10 : Number(item.supply)
+  const range = Math.min(Number(item.supply), 10)
 
   return (
     <div className='my-2'>
@@ -30,12 +30,16 @@ export const PurchaseForm = ({ item }: PurchaseFormProps) => {
         <>
           <div className='grid grid-cols-5 gap-4'>
             <div className='col-span-4'>
-              <PurchaseButton item={item} amount={amount} differentAddress={differentAddress} />
+              {checked ? (
+                <PurchaseButton item={item} amount={amount} differentAddress={differentAddress} />
+              ) : (
+                <PurchaseButton item={item} amount={amount} />
+              )}
             </div>
             <div className='col-span-1'>
               <Select value={amount.toString()} onValueChange={(e) => setAmount(Number(e))}>
                 <SelectTrigger className='w-full'>
-                  <SelectValue placeholder='Select a fruit' />
+                  <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
@@ -54,7 +58,7 @@ export const PurchaseForm = ({ item }: PurchaseFormProps) => {
           {checked && (
             <Input
               type='text'
-              id='first_name'
+              id='address'
               className='h-8'
               required
               placeholder='Enter address'

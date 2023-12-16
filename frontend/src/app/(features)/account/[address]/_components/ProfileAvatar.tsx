@@ -10,7 +10,7 @@ const ProfileAvatar = ({ userInfo }: ProfileAvatarProps) => (
   <Avatar className='h-40 w-40'>
     <AvatarImage src={userInfo ? userInfo.iconUrl : ''} />
     <AvatarFallback>
-      <UserRound />
+      <UserRound size={100} />
     </AvatarFallback>
   </Avatar>
 )

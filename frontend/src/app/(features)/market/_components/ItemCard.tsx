@@ -9,7 +9,7 @@ type ItemCardProps = {
 }
 
 const ItemCard = ({ item }: ItemCardProps) => (
-  <Card className='w-96'>
+  <Card className='w-80 md:w-96'>
     <Link href={`/market/${item.id}`}>
       <div className='relative overflow-hidden bg-cover bg-no-repeat'>
         <div className='transition duration-300 hover:scale-110'>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { TwitterShareButton, XIcon } from 'react-share'
 import { Address, useAccount, useWaitForTransaction } from 'wagmi'
 import { MarketItemInfo } from '@/app/api/marketItems/marketItem'
@@ -6,47 +6,50 @@ import { useToast } from '@/components/ui/use-toast'
 import { NETWORK } from '@/config/client'
 import { useAllowance } from '@/hooks/useAllowance'
 import { useApprove } from '@/hooks/useApprove'
-import { maidsTokenAddress, useMaidsMarketBuyItem } from '@/lib/generated'
+import { maidsTokenAddress, useMaidsMarketBuyItem, useMaidsTokenBalanceOf } from '@/lib/generated'
 
 type usePurchaseProps = {
   item: MarketItemInfo
   amount: number
-  differentAddress: string
+  differentAddress?: string
 }
 
 export const usePurchase = ({ item, amount, differentAddress }: usePurchaseProps) => {
   const [isActive, setIsActive] = useState(false)
   const [approved, setApproved] = useState(false)
-  const { address } = useAccount()
+  const { address, isConnected } = useAccount()
   const { allowance, refetch } = useAllowance(address ?? `0x${''}`, maidsTokenAddress[NETWORK.id])
   const { approve, isLoading: isLoadingApprove, approveTx } = useApprove(maidsTokenAddress[NETWORK.id])
   const { toast } = useToast()
 
   useEffect(() => {
-    const checkActive = () => {
-      const active = item.supply > 0
-
-      if (address != null && active) {
-        setIsActive(active)
-      }
-    }
-    checkActive()
-  }, [address, item.supply])
+    setIsActive(item.supply > 0 && isConnected)
+  }, [address, isConnected, item.supply])
 
   useEffect(() => {
     const totalPrice = Number(item.price) * amount
-    setApproved((allowance ?? 0) >= totalPrice)
+    setApproved(allowance >= totalPrice)
   }, [allowance, amount, item.price])
+
+  const { data: balance } = useMaidsTokenBalanceOf({
+    args: [address ?? (`0x${''}` as Address)],
+  })
+
+  const buttonMessage = useCallback(() => {
+    if (balance === undefined) return 'Loading...'
+    if (balance < BigInt(item.price) * BigInt(amount)) return 'Insufficient $MAIDS'
+    if (!approved) return 'Approve $MAIDS'
+    return `Purchase for ${Number(item.price) * amount} $MAIDS`
+  }, [amount, approved, balance, item.price])
 
   const {
     data: buyItemData,
     isLoading: isLoadingBuyItem,
     write: buyItem,
   } = useMaidsMarketBuyItem({
-    args:
-      differentAddress !== ''
-        ? [differentAddress as Address, BigInt(item.id), BigInt(amount)]
-        : [address ?? ('0x0' as Address), BigInt(item.id), BigInt(amount)],
+    args: differentAddress
+      ? [differentAddress as Address, BigInt(item.id), BigInt(amount)]
+      : [address ?? ('0x0' as Address), BigInt(item.id), BigInt(amount)],
   })
 
   const buyItemTx = useWaitForTransaction({
@@ -68,16 +71,17 @@ export const usePurchase = ({ item, amount, differentAddress }: usePurchaseProps
     },
   })
 
-  const buyItemOrApprove = () => {
+  const buyItemOrApprove = useCallback(() => {
     if (approved) {
       buyItem()
     } else {
       approve()
     }
-  }
+  }, [approved, approve, buyItem])
 
   return {
     buyItemOrApprove,
+    buttonMessage: buttonMessage(),
     isActive,
     approved,
     isLoading: isLoadingApprove || isLoadingBuyItem || approveTx.isLoading || buyItemTx.isLoading,

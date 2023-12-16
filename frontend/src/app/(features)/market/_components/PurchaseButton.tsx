@@ -7,11 +7,11 @@ import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
 type PurchaseButtonProps = {
   item: MarketItemInfo
   amount: number
-  differentAddress: string
+  differentAddress?: string
 }
 
 const PurchaseButton = ({ item, amount, differentAddress }: PurchaseButtonProps) => {
-  const { buyItemOrApprove, isActive, approved, isLoading } = usePurchase({
+  const { buyItemOrApprove, buttonMessage, isActive, isLoading } = usePurchase({
     item,
     amount,
     differentAddress,
@@ -19,7 +19,7 @@ const PurchaseButton = ({ item, amount, differentAddress }: PurchaseButtonProps)
 
   return (
     <LoadingButtonForWeb3 className='w-full' loading={isLoading} disabled={!isActive} onClick={buyItemOrApprove}>
-      {approved ? `Purchase for ${Number(item.price) * amount} $MAIDS` : `Approve $MAIDS`}
+      {buttonMessage}
     </LoadingButtonForWeb3>
   )
 }

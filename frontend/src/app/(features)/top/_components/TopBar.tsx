@@ -103,7 +103,7 @@ export const TopBar = () => {
 
           <div className='flex flex-1 items-center xl:items-stretch xl:justify-start'>
             <div className='ml-10 flex shrink-0 items-center'>
-              <Link href='/top' className='h-9 w-40'>
+              <Link href='/top' className='h-7 w-36 sm:h-9 sm:w-40'>
                 <Image src='/images/logo_set.png' width='160' height='48' alt='logo' />
               </Link>
             </div>
@@ -141,7 +141,13 @@ export const TopBar = () => {
 
             <div className='relative ml-3'>
               <div>
-                <ConnectButton showBalance={false} />
+                <ConnectButton
+                  showBalance={false}
+                  accountStatus={{
+                    smallScreen: 'avatar',
+                    largeScreen: 'full',
+                  }}
+                />
               </div>
             </div>
           </div>
