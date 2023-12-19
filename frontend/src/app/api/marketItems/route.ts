@@ -26,6 +26,7 @@ const convert = (items: SolidityItemInfo[]) => {
 
   return convertedItems
 }
+
 const getMarketItems = async (items: ItemInfo[]): Promise<MarketItemInfo[]> => {
   if (items === undefined) return []
 
@@ -64,6 +65,8 @@ export async function GET() {
   })
   const convertedItems = convert(data as unknown as SolidityItemInfo[])
   const marketItems = await getMarketItems(convertedItems)
+
+  console.log(marketItems)
 
   return NextResponse.json(marketItems)
 }

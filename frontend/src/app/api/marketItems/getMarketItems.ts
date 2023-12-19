@@ -1,10 +1,11 @@
 import { notFound } from 'next/navigation'
+import { getBaseUrl } from '@/lib/getBaseUrl'
 import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
 import 'server-only'
 
 export default async function getMarketItems() {
   try {
-    const res = await fetch('/api/marketItems', {
+    const res = await fetch(`${getBaseUrl()}/api/marketItems`, {
       next: { revalidate: 600 },
     })
 
