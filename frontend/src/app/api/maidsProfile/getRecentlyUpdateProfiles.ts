@@ -15,13 +15,13 @@ export const getRecentlyUpdateProfiles = async () => {
     const profiles = (await res.json()) as MaidProfile[]
 
     if (profiles.length === 0) {
-      return [{}] as MaidProfile[]
+      return [] as MaidProfile[]
     }
 
     return profiles
   } catch (e) {
     console.error(e)
 
-    return [{}] as MaidProfile[]
+    return [] as MaidProfile[]
   }
 }

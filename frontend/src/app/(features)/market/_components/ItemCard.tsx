@@ -1,7 +1,7 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { Card } from '@/components/ui/card'
 import { Typography } from '@/components/ui/typography'
-import ItemImage from './ItemImage'
 import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
 
 type ItemCardProps = {
@@ -13,7 +13,7 @@ const ItemCard = ({ item }: ItemCardProps) => (
     <Link href={`/market/${item.id}`}>
       <div className='relative overflow-hidden bg-cover bg-no-repeat'>
         <div className='transition duration-300 hover:scale-110'>
-          <ItemImage item={item} />
+          <Image src={item.image} width='390' height='350' alt='item' style={{ objectFit: 'cover' }} />
         </div>
       </div>
     </Link>

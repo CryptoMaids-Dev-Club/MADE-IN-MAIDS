@@ -23,6 +23,6 @@ export default async function getMarketItems() {
   } catch (e) {
     console.error(e)
 
-    return [{}] as MarketItemInfo[]
+    return [] as MarketItemInfo[]
   }
 }

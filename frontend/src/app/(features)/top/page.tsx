@@ -1,7 +1,7 @@
-import { Suspense } from 'react'
-import { CenteringCircularProgress } from '@/app/_components/Elements/CenteringCircularProgress'
-import { Typography } from '@/components/ui/typography'
-import RecentlyUpdatedProfiles from './_components/RecentlyUpdatedProfiles'
+// import { Suspense } from 'react'
+// import { CenteringCircularProgress } from '@/app/_components/Elements/CenteringCircularProgress'
+// import { Typography } from '@/components/ui/typography'
+// import RecentlyUpdatedProfiles from './_components/RecentlyUpdatedProfiles'
 import TopCard from './_components/TopCard'
 
 const Page = () => (
@@ -43,12 +43,12 @@ const Page = () => (
         link='/prediction'
       />
     </div>
-    <div className='m-10 pb-4'>
+    {/* <div className='m-10 pb-4'>
       <Typography variant='h1'>Recently Updated Profiles</Typography>
       <Suspense fallback={<CenteringCircularProgress />}>
         <RecentlyUpdatedProfiles />
       </Suspense>
-    </div>
+    </div> */}
   </div>
 )
 

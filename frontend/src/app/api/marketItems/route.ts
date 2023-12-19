@@ -17,7 +17,7 @@ const convert = (items: SolidityItemInfo[]) => {
   items.forEach((item) => {
     const convertedItem: ItemInfo = {
       name: item.name,
-      price: formatEther(item.price),
+      price: Number(formatEther(item.price)),
       supply: Number(formatUnits(item.supply, 0)),
       tokenURI: item.tokenURI,
     }

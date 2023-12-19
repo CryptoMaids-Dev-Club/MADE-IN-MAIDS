@@ -1,12 +1,12 @@
 export type ItemInfo = {
   name: string
-  price: string | number
+  price: number
   supply: number
   tokenURI: string
 }
 
 export type MarketItemInfo = ItemInfo & {
-  id: string | number
+  id: number
   description: string
   image: string
   external_url: string

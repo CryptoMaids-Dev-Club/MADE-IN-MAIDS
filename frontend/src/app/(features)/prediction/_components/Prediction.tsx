@@ -12,6 +12,7 @@ const Prediction = () => (
     <Suspense fallback={<PredictionListSkelton />}>
       <PredictionList />
     </Suspense>
+
     <Typography variant='h1' className='my-2 text-center text-pink-500'>
       Reward Ranking
     </Typography>
