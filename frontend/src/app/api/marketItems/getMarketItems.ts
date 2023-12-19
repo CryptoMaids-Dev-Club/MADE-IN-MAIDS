@@ -7,6 +7,7 @@ export default async function getMarketItems() {
   console.log('getMarketItems')
 
   try {
+    console.log(`${getBaseUrl()}/api/marketItems`)
     const res = await fetch(`${getBaseUrl()}/api/marketItems`, {
       next: { revalidate: 600 },
     })
@@ -16,12 +17,15 @@ export default async function getMarketItems() {
       throw new Error('Something went wrong!')
     }
 
+    console.log('ok')
     const marketItems = (await res.json()) as MarketItemInfo[]
 
     if (marketItems.length === 0) {
       console.log('not found')
       notFound()
     }
+
+    console.log('return')
 
     return marketItems
   } catch (e) {
