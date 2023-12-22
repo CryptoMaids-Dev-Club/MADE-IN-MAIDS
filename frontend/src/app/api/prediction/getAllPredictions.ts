@@ -5,6 +5,9 @@ import 'server-only'
 export default async function getAllPredictions() {
   try {
     const res = await fetch(`${getBaseUrl()}/api/prediction`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
       cache: 'no-store',
     })
 

@@ -9,6 +9,9 @@ export default async function getMarketItems() {
   try {
     console.log(`${getBaseUrl()}/api/marketItems`)
     const res = await fetch(`${getBaseUrl()}/api/marketItems`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
       next: { revalidate: 600 },
     })
 
