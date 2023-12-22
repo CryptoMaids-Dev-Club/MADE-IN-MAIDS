@@ -8,6 +8,11 @@ export default async function getAllPredictions() {
       cache: 'no-store',
     })
 
+    if (res.headers.get('content-type')?.includes('application/json') === false) {
+      console.log('not json')
+      return [] as Prediction[]
+    }
+
     if (!res.ok) {
       throw new Error('Something went wrong!')
     }

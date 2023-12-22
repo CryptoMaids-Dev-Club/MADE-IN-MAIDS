@@ -12,7 +12,12 @@ export default async function getMarketItems() {
       next: { revalidate: 600 },
     })
 
-    console.log('res: ' + res)
+    console.log('res: ' + res.headers.get('content-type'))
+
+    if (res.headers.get('content-type')?.includes('application/json') === false) {
+      console.log('not json')
+      notFound()
+    }
 
     if (!res.ok) {
       console.log('not ok')
