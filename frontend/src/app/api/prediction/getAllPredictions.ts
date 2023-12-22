@@ -7,6 +7,7 @@ export default async function getAllPredictions() {
     const res = await fetch(`${getBaseUrl()}/api/prediction`, {
       headers: {
         'Content-Type': 'application/json',
+        Accept: 'application/json',
       },
       cache: 'no-store',
     })

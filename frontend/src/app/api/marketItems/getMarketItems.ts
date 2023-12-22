@@ -11,16 +11,12 @@ export default async function getMarketItems() {
     const res = await fetch(`${getBaseUrl()}/api/marketItems`, {
       headers: {
         'Content-Type': 'application/json',
+        Accept: 'application/json',
       },
       next: { revalidate: 600 },
     })
 
     console.log('res: ' + res.headers.get('content-type'))
-
-    if (res.headers.get('content-type')?.includes('application/json') === false) {
-      console.log('not json')
-      notFound()
-    }
 
     if (!res.ok) {
       console.log('not ok')
