@@ -12,6 +12,8 @@ export default async function getMarketItems() {
       next: { revalidate: 600 },
     })
 
+    console.log('res: ' + res)
+
     if (!res.ok) {
       console.log('not ok')
       throw new Error('Something went wrong!')
