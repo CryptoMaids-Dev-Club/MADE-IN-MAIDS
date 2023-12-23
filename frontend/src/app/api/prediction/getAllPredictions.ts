@@ -7,15 +7,9 @@ export default async function getAllPredictions() {
     const res = await fetch(`${getBaseUrl()}/api/prediction`, {
       headers: {
         'Content-Type': 'application/json',
-        Accept: 'application/json',
       },
       cache: 'no-store',
     })
-
-    if (res.headers.get('content-type')?.includes('application/json') === false) {
-      console.log('not json')
-      return [] as Prediction[]
-    }
 
     if (!res.ok) {
       throw new Error('Something went wrong!')

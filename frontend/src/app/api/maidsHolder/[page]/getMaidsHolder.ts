@@ -1,8 +1,9 @@
+import { getBaseUrl } from '@/lib/getBaseUrl'
 import { MaidsHolder } from './maidsHolder'
 
 export default async function getMaidsHolder({ page }: { page: number }) {
   try {
-    const res = await fetch(`/api/maidsHolder/${page}`)
+    const res = await fetch(`${getBaseUrl()}/api/maidsHolder/${page}`)
 
     if (!res.ok) {
       throw new Error('Something went wrong!')

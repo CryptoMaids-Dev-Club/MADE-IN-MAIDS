@@ -11,7 +11,6 @@ export default async function getMarketItems() {
     const res = await fetch(`${getBaseUrl()}/api/marketItems`, {
       headers: {
         'Content-Type': 'application/json',
-        Accept: 'application/json',
       },
       next: { revalidate: 600 },
     })
