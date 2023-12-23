@@ -58,19 +58,14 @@ const getMarketItems = async (items: ItemInfo[]): Promise<MarketItemInfo[]> => {
 }
 
 export async function GET() {
-  console.log('Receive Get Request')
-
   const data = await readContract({
     address: maidsMarketAddress[NETWORK.id] as Address,
     abi: maidsMarketABI,
     functionName: 'fetchMarketItems',
   })
-  console.log('Data received: ' + data)
 
   const convertedItems = convert(data as unknown as SolidityItemInfo[])
   const marketItems = await getMarketItems(convertedItems)
-
-  console.log('Market Items: ' + marketItems)
 
   return NextResponse.json(marketItems)
 }
