@@ -37,7 +37,6 @@ const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
         saveSignatureToLocalStorage(address, data)
         toast({
           title: 'Successfully updated!',
-          description: 'Please refresh the page.',
           duration: 3000,
         })
       } catch (e) {
@@ -55,7 +54,6 @@ const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
       await updateUserInfo.mutate({ name: userName.name, address, iconUrl: '', signature })
       toast({
         title: 'Successfully updated!',
-        description: 'Please refresh the page.',
         duration: 3000,
       })
     } else {

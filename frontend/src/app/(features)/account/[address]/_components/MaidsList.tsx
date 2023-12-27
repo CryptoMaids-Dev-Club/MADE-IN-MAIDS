@@ -36,7 +36,6 @@ const MaidsList = ({ targetAddress }: MaidsListProps) => {
         localStorage.setItem(address, JSON.stringify({ signature: data, timestamp: new Date().getTime() }))
         toast({
           title: 'Successfully updated!',
-          description: 'Please refresh the page.',
           duration: 3000,
         })
       } catch (e) {
@@ -69,7 +68,6 @@ const MaidsList = ({ targetAddress }: MaidsListProps) => {
       await updateUserInfo.mutate({ name: '', address, iconUrl: newIconUrl, signature })
       toast({
         title: 'Successfully updated!',
-        description: 'Please refresh the page.',
         duration: 3000,
       })
     } else {

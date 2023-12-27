@@ -1,9 +1,8 @@
-import { getBaseUrl } from '@/lib/getBaseUrl'
 import type { OwnedAssetInfo } from '@/app/api/ownedNfts/[address]/[page]/ownedNft'
 
 export default async function getNftHolder({ address, page }: { address: string; page: number }) {
   try {
-    const res = await fetch(`${getBaseUrl()}/api/ownedNfts/${address}/${page}`)
+    const res = await fetch(`/api/ownedNfts/${address}/${page}`)
 
     if (!res.ok) {
       throw new Error('Something went wrong!')
