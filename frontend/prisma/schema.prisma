@@ -25,3 +25,8 @@ model MaidProfile {
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 }
+
+generator zod {
+  provider = "zod-prisma-types"
+  createInputTypes = false
+}

@@ -4,7 +4,7 @@ import { revalidatePath } from 'next/cache'
 import { recoverMessageAddress } from 'viem'
 import { CHAINBASE_API_KEY } from '@/config/server'
 import prisma from '@/lib/prisma'
-import type { MaidProfileUpdate } from './maidProfileUpdate'
+import type { MaidProfileUpdateSchema } from './maidProfileUpdate'
 
 export const updateMaidProfile = async ({
   id,
@@ -14,7 +14,7 @@ export const updateMaidProfile = async ({
   imageUrl,
   address,
   signature,
-}: MaidProfileUpdate) => {
+}: MaidProfileUpdateSchema) => {
   const lowerAddress = address.toLowerCase()
   const recoveredAddress = await recoverMessageAddress({
     message: 'Update Profile',
