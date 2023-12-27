@@ -2,9 +2,9 @@
 
 import { useAccount } from 'wagmi'
 import { convertUserInfo } from '@/app/(features)/prediction/utils'
-import { SolidityUserInfo } from '@/app/api/prediction/prediction'
 import { Typography } from '@/components/ui/typography'
 import { useMaidsPredictionGetUserInfo } from '@/lib/generated'
+import { SolidityUserInfo } from '@/server/prediction/prediction'
 
 type PredictionUserInfoProps = {
   id: number

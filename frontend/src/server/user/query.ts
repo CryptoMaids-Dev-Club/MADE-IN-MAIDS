@@ -1,7 +1,13 @@
 import prisma from '@/lib/prisma'
 import 'server-only'
 
-export default async function getUserInfo({ address }: { address: string }) {
+export const getAllUserInfo = async () => {
+  const user = await prisma.user.findMany()
+
+  return user
+}
+
+export const getUserInfo = async (address: string) => {
   if (address === undefined) {
     return { id: 0, name: 'NO NAME', address: '0x...', iconUrl: '' }
   }

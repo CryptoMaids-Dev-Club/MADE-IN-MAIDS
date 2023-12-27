@@ -1,8 +1,9 @@
 'use client'
 
 import { User } from '@prisma/client'
-import { useSuspenseQuery } from '@tanstack/react-query'
+import { useMutation, useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
 import { userKeys } from '@/app/api/user/keys'
+import { updateUserInfo } from '@/server/user/mutation'
 
 const fetcher = async (url: string): Promise<User> => {
   const res = await fetch(url)
@@ -31,4 +32,24 @@ export function useUser(address: string) {
   }
 
   return { address, userInfo: data }
+}
+
+export function useUpdateUser(address: string) {
+  const queryClient = useQueryClient()
+  return useMutation({
+    mutationFn: async ({
+      name,
+      address,
+      iconUrl,
+      signature,
+    }: {
+      name: string
+      address: string
+      iconUrl: string
+      signature: string
+    }) => await updateUserInfo({ name, address, iconUrl, signature }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: userKeys.user(address) })
+    },
+  })
 }

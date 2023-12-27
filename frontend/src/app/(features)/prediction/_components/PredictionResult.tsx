@@ -3,7 +3,7 @@
 import usePredictionResult from '@/app/(features)/prediction/_hooks/usePredictionResult'
 import LoadingButtonForWeb3 from '@/app/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
 import { Typography } from '@/components/ui/typography'
-import type { Prediction, PredictionText } from '@/app/api/prediction/prediction'
+import type { Prediction, PredictionText } from '@/server/prediction/prediction'
 
 type ResultProps = {
   predictionInfo: Prediction

@@ -1,9 +1,14 @@
-import type { AssetInfo } from '@/app/api/asset/[id]/asset'
+import type { AssetInfo } from '@/server/asset/asset'
 
 export type OwnedResponse = {
   code: number
   message: string
   data: OwnedNFTs[]
+  next_page: number
+}
+
+export type OwnedAssetInfo = {
+  assets: OwnedNFTs[]
   next_page: number
 }
 
@@ -13,9 +18,4 @@ export type OwnedNFTs = AssetInfo & {
   owner: string
   token_id: string
   token_uri: string
-}
-
-export type OwnedAssetInfo = {
-  assets: OwnedNFTs[]
-  next_page: number
 }

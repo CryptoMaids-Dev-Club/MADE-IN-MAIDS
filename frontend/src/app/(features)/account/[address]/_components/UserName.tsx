@@ -5,11 +5,11 @@ import { User } from '@prisma/client'
 import { Pencil } from 'lucide-react'
 import { useAccount, useSignMessage } from 'wagmi'
 import { z } from 'zod'
-import updateUserInfo from '@/app/api/user/updateUserInfo'
 import AutoForm from '@/components/ui/auto-form'
 import { Button } from '@/components/ui/button'
 import { Typography } from '@/components/ui/typography'
 import { useToast } from '@/components/ui/use-toast'
+import { useUpdateUser } from '@/hooks/useUser'
 import { getSignatureFromLocalStorage, saveSignatureToLocalStorage } from '@/lib/signature'
 
 type UserNameProps = {
@@ -27,12 +27,13 @@ const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
   const { toast } = useToast()
 
   const { address } = useAccount()
+  const updateUserInfo = useUpdateUser(address ?? '0x0')
   const { signMessage } = useSignMessage({
     message: 'Update Profile',
     async onSuccess(data) {
       if (address === undefined) return
       try {
-        await updateUserInfo({ name: userName.name, address, iconUrl: '', signature: data })
+        await updateUserInfo.mutate({ name: userName.name, address, iconUrl: '', signature: data })
         saveSignatureToLocalStorage(address, data)
         toast({
           title: 'Successfully updated!',
@@ -51,7 +52,7 @@ const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
 
     const signature = getSignatureFromLocalStorage(address)
     if (signature) {
-      await updateUserInfo({ name: userName.name, address, iconUrl: '', signature })
+      await updateUserInfo.mutate({ name: userName.name, address, iconUrl: '', signature })
       toast({
         title: 'Successfully updated!',
         description: 'Please refresh the page.',

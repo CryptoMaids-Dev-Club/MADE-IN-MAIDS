@@ -1,16 +1,28 @@
 import { readContract, configureChains, createConfig } from '@wagmi/core'
 import { infuraProvider } from '@wagmi/core/providers/infura'
 import { publicProvider } from '@wagmi/core/providers/public'
-import { NextResponse } from 'next/server'
 import { Address, formatEther, formatUnits } from 'viem'
 import { INFURA_API_KEY, NETWORK } from '@/config/server'
 import { maidsMarketABI, maidsMarketAddress } from '@/lib/generated'
-import type { ItemInfo, MarketItemInfo, SolidityItemInfo } from './marketItem'
-import type { NFTMetadata } from '@/app/api/marketItems/marketItem'
+import type { ItemInfo, MarketItemInfo, NFTMetadata, SolidityItemInfo } from './marketItem'
+import 'server-only'
 
 const { publicClient } = configureChains([NETWORK], [infuraProvider({ apiKey: INFURA_API_KEY }), publicProvider()])
 
 createConfig({ publicClient })
+
+export const getMarketItems = async () => {
+  const data = await readContract({
+    address: maidsMarketAddress[NETWORK.id] as Address,
+    abi: maidsMarketABI,
+    functionName: 'fetchMarketItems',
+  })
+
+  const convertedItems = convert(data as unknown as SolidityItemInfo[])
+  const marketItems = await getItemInfo(convertedItems)
+
+  return marketItems
+}
 
 const convert = (items: SolidityItemInfo[]) => {
   const convertedItems: ItemInfo[] = []
@@ -27,7 +39,7 @@ const convert = (items: SolidityItemInfo[]) => {
   return convertedItems
 }
 
-const getMarketItems = async (items: ItemInfo[]): Promise<MarketItemInfo[]> => {
+const getItemInfo = async (items: ItemInfo[]): Promise<MarketItemInfo[]> => {
   if (items === undefined) return []
 
   const infos: MarketItemInfo[] = []
@@ -56,18 +68,3 @@ const getMarketItems = async (items: ItemInfo[]): Promise<MarketItemInfo[]> => {
 
   return infos
 }
-
-export async function GET() {
-  const data = await readContract({
-    address: maidsMarketAddress[NETWORK.id] as Address,
-    abi: maidsMarketABI,
-    functionName: 'fetchMarketItems',
-  })
-
-  const convertedItems = convert(data as unknown as SolidityItemInfo[])
-  const marketItems = await getMarketItems(convertedItems)
-
-  return NextResponse.json(marketItems)
-}
-
-export const dynamic = 'force-dynamic'

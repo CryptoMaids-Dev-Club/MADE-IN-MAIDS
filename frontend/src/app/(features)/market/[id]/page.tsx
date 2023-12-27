@@ -1,6 +1,6 @@
-import getMarketItems from '@/app/api/marketItems/getMarketItems'
+import { getMarketItems } from '@/server/market/query'
 import ItemDetail from '../_components/ItemDetail'
-import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
+import type { MarketItemInfo } from '@/server/market/marketItem'
 
 const AssetDetail = async ({ params }: { params: { id: string } }) => {
   const marketItems = await getMarketItems()

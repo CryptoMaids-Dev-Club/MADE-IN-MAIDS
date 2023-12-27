@@ -7,10 +7,10 @@ import Link from 'next/link'
 import InfiniteScroll from 'react-infinite-scroller'
 import { useAccount, useSignMessage } from 'wagmi'
 import getOwnedNfts from '@/app/api/ownedNfts/[address]/[page]/getOwnedNfts'
-import updateUserInfo from '@/app/api/user/updateUserInfo'
 import { Badge } from '@/components/ui/badge'
 import { Typography } from '@/components/ui/typography'
 import { useToast } from '@/components/ui/use-toast'
+import { useUpdateUser } from '@/hooks/useUser'
 import { getSignatureFromLocalStorage } from '@/lib/signature'
 import type { OwnedNFTs } from '@/app/api/ownedNfts/[address]/[page]/ownedNft'
 
@@ -23,6 +23,7 @@ const MaidsList = ({ targetAddress }: MaidsListProps) => {
   const [hasMore, setHasMore] = useState(true)
   const [iconUrl, setIconUrl] = useState('')
   const { address } = useAccount()
+  const updateUserInfo = useUpdateUser(address ?? '0x0')
 
   const { toast } = useToast()
 
@@ -31,7 +32,7 @@ const MaidsList = ({ targetAddress }: MaidsListProps) => {
     async onSuccess(data) {
       if (address === undefined) return
       try {
-        await updateUserInfo({ name: '', address, iconUrl, signature: data })
+        await updateUserInfo.mutate({ name: '', address, iconUrl, signature: data })
         localStorage.setItem(address, JSON.stringify({ signature: data, timestamp: new Date().getTime() }))
         toast({
           title: 'Successfully updated!',
@@ -65,7 +66,7 @@ const MaidsList = ({ targetAddress }: MaidsListProps) => {
 
     const signature = getSignatureFromLocalStorage(address)
     if (signature) {
-      await updateUserInfo({ name: '', address, iconUrl: newIconUrl, signature })
+      await updateUserInfo.mutate({ name: '', address, iconUrl: newIconUrl, signature })
       toast({
         title: 'Successfully updated!',
         description: 'Please refresh the page.',

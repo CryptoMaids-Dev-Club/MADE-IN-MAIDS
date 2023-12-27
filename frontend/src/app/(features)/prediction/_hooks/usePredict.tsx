@@ -9,7 +9,7 @@ import useAllowance from '@/hooks/useAllowance'
 import { useApprove } from '@/hooks/useApprove'
 import { useDebounce } from '@/hooks/useDebounce'
 import { maidsPredictionAddress, useMaidsPredictionGetUserInfo, useMaidsPredictionPredict } from '@/lib/generated'
-import type { SolidityUserInfo } from '@/app/api/prediction/prediction'
+import type { SolidityUserInfo } from '@/server/prediction/prediction'
 
 const usePredict = (predictionId: number) => {
   const { toast } = useToast()

@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
-import getAsset from '@/app/api/asset/[id]/getAsset'
-import getMaidProfile from '@/app/api/maidsProfile/getMaidProfile'
-import getNftOwner from '@/app/api/nftOwner/[id]/getNftOwner'
+import { getAsset } from '@/server/asset/query'
+import { getMaidProfile } from '@/server/maidsProfile/query'
+import { getNftOwner } from '@/server/nftOwner/query'
 
 type NFTProfileProps = {
   id: number
@@ -10,9 +10,9 @@ type NFTProfileProps = {
 const MaidsProfile = dynamic(() => import('./MaidsProfile'), { ssr: false })
 
 const MaidsProfileWrapper = async ({ id }: NFTProfileProps) => {
-  const maidProfile = await getMaidProfile({ id })
-  const owner = await getNftOwner({ id })
-  const asset = await getAsset({ id })
+  const maidProfile = await getMaidProfile(id)
+  const owner = await getNftOwner(id)
+  const asset = await getAsset(id)
 
   return <MaidsProfile profile={{ ...maidProfile, id }} asset={asset} owner={owner} />
 }

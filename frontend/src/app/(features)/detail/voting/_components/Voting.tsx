@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
-import getAsset from '@/app/api/asset/[id]/getAsset'
 import { Skeleton } from '@/components/ui/skeleton'
+import { getAsset } from '@/server/asset/query'
 import { NFTImage } from '../../_components/NFTImage'
 import { NFTInfo } from '../../_components/NFTInfo'
 import { Induction } from './Induction'
@@ -40,7 +40,7 @@ const Voting = ({ id }: VotingProps) => (
 export default Voting
 
 export const generateMetadata = async ({ params }: { params: { id: number } }) => {
-  const meta = await getAsset({ id: params.id })
+  const meta = await getAsset(params.id)
 
   return {
     title: 'Detail',

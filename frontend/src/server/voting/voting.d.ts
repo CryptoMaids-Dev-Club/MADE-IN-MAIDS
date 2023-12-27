@@ -1,4 +1,4 @@
-import type { AssetInfo } from '@/app/api/asset/[id]/asset'
+import type { AssetInfo } from '@/server/asset/asset'
 
 export type SolidityVote = {
   id: bigint

@@ -1,5 +1,5 @@
-import getUserInfo from '@/app/api/user/getUserInfo'
 import { Typography } from '@/components/ui/typography'
+import { getUserInfo } from '@/server/user/query'
 import ProfileAvatar from './ProfileAvatar'
 import UserName from './UserName'
 
@@ -8,7 +8,7 @@ type ProfileProps = {
 }
 
 const Profile = async ({ address }: ProfileProps) => {
-  const userInfo = await getUserInfo({ address })
+  const userInfo = await getUserInfo(address)
 
   return (
     <div className='flex flex-col items-center'>

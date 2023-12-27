@@ -1,11 +1,12 @@
 'use server'
 
+import { revalidatePath } from 'next/cache'
 import { recoverMessageAddress } from 'viem'
 import { CHAINBASE_API_KEY } from '@/config/server'
 import prisma from '@/lib/prisma'
 import type { MaidProfileUpdate } from './maidProfileUpdate'
 
-export default async function updateMaidProfile({
+export const updateMaidProfile = async ({
   id,
   name,
   character,
@@ -13,7 +14,7 @@ export default async function updateMaidProfile({
   imageUrl,
   address,
   signature,
-}: MaidProfileUpdate) {
+}: MaidProfileUpdate) => {
   const lowerAddress = address.toLowerCase()
   const recoveredAddress = await recoverMessageAddress({
     message: 'Update Profile',
@@ -53,6 +54,8 @@ export default async function updateMaidProfile({
       imageUrl,
     },
   })
+
+  revalidatePath(`/detail/${id}`)
 
   return maidProfile
 }
