@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 'use client'
 
 import { useState } from 'react'
@@ -7,10 +6,10 @@ import Link from 'next/link'
 import InfiniteScroll from 'react-infinite-scroller'
 import { useAccount, useSignMessage } from 'wagmi'
 import getOwnedNfts from '@/app/api/ownedNfts/[address]/[page]/getOwnedNfts'
-import updateUserInfo from '@/app/api/user/updateUserInfo'
 import { Badge } from '@/components/ui/badge'
 import { Typography } from '@/components/ui/typography'
 import { useToast } from '@/components/ui/use-toast'
+import { useUpdateUser } from '@/hooks/useUser'
 import { getSignatureFromLocalStorage } from '@/lib/signature'
 import type { OwnedNFTs } from '@/app/api/ownedNfts/[address]/[page]/ownedNft'
 
@@ -21,27 +20,13 @@ type MaidsListProps = {
 const MaidsList = ({ targetAddress }: MaidsListProps) => {
   const [maidsList, setMaidsList] = useState<OwnedNFTs[]>([])
   const [hasMore, setHasMore] = useState(true)
-  const [iconUrl, setIconUrl] = useState('')
   const { address } = useAccount()
+  const updateUserInfo = useUpdateUser(address ?? '0x0')
 
   const { toast } = useToast()
 
-  const { signMessage } = useSignMessage({
+  const { signMessageAsync } = useSignMessage({
     message: 'Update Profile',
-    async onSuccess(data) {
-      if (address === undefined) return
-      try {
-        await updateUserInfo({ name: '', address, iconUrl, signature: data })
-        localStorage.setItem(address, JSON.stringify({ signature: data, timestamp: new Date().getTime() }))
-        toast({
-          title: 'Successfully updated!',
-          description: 'Please refresh the page.',
-          duration: 3000,
-        })
-      } catch (e) {
-        console.error(e)
-      }
-    },
   })
 
   if (targetAddress === undefined) return <Typography>Invalid Address</Typography>
@@ -65,17 +50,26 @@ const MaidsList = ({ targetAddress }: MaidsListProps) => {
 
     const signature = getSignatureFromLocalStorage(address)
     if (signature) {
-      await updateUserInfo({ name: '', address, iconUrl: newIconUrl, signature })
+      await updateUserInfo.mutate({ name: '', address, iconUrl: newIconUrl, signature })
       toast({
         title: 'Successfully updated!',
-        description: 'Please refresh the page.',
         duration: 3000,
       })
     } else {
-      signMessage()
+      signMessageAsync().then(async (data) => {
+        if (address === undefined) return
+        try {
+          await updateUserInfo.mutate({ name: '', address, iconUrl: newIconUrl, signature: data })
+          localStorage.setItem(address, JSON.stringify({ signature: data, timestamp: new Date().getTime() }))
+          toast({
+            title: 'Successfully updated!',
+            duration: 3000,
+          })
+        } catch (e) {
+          console.error(e)
+        }
+      })
     }
-
-    setIconUrl(newIconUrl)
   }
 
   return (

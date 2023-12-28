@@ -1,13 +1,13 @@
 import Image from 'next/image'
-import getAsset from '@/app/api/asset/[id]/getAsset'
 import { Typography } from '@/components/ui/typography'
+import { getAsset } from '@/server/asset/query'
 
 type NFTInfoProps = {
   id: number
 }
 
 export const NFTInfo = async ({ id }: NFTInfoProps) => {
-  const asset = await getAsset({ id })
+  const asset = await getAsset(id)
 
   return (
     <div className='flex flex-row'>

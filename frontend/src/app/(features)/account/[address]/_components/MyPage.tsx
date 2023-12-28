@@ -2,8 +2,7 @@ import { Suspense } from 'react'
 import { Metadata } from 'next'
 import { Typography } from '@/components/ui/typography'
 import MaidsList from './MaidsList'
-import Profile from './Profile'
-import ProfileSkelton from './ProfileSkelton'
+import Profile, { ProfileSkelton } from './Profile'
 
 type MyPageProps = {
   address: string

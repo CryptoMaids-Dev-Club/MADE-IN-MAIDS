@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
-import getAllUserInfo from '@/app/api/user/getAllUserInfo'
-
 import { Typography } from '@/components/ui/typography'
+import { getAllUserInfo } from '@/server/user/query'
 import RankingTables from './RankingTables'
 
 // TODO: Insert Maids Image

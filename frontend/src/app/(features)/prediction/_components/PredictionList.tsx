@@ -1,8 +1,8 @@
 import { Suspense } from 'react'
-import getAllPredictions from '@/app/api/prediction/getAllPredictions'
 import { Skeleton } from '@/components/ui/skeleton'
+import { getAllPredictions } from '@/server/prediction/query'
 import PredictionInfoCard from './PredictionInfoCard'
-import type { Prediction } from '@/app/api/prediction/prediction'
+import type { Prediction } from '@/server/prediction/prediction'
 
 const PredictionList = async () => {
   const predictionInfos = (await getAllPredictions()) as Prediction[]

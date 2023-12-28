@@ -1,12 +1,12 @@
 import Image from 'next/image'
-import getAsset from '@/app/api/asset/[id]/getAsset'
+import { getAsset } from '@/server/asset/query'
 
 type NFTImageProps = {
   id: number
 }
 
 export const NFTImage = async ({ id }: NFTImageProps) => {
-  const asset = await getAsset({ id })
+  const asset = await getAsset(id)
 
   return (
     <Image

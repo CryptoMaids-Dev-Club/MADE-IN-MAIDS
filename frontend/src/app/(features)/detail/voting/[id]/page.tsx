@@ -1,4 +1,4 @@
-import getAsset from '@/app/api/asset/[id]/getAsset'
+import { getAsset } from '@/server/asset/query'
 import Voting from '../_components/Voting'
 
 const VotingPage = ({ params }: { params: { id: number } }) => <Voting id={Number(params.id)} />
@@ -6,7 +6,7 @@ const VotingPage = ({ params }: { params: { id: number } }) => <Voting id={Numbe
 export default VotingPage
 
 export const generateMetadata = async ({ params }: { params: { id: number } }) => {
-  const meta = await getAsset({ id: params.id })
+  const meta = await getAsset(params.id)
 
   return {
     title: 'Detail',

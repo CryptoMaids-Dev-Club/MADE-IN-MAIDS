@@ -1,8 +1,8 @@
-import getTopUser from '@/app/api/prediction/topUser/getTopUserInfo'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import { getTopUserInfo } from '@/server/prediction/query'
 
 const RewardRanking = async () => {
-  const topUserInfo = await getTopUser()
+  const topUserInfo = await getTopUserInfo()
   return (
     <div className='container mx-auto max-w-7xl'>
       <Table aria-label='simple table'>

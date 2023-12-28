@@ -1,28 +1,35 @@
 'use client'
 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { useState } from 'react'
+import { usePurchase } from '@/app/(features)/market/_hooks/usePurchase'
+import LoadingButtonForWeb3 from '@/app/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Switch } from '@/components/ui/switch'
 import { Typography } from '@/components/ui/typography'
-import PurchaseButton from './PurchaseButton'
-import type { MarketItemInfo } from '@/app/api/marketItems/marketItem'
+import type { MarketItemInfo } from '@/server/market/marketItem'
 
 type PurchaseFormProps = {
   item: MarketItemInfo
 }
 
 export const PurchaseForm = ({ item }: PurchaseFormProps) => {
-  const [amount, setAmount] = useState(1)
-  const [checked, setChecked] = useState(false)
-  const [differentAddress, setAddress] = useState('')
-
-  const range = Math.min(Number(item.supply), 10)
+  const {
+    amount,
+    checked,
+    range,
+    buttonMessage,
+    isActive,
+    isLoading,
+    updateAmount,
+    toggleChecked,
+    updateAddress,
+    buyItemOrApprove,
+  } = usePurchase({ item })
 
   return (
     <div className='my-2'>
-      {Number(item.supply) <= 0 ? (
+      {item.supply <= 0 ? (
         <Typography variant='h5' className='w-full text-center'>
           SOLD OUT!
         </Typography>
@@ -30,14 +37,16 @@ export const PurchaseForm = ({ item }: PurchaseFormProps) => {
         <>
           <div className='grid grid-cols-5 gap-4'>
             <div className='col-span-4'>
-              {checked ? (
-                <PurchaseButton item={item} amount={amount} differentAddress={differentAddress} />
-              ) : (
-                <PurchaseButton item={item} amount={amount} />
-              )}
+              <LoadingButtonForWeb3
+                className='w-full'
+                loading={isLoading}
+                disabled={!isActive}
+                onClick={buyItemOrApprove}>
+                {buttonMessage}
+              </LoadingButtonForWeb3>
             </div>
             <div className='col-span-1'>
-              <Select value={amount.toString()} onValueChange={(e) => setAmount(Number(e))}>
+              <Select value={amount.toString()} onValueChange={(e) => updateAmount(Number(e))}>
                 <SelectTrigger className='w-full'>
                   <SelectValue />
                 </SelectTrigger>
@@ -54,7 +63,7 @@ export const PurchaseForm = ({ item }: PurchaseFormProps) => {
             </div>
           </div>
           <Typography>Mint to a different wallet</Typography>
-          <Switch checked={checked} onCheckedChange={() => setChecked(!checked)} />
+          <Switch checked={checked} onCheckedChange={() => toggleChecked()} />
           {checked && (
             <Input
               type='text'
@@ -63,7 +72,7 @@ export const PurchaseForm = ({ item }: PurchaseFormProps) => {
               required
               placeholder='Enter address'
               onChange={(event) => {
-                setAddress(event.target.value)
+                updateAddress(event.target.value)
               }}
             />
           )}

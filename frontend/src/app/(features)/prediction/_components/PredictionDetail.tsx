@@ -2,10 +2,10 @@ import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
 import PredictionResult from '@/app/(features)/prediction/_components/PredictionResult'
 import PredictionUserInfo from '@/app/(features)/prediction/_components/PredictionUserInfo'
-import getPrediction from '@/app/api/prediction/[id]/getPrediction'
 import { Divider } from '@/components/ui/divider'
 import { Typography } from '@/components/ui/typography'
-import type { PredictionText } from '@/app/api/prediction/prediction'
+import { getPrediction } from '@/server/prediction/query'
+import type { PredictionText } from '@/server/prediction/prediction'
 
 const PredictionForm = dynamic(() => import('./PredictionForm'), { ssr: false })
 
@@ -14,7 +14,7 @@ type PredictionDetailProps = {
 }
 
 const PredictionDetail = async ({ id }: PredictionDetailProps) => {
-  const predictionInfo = await getPrediction({ id })
+  const predictionInfo = await getPrediction(id)
   const response = await fetch(predictionInfo.predictionURI)
   const predictionText = (await response.json()) as PredictionText
 

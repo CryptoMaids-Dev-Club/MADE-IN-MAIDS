@@ -1,9 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
-
 import Image from 'next/image'
 import Link from 'next/link'
-import { getRecentlyUpdateProfiles } from '@/app/api/maidsProfile/getRecentlyUpdateProfiles'
 import { Typography } from '@/components/ui/typography'
+import { getRecentlyUpdateProfiles } from '@/server/maidsProfile/query'
 
 const RecentlyUpdatedProfiles = async () => {
   const profiles = await getRecentlyUpdateProfiles()

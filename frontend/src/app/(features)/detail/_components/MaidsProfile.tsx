@@ -8,7 +8,7 @@ import useUpdateProfile from '@/app/(features)/detail/_hooks/useUpdateProfile'
 import AutoForm from '@/components/ui/auto-form'
 import { Button } from '@/components/ui/button'
 import { Typography } from '@/components/ui/typography'
-import type { AssetInfo } from '@/app/api/asset/[id]/asset'
+import type { AssetInfo } from '@/server/asset/asset'
 
 type MaidsProfileProps = {
   profile: MaidProfile
@@ -25,7 +25,7 @@ const createSchema = (profile: MaidProfile) => {
 }
 
 const MaidsProfile = ({ profile, asset, owner }: MaidsProfileProps) => {
-  const { editing, isOwner, toggleEditing, maidsProfile, updateProfile } = useUpdateProfile(profile, asset, owner)
+  const { editing, isOwner, maidsProfile, toggleEditing, updateProfile } = useUpdateProfile(profile, asset, owner)
 
   const handleSubmit = (data: { name: string; character: string; description: string }) => {
     updateProfile({ ...maidsProfile, ...data })

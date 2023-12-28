@@ -5,11 +5,11 @@ import { User } from '@prisma/client'
 import { Pencil } from 'lucide-react'
 import { useAccount, useSignMessage } from 'wagmi'
 import { z } from 'zod'
-import updateUserInfo from '@/app/api/user/updateUserInfo'
 import AutoForm from '@/components/ui/auto-form'
 import { Button } from '@/components/ui/button'
 import { Typography } from '@/components/ui/typography'
 import { useToast } from '@/components/ui/use-toast'
+import { useUpdateUser } from '@/hooks/useUser'
 import { getSignatureFromLocalStorage, saveSignatureToLocalStorage } from '@/lib/signature'
 
 type UserNameProps = {
@@ -17,48 +17,47 @@ type UserNameProps = {
   userInfo: User
 }
 
-const schema = z.object({
-  name: z.string().min(1),
-})
+const createSchema = (userInfo: User) => {
+  return z.object({
+    name: z.string().default(userInfo.name),
+  })
+}
 
 const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
   const [editing, setEditing] = useState(false)
-  const [userName, setUserName] = useState<z.infer<typeof schema>>({ name: userInfo.name })
   const { toast } = useToast()
 
   const { address } = useAccount()
-  const { signMessage } = useSignMessage({
+  const updateUserInfo = useUpdateUser(address ?? '0x0')
+  const { signMessageAsync } = useSignMessage({
     message: 'Update Profile',
-    async onSuccess(data) {
-      if (address === undefined) return
-      try {
-        await updateUserInfo({ name: userName.name, address, iconUrl: '', signature: data })
-        saveSignatureToLocalStorage(address, data)
-        toast({
-          title: 'Successfully updated!',
-          description: 'Please refresh the page.',
-          duration: 3000,
-        })
-      } catch (e) {
-        console.error(e)
-      }
-    },
   })
 
-  const handleClose = async () => {
+  const handleClose = async (newName: string) => {
     setEditing(false)
-    if (userInfo.name === userName.name || address === undefined) return
+    if (userInfo.name === newName || address === undefined) return
 
     const signature = getSignatureFromLocalStorage(address)
     if (signature) {
-      await updateUserInfo({ name: userName.name, address, iconUrl: '', signature })
+      await updateUserInfo.mutate({ name: newName, address, iconUrl: '', signature })
       toast({
         title: 'Successfully updated!',
-        description: 'Please refresh the page.',
         duration: 3000,
       })
     } else {
-      signMessage()
+      signMessageAsync().then(async (data) => {
+        if (address === undefined) return
+        try {
+          await updateUserInfo.mutate({ name: newName, address, iconUrl: '', signature: data })
+          saveSignatureToLocalStorage(address, data)
+          toast({
+            title: 'Successfully updated!',
+            duration: 3000,
+          })
+        } catch (e) {
+          console.error(e)
+        }
+      })
     }
   }
 
@@ -66,7 +65,7 @@ const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
     <div>
       {!editing ? (
         <Typography className='w-auto' variant='h3'>
-          {userName.name}
+          {userInfo.name}
           {
             <button
               className='ml-2 bg-black'
@@ -78,7 +77,7 @@ const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
         </Typography>
       ) : (
         <AutoForm
-          formSchema={schema}
+          formSchema={createSchema(userInfo)}
           fieldConfig={{
             name: {
               inputProps: {
@@ -87,9 +86,7 @@ const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
               },
             },
           }}
-          onSubmit={() => handleClose()}
-          values={userName}
-          onValuesChange={(values) => setUserName({ name: values.name ?? '' })}>
+          onSubmit={(data) => handleClose(data.name)}>
           <Button className='w-full' type='submit'>
             Update
           </Button>

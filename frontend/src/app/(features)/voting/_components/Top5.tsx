@@ -1,8 +1,8 @@
-import getTopAssets from '@/app/api/voting/[slug]/getTopAssets'
+import { getTopAssets } from '@/server/voting/query'
 import { TopImage } from './TopImage'
 
 export const Top5 = async () => {
-  const topAssets = await getTopAssets({ slug: 5 })
+  const topAssets = await getTopAssets(5)
 
   return <TopImage topAssets={topAssets} />
 }

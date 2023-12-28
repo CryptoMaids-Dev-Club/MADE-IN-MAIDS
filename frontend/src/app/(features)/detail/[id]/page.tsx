@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import getAsset from '@/app/api/asset/[id]/getAsset'
+import { getAsset } from '@/server/asset/query'
 import Detail from '../_components/Detail'
 
 const DetailPage = ({ params }: { params: { id: number } }) => {
@@ -18,7 +18,7 @@ export const generateMetadata = async ({ params }: { params: { id: number } }) =
     // CryptoMaids max token id is 2022
     return notFound()
   }
-  const meta = await getAsset({ id: params.id })
+  const meta = await getAsset(params.id)
 
   return {
     title: 'Detail',
