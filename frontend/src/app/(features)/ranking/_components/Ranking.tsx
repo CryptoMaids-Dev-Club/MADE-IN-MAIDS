@@ -19,7 +19,6 @@ const Ranking = async () => {
 
 export default Ranking
 
-export const dynamic = 'force-dynamic'
 export const metadata: Metadata = {
   title: 'Ranking',
 }
