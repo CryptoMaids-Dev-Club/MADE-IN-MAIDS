@@ -69,7 +69,7 @@ export const updateUserInfo = async ({
   } else if (iconUrl !== '') {
     user = await updateIconUrl(address.toLowerCase(), iconUrl)
   }
-  revalidatePath('/')
+  revalidatePath('/ranking')
 
   return user
 }
