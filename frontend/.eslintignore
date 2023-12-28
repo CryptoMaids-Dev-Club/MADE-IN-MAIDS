@@ -13,3 +13,4 @@ config-overrides.js
 .vercel
 /src/components/ui
 /src/lib/generated.ts
+/prisma/generated/zod

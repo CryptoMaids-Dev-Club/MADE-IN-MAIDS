@@ -1,3 +1,4 @@
+import { Skeleton } from '@/components/ui/skeleton'
 import { Typography } from '@/components/ui/typography'
 import { getUserInfo } from '@/server/user/query'
 import ProfileAvatar from './ProfileAvatar'
@@ -19,5 +20,13 @@ const Profile = async ({ address }: ProfileProps) => {
     </div>
   )
 }
+
+export const ProfileSkelton = () => (
+  <div className='flex flex-col items-center'>
+    <Skeleton className='h-40 w-40 rounded-full' />
+    <Skeleton className='h-4 w-[210px]' />
+    <Skeleton className='h-4 w-[210px]' />
+  </div>
+)
 
 export default Profile

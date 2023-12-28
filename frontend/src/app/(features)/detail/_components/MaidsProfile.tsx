@@ -25,7 +25,7 @@ const createSchema = (profile: MaidProfile) => {
 }
 
 const MaidsProfile = ({ profile, asset, owner }: MaidsProfileProps) => {
-  const { editing, isOwner, toggleEditing, maidsProfile, updateProfile } = useUpdateProfile(profile, asset, owner)
+  const { editing, isOwner, maidsProfile, toggleEditing, updateProfile } = useUpdateProfile(profile, asset, owner)
 
   const handleSubmit = (data: { name: string; character: string; description: string }) => {
     updateProfile({ ...maidsProfile, ...data })

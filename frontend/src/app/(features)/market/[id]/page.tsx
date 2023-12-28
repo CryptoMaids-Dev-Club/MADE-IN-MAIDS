@@ -11,9 +11,9 @@ const AssetDetail = async ({ params }: { params: { id: string } }) => {
 
 export default AssetDetail
 
-export const generateMetadata = async ({ params }: { params: { id: string } }) => {
+export const generateMetadata = async ({ params }: { params: { id: number } }) => {
   const marketItems = await getMarketItems()
-  const meta = marketItems[Number(params.id)] as MarketItemInfo
+  const meta = marketItems[params.id] as MarketItemInfo
 
   return {
     title: 'Item',

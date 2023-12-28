@@ -19,3 +19,11 @@ export type OwnedNFTs = AssetInfo & {
   token_id: string
   token_uri: string
 }
+
+export type ChainbaseResponse = {
+  code: number
+  message: string
+  data: OwnedNFTs[]
+  next_page: number
+  count: number
+}

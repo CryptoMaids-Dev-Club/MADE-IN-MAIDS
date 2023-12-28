@@ -1,22 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { CHAINBASE_API_KEY } from '@/config/server'
 import prisma from '@/lib/prisma'
-import { OwnedAssetInfo, OwnedNFTs, OwnedResponse } from './ownedNft'
+import { ChainbaseResponse, OwnedAssetInfo, OwnedNFTs } from './ownedNft'
 import type { AssetInfo } from '@/server/asset/asset'
 
 const fetchOwnedNFTs = async ({ address, page }: { address: string; page: number }): Promise<OwnedAssetInfo> => {
-  const response = await fetch(
+  const response = (await fetch(
     `https://api.chainbase.online/v1/account/nfts?chain_id=1&address=${address}&contract_address=0x5703A3245FF6FAD37fa2a2500F0739d4F6a234E7&page=${page}&limit=10`,
     {
       headers: {
         'X-Api-Key': CHAINBASE_API_KEY,
       },
     }
-  )
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-  const ownedNFTs = (await response.json()) as unknown as OwnedResponse
+  ).then((res) => res.json())) as unknown as ChainbaseResponse
 
-  if (ownedNFTs.data === null) {
+  const ownedNFTs = response.data
+
+  if (ownedNFTs === null) {
     return {} as OwnedAssetInfo
   }
 
@@ -24,7 +24,7 @@ const fetchOwnedNFTs = async ({ address, page }: { address: string; page: number
 
   const assets = [] as OwnedNFTs[]
   await Promise.all(
-    ownedNFTs.data.map(async (nft) => {
+    ownedNFTs.map(async (nft) => {
       const res = await fetch(`https://api.cryptomaids.tokyo/metadata/crypto_maid/${nft.token_id}`)
       const asset = (await res.json()) as unknown as AssetInfo
 
@@ -37,13 +37,13 @@ const fetchOwnedNFTs = async ({ address, page }: { address: string; page: number
     })
   )
 
-  return { assets, next_page: ownedNFTs.next_page }
+  return { assets, next_page: response.next_page }
 }
 
 export async function GET(_req: NextRequest, { params }: { params: { address: string; page: number } }) {
-  const data = await fetchOwnedNFTs({ address: params.address, page: params.page })
+  const ownedNfts = await fetchOwnedNFTs({ address: params.address, page: params.page })
 
-  return NextResponse.json(data)
+  return NextResponse.json(ownedNfts)
 }
 
 export const revalidate = 60 // 1 minute

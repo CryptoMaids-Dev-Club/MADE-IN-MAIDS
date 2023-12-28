@@ -46,8 +46,8 @@ export const MaidProfileSchema = z.object({
   character: z.string(),
   description: z.string(),
   imageUrl: z.string(),
-  createdAt: z.coerce.date(),
-  updatedAt: z.coerce.date(),
+  // omitted: createdAt: z.coerce.date(),
+  // omitted: updatedAt: z.coerce.date(),
 })
 
 export type MaidProfile = z.infer<typeof MaidProfileSchema>

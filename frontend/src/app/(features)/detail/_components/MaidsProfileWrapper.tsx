@@ -10,9 +10,7 @@ type NFTProfileProps = {
 const MaidsProfile = dynamic(() => import('./MaidsProfile'), { ssr: false })
 
 const MaidsProfileWrapper = async ({ id }: NFTProfileProps) => {
-  const maidProfile = await getMaidProfile(id)
-  const owner = await getNftOwner(id)
-  const asset = await getAsset(id)
+  const [maidProfile, owner, asset] = await Promise.all([getMaidProfile(id), getNftOwner(id), getAsset(id)])
 
   return <MaidsProfile profile={{ ...maidProfile, id }} asset={asset} owner={owner} />
 }

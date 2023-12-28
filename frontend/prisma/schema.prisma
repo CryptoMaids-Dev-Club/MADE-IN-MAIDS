@@ -22,8 +22,8 @@ model MaidProfile {
   character   String
   description String
   imageUrl    String @default("")
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  createdAt DateTime @default(now()) @map("created_at") /// @zod.custom.omit([model, input])
+  updatedAt DateTime @updatedAt @map("updated_at") /// @zod.custom.omit([model, input])
 }
 
 generator zod {

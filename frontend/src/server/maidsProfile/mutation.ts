@@ -2,8 +2,8 @@
 
 import { revalidatePath } from 'next/cache'
 import { recoverMessageAddress } from 'viem'
-import { CHAINBASE_API_KEY } from '@/config/server'
 import prisma from '@/lib/prisma'
+import { getNftOwner } from '@/server/nftOwner/query'
 import type { MaidProfileUpdateSchema } from './maidProfileUpdate'
 
 export const updateMaidProfile = async ({
@@ -23,18 +23,9 @@ export const updateMaidProfile = async ({
 
   if (recoveredAddress.toLowerCase() !== lowerAddress) return { error: 'Invalid signature' }
 
-  const res = await fetch(
-    `https://api.chainbase.online/v1/nft/owner?chain_id=1&contract_address=0x5703a3245ff6fad37fa2a2500f0739d4f6a234e7&token_id=${id}`,
-    {
-      headers: {
-        'X-Api-Key': CHAINBASE_API_KEY,
-      },
-    }
-  )
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-  const owner = (await res.json()).data as string
+  const ownerAddress = await getNftOwner(id)
 
-  if (owner.toLowerCase() !== lowerAddress) return { error: 'Invalid address' }
+  if (ownerAddress.toLowerCase() !== lowerAddress) return { error: 'Invalid address' }
 
   const maidProfile = await prisma.maidProfile.upsert({
     where: {
