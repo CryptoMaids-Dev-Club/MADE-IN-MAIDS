@@ -18,11 +18,10 @@ export const updateMaidProfile = async ({
 }: MaidProfileUpdateSchema) => {
   const lowerAddress = address.toLowerCase() as Address
 
-  if ((await verifySignature(lowerAddress, 'Update Profile', signature as Address)) === false)
-    return { error: 'Invalid signature' }
+  const verify = await verifySignature(lowerAddress, 'Update Profile', signature as Address)
+  if (!verify) return { error: 'Invalid signature' }
 
   const ownerAddress = await getNftOwner(id)
-
   if (ownerAddress.toLowerCase() !== lowerAddress) return { error: 'Invalid address' }
 
   const maidProfile = await prisma.maidProfile.upsert({

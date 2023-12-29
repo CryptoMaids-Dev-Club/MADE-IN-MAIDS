@@ -57,8 +57,8 @@ export const updateUserInfo = async ({
 }) => {
   const lowerAddress = address.toLowerCase() as Address
 
-  if ((await verifySignature(lowerAddress, 'Update Profile', signature as Address)) === false)
-    return { error: 'Invalid signature' }
+  const verify = await verifySignature(lowerAddress, 'Update Profile', signature as Address)
+  if (!verify) return { error: 'Invalid signature' }
 
   let user: User = { id: 0, name: '', address: '', iconUrl: '' }
   if (name !== '') {
