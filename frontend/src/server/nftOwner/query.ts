@@ -1,5 +1,5 @@
 import { CHAINBASE_API_KEY } from '@/config/server'
-import { ChainbaseResponse } from '@/server/nftOwner/nftOwner'
+import { ChainbaseResponse } from '@/server/nftOwner'
 import 'server-only'
 import type { Address } from 'viem'
 

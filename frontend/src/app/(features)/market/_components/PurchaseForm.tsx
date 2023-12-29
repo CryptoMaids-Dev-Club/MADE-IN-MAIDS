@@ -7,7 +7,7 @@ import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Switch } from '@/components/ui/switch'
 import { Typography } from '@/components/ui/typography'
-import type { MarketItemInfo } from '@/server/market/marketItem'
+import type { MarketItemInfo } from '@/app/(features)/market/_types'
 
 type PurchaseFormProps = {
   item: MarketItemInfo

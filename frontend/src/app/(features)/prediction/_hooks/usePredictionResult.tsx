@@ -9,7 +9,7 @@ import {
   useMaidsPredictionGetRewardAmount,
   useMaidsPredictionGetUserInfo,
 } from '@/lib/generated'
-import type { Prediction, SolidityUserInfo } from '@/server/prediction/prediction'
+import type { Prediction, SolidityUserInfo } from '@/app/(features)/prediction/_types'
 
 const usePredictionResult = (predictionInfo: Prediction) => {
   const { toast } = useToast()

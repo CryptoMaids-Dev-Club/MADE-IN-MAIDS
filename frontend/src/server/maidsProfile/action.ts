@@ -3,8 +3,8 @@
 import { revalidatePath } from 'next/cache'
 import { recoverMessageAddress } from 'viem'
 import prisma from '@/lib/prisma'
+import { MaidProfileUpdateSchema } from '@/server/maidsProfile'
 import { getNftOwner } from '@/server/nftOwner/query'
-import type { MaidProfileUpdateSchema } from './maidProfileUpdate'
 
 export const updateMaidProfile = async ({
   id,

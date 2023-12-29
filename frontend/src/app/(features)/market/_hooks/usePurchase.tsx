@@ -1,12 +1,12 @@
 import { useState, useEffect, useCallback } from 'react'
 import { TwitterShareButton, XIcon } from 'react-share'
 import { Address, useAccount, useWaitForTransaction } from 'wagmi'
+import { MarketItemInfo } from '@/app/(features)/market/_types'
 import { useToast } from '@/components/ui/use-toast'
 import { NETWORK } from '@/config/client'
 import { useAllowance } from '@/hooks/useAllowance'
 import { useApprove } from '@/hooks/useApprove'
 import { maidsTokenAddress, useMaidsMarketBuyItem, useMaidsTokenBalanceOf } from '@/lib/generated'
-import { MarketItemInfo } from '@/server/market/marketItem'
 
 type usePurchaseProps = {
   item: MarketItemInfo

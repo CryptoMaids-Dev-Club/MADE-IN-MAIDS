@@ -1,5 +1,5 @@
+import { getTopUserInfo } from '@/app/(features)/prediction/_api/query'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { getTopUserInfo } from '@/server/prediction/query'
 
 const RewardRanking = async () => {
   const topUserInfo = await getTopUserInfo()

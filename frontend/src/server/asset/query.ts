@@ -1,4 +1,4 @@
-import type { AssetInfo } from './asset'
+import type { AssetInfo } from '.'
 import 'server-only'
 
 export const getAsset = async (id: number) => {

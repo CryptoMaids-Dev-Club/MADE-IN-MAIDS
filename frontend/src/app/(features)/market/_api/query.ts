@@ -4,7 +4,7 @@ import { publicProvider } from '@wagmi/core/providers/public'
 import { Address, formatEther, formatUnits } from 'viem'
 import { INFURA_API_KEY, NETWORK } from '@/config/server'
 import { maidsMarketABI, maidsMarketAddress } from '@/lib/generated'
-import type { ItemInfo, MarketItemInfo, NFTMetadata, SolidityItemInfo } from './marketItem'
+import type { ItemInfo, MarketItemInfo, NFTMetadata, SolidityItemInfo } from '../_types'
 import 'server-only'
 
 const { publicClient } = configureChains([NETWORK], [infuraProvider({ apiKey: INFURA_API_KEY }), publicProvider()])

@@ -4,7 +4,7 @@ import Image from 'next/image'
 import NextLink from 'next/link'
 import { Typography } from '@/components/ui/typography'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import type { TopAsset } from '@/server/voting/voting'
+import type { TopAsset } from '@/app/(features)/voting/_types'
 
 type TopImageProps = {
   topAssets: TopAsset[]

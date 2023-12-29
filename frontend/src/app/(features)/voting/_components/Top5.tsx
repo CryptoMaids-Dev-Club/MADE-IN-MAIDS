@@ -1,4 +1,4 @@
-import { getTopAssets } from '@/server/voting/query'
+import { getTopAssets } from '@/app/(features)/voting/_api/query'
 import { TopImage } from './TopImage'
 
 export const Top5 = async () => {

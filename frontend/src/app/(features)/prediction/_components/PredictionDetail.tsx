@@ -1,11 +1,11 @@
 import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
+import { getPrediction } from '@/app/(features)/prediction/_api/query'
 import PredictionResult from '@/app/(features)/prediction/_components/PredictionResult'
 import PredictionUserInfo from '@/app/(features)/prediction/_components/PredictionUserInfo'
 import { Divider } from '@/components/ui/divider'
 import { Typography } from '@/components/ui/typography'
-import { getPrediction } from '@/server/prediction/query'
-import type { PredictionText } from '@/server/prediction/prediction'
+import type { PredictionText } from '@/app/(features)/prediction/_types'
 
 const PredictionForm = dynamic(() => import('./PredictionForm'), { ssr: false })
 

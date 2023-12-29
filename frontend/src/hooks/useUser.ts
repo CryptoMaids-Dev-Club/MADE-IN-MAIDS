@@ -3,7 +3,7 @@
 import { User } from '@prisma/client'
 import { useMutation, useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
 import { userKeys } from '@/app/api/user/keys'
-import { updateUserInfo } from '@/server/user/mutation'
+import { updateUserInfo } from '@/server/user/action'
 
 const fetcher = async (url: string): Promise<User> => {
   const res = await fetch(url)

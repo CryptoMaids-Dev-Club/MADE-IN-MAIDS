@@ -2,8 +2,8 @@ import { useCallback, useState } from 'react'
 import { MaidProfile } from '@prisma/client'
 import { useAccount, useSignMessage } from 'wagmi'
 import { getSignatureFromLocalStorage, saveSignatureToLocalStorage } from '@/lib/signature'
-import { updateMaidProfile } from '@/server/maidsProfile/mutation'
-import type { AssetInfo } from '@/server/asset/asset'
+import { updateMaidProfile } from '@/server/maidsProfile/action'
+import type { AssetInfo } from '@/server/asset'
 
 const useUpdateProfile = (profile: MaidProfile, asset: AssetInfo, owner: string) => {
   const [editing, setEditing] = useState(false)
