@@ -1,3 +1,4 @@
+import { Address } from 'viem'
 import prisma from '@/lib/prisma'
 import 'server-only'
 
@@ -7,7 +8,7 @@ export const getAllUserInfo = async () => {
   return user
 }
 
-export const getUserInfo = async (address: string) => {
+export const getUserInfo = async (address: Address) => {
   if (address === undefined) {
     return { id: 0, name: 'NO NAME', address: '0x...', iconUrl: '' }
   }

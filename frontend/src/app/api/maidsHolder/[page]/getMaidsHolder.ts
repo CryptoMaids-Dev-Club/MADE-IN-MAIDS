@@ -5,7 +5,7 @@ export default async function getMaidsHolder({ page }: { page: number }) {
     const res = await fetch(`/api/maidsHolder/${page}`)
 
     if (!res.ok) {
-      throw new Error('Something went wrong!')
+      throw new Error('HTTP error! status: ' + res.status + ' ' + res.statusText)
     }
 
     const holders = (await res.json()) as MaidsHolder[]
@@ -14,6 +14,6 @@ export default async function getMaidsHolder({ page }: { page: number }) {
   } catch (e) {
     console.error(e)
 
-    return {} as MaidsHolder[]
+    return null
   }
 }

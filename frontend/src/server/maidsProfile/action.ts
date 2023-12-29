@@ -2,48 +2,61 @@
 
 import { revalidatePath } from 'next/cache'
 import { Address } from 'viem'
+import { ZodError, z } from 'zod'
 import prisma from '@/lib/prisma'
-import { MaidProfileUpdateSchema } from '@/server/maidsProfile'
 import { getNftOwner } from '@/server/nftOwner/query'
 import { verifySignature } from '@/utils/signature'
+import { MaidProfileSchema } from 'prisma/generated/zod'
 
-export const updateMaidProfile = async ({
-  id,
-  name,
-  character,
-  description,
-  imageUrl,
-  address,
-  signature,
-}: MaidProfileUpdateSchema) => {
-  const lowerAddress = address.toLowerCase() as Address
-
-  const verify = await verifySignature(lowerAddress, 'Update Profile', signature as Address)
-  if (!verify) return { error: 'Invalid signature' }
-
-  const ownerAddress = await getNftOwner(id)
-  if (ownerAddress.toLowerCase() !== lowerAddress) return { error: 'Invalid address' }
-
-  const maidProfile = await prisma.maidProfile.upsert({
-    where: {
-      id: Number(id),
-    },
-    update: {
-      name,
-      character,
-      description,
-      imageUrl,
-    },
-    create: {
-      id: Number(id),
-      name,
-      character,
-      description,
-      imageUrl,
-    },
+const maidProfileUpdateSchema = MaidProfileSchema.merge(
+  z.object({
+    imageUrl: z.string(),
+    address: z.string(),
+    signature: z.string(),
   })
+)
 
-  revalidatePath(`/detail/${id}`)
+type MaidProfileUpdateSchema = z.infer<typeof maidProfileUpdateSchema>
 
-  return maidProfile
+export const updateMaidProfile = async (data: MaidProfileUpdateSchema) => {
+  try {
+    const { id, name, character, description, imageUrl, address, signature } = maidProfileUpdateSchema.parse(data)
+
+    const lowerAddress = address.toLowerCase() as Address
+
+    const verify = await verifySignature(lowerAddress, 'Update Profile', signature as Address)
+    if (!verify) return { error: 'Invalid signature' }
+
+    const ownerAddress = await getNftOwner(id)
+    if (ownerAddress.toLowerCase() !== lowerAddress) return { error: 'Invalid address' }
+
+    const maidProfile = await prisma.maidProfile.upsert({
+      where: {
+        id,
+      },
+      update: {
+        name,
+        character,
+        description,
+        imageUrl,
+      },
+      create: {
+        id: Number(id),
+        name,
+        character,
+        description,
+        imageUrl,
+      },
+    })
+
+    revalidatePath(`/detail/${id}`)
+
+    return maidProfile
+  } catch (e) {
+    console.error(e)
+    if (e instanceof ZodError) {
+      return { error: e.issues[0].message }
+    }
+    return { error: 'Internal server error' }
+  }
 }

@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { User } from '@prisma/client'
 import { Pencil } from 'lucide-react'
-import { useAccount, useSignMessage } from 'wagmi'
+import { Address, useAccount, useSignMessage } from 'wagmi'
 import { z } from 'zod'
 import AutoForm from '@/components/ui/auto-form'
 import { Button } from '@/components/ui/button'
@@ -13,7 +13,7 @@ import { useUpdateUser } from '@/hooks/useUser'
 import { getSignatureFromLocalStorage, saveSignatureToLocalStorage } from '@/utils/signature'
 
 type UserNameProps = {
-  targetAddress: string
+  targetAddress: Address
   userInfo: User
 }
 
@@ -39,7 +39,7 @@ const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
 
     const signature = getSignatureFromLocalStorage(address)
     if (signature) {
-      await updateUserInfo.mutate({ name: newName, address, iconUrl: '', signature })
+      await updateUserInfo.mutate({ name: newName, address, iconUrl: userInfo.iconUrl, signature })
       toast({
         title: 'Successfully updated!',
         duration: 3000,

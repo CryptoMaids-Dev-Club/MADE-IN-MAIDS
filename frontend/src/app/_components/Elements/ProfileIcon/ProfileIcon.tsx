@@ -2,11 +2,12 @@
 
 import { UserRound } from 'lucide-react'
 import NextLink from 'next/link'
+import { Address } from 'viem'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { useUser } from '@/hooks/useUser'
 
 type ProfileIconProps = {
-  address: string
+  address: Address
 }
 
 export const ProfileIcon = ({ address }: ProfileIconProps) => {

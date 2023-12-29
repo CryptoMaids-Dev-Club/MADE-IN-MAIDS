@@ -39,8 +39,8 @@ const Voting = ({ id }: VotingProps) => (
 
 export default Voting
 
-export const generateMetadata = async ({ params }: { params: { id: number } }) => {
-  const meta = await getAsset(params.id)
+export const generateMetadata = async ({ params }: { params: { id: string } }) => {
+  const meta = await getAsset(Number(params.id))
 
   return {
     title: 'Detail',

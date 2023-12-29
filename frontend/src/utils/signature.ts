@@ -7,7 +7,7 @@ type SavedSignature = {
   timestamp: number
 }
 
-export function getSignatureFromLocalStorage(address: string) {
+export function getSignatureFromLocalStorage(address: Address) {
   const savedSignature = localStorage.getItem(address)
 
   if (!savedSignature) return null
@@ -19,10 +19,10 @@ export function getSignatureFromLocalStorage(address: string) {
     return null
   }
 
-  return signature
+  return signature as Address
 }
 
-export function saveSignatureToLocalStorage(address: string, signature: string) {
+export function saveSignatureToLocalStorage(address: Address, signature: Address) {
   const savedSignature = JSON.stringify({ signature, timestamp: Date.now() })
 
   localStorage.setItem(address, savedSignature)

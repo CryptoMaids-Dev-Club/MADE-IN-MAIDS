@@ -14,7 +14,7 @@ export default async function getNftHolder({ page }: { page: number }) {
   } catch (e) {
     console.error(e)
 
-    return {} as NFTHolder[]
+    return []
   }
 }
 

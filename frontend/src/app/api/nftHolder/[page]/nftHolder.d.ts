@@ -1,5 +1,7 @@
+import { Address } from 'viem'
+
 export type NFTHolder = {
-  address: string
+  address: Address
   total: number
 }
 

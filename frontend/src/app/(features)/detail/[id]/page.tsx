@@ -2,13 +2,13 @@ import { notFound } from 'next/navigation'
 import { getAsset } from '@/server/asset/query'
 import Detail from '../_components/Detail'
 
-const DetailPage = ({ params }: { params: { id: number } }) => {
-  if (params.id > 2022) {
+const DetailPage = ({ params }: { params: { id: string } }) => {
+  if (Number(params.id) > 2022) {
     // CryptoMaids max token id is 2022
     return notFound()
   }
 
-  return <Detail id={params.id} />
+  return <Detail id={Number(params.id)} />
 }
 
 export default DetailPage

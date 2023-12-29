@@ -30,7 +30,7 @@ const MaidsHolderTable = ({ userInfos }: MaidsHolderTableProps) => {
 
     const holders = await getMaidsHolder({ page })
 
-    if (holders === undefined || holders.length < 1) {
+    if (holders === null || holders.length < 1) {
       setHasMore(false)
 
       return

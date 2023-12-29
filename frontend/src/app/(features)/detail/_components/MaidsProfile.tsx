@@ -3,6 +3,7 @@
 import { MaidProfile } from '@prisma/client'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Address } from 'viem'
 import { z } from 'zod'
 import useUpdateProfile from '@/app/(features)/detail/_hooks/useUpdateProfile'
 import AutoForm from '@/components/ui/auto-form'
@@ -13,7 +14,7 @@ import type { AssetInfo } from '@/server/asset'
 type MaidsProfileProps = {
   profile: MaidProfile
   asset: AssetInfo
-  owner: string
+  owner: Address
 }
 
 const createSchema = (profile: MaidProfile) => {
