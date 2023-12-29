@@ -10,7 +10,7 @@ import { Badge } from '@/components/ui/badge'
 import { Typography } from '@/components/ui/typography'
 import { useToast } from '@/components/ui/use-toast'
 import { useUpdateUser } from '@/hooks/useUser'
-import { getSignatureFromLocalStorage } from '@/lib/signature'
+import { getSignatureFromLocalStorage } from '@/utils/signature'
 import type { OwnedNFTs } from '@/app/api/ownedNfts/[address]/[page]/ownedNft'
 
 type MaidsListProps = {

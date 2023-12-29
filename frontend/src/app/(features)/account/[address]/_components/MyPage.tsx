@@ -1,5 +1,4 @@
 import { Suspense } from 'react'
-import { Metadata } from 'next'
 import { Typography } from '@/components/ui/typography'
 import MaidsList from './MaidsList'
 import Profile, { ProfileSkelton } from './Profile'
@@ -22,7 +21,3 @@ const MyPage = ({ address }: MyPageProps) => (
 )
 
 export default MyPage
-
-export const metadata: Metadata = {
-  title: 'MyPage',
-}

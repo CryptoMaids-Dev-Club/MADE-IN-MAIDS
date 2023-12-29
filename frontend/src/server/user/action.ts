@@ -2,8 +2,9 @@
 
 import { User } from '@prisma/client'
 import { revalidatePath } from 'next/cache'
-import { recoverMessageAddress } from 'viem'
+import { Address } from 'viem'
 import prisma from '@/lib/prisma'
+import { verifySignature } from '@/utils/signature'
 
 async function updateName(address: string, name: string) {
   const user = await prisma.user.upsert({
@@ -54,14 +55,10 @@ export const updateUserInfo = async ({
   iconUrl: string
   signature: string
 }) => {
-  const lowerAddress = address.toLowerCase()
+  const lowerAddress = address.toLowerCase() as Address
 
-  const recoveredAddress = await recoverMessageAddress({
-    message: 'Update Profile',
-    signature: signature as `0x{string}`,
-  })
-
-  if (recoveredAddress.toLowerCase() !== lowerAddress) throw new Error('Invalid signature')
+  if ((await verifySignature(lowerAddress, 'Update Profile', signature as Address)) === false)
+    return { error: 'Invalid signature' }
 
   let user: User = { id: 0, name: '', address: '', iconUrl: '' }
   if (name !== '') {

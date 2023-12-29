@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button'
 import { Typography } from '@/components/ui/typography'
 import { useToast } from '@/components/ui/use-toast'
 import { useUpdateUser } from '@/hooks/useUser'
-import { getSignatureFromLocalStorage, saveSignatureToLocalStorage } from '@/lib/signature'
+import { getSignatureFromLocalStorage, saveSignatureToLocalStorage } from '@/utils/signature'
 
 type UserNameProps = {
   targetAddress: string

@@ -1,10 +1,11 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import { recoverMessageAddress } from 'viem'
+import { Address } from 'viem'
 import prisma from '@/lib/prisma'
 import { MaidProfileUpdateSchema } from '@/server/maidsProfile'
 import { getNftOwner } from '@/server/nftOwner/query'
+import { verifySignature } from '@/utils/signature'
 
 export const updateMaidProfile = async ({
   id,
@@ -15,13 +16,10 @@ export const updateMaidProfile = async ({
   address,
   signature,
 }: MaidProfileUpdateSchema) => {
-  const lowerAddress = address.toLowerCase()
-  const recoveredAddress = await recoverMessageAddress({
-    message: 'Update Profile',
-    signature: signature as `0x{string}`,
-  })
+  const lowerAddress = address.toLowerCase() as Address
 
-  if (recoveredAddress.toLowerCase() !== lowerAddress) return { error: 'Invalid signature' }
+  if ((await verifySignature(lowerAddress, 'Update Profile', signature as Address)) === false)
+    return { error: 'Invalid signature' }
 
   const ownerAddress = await getNftOwner(id)
 
