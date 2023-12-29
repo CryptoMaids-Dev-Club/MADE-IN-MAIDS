@@ -49,7 +49,7 @@ export const updateMaidProfile = async (data: MaidProfileUpdateSchema) => {
       },
     })
 
-    revalidatePath(`/detail/${id}`)
+    revalidatePath('/')
 
     return maidProfile
   } catch (e) {
