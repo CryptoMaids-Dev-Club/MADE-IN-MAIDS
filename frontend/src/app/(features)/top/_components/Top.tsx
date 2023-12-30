@@ -1,7 +1,6 @@
 import { Suspense } from 'react'
-import { CenteringCircularProgress } from '@/app/_components/Elements/CenteringCircularProgress'
 import { Typography } from '@/components/ui/typography'
-import RecentlyUpdatedProfiles from './RecentlyUpdatedProfiles'
+import RecentlyUpdatedProfiles, { RecentlyUpdatedProfilesSkeleton } from './RecentlyUpdatedProfiles'
 import TopCard from './TopCard'
 
 const Top = () => (
@@ -44,8 +43,10 @@ const Top = () => (
       />
     </div>
     <div className='m-10 pb-4'>
-      <Typography variant='h1'>Recently Updated Profiles</Typography>
-      <Suspense fallback={<CenteringCircularProgress />}>
+      <Typography variant='h1' className='mb-3'>
+        Recently Updated Profiles
+      </Typography>
+      <Suspense fallback={<RecentlyUpdatedProfilesSkeleton />}>
         <RecentlyUpdatedProfiles />
       </Suspense>
     </div>

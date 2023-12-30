@@ -8,6 +8,7 @@ import { z } from 'zod'
 import useUpdateProfile from '@/app/(features)/detail/_hooks/useUpdateProfile'
 import AutoForm from '@/components/ui/auto-form'
 import { Button } from '@/components/ui/button'
+import { Skeleton } from '@/components/ui/skeleton'
 import { Typography } from '@/components/ui/typography'
 import type { AssetInfo } from '@/server/asset'
 
@@ -96,5 +97,23 @@ const MaidsProfile = ({ profile, asset, owner }: MaidsProfileProps) => {
     </div>
   )
 }
+
+export const MaidsProfileSkeleton = () => (
+  <div className='flex flex-col gap-6'>
+    <div className='flex flex-row'>
+      <Skeleton className='h-12 w-full' />
+    </div>
+
+    <div>
+      <Typography variant='h2'>Character</Typography>
+      <Skeleton className='h-8 w-full' />
+    </div>
+
+    <div>
+      <Typography variant='h2'>Description</Typography>
+      <Skeleton className='h-16 w-full' />
+    </div>
+  </div>
+)
 
 export default MaidsProfile
