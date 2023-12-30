@@ -1,10 +1,12 @@
 import { Metadata } from 'next'
+import { unstable_noStore as noStore } from 'next/cache'
 import { Typography } from '@/components/ui/typography'
 import { getAllUserInfo } from '@/server/user/query'
 import RankingTables from './RankingTables'
 
 // TODO: Insert Maids Image
 const Ranking = async () => {
+  noStore()
   const userInfos = await getAllUserInfo()
 
   return (
