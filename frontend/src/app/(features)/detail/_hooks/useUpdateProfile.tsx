@@ -38,6 +38,7 @@ const useUpdateProfile = (profile: MaidProfile, asset: AssetInfo, owner: string)
         await updateMaidProfile({ ...profile, imageUrl: asset.image, address, signature })
         changeProfile(profile)
         setEditing(false)
+        toggleUpdating()
       } else {
         signMessageAsync()
           .then(async (data) => {
@@ -45,12 +46,13 @@ const useUpdateProfile = (profile: MaidProfile, asset: AssetInfo, owner: string)
             saveSignatureToLocalStorage(address, data)
             changeProfile(profile)
             setEditing(false)
+            toggleUpdating()
           })
           .catch((e) => {
             console.error(e)
+            toggleUpdating()
           })
       }
-      toggleUpdating()
     },
     [address, asset.image, changeProfile, signMessageAsync, toggleUpdating]
   )
