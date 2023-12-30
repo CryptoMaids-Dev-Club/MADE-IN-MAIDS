@@ -4,7 +4,7 @@ import { NETWORK } from '@/config/server'
 import { maidsVotingABI, maidsVotingAddress } from '@/lib/generated'
 import { publicClient } from '@/lib/wagmicore'
 import { getAsset } from '@/server/asset/query'
-import type { SolidityVote, TopAsset, Vote } from './voting'
+import type { SolidityVote, TopAsset, Vote } from '../_types'
 
 createConfig({ publicClient })
 

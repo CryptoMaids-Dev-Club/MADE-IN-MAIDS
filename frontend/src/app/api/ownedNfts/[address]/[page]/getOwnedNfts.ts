@@ -1,6 +1,7 @@
+import { Address } from 'viem'
 import type { OwnedAssetInfo } from '@/app/api/ownedNfts/[address]/[page]/ownedNft'
 
-export default async function getNftHolder({ address, page }: { address: string; page: number }) {
+export default async function getNftHolder(address: Address, page: number) {
   try {
     const res = await fetch(`/api/ownedNfts/${address}/${page}`)
 
@@ -14,7 +15,7 @@ export default async function getNftHolder({ address, page }: { address: string;
   } catch (e) {
     console.error(e)
 
-    return {} as OwnedAssetInfo
+    return null
   }
 }
 

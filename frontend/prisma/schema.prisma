@@ -12,8 +12,8 @@ datasource db {
 model User {
   id      Int    @id @default(autoincrement())
   name    String
-  address String @unique
-  iconUrl String
+  address String @unique /// @zod.string.length(42)
+  iconUrl String /// @zod.string.url()
 }
 
 model MaidProfile {
@@ -21,7 +21,7 @@ model MaidProfile {
   name        String
   character   String
   description String
-  imageUrl    String @default("")
+  imageUrl    String @default("") /// @zod.string.url()
   createdAt DateTime @default(now()) @map("created_at") /// @zod.custom.omit([model, input])
   updatedAt DateTime @updatedAt @map("updated_at") /// @zod.custom.omit([model, input])
 }

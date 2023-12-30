@@ -1,12 +1,13 @@
 import { useCallback, useState } from 'react'
 import { MaidProfile } from '@prisma/client'
 import { useAccount, useSignMessage } from 'wagmi'
-import { getSignatureFromLocalStorage, saveSignatureToLocalStorage } from '@/lib/signature'
-import { updateMaidProfile } from '@/server/maidsProfile/mutation'
-import type { AssetInfo } from '@/server/asset/asset'
+import { updateMaidProfile } from '@/server/maidsProfile/action'
+import { getSignatureFromLocalStorage, saveSignatureToLocalStorage } from '@/utils/signature'
+import type { AssetInfo } from '@/server/asset'
 
 const useUpdateProfile = (profile: MaidProfile, asset: AssetInfo, owner: string) => {
   const [editing, setEditing] = useState(false)
+  const [updating, setUpdating] = useState(false)
   const [maidsProfile, setMaidsProfile] = useState<MaidProfile>(profile)
 
   const { address } = useAccount()
@@ -18,6 +19,10 @@ const useUpdateProfile = (profile: MaidProfile, asset: AssetInfo, owner: string)
     setEditing((prev) => !prev)
   }, [])
 
+  const toggleUpdating = useCallback(() => {
+    setUpdating((prev) => !prev)
+  }, [])
+
   const changeProfile = useCallback((profile: MaidProfile) => {
     setMaidsProfile(profile)
   }, [])
@@ -26,12 +31,14 @@ const useUpdateProfile = (profile: MaidProfile, asset: AssetInfo, owner: string)
     async (profile: MaidProfile) => {
       if (address === undefined) return
 
-      const signature = getSignatureFromLocalStorage(address)
+      toggleUpdating()
 
+      const signature = getSignatureFromLocalStorage(address)
       if (signature) {
         await updateMaidProfile({ ...profile, imageUrl: asset.image, address, signature })
         changeProfile(profile)
         setEditing(false)
+        toggleUpdating()
       } else {
         signMessageAsync()
           .then(async (data) => {
@@ -39,18 +46,20 @@ const useUpdateProfile = (profile: MaidProfile, asset: AssetInfo, owner: string)
             saveSignatureToLocalStorage(address, data)
             changeProfile(profile)
             setEditing(false)
+            toggleUpdating()
           })
           .catch((e) => {
             console.error(e)
+            toggleUpdating()
           })
       }
     },
-    [address, asset.image, changeProfile, signMessageAsync]
+    [address, asset.image, changeProfile, signMessageAsync, toggleUpdating]
   )
 
   const isOwner = address === owner
 
-  return { editing, isOwner, maidsProfile, toggleEditing, changeProfile, updateProfile }
+  return { editing, updating, isOwner, maidsProfile, toggleEditing, toggleUpdating, changeProfile, updateProfile }
 }
 
 export default useUpdateProfile

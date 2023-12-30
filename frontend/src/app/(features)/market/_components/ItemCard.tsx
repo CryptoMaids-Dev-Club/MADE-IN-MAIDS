@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Card } from '@/components/ui/card'
 import { Typography } from '@/components/ui/typography'
-import type { MarketItemInfo } from '@/server/market/marketItem'
+import type { MarketItemInfo } from '@/app/(features)/market/_types'
 
 type ItemCardProps = {
   item: MarketItemInfo

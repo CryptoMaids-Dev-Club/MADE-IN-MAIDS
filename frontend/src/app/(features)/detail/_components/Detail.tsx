@@ -1,6 +1,7 @@
 import { Suspense } from 'react'
+import { MaidsProfileSkeleton } from '@/app/(features)/detail/_components/MaidsProfile'
+import MaidsProfileWrapper from '@/app/(features)/detail/_components/MaidsProfileWrapper'
 import { Skeleton } from '@/components/ui/skeleton'
-import MaidsProfileWrapper from './MaidsProfileWrapper'
 import { NFTImage } from './NFTImage'
 
 type DetailProps = {
@@ -16,7 +17,7 @@ const Detail = ({ id }: DetailProps) => (
         </Suspense>
       </div>
       <div className='col-span-1'>
-        <Suspense fallback={<Skeleton />}>
+        <Suspense fallback={<MaidsProfileSkeleton />}>
           <MaidsProfileWrapper id={id} />
         </Suspense>
       </div>

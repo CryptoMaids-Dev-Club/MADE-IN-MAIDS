@@ -30,8 +30,8 @@ export const QueryModeSchema = z.enum(['default','insensitive']);
 export const UserSchema = z.object({
   id: z.number().int(),
   name: z.string(),
-  address: z.string(),
-  iconUrl: z.string(),
+  address: z.string().length(42),
+  iconUrl: z.string().url(),
 })
 
 export type User = z.infer<typeof UserSchema>
@@ -45,7 +45,7 @@ export const MaidProfileSchema = z.object({
   name: z.string(),
   character: z.string(),
   description: z.string(),
-  imageUrl: z.string(),
+  imageUrl: z.string().url(),
   // omitted: createdAt: z.coerce.date(),
   // omitted: updatedAt: z.coerce.date(),
 })

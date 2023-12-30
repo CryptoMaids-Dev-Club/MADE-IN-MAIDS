@@ -1,7 +1,7 @@
 import { getAsset } from '@/server/asset/query'
 import Voting from '../_components/Voting'
 
-const VotingPage = ({ params }: { params: { id: number } }) => <Voting id={Number(params.id)} />
+const VotingPage = ({ params }: { params: { id: string } }) => <Voting id={Number(params.id)} />
 
 export default VotingPage
 

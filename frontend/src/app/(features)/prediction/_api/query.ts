@@ -3,8 +3,8 @@ import { Address, formatEther } from 'viem'
 import { NETWORK } from '@/config/server'
 import { maidsPredictionABI, maidsPredictionAddress } from '@/lib/generated'
 import { publicClient } from '@/lib/wagmicore'
-import { SolidityTopUserInfo, TopUserInfo } from './prediction'
-import { Prediction, SolidityPrediction } from './prediction'
+import { SolidityTopUserInfo, TopUserInfo } from '../_types'
+import { Prediction, SolidityPrediction } from '../_types'
 import 'server-only'
 
 createConfig({ publicClient })

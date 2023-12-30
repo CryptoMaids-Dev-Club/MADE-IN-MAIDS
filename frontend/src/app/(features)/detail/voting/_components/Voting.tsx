@@ -3,8 +3,8 @@ import dynamic from 'next/dynamic'
 import { Skeleton } from '@/components/ui/skeleton'
 import { getAsset } from '@/server/asset/query'
 import { NFTImage } from '../../_components/NFTImage'
-import { NFTInfo } from '../../_components/NFTInfo'
 import { Induction } from './Induction'
+import { NFTInfo } from './NFTInfo'
 import { VotingInfo } from './VotingInfo'
 
 const VotingForm = dynamic(() => import('./VotingForm'), { ssr: false })
@@ -39,8 +39,8 @@ const Voting = ({ id }: VotingProps) => (
 
 export default Voting
 
-export const generateMetadata = async ({ params }: { params: { id: number } }) => {
-  const meta = await getAsset(params.id)
+export const generateMetadata = async ({ params }: { params: { id: string } }) => {
+  const meta = await getAsset(Number(params.id))
 
   return {
     title: 'Detail',

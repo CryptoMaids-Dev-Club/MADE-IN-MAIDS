@@ -1,6 +1,6 @@
-import { getMarketItems } from '@/server/market/query'
+import { getMarketItems } from '@/app/(features)/market/_api/query'
 import ItemDetail from '../_components/ItemDetail'
-import type { MarketItemInfo } from '@/server/market/marketItem'
+import type { MarketItemInfo } from '@/app/(features)/market/_types'
 
 const AssetDetail = async ({ params }: { params: { id: string } }) => {
   const marketItems = await getMarketItems()
@@ -11,9 +11,9 @@ const AssetDetail = async ({ params }: { params: { id: string } }) => {
 
 export default AssetDetail
 
-export const generateMetadata = async ({ params }: { params: { id: number } }) => {
+export const generateMetadata = async ({ params }: { params: { id: string } }) => {
   const marketItems = await getMarketItems()
-  const meta = marketItems[params.id] as MarketItemInfo
+  const meta = marketItems[Number(params.id)] as MarketItemInfo
 
   return {
     title: 'Item',

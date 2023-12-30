@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { Typography } from '@/components/ui/typography'
-import type { Prediction, PredictionText } from '@/server/prediction/prediction'
+import type { Prediction, PredictionText } from '@/app/(features)/prediction/_types'
 
 type PredictionProps = {
   predictionInfo: Prediction

@@ -1,4 +1,4 @@
-import { getMarketItems } from '@/server/market/query'
+import { getMarketItems } from '@/app/(features)/market/_api/query'
 import ItemCard from './ItemCard'
 
 const ItemList = async () => {

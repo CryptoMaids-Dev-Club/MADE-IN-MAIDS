@@ -6,7 +6,7 @@ import LoadingButtonForWeb3 from '@/app/_components/Elements/LoadingButtonForWeb
 import AutoForm from '@/components/ui/auto-form'
 import { FormItem, FormControl, FormLabel } from '@/components/ui/form'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import type { Prediction, PredictionText } from '@/server/prediction/prediction'
+import type { Prediction, PredictionText } from '@/app/(features)/prediction/_types'
 
 type PredictionFormProps = {
   predictionInfo: Prediction

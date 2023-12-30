@@ -1,9 +1,12 @@
+import { unstable_noStore as noStore } from 'next/cache'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Skeleton } from '@/components/ui/skeleton'
 import { Typography } from '@/components/ui/typography'
 import { getRecentlyUpdateProfiles } from '@/server/maidsProfile/query'
 
 const RecentlyUpdatedProfiles = async () => {
+  noStore()
   const profiles = await getRecentlyUpdateProfiles()
 
   return (
@@ -39,5 +42,37 @@ const RecentlyUpdatedProfiles = async () => {
     </div>
   )
 }
+
+export const RecentlyUpdatedProfilesSkeleton = () => (
+  <div className='box-border rounded-2xl border-2 border-white p-2'>
+    <div className='grid grid-cols-1 gap-2 md:grid-cols-5'>
+      <div>
+        <div className='w-full bg-gray-800 px-4 py-2'>
+          <Skeleton className='h-80 w-full' />
+        </div>
+      </div>
+      <div>
+        <div className='w-full bg-gray-800 px-4 py-2'>
+          <Skeleton className='h-80 w-full' />
+        </div>
+      </div>
+      <div>
+        <div className='w-full bg-gray-800 px-4 py-2'>
+          <Skeleton className='h-80 w-full' />
+        </div>
+      </div>
+      <div>
+        <div className='w-full bg-gray-800 px-4 py-2'>
+          <Skeleton className='h-80 w-full' />
+        </div>
+      </div>
+      <div>
+        <div className='w-full bg-gray-800 px-4 py-2'>
+          <Skeleton className='h-80 w-full' />
+        </div>
+      </div>
+    </div>
+  </div>
+)
 
 export default RecentlyUpdatedProfiles

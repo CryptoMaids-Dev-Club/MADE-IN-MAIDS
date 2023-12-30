@@ -1,5 +1,4 @@
 import { Suspense } from 'react'
-import { Metadata } from 'next'
 import { CenteringCircularProgress } from '@/app/_components/Elements/CenteringCircularProgress'
 import { Divider } from '@/components/ui/divider'
 import { Typography } from '@/components/ui/typography'
@@ -30,7 +29,3 @@ const Voting = () => (
 )
 
 export default Voting
-
-export const metadata: Metadata = {
-  title: 'Voting',
-}

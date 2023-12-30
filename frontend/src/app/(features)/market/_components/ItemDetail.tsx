@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { Typography } from '@/components/ui/typography'
 import { PurchaseForm } from './PurchaseForm'
-import type { MarketItemInfo } from '@/server/market/marketItem'
+import type { MarketItemInfo } from '@/app/(features)/market/_types'
 
 const ItemDetail = ({ marketItem }: { marketItem: MarketItemInfo }) => (
   <div className='container mx-auto mt-4 max-w-[1200px] pb-12'>

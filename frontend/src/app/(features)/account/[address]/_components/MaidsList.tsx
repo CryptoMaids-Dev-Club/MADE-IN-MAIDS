@@ -4,17 +4,17 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import InfiniteScroll from 'react-infinite-scroller'
-import { useAccount, useSignMessage } from 'wagmi'
+import { Address, useAccount, useSignMessage } from 'wagmi'
 import getOwnedNfts from '@/app/api/ownedNfts/[address]/[page]/getOwnedNfts'
 import { Badge } from '@/components/ui/badge'
 import { Typography } from '@/components/ui/typography'
 import { useToast } from '@/components/ui/use-toast'
 import { useUpdateUser } from '@/hooks/useUser'
-import { getSignatureFromLocalStorage } from '@/lib/signature'
+import { getSignatureFromLocalStorage } from '@/utils/signature'
 import type { OwnedNFTs } from '@/app/api/ownedNfts/[address]/[page]/ownedNft'
 
 type MaidsListProps = {
-  targetAddress: string
+  targetAddress: Address
 }
 
 const MaidsList = ({ targetAddress }: MaidsListProps) => {
@@ -32,8 +32,8 @@ const MaidsList = ({ targetAddress }: MaidsListProps) => {
   if (targetAddress === undefined) return <Typography>Invalid Address</Typography>
 
   const loadMore = async (page: number) => {
-    const ownedNfts = await getOwnedNfts({ address: targetAddress, page })
-    if (ownedNfts === undefined || ownedNfts.assets === undefined) {
+    const ownedNfts = await getOwnedNfts(targetAddress, page)
+    if (ownedNfts === null || ownedNfts.assets === undefined) {
       setHasMore(false)
 
       return

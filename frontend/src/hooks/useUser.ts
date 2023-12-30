@@ -2,8 +2,9 @@
 
 import { User } from '@prisma/client'
 import { useMutation, useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
+import { Address } from 'viem'
 import { userKeys } from '@/app/api/user/keys'
-import { updateUserInfo } from '@/server/user/mutation'
+import { updateUserInfo } from '@/server/user/action'
 
 const fetcher = async (url: string): Promise<User> => {
   const res = await fetch(url)
@@ -18,7 +19,7 @@ const defaultUser = {
   iconUrl: '',
 } as User
 
-export function useUser(address: string) {
+export function useUser(address: Address) {
   const { data, error } = useSuspenseQuery<User>({
     queryKey: userKeys.user(address ?? '0x0'),
     queryFn: () => fetcher(`/api/user/${address}`),
@@ -34,7 +35,7 @@ export function useUser(address: string) {
   return { address, userInfo: data }
 }
 
-export function useUpdateUser(address: string) {
+export function useUpdateUser(address: Address) {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: async ({
@@ -44,9 +45,9 @@ export function useUpdateUser(address: string) {
       signature,
     }: {
       name: string
-      address: string
+      address: Address
       iconUrl: string
-      signature: string
+      signature: Address
     }) => await updateUserInfo({ name, address, iconUrl, signature }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: userKeys.user(address) })
