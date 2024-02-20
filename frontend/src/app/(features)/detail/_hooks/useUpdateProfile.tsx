@@ -11,9 +11,7 @@ const useUpdateProfile = (profile: MaidProfile, asset: AssetInfo, owner: string)
   const [maidsProfile, setMaidsProfile] = useState<MaidProfile>(profile)
 
   const { address } = useAccount()
-  const { signMessageAsync } = useSignMessage({
-    message: 'Update Profile',
-  })
+  const { signMessageAsync } = useSignMessage()
 
   const toggleEditing = useCallback(() => {
     setEditing((prev) => !prev)
@@ -40,7 +38,9 @@ const useUpdateProfile = (profile: MaidProfile, asset: AssetInfo, owner: string)
         setEditing(false)
         toggleUpdating()
       } else {
-        signMessageAsync()
+        signMessageAsync({
+          message: 'Update Profile',
+        })
           .then(async (data) => {
             await updateMaidProfile({ ...profile, imageUrl: asset.image, address, signature: data })
             saveSignatureToLocalStorage(address, data)

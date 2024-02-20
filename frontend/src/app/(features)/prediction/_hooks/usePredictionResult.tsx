@@ -1,13 +1,13 @@
-import { useCallback } from 'react'
+import { useEffect, useCallback } from 'react'
 import { TwitterShareButton, XIcon } from 'react-share'
 import { formatEther } from 'viem'
-import { useAccount, useWaitForTransaction } from 'wagmi'
+import { useAccount, useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
 import { convertUserInfo } from '@/app/(features)/prediction/utils'
 import { useToast } from '@/components/ui/use-toast'
 import {
-  useMaidsPredictionClaimReward,
-  useMaidsPredictionGetRewardAmount,
-  useMaidsPredictionGetUserInfo,
+  useReadMaidsPredictionGetRewardAmount,
+  useReadMaidsPredictionGetUserInfo,
+  useSimulateMaidsPredictionClaimReward,
 } from '@/lib/generated'
 import type { Prediction, SolidityUserInfo } from '@/app/(features)/prediction/_types'
 
@@ -15,19 +15,34 @@ const usePredictionResult = (predictionInfo: Prediction) => {
   const { toast } = useToast()
   const { address, isConnected } = useAccount()
 
-  const {
-    data: claimData,
-    isLoading: isLoadingClaim,
-    write: claim,
-  } = useMaidsPredictionClaimReward({
-    args: [BigInt(predictionInfo.id)],
+  const { data: rewardAmount } = useReadMaidsPredictionGetRewardAmount({
+    args: [address ?? '0x0', BigInt(predictionInfo.id)],
+    query: {
+      enabled: address && isConnected,
+      select: (data) => Math.floor(Number(formatEther(data as bigint))),
+    },
   })
 
-  const claimTx = useWaitForTransaction({
-    hash: claimData?.hash,
-    onSuccess() {
+  const { data: userInfo } = useReadMaidsPredictionGetUserInfo({
+    args: [address ?? '0x0', BigInt(predictionInfo.id)],
+    query: {
+      enabled: address && isConnected,
+      select: (data) => convertUserInfo(data as SolidityUserInfo),
+    },
+  })
+
+  const { data } = useSimulateMaidsPredictionClaimReward({
+    args: [BigInt(predictionInfo.id)],
+  })
+  const { data: writeData, isPending: isLoadingClaim, writeContract: claim } = useWriteContract()
+  const { isLoading, status } = useWaitForTransactionReceipt({
+    hash: writeData,
+  })
+
+  useEffect(() => {
+    if (status === 'success') {
       toast({
-        title: `You have claimed ${rewardAmount} $MAIDS!`,
+        title: `You have claimed ${rewardAmount ?? 0} $MAIDS!`,
         description: 'Share your claim on X!',
         duration: 10000,
         action: (
@@ -39,20 +54,8 @@ const usePredictionResult = (predictionInfo: Prediction) => {
           </TwitterShareButton>
         ),
       })
-    },
-  })
-
-  const { data: rewardAmount } = useMaidsPredictionGetRewardAmount({
-    args: [address ?? '0x0', BigInt(predictionInfo.id)],
-    enabled: address && isConnected,
-    select: (data) => Math.floor(Number(formatEther(data as bigint))),
-  })
-
-  const { data: userInfo } = useMaidsPredictionGetUserInfo({
-    args: [address ?? '0x0', BigInt(predictionInfo.id)],
-    enabled: address && isConnected,
-    select: (data) => convertUserInfo(data as SolidityUserInfo),
-  })
+    }
+  }, [status, rewardAmount, toast, predictionInfo.id])
 
   const buttonMessage = useCallback(() => {
     if (userInfo?.isClaimed) {
@@ -76,14 +79,11 @@ const usePredictionResult = (predictionInfo: Prediction) => {
     }
   }, [predictionInfo.isSettled, rewardAmount])
 
-  const isLoading = isLoadingClaim || claimTx.isLoading
-
   return {
     userInfo,
     rewardAmount,
-    isLoading,
-    claim,
-    claimTx,
+    isLoading: isLoading || isLoadingClaim,
+    claim: () => (data ? claim(data.request) : {}),
     buttonMessage: buttonMessage(),
     resultMessage: resultMessage(),
   }

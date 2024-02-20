@@ -1,12 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-import { useWaitForTransaction } from 'wagmi'
+import { useWaitForTransactionReceipt } from 'wagmi'
 import { z } from 'zod'
 import LoadingButtonForWeb3 from '@/app/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
 import AutoForm from '@/components/ui/auto-form'
 import { useDebounce } from '@/hooks/useDebounce'
-import { useMaidsPredictionSetChoicesLength } from '@/lib/generated'
+import { useWriteMaidsPredictionSetChoicesLength } from '@/lib/generated'
 
 const schema = z.object({
   choiceLength: z.number().positive().int().min(1),
@@ -22,20 +22,22 @@ const SetChoiceLength = ({ id }: SetChoiceLength) => {
 
   const {
     data: choiceLengthData,
-    isLoading,
-    write: writeChoiceLength,
-  } = useMaidsPredictionSetChoicesLength({
-    args: [BigInt(id), BigInt(debounceChoiceLength)],
-  })
+    isPending,
+    writeContract: writeChoiceLength,
+  } = useWriteMaidsPredictionSetChoicesLength({})
 
-  const writeChoiceLengthTx = useWaitForTransaction({
-    hash: choiceLengthData?.hash,
+  const writeChoiceLengthTx = useWaitForTransactionReceipt({
+    hash: choiceLengthData,
   })
 
   return (
     <AutoForm
       formSchema={schema}
-      onSubmit={() => writeChoiceLength()}
+      onSubmit={() =>
+        writeChoiceLength({
+          args: [BigInt(id), BigInt(debounceChoiceLength)],
+        })
+      }
       fieldConfig={{
         choiceLength: {
           inputProps: {
@@ -45,7 +47,7 @@ const SetChoiceLength = ({ id }: SetChoiceLength) => {
       }}
       values={{ choiceLength }}
       onParsedValuesChange={(values) => setChoiceLength(values.choiceLength ?? 1)}>
-      <LoadingButtonForWeb3 loading={isLoading || writeChoiceLengthTx.isLoading}>Set ChoiceLength</LoadingButtonForWeb3>
+      <LoadingButtonForWeb3 loading={isPending || writeChoiceLengthTx.isLoading}>Set ChoiceLength</LoadingButtonForWeb3>
     </AutoForm>
   )
 }

@@ -141,13 +141,7 @@ export const TopBar = () => {
 
             <div className='relative ml-3'>
               <div>
-                <ConnectButton
-                  showBalance={false}
-                  accountStatus={{
-                    smallScreen: 'avatar',
-                    largeScreen: 'full',
-                  }}
-                />
+                <ConnectButton showBalance={false} />
               </div>
             </div>
           </div>

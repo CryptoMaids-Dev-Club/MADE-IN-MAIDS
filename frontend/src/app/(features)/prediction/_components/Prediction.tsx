@@ -1,8 +1,8 @@
 import { Suspense } from 'react'
+import PredictionList, { PredictionListSkelton } from '@/app/(features)/prediction/_components/PredictionList'
+import RewardRanking from '@/app/(features)/prediction/_components/RewardRanking'
 import { CenteringCircularProgress } from '@/app/_components/Elements/CenteringCircularProgress'
 import { Typography } from '@/components/ui/typography'
-import PredictionList, { PredictionListSkelton } from './PredictionList'
-import RewardRanking from './RewardRanking'
 
 const Prediction = () => (
   <div className='container mx-auto max-w-7xl pb-12'>

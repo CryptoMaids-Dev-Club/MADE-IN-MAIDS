@@ -1,14 +1,18 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { TwitterShareButton, XIcon } from 'react-share'
 import { parseEther } from 'viem'
-import { useAccount, useWaitForTransaction } from 'wagmi'
+import { useAccount, useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
 import { convertUserInfo } from '@/app/(features)/prediction/utils'
 import { useToast } from '@/components/ui/use-toast'
 import { NETWORK } from '@/config/client'
 import useAllowance from '@/hooks/useAllowance'
 import { useApprove } from '@/hooks/useApprove'
 import { useDebounce } from '@/hooks/useDebounce'
-import { maidsPredictionAddress, useMaidsPredictionGetUserInfo, useMaidsPredictionPredict } from '@/lib/generated'
+import {
+  maidsPredictionAddress,
+  useReadMaidsPredictionGetUserInfo,
+  useSimulateMaidsPredictionPredict,
+} from '@/lib/generated'
 import type { SolidityUserInfo } from '@/app/(features)/prediction/_types'
 
 const usePredict = (predictionId: number) => {
@@ -21,25 +25,26 @@ const usePredict = (predictionId: number) => {
 
   const { address, isConnected } = useAccount()
   const { allowance, refetch } = useAllowance(address ?? `0x${''}`, maidsPredictionAddress[NETWORK.id])
-  const { approve, isLoading: isLoadingApprove, approveTx } = useApprove(maidsPredictionAddress[NETWORK.id])
+  const { approve, isPending: isLoadingApprove } = useApprove(maidsPredictionAddress[NETWORK.id])
 
-  const { data: userInfo } = useMaidsPredictionGetUserInfo({
+  const { data: userInfo } = useReadMaidsPredictionGetUserInfo({
     args: [address ?? '0x0', BigInt(predictionId)],
-    enabled: isConnected,
-    select: (data) => convertUserInfo(data as SolidityUserInfo),
+    query: {
+      enabled: isConnected,
+      select: (data) => convertUserInfo(data as SolidityUserInfo),
+    },
   })
 
-  const {
-    data: predictData,
-    isLoading: isLoadingPredict,
-    write: predict,
-  } = useMaidsPredictionPredict({
+  const { data } = useSimulateMaidsPredictionPredict({
     args: [BigInt(predictionId), parseEther(`${debounceAmount}`), BigInt(debounceChoice)],
   })
+  const { data: writeData, isPending: isLoadingPredict, writeContract: predict } = useWriteContract()
+  const { isLoading, status } = useWaitForTransactionReceipt({
+    hash: writeData,
+  })
 
-  const predictTx = useWaitForTransaction({
-    hash: predictData?.hash,
-    onSuccess() {
+  useEffect(() => {
+    if (status === 'success') {
       toast({
         title: 'Successfully predicted!',
         description: 'Share your prediction on X!',
@@ -54,10 +59,8 @@ const usePredict = (predictionId: number) => {
         ),
       })
       refetch()
-    },
-  })
-
-  const isLoading = isLoadingApprove || isLoadingPredict || approveTx.isLoading || predictTx.isLoading
+    }
+  }, [status, refetch, toast, predictionId])
 
   const canPredict = Boolean(allowance) && allowance >= debounceAmount
 
@@ -70,12 +73,12 @@ const usePredict = (predictionId: number) => {
   }, [])
 
   const predictOrApprove = useCallback(() => {
-    if (canPredict) {
-      predict()
+    if (canPredict && data) {
+      predict(data.request)
     } else {
       approve()
     }
-  }, [approve, canPredict, predict])
+  }, [approve, canPredict, data, predict])
 
   const buttonMessage = useCallback(() => {
     if (userInfo?.isPredicted) {
@@ -90,9 +93,9 @@ const usePredict = (predictionId: number) => {
   return {
     userInfo,
     allowance,
-    isLoading,
+    isLoading: isLoadingApprove || isLoadingPredict || isLoading,
     canPredict,
-    isPredicted: userInfo?.isPredicted,
+    isPredicted: userInfo?.isPredicted ?? false,
     buttonMessage: buttonMessage(),
     choice,
     amount,

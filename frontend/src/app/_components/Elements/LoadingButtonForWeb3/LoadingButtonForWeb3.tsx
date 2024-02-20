@@ -1,5 +1,7 @@
+'use client'
+
 import { useConnectModal } from '@rainbow-me/rainbowkit'
-import { useAccount, useNetwork, useSwitchNetwork } from 'wagmi'
+import { useAccount, useSwitchChain } from 'wagmi'
 import { ButtonProps } from '@/components/ui/button'
 import { LoadingButton } from '@/components/ui/loading-button'
 
@@ -8,22 +10,24 @@ export type ButtonLoadingProps = ButtonProps & {
 }
 
 const LoadingButtonForWeb3 = ({ loading, ...props }: ButtonLoadingProps) => {
-  const { isConnected } = useAccount()
-  const { chain } = useNetwork()
-  const { chains, isLoading, switchNetwork } = useSwitchNetwork()
+  const { chain, isConnected } = useAccount()
+  const { chains, isPending, switchChain } = useSwitchChain()
   const { openConnectModal } = useConnectModal()
 
   if (!isConnected) {
     return (
-      <LoadingButton className={props.className} loading={isLoading} onClick={openConnectModal}>
+      <LoadingButton className={props.className} loading={isPending} onClick={openConnectModal}>
         Connect Wallet
       </LoadingButton>
     )
   }
 
-  if (chain && chain.id !== chains[0].id) {
+  if (chain === undefined) {
     return (
-      <LoadingButton className={props.className} loading={isLoading} onClick={() => switchNetwork?.(chains[0].id)}>
+      <LoadingButton
+        className={props.className}
+        loading={isPending}
+        onClick={() => switchChain({ chainId: chains[0].id })}>
         Switch to {chains[0].name} Network
       </LoadingButton>
     )

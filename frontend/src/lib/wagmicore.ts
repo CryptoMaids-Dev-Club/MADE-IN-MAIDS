@@ -1,9 +1,12 @@
-import { configureChains } from '@wagmi/core'
-import { infuraProvider } from '@wagmi/core/providers/infura'
-import { publicProvider } from '@wagmi/core/providers/public'
-import { INFURA_API_KEY, NETWORK } from '@/config/server'
+import { createConfig, http } from '@wagmi/core'
+import { polygon, sepolia } from 'wagmi/chains'
+import { NETWORK } from '@/config/server'
 
-export const { publicClient } = configureChains(
-  [NETWORK],
-  [infuraProvider({ apiKey: INFURA_API_KEY }), publicProvider()]
-)
+export const wagmiConfig = createConfig({
+  chains: [NETWORK],
+  ssr: true,
+  transports: {
+    [polygon.id]: http(),
+    [sepolia.id]: http(),
+  },
+})

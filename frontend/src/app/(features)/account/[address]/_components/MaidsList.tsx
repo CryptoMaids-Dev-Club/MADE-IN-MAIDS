@@ -4,7 +4,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import InfiniteScroll from 'react-infinite-scroller'
-import { Address, useAccount, useSignMessage } from 'wagmi'
+import { useAccount, useSignMessage } from 'wagmi'
 import getOwnedNfts from '@/app/api/ownedNfts/[address]/[page]/getOwnedNfts'
 import { Badge } from '@/components/ui/badge'
 import { Typography } from '@/components/ui/typography'
@@ -12,6 +12,7 @@ import { useToast } from '@/components/ui/use-toast'
 import { useUpdateUser } from '@/hooks/useUser'
 import { getSignatureFromLocalStorage } from '@/utils/signature'
 import type { OwnedNFTs } from '@/app/api/ownedNfts/[address]/[page]/ownedNft'
+import type { Address } from 'viem'
 
 type MaidsListProps = {
   targetAddress: Address
@@ -25,9 +26,7 @@ const MaidsList = ({ targetAddress }: MaidsListProps) => {
 
   const { toast } = useToast()
 
-  const { signMessageAsync } = useSignMessage({
-    message: 'Update Profile',
-  })
+  const { signMessageAsync } = useSignMessage()
 
   if (targetAddress === undefined) return <Typography>Invalid Address</Typography>
 
@@ -56,7 +55,7 @@ const MaidsList = ({ targetAddress }: MaidsListProps) => {
         duration: 3000,
       })
     } else {
-      signMessageAsync().then(async (data) => {
+      signMessageAsync({ message: 'Update Profile' }).then(async (data) => {
         if (address === undefined) return
         try {
           await updateUserInfo.mutate({ name: '', address, iconUrl: newIconUrl, signature: data })
