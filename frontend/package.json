@@ -72,7 +72,7 @@
     "prisma:generate": "prisma generate",
     "start": "next start",
     "analyze": "ANALYZE=true next build",
-    "fix": "bun run -s format && npm run -s lint:fix",
+    "fix": "bun run -s format && bun run -s lint:fix",
     "format": "prettier --write --loglevel=warn '{public,src}/**/*.{js,jsx,ts,tsx,html,gql,graphql,json}'",
     "lint": "next lint",
     "lint:fix": "bun run -s lint:style:fix && bun run -s lint:es:fix",
