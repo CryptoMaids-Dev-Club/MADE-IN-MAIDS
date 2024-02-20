@@ -1,18 +1,16 @@
-import { readContract, createConfig } from '@wagmi/core'
+import { readContract } from '@wagmi/core'
 import { Address, formatEther } from 'viem'
 import { NETWORK } from '@/config/server'
-import { maidsPredictionABI, maidsPredictionAddress } from '@/lib/generated'
-import { publicClient } from '@/lib/wagmicore'
+import { maidsPredictionAbi, maidsPredictionAddress } from '@/lib/generated'
+import { wagmiConfig } from '@/lib/wagmicore'
 import { SolidityTopUserInfo, TopUserInfo } from '../_types'
 import { Prediction, SolidityPrediction } from '../_types'
 import 'server-only'
 
-createConfig({ publicClient })
-
 export const getAllPredictions = async () => {
-  const data = await readContract({
+  const data = await readContract(wagmiConfig, {
     address: maidsPredictionAddress[NETWORK.id] as Address,
-    abi: maidsPredictionABI,
+    abi: maidsPredictionAbi,
     functionName: 'getAllPredictions',
   })
 
@@ -20,9 +18,9 @@ export const getAllPredictions = async () => {
 }
 
 export const getPrediction = async (id: number) => {
-  const data = await readContract({
+  const data = await readContract(wagmiConfig, {
     address: maidsPredictionAddress[NETWORK.id] as Address,
-    abi: maidsPredictionABI,
+    abi: maidsPredictionAbi,
     functionName: 'getPrediction',
     args: [BigInt(id)],
   })
@@ -30,9 +28,9 @@ export const getPrediction = async (id: number) => {
 }
 
 export const getTopUserInfo = async () => {
-  const data = await readContract({
+  const data = await readContract(wagmiConfig, {
     address: maidsPredictionAddress[NETWORK.id] as Address,
-    abi: maidsPredictionABI,
+    abi: maidsPredictionAbi,
     functionName: 'getTop3Info',
   })
 

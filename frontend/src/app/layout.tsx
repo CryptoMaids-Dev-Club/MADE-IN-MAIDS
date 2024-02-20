@@ -7,7 +7,7 @@ import { Footer } from '@/app/_components/Footer'
 import { Toaster } from '@/components/ui/toaster'
 import { cn } from '@/lib/utils'
 import { Providers } from './providers'
-// import './index.css'
+import './index.css'
 import './global.css'
 
 const siteName = 'Made in Maids'

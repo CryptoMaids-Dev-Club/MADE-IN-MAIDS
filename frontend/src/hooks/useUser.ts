@@ -7,7 +7,7 @@ import { userKeys } from '@/app/api/user/keys'
 import { updateUserInfo } from '@/server/user/action'
 
 const fetcher = async (url: string): Promise<User> => {
-  const res = await fetch(url)
+  const res = await fetch(url, { credentials: 'include' })
   const userInfo = (await res.json()) as User
   return userInfo
 }

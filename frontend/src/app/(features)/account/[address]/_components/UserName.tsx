@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { User } from '@prisma/client'
 import { Pencil } from 'lucide-react'
-import { Address, useAccount, useSignMessage } from 'wagmi'
+import { useAccount, useSignMessage } from 'wagmi'
 import { z } from 'zod'
 import AutoForm from '@/components/ui/auto-form'
 import { Button } from '@/components/ui/button'
@@ -11,6 +11,7 @@ import { Typography } from '@/components/ui/typography'
 import { useToast } from '@/components/ui/use-toast'
 import { useUpdateUser } from '@/hooks/useUser'
 import { getSignatureFromLocalStorage, saveSignatureToLocalStorage } from '@/utils/signature'
+import type { Address } from 'viem'
 
 type UserNameProps = {
   targetAddress: Address
@@ -29,9 +30,7 @@ const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
 
   const { address } = useAccount()
   const updateUserInfo = useUpdateUser(address ?? '0x0')
-  const { signMessageAsync } = useSignMessage({
-    message: 'Update Profile',
-  })
+  const { signMessageAsync } = useSignMessage()
 
   const handleClose = async (newName: string) => {
     setEditing(false)
@@ -45,7 +44,7 @@ const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
         duration: 3000,
       })
     } else {
-      signMessageAsync().then(async (data) => {
+      signMessageAsync({ message: 'Update Profile' }).then(async (data) => {
         if (address === undefined) return
         try {
           await updateUserInfo.mutate({ name: newName, address, iconUrl: '', signature: data })

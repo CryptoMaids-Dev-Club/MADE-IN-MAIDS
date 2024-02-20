@@ -4,7 +4,7 @@ import { useAccount } from 'wagmi'
 import { SolidityUserInfo } from '@/app/(features)/prediction/_types'
 import { convertUserInfo } from '@/app/(features)/prediction/utils'
 import { Typography } from '@/components/ui/typography'
-import { useMaidsPredictionGetUserInfo } from '@/lib/generated'
+import { useReadMaidsPredictionGetUserInfo } from '@/lib/generated'
 
 type PredictionUserInfoProps = {
   id: number
@@ -14,10 +14,12 @@ type PredictionUserInfoProps = {
 const PredictionUserInfo = ({ id, choices }: PredictionUserInfoProps) => {
   const { address, isConnected } = useAccount()
 
-  const { data: userInfo } = useMaidsPredictionGetUserInfo({
+  const { data: userInfo } = useReadMaidsPredictionGetUserInfo({
     args: [address ?? '0x0', BigInt(id)],
-    enabled: isConnected,
-    select: (data) => convertUserInfo(data as SolidityUserInfo),
+    query: {
+      enabled: isConnected,
+      select: (data) => convertUserInfo(data as SolidityUserInfo),
+    },
   })
 
   return (
