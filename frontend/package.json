@@ -71,7 +71,7 @@
     "start": "next start",
     "analyze": "ANALYZE=true next build",
     "fix": "bun run -s format && bun run -s lint:fix",
-    "format": "biome format --write --loglevel=warn '{public,src}/**/*.{js,jsx,ts,tsx,html,gql,graphql,json}'",
+    "format": "biome format --write --log-level=warn src",
     "lint": "biome lint src",
     "lint:fix": "bun run -s lint:style:fix && bun run -s lint:es:fix",
     "lint:style": "stylelint 'src/**/*.{css,less,sass,scss}'",

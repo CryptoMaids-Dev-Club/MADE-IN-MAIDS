@@ -8,5 +8,14 @@
 		"rules": {
 			"recommended": true
 		}
+	},
+	"javascript": {
+		"formatter": {
+			"enabled": true,
+			"quoteStyle": "single",
+			"jsxQuoteStyle": "single",
+			"trailingComma": "all",
+      		"semicolons": "asNeeded"
+		}
 	}
 }

@@ -6,5 +6,5 @@ const RankingPage = () => <Ranking />
 export default RankingPage
 
 export const metadata: Metadata = {
-  title: 'Ranking',
+	title: 'Ranking',
 }

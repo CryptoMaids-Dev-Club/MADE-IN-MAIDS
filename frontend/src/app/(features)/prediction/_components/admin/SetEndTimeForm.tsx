@@ -9,43 +9,46 @@ import { useDebounce } from '@/hooks/useDebounce'
 import { useWriteMaidsPredictionSetEndTime } from '@/lib/generated'
 
 const schema = z.object({
-  endTime: z.number().positive().int().min(1),
+	endTime: z.number().positive().int().min(1),
 })
 
 type SetEndTimeForm = {
-  id: number
+	id: number
 }
 
 const SetEndTimeForm = ({ id }: SetEndTimeForm) => {
-  const [endTime, setEndTime] = useState(0)
-  const debounceEndTime = useDebounce(endTime, 500)
+	const [endTime, setEndTime] = useState(0)
+	const debounceEndTime = useDebounce(endTime, 500)
 
-  const { data, isPending, writeContract } = useWriteMaidsPredictionSetEndTime()
+	const { data, isPending, writeContract } = useWriteMaidsPredictionSetEndTime()
 
-  const writeEndTimeTx = useWaitForTransactionReceipt({
-    hash: data,
-  })
+	const writeEndTimeTx = useWaitForTransactionReceipt({
+		hash: data,
+	})
 
-  return (
-    <AutoForm
-      formSchema={schema}
-      onSubmit={() =>
-        writeContract({
-          args: [BigInt(id), BigInt(debounceEndTime)],
-        })
-      }
-      fieldConfig={{
-        endTime: {
-          inputProps: {
-            placeholder: 'EndTime',
-          },
-        },
-      }}
-      values={{ endTime }}
-      onParsedValuesChange={(values) => setEndTime(values.endTime ?? 1)}>
-      <LoadingButtonForWeb3 loading={isPending || writeEndTimeTx.isLoading}>Set EndTime</LoadingButtonForWeb3>
-    </AutoForm>
-  )
+	return (
+		<AutoForm
+			formSchema={schema}
+			onSubmit={() =>
+				writeContract({
+					args: [BigInt(id), BigInt(debounceEndTime)],
+				})
+			}
+			fieldConfig={{
+				endTime: {
+					inputProps: {
+						placeholder: 'EndTime',
+					},
+				},
+			}}
+			values={{ endTime }}
+			onParsedValuesChange={(values) => setEndTime(values.endTime ?? 1)}
+		>
+			<LoadingButtonForWeb3 loading={isPending || writeEndTimeTx.isLoading}>
+				Set EndTime
+			</LoadingButtonForWeb3>
+		</AutoForm>
+	)
 }
 
 export default SetEndTimeForm
