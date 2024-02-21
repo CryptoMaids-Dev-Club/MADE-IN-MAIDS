@@ -1,6 +1,6 @@
 export type AssetInfo = {
-  name: string
-  image: string
-  attributes: string
-  external_url: string
+	name: string
+	image: string
+	attributes: string
+	external_url: string
 }

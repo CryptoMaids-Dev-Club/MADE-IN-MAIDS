@@ -5,19 +5,19 @@ import SetRateForm from '@/app/(features)/prediction/_components/admin/SetRateFo
 import SettleForm from './SettleForm'
 
 type AdminPredictionEditProps = {
-  id: number
+	id: number
 }
 
 const AdminPredictionEdit = ({ id }: AdminPredictionEditProps) => {
-  return (
-    <div className='container mx-auto my-8 max-w-6xl'>
-      <SettleForm id={id} />
-      <SetChoiceLength id={id} />
-      <SetPredictionURIForm id={id} />
-      <SetRateForm id={id} />
-      <SetEndTimeForm id={id} />
-    </div>
-  )
+	return (
+		<div className='container mx-auto my-8 max-w-6xl'>
+			<SettleForm id={id} />
+			<SetChoiceLength id={id} />
+			<SetPredictionURIForm id={id} />
+			<SetRateForm id={id} />
+			<SetEndTimeForm id={id} />
+		</div>
+	)
 }
 
 export default AdminPredictionEdit

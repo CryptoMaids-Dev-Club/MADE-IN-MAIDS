@@ -9,43 +9,46 @@ import { useDebounce } from '@/hooks/useDebounce'
 import { useWriteMaidsPredictionSettle } from '@/lib/generated'
 
 const schema = z.object({
-  choice: z.number().int().min(0).optional(),
+	choice: z.number().int().min(0).optional(),
 })
 
 type SettleForm = {
-  id: number
+	id: number
 }
 
 const SettleForm = ({ id }: SettleForm) => {
-  const [choice, setChoice] = useState(0)
-  const debounceChoice = useDebounce(choice, 500)
+	const [choice, setChoice] = useState(0)
+	const debounceChoice = useDebounce(choice, 500)
 
-  const { data, isPending, writeContract } = useWriteMaidsPredictionSettle({})
+	const { data, isPending, writeContract } = useWriteMaidsPredictionSettle({})
 
-  const settleTx = useWaitForTransactionReceipt({
-    hash: data,
-  })
+	const settleTx = useWaitForTransactionReceipt({
+		hash: data,
+	})
 
-  return (
-    <AutoForm
-      formSchema={schema}
-      onSubmit={() =>
-        writeContract({
-          args: [BigInt(id), BigInt(debounceChoice)],
-        })
-      }
-      fieldConfig={{
-        choice: {
-          inputProps: {
-            placeholder: 'Settle',
-          },
-        },
-      }}
-      values={{ choice }}
-      onParsedValuesChange={(values) => setChoice(values.choice ?? 1)}>
-      <LoadingButtonForWeb3 loading={isPending || settleTx.isLoading}>Settle</LoadingButtonForWeb3>
-    </AutoForm>
-  )
+	return (
+		<AutoForm
+			formSchema={schema}
+			onSubmit={() =>
+				writeContract({
+					args: [BigInt(id), BigInt(debounceChoice)],
+				})
+			}
+			fieldConfig={{
+				choice: {
+					inputProps: {
+						placeholder: 'Settle',
+					},
+				},
+			}}
+			values={{ choice }}
+			onParsedValuesChange={(values) => setChoice(values.choice ?? 1)}
+		>
+			<LoadingButtonForWeb3 loading={isPending || settleTx.isLoading}>
+				Settle
+			</LoadingButtonForWeb3>
+		</AutoForm>
+	)
 }
 
 export default SettleForm

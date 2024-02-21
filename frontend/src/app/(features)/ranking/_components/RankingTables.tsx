@@ -7,29 +7,29 @@ import MaidsHolderTable from './MaidsHolderTable'
 import NFTHolderTable from './NFTHolderTable'
 
 type CenteredTabsProps = {
-  userInfos: User[]
+	userInfos: User[]
 }
 
 const RankingTables = ({ userInfos }: CenteredTabsProps) => {
-  return (
-    <Tabs defaultValue='NFT' className='w-full'>
-      <TabsList className='w-full'>
-        <TabsTrigger className='w-full' value='NFT'>
-          NFT
-        </TabsTrigger>
-        <TabsTrigger className='w-full' value='$MAIDS'>
-          $MAIDS
-        </TabsTrigger>
-      </TabsList>
+	return (
+		<Tabs defaultValue='NFT' className='w-full'>
+			<TabsList className='w-full'>
+				<TabsTrigger className='w-full' value='NFT'>
+					NFT
+				</TabsTrigger>
+				<TabsTrigger className='w-full' value='$MAIDS'>
+					$MAIDS
+				</TabsTrigger>
+			</TabsList>
 
-      <TabsContent value='NFT'>
-        <NFTHolderTable userInfos={userInfos} />
-      </TabsContent>
-      <TabsContent value='$MAIDS'>
-        <MaidsHolderTable userInfos={userInfos} />
-      </TabsContent>
-    </Tabs>
-  )
+			<TabsContent value='NFT'>
+				<NFTHolderTable userInfos={userInfos} />
+			</TabsContent>
+			<TabsContent value='$MAIDS'>
+				<MaidsHolderTable userInfos={userInfos} />
+			</TabsContent>
+		</Tabs>
+	)
 }
 
 export default RankingTables

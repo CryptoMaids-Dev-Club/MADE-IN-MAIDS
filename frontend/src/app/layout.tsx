@@ -13,42 +13,51 @@ import './global.css'
 const siteName = 'Made in Maids'
 const description = 'Web site created by goshujin sama in the development team'
 
-const dotGothic = DotGothic16({ weight: '400', subsets: ['latin'], variable: '--font-DotGothic16' })
+const dotGothic = DotGothic16({
+	weight: '400',
+	subsets: ['latin'],
+	variable: '--font-DotGothic16',
+})
 
 export const metadata = {
-  title: {
-    default: siteName,
-    template: `%s | ${siteName}`,
-  },
-  description,
-  openGraph: {
-    title: siteName,
-    description,
-    siteName,
-    locale: 'ja_JP',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: siteName,
-    description,
-    site: '@CryptoMaids',
-    creator: '@CryptoMaids',
-  },
+	title: {
+		default: siteName,
+		template: `%s | ${siteName}`,
+	},
+	description,
+	openGraph: {
+		title: siteName,
+		description,
+		siteName,
+		locale: 'ja_JP',
+		type: 'website',
+	},
+	twitter: {
+		card: 'summary_large_image',
+		title: siteName,
+		description,
+		site: '@CryptoMaids',
+		creator: '@CryptoMaids',
+	},
 }
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
-  <html lang='en'>
-    <body className={cn('min-h-screen w-screen bg-background antialiased', dotGothic.className)}>
-      <Providers>
-        <TopBar />
-        {children}
-        <Toaster />
-        <Analytics />
-        <SpeedInsights />
-        <Footer />
-      </Providers>
-    </body>
-  </html>
+	<html lang='en'>
+		<body
+			className={cn(
+				'min-h-screen w-screen bg-background antialiased',
+				dotGothic.className,
+			)}
+		>
+			<Providers>
+				<TopBar />
+				{children}
+				<Toaster />
+				<Analytics />
+				<SpeedInsights />
+				<Footer />
+			</Providers>
+		</body>
+	</html>
 )
 export default RootLayout
