@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react'
-import getOwnedNfts from '@/app/api/ownedNfts/[address]/[page]/getOwnedNfts'
-import type { OwnedNFTs } from '@/app/api/ownedNfts/[address]/[page]/ownedNft'
+import { hc } from 'hono/client'
+import { OwnedNFTs } from '@/app/api/[[...route]]/ownedNfts'
+import { AppType } from '@/app/api/[[...route]]/route'
 import type { Address } from 'viem'
 
 export type UseMaidsListReturnType = {
@@ -9,13 +10,21 @@ export type UseMaidsListReturnType = {
     loadMore: (page: number) => Promise<void>
 }
 
+const client = hc<AppType>('/')
+
 export const useMaidsList = (targetAddress: Address): UseMaidsListReturnType => {
   const [maidsList, setMaidsList] = useState<OwnedNFTs[]>([])
   const [hasMore, setHasMore] = useState(true)
 
   const loadMore = useCallback(async (page: number) => {
     try {
-        const ownedNfts = await getOwnedNfts(targetAddress, page)
+        const res = await client.api.ownedNfts[':address'][':page'].$get({
+          param: {
+            address: targetAddress,
+            page: page.toString(),
+          }
+        })
+        const ownedNfts = await res.json()
         if (ownedNfts === null || ownedNfts.assets === undefined) {
             setHasMore(false)
             return

@@ -2,19 +2,22 @@
 
 import { useState } from 'react'
 import { User } from '@prisma/client'
+import { hc } from 'hono/client'
 import { UserRound } from 'lucide-react'
 import NextLink from 'next/link'
 import InfiniteScroll from 'react-infinite-scroller'
-import getMaidsHolder from '@/app/api/maidsHolder/[page]/getMaidsHolder'
+import { MaidsHolder } from '@/app/api/[[...route]]/maidsHolder'
+import { AppType } from '@/app/api/[[...route]]/route'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Table, TableBody, TableCell, TableHeader, TableRow } from '@/components/ui/table'
 import { Typography } from '@/components/ui/typography'
 import { getUserIcon, getUserName } from '../utils'
-import type { MaidsHolder } from '@/app/api/maidsHolder/[page]/maidsHolder'
 
 type MaidsHolderTableProps = {
   userInfos: User[]
 }
+
+const client = hc<AppType>('/')
 
 const MaidsHolderTable = ({ userInfos }: MaidsHolderTableProps) => {
   const [holdersList, setHoldersList] = useState<MaidsHolder[]>([])
@@ -28,7 +31,12 @@ const MaidsHolderTable = ({ userInfos }: MaidsHolderTableProps) => {
       return
     }
 
-    const holders = await getMaidsHolder({ page })
+    const res = await client.api.maidsHolder[':page'].$get({
+      param: {
+        page: page.toString(),
+      },
+    })
+    const holders = await res.json()
 
     if (holders === null || holders.length < 1) {
       setHasMore(false)

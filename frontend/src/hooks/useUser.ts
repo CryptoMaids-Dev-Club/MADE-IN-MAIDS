@@ -2,15 +2,13 @@
 
 import { User } from '@prisma/client'
 import { useMutation, useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
+import { hc } from 'hono/client'
 import { Address } from 'viem'
+import { AppType } from '@/app/api/[[...route]]/route'
 import { userKeys } from '@/app/api/[[...route]]/user'
 import { updateUserInfo } from '@/server/user/action'
 
-const fetcher = async (url: string): Promise<User> => {
-  const res = await fetch(url, { credentials: 'include' })
-  const userInfo = (await res.json()) as User
-  return userInfo
-}
+const client = hc<AppType>('/')
 
 const defaultUser = {
   id: 0,
@@ -22,7 +20,14 @@ const defaultUser = {
 export function useUser(address: Address) {
   const { data, error } = useSuspenseQuery<User>({
     queryKey: userKeys.user(address ?? '0x0'),
-    queryFn: () => fetcher(`/api/user/${address}`),
+    queryFn: async () => {
+      const res = await client.api.user[':address'].$get({
+        param: {
+          address: address.toString()
+        }
+      })
+      return await res.json()
+    },
   })
 
   if (error) {
