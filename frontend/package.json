@@ -70,8 +70,8 @@
   "scripts": {
     "preinstall": "bunx only-allow bun",
     "dev": "next dev",
-    "build": "prisma generate && next build",
-    "vercel-build": "prisma generate && next build",
+    "build": "prisma generate --no-engine && next build",
+    "vercel-build": "prisma generate --no-engine && next build",
     "prisma:generate": "prisma generate",
     "start": "next start",
     "analyze": "ANALYZE=true next build",
