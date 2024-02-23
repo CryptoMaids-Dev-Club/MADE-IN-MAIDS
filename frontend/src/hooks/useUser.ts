@@ -3,7 +3,7 @@
 import { User } from '@prisma/client'
 import { useMutation, useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
 import { Address } from 'viem'
-import { userKeys } from '@/app/api/user/keys'
+import { userKeys } from '@/app/api/[[...route]]/user'
 import { updateUserInfo } from '@/server/user/action'
 
 const fetcher = async (url: string): Promise<User> => {
