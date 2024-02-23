@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { TwitterShareButton, XIcon } from 'react-share'
-import { useAccount, useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
+import { useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
 import { MarketItemInfo } from '@/app/(features)/market/_types'
 import { useToast } from '@/components/ui/use-toast'
 import { NETWORK } from '@/config/client'
@@ -15,26 +15,21 @@ import {
 import type { Address } from 'viem'
 
 type usePurchaseProps = {
+  address: Address | undefined
   item: MarketItemInfo
 }
 
-export const usePurchase = ({ item }: usePurchaseProps) => {
-  const [isActive, setIsActive] = useState(false)
+export const usePurchase = ({ address, item }: usePurchaseProps) => {
   const [approved, setApproved] = useState(false)
   const [amount, setAmount] = useState(1)
   const [checked, setChecked] = useState(false)
   const [differentAddress, setAddress] = useState<Address>(`0x${''}`)
 
-  const { address, isConnected } = useAccount()
   const { allowance, refetch } = useAllowance(address ?? `0x${''}`, maidsMarketAddress[NETWORK.id])
   const { approve, isPending: isLoadingApprove } = useApprove(maidsTokenAddress[NETWORK.id])
   const { toast } = useToast()
 
   const range = Math.min(item.supply, 10)
-
-  useEffect(() => {
-    setIsActive(item.supply > 0 && isConnected)
-  }, [address, isConnected, item.supply])
 
   useEffect(() => {
     const totalPrice = item.price * amount
@@ -114,7 +109,6 @@ export const usePurchase = ({ item }: usePurchaseProps) => {
     differentAddress,
     range,
     buttonMessage: buttonMessage(),
-    isActive,
     approved,
     isLoading: isLoadingApprove || isLoadingBuyItem || isLoading,
     updateAmount,
