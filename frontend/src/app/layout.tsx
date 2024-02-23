@@ -42,7 +42,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
     <body className={cn('min-h-screen w-screen bg-background antialiased', dotGothic.className)}>
       <Providers>
         <TopBar />
-        {children}
+        <div className='pb-4'>{children}</div>
         <Toaster />
         <Analytics />
         <SpeedInsights />
