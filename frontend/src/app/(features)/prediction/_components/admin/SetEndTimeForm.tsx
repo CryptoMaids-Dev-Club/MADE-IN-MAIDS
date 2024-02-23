@@ -1,12 +1,12 @@
 'use client'
 
 import { useState } from 'react'
-import { useWaitForTransaction } from 'wagmi'
+import { useWaitForTransactionReceipt } from 'wagmi'
 import { z } from 'zod'
 import LoadingButtonForWeb3 from '@/app/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
 import AutoForm from '@/components/ui/auto-form'
 import { useDebounce } from '@/hooks/useDebounce'
-import { useMaidsPredictionSetEndTime } from '@/lib/generated'
+import { useWriteMaidsPredictionSetEndTime } from '@/lib/generated'
 
 const schema = z.object({
   endTime: z.number().positive().int().min(1),
@@ -20,18 +20,20 @@ const SetEndTimeForm = ({ id }: SetEndTimeForm) => {
   const [endTime, setEndTime] = useState(0)
   const debounceEndTime = useDebounce(endTime, 500)
 
-  const { data, isLoading, write } = useMaidsPredictionSetEndTime({
-    args: [BigInt(id), BigInt(debounceEndTime)],
-  })
+  const { data, isPending, writeContract } = useWriteMaidsPredictionSetEndTime()
 
-  const writeEndTimeTx = useWaitForTransaction({
-    hash: data?.hash,
+  const writeEndTimeTx = useWaitForTransactionReceipt({
+    hash: data,
   })
 
   return (
     <AutoForm
       formSchema={schema}
-      onSubmit={() => write()}
+      onSubmit={() =>
+        writeContract({
+          args: [BigInt(id), BigInt(debounceEndTime)],
+        })
+      }
       fieldConfig={{
         endTime: {
           inputProps: {
@@ -41,7 +43,7 @@ const SetEndTimeForm = ({ id }: SetEndTimeForm) => {
       }}
       values={{ endTime }}
       onParsedValuesChange={(values) => setEndTime(values.endTime ?? 1)}>
-      <LoadingButtonForWeb3 loading={isLoading || writeEndTimeTx.isLoading}>Set EndTime</LoadingButtonForWeb3>
+      <LoadingButtonForWeb3 loading={isPending || writeEndTimeTx.isLoading}>Set EndTime</LoadingButtonForWeb3>
     </AutoForm>
   )
 }

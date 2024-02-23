@@ -1,13 +1,13 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { TwitterShareButton, XIcon } from 'react-share'
 import { parseEther } from 'viem'
-import { useAccount, useWaitForTransaction } from 'wagmi'
+import { useAccount, useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
 import { useToast } from '@/components/ui/use-toast'
 import { NETWORK } from '@/config/client'
 import { useAllowance } from '@/hooks/useAllowance'
 import { useApprove } from '@/hooks/useApprove'
 import { useDebounce } from '@/hooks/useDebounce'
-import { maidsVotingAddress, useMaidsVotingVote } from '@/lib/generated'
+import { maidsVotingAddress, useSimulateMaidsVotingVote } from '@/lib/generated'
 
 const useVote = (id: number) => {
   const { toast } = useToast()
@@ -17,19 +17,19 @@ const useVote = (id: number) => {
   const debounceAmount = useDebounce(amount, 500)
 
   const { allowance, refetch } = useAllowance(address ?? `0x${''}`, maidsVotingAddress[NETWORK.id])
-  const { approve, isLoading: isLoadingApprove, approveTx } = useApprove(maidsVotingAddress[NETWORK.id])
+  // const { isPending: isLoadingApprove, writeContract: approve } = useWriteMaidsTokenApprove()
+  const { isPending: isLoadingApprove, approve } = useApprove(maidsVotingAddress[NETWORK.id])
 
-  const {
-    data: votingData,
-    isLoading: isLoadingVote,
-    write: vote,
-  } = useMaidsVotingVote({
-    args: debounceAmount ? [BigInt(id), parseEther(`${Number(debounceAmount)}`)] : [BigInt(id), 0n],
+  const { data } = useSimulateMaidsVotingVote({
+    args: [BigInt(id), parseEther(`${debounceAmount}`)],
+  })
+  const { data: writeData, isPending: isLoadingVote, writeContract: vote } = useWriteContract()
+  const { isLoading, status } = useWaitForTransactionReceipt({
+    hash: writeData,
   })
 
-  const voteTx = useWaitForTransaction({
-    hash: votingData?.hash,
-    onSuccess() {
+  useEffect(() => {
+    if (status === 'success') {
       toast({
         title: 'Successfully voted!',
         description: 'Share your vote on X!',
@@ -44,27 +44,27 @@ const useVote = (id: number) => {
         ),
       })
       refetch()
-    },
-  })
+    }
+  }, [status, refetch, toast, id])
 
   const updateAmount = useCallback((amount: number) => {
     setAmount(amount)
   }, [])
 
   const voteOrApprove = useCallback(() => {
-    if (allowance && allowance > Number(debounceAmount)) {
-      if (Number(debounceAmount) <= 0) return
-      vote()
+    if (allowance && allowance > debounceAmount && data) {
+      if (debounceAmount <= 0) return
+      vote(data.request)
     } else {
       approve()
     }
-  }, [allowance, approve, debounceAmount, vote])
+  }, [allowance, approve, data, debounceAmount, vote])
 
   return {
     amount,
     updateAmount,
     voteOrApprove,
-    isLoading: isLoadingApprove || isLoadingVote || approveTx.isLoading || voteTx.isLoading,
+    isLoading: isLoadingApprove || isLoadingVote || isLoading,
     allowance,
   }
 }

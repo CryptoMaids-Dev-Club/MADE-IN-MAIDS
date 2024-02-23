@@ -1,17 +1,15 @@
-import { readContract, createConfig } from '@wagmi/core'
+import { readContract } from '@wagmi/core'
 import { Address, formatEther } from 'viem'
 import { NETWORK } from '@/config/server'
-import { maidsVotingABI, maidsVotingAddress } from '@/lib/generated'
-import { publicClient } from '@/lib/wagmicore'
+import { maidsVotingAbi, maidsVotingAddress } from '@/lib/generated'
+import { wagmiConfig } from '@/lib/wagmicore'
 import { getAsset } from '@/server/asset/query'
 import type { SolidityVote, TopAsset, Vote } from '../_types'
 
-createConfig({ publicClient })
-
 export const getTopAssets = async (slug: number) => {
-  const data = await readContract({
+  const data = await readContract(wagmiConfig, {
     address: maidsVotingAddress[NETWORK.id] as Address,
-    abi: maidsVotingABI,
+    abi: maidsVotingAbi,
     functionName: 'getAllVotes',
   })
   const topVotes = sort(data as SolidityVote[]).slice(0, slug)

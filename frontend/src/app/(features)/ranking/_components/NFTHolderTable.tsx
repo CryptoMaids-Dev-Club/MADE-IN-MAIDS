@@ -2,19 +2,22 @@
 
 import { useState } from 'react'
 import { User } from '@prisma/client'
+import { hc } from 'hono/client'
 import { UserRound } from 'lucide-react'
 import NextLink from 'next/link'
 import InfiniteScroll from 'react-infinite-scroller'
-import getNftHolder from '@/app/api/nftHolder/[page]/getNftHolder'
+import { NFTHolder } from '@/app/api/[[...route]]/nftHolder'
+import { AppType } from '@/app/api/[[...route]]/route'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Table, TableBody, TableCell, TableHeader, TableRow } from '@/components/ui/table'
 import { Typography } from '@/components/ui/typography'
 import { getUserIcon, getUserName } from '../utils'
-import type { NFTHolder } from '@/app/api/nftHolder/[page]/nftHolder'
 
 type NFTHolderTableProps = {
   userInfos: User[]
 }
+
+const client = hc<AppType>('/')
 
 const NFTHolderTable = ({ userInfos }: NFTHolderTableProps) => {
   const [holdersList, setHoldersList] = useState<NFTHolder[]>([])
@@ -28,7 +31,12 @@ const NFTHolderTable = ({ userInfos }: NFTHolderTableProps) => {
       return
     }
 
-    const holders = await getNftHolder({ page })
+    const res = await client.api.nftHolder[':page'].$get({
+      param: {
+        page: page.toString(),
+      },
+    })
+    const holders = await res.json()
 
     if (holders.length < 1) {
       setHasMore(false)
@@ -54,7 +62,7 @@ const NFTHolderTable = ({ userInfos }: NFTHolderTableProps) => {
             <TableRow key={holder.address}>
               <TableCell scope='row'>{index + 1}</TableCell>
               <TableCell>
-                <Avatar className='h-24 w-24'>
+                <Avatar className='size-24'>
                   <AvatarImage src={getUserIcon(holder.address, userInfos)} />
                   <AvatarFallback>
                     <UserRound size={50} />

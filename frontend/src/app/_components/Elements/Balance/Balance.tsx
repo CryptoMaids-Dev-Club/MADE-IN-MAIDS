@@ -4,14 +4,16 @@ import { Wallet2 } from 'lucide-react'
 import { formatEther } from 'viem'
 import { useAccount } from 'wagmi'
 import { Typography } from '@/components/ui/typography'
-import { useMaidsTokenBalanceOf } from '@/lib/generated'
+import { useReadMaidsTokenBalanceOf } from '@/lib/generated'
 
 export const Balance = () => {
   const { address } = useAccount()
-  const { data: balance } = useMaidsTokenBalanceOf({
+  const { data: balance } = useReadMaidsTokenBalanceOf({
     args: [address ?? '0x0'],
-    enabled: address !== undefined,
-    select: (data) => Math.floor(Number(formatEther(data as bigint))),
+    query: {
+      enabled: address !== undefined,
+      select: (data: bigint) => Math.floor(Number(formatEther(data as bigint))),
+    },
   })
 
   return (

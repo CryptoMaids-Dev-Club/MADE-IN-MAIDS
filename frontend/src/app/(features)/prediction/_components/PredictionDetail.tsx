@@ -1,4 +1,3 @@
-import { Suspense } from 'react'
 import dynamic from 'next/dynamic'
 import { getPrediction } from '@/app/(features)/prediction/_api/query'
 import PredictionResult from '@/app/(features)/prediction/_components/PredictionResult'
@@ -45,15 +44,15 @@ const PredictionDetail = async ({ id }: PredictionDetailProps) => {
 
       <Divider className='my-2' />
       <Typography variant='h3'>Your Prediction</Typography>
-      <Suspense fallback={<Typography variant='h4'>Loading...</Typography>}>
-        <PredictionUserInfo id={id} choices={predictionText.choices} />
-        <Divider className='my-2' />
-      </Suspense>
+      {/* <Suspense fallback={<Typography variant='h4'>Loading...</Typography>}> */}
+      <PredictionUserInfo id={id} choices={predictionText.choices} />
+      <Divider className='my-2' />
+      {/* </Suspense> */}
 
       <Typography variant='h3'>Result</Typography>
-      <Suspense fallback={<Typography variant='h4'>Loading...</Typography>}>
-        <PredictionResult predictionInfo={predictionInfo} predictionText={predictionText} />
-      </Suspense>
+      {/* <Suspense fallback={<Typography variant='h4'>Loading...</Typography>}> */}
+      <PredictionResult predictionInfo={predictionInfo} predictionText={predictionText} />
+      {/* </Suspense> */}
     </div>
   )
 }

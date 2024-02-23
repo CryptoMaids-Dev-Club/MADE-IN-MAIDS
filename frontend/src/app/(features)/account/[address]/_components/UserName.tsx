@@ -3,14 +3,13 @@
 import { useState } from 'react'
 import { User } from '@prisma/client'
 import { Pencil } from 'lucide-react'
-import { Address, useAccount, useSignMessage } from 'wagmi'
+import { useAccount } from 'wagmi'
 import { z } from 'zod'
+import { useSaveUserInfo } from '@/app/(features)/account/[address]/_hooks/useSaveUserInfo'
 import AutoForm from '@/components/ui/auto-form'
 import { Button } from '@/components/ui/button'
 import { Typography } from '@/components/ui/typography'
-import { useToast } from '@/components/ui/use-toast'
-import { useUpdateUser } from '@/hooks/useUser'
-import { getSignatureFromLocalStorage, saveSignatureToLocalStorage } from '@/utils/signature'
+import type { Address } from 'viem'
 
 type UserNameProps = {
   targetAddress: Address
@@ -25,40 +24,15 @@ const createSchema = (userInfo: User) => {
 
 const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
   const [editing, setEditing] = useState(false)
-  const { toast } = useToast()
 
   const { address } = useAccount()
-  const updateUserInfo = useUpdateUser(address ?? '0x0')
-  const { signMessageAsync } = useSignMessage({
-    message: 'Update Profile',
-  })
+  const { saveUserInfo } = useSaveUserInfo(address ?? '0x0')
 
   const handleClose = async (newName: string) => {
     setEditing(false)
     if (userInfo.name === newName || address === undefined) return
 
-    const signature = getSignatureFromLocalStorage(address)
-    if (signature) {
-      await updateUserInfo.mutate({ name: newName, address, iconUrl: userInfo.iconUrl, signature })
-      toast({
-        title: 'Successfully updated!',
-        duration: 3000,
-      })
-    } else {
-      signMessageAsync().then(async (data) => {
-        if (address === undefined) return
-        try {
-          await updateUserInfo.mutate({ name: newName, address, iconUrl: '', signature: data })
-          saveSignatureToLocalStorage(address, data)
-          toast({
-            title: 'Successfully updated!',
-            duration: 3000,
-          })
-        } catch (e) {
-          console.error(e)
-        }
-      })
-    }
+    await saveUserInfo(newName, userInfo.iconUrl)
   }
 
   return (

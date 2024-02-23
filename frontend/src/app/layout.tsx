@@ -7,7 +7,7 @@ import { Footer } from '@/app/_components/Footer'
 import { Toaster } from '@/components/ui/toaster'
 import { cn } from '@/lib/utils'
 import { Providers } from './providers'
-// import './index.css'
+import './index.css'
 import './global.css'
 
 const siteName = 'Made in Maids'
@@ -42,7 +42,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
     <body className={cn('min-h-screen w-screen bg-background antialiased', dotGothic.className)}>
       <Providers>
         <TopBar />
-        {children}
+        <div className='pb-4'>{children}</div>
         <Toaster />
         <Analytics />
         <SpeedInsights />

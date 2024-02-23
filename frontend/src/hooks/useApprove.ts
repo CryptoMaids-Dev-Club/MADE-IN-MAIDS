@@ -1,18 +1,19 @@
-import { Address, useWaitForTransaction } from 'wagmi'
-import { useMaidsTokenApprove } from '@/lib/generated'
+import { useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
+import { useSimulateMaidsTokenApprove } from '@/lib/generated'
+import type { Address } from 'viem'
 
 export const useApprove = (spender: Address) => {
-  const {
-    data,
-    isLoading,
-    write: approve,
-  } = useMaidsTokenApprove({
+  const { data } = useSimulateMaidsTokenApprove({
     args: [spender, BigInt('0xffffffffffffffffffffffffffffffffffffffffffffffffff')],
   })
 
-  const approveTx = useWaitForTransaction({
-    hash: data?.hash,
+  const { data: writeData, isPending, writeContract } = useWriteContract()
+
+  const { isLoading } = useWaitForTransactionReceipt({
+    hash: writeData,
   })
 
-  return { approve, isLoading, approveTx }
+  if (!data) return { approve: () => {} }
+
+  return { isPending: isPending || isLoading, approve: () => writeContract(data.request) }
 }

@@ -15,7 +15,7 @@ const Profile = async ({ address }: ProfileProps) => {
 
   return (
     <div className='flex flex-col items-center'>
-      <Avatar className='h-40 w-40'>
+      <Avatar className='size-40'>
         <AvatarImage src={userInfo ? userInfo.iconUrl : ''} />
         <AvatarFallback>
           <UserRound size={100} />
@@ -30,7 +30,7 @@ const Profile = async ({ address }: ProfileProps) => {
 
 export const ProfileSkelton = () => (
   <div className='flex flex-col items-center'>
-    <Skeleton className='h-40 w-40 rounded-full' />
+    <Skeleton className='size-40 rounded-full' />
     <Skeleton className='h-4 w-[210px]' />
     <Skeleton className='h-4 w-[210px]' />
   </div>

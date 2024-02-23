@@ -1,20 +1,15 @@
-import { readContract, configureChains, createConfig } from '@wagmi/core'
-import { infuraProvider } from '@wagmi/core/providers/infura'
-import { publicProvider } from '@wagmi/core/providers/public'
+import { readContract } from '@wagmi/core'
 import { Address, formatEther, formatUnits } from 'viem'
-import { INFURA_API_KEY, NETWORK } from '@/config/server'
-import { maidsMarketABI, maidsMarketAddress } from '@/lib/generated'
+import { NETWORK } from '@/config/server'
+import { maidsMarketAbi, maidsMarketAddress } from '@/lib/generated'
+import { wagmiConfig } from '@/lib/wagmicore'
 import type { ItemInfo, MarketItemInfo, NFTMetadata, SolidityItemInfo } from '../_types'
 import 'server-only'
 
-const { publicClient } = configureChains([NETWORK], [infuraProvider({ apiKey: INFURA_API_KEY }), publicProvider()])
-
-createConfig({ publicClient })
-
 export const getMarketItems = async () => {
-  const data = await readContract({
+  const data = await readContract(wagmiConfig, {
     address: maidsMarketAddress[NETWORK.id] as Address,
-    abi: maidsMarketABI,
+    abi: maidsMarketAbi,
     functionName: 'fetchMarketItems',
   })
 

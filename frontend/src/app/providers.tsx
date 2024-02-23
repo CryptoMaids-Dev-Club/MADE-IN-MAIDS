@@ -1,36 +1,41 @@
 'use client'
 
 import React from 'react'
-import { RainbowKitProvider, darkTheme, getDefaultWallets } from '@rainbow-me/rainbowkit'
 import '@rainbow-me/rainbowkit/styles.css'
+import { RainbowKitProvider, connectorsForWallets, darkTheme, getDefaultWallets } from '@rainbow-me/rainbowkit'
+import { walletConnectWallet } from '@rainbow-me/rainbowkit/wallets'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { infuraProvider } from '@wagmi/core/providers/infura'
-import { publicProvider } from '@wagmi/core/providers/public'
-import { WagmiConfig, createConfig, configureChains } from 'wagmi'
+import { createConfig, WagmiProvider, http } from 'wagmi'
+import { polygon, sepolia } from 'wagmi/chains'
 import { ThemeProvider } from '@/components/theme-provider'
 import { NETWORK, WALLET_CONNECT_ID } from '@/config/client'
-import { INFURA_API_KEY } from '@/config/client'
 
-export const { chains, publicClient } = configureChains(
-  [NETWORK],
-  [infuraProvider({ apiKey: INFURA_API_KEY }), publicProvider()]
+const appName = 'MadeInMaids'
+const projectId = WALLET_CONNECT_ID
+
+const { wallets } = getDefaultWallets()
+const connectors = connectorsForWallets(
+  [
+    ...wallets,
+    {
+      groupName: 'WalletConnect',
+      wallets: [walletConnectWallet],
+    },
+  ],
+  {
+    appName,
+    projectId,
+  }
 )
 
-export const wagmiConfig = createConfig({
-  publicClient,
-})
-
-const projectId = WALLET_CONNECT_ID
-const { connectors } = getDefaultWallets({
-  appName: 'MadeInMaids',
-  projectId,
-  chains,
-})
-
 export const config = createConfig({
-  autoConnect: true,
+  chains: [NETWORK],
+  ssr: true,
   connectors,
-  publicClient,
+  transports: {
+    [polygon.id]: http(),
+    [sepolia.id]: http(),
+  },
 })
 
 const queryClient = new QueryClient()
@@ -39,11 +44,9 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
     <ThemeProvider attribute='class' defaultTheme='dark'>
       <QueryClientProvider client={queryClient}>
-        <WagmiConfig config={config}>
-          <RainbowKitProvider chains={chains} theme={darkTheme()}>
-            {children}
-          </RainbowKitProvider>
-        </WagmiConfig>
+        <WagmiProvider config={config}>
+          <RainbowKitProvider theme={darkTheme()}>{children}</RainbowKitProvider>
+        </WagmiProvider>
       </QueryClientProvider>
     </ThemeProvider>
   )

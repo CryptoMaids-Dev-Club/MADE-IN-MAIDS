@@ -1,6 +1,21 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { Hono } from 'hono'
+import { Address } from 'viem'
 import { CHAINBASE_API_KEY } from '@/config/server'
-import { MaidsHolder, ChainbaseResponse } from './maidsHolder'
+
+export type MaidsHolder = {
+  amount: string
+  original_amount: string
+  usd_value: string
+  wallet_address: Address
+}
+
+export type ChainbaseResponse = {
+  code: number
+  message: string
+  data: MaidsHolder[]
+  next_page: number
+  count: number
+}
 
 const fetchMaidsHolder = async (page: number): Promise<MaidsHolder[]> => {
   const response = await fetch(
@@ -25,11 +40,11 @@ const fetchMaidsHolder = async (page: number): Promise<MaidsHolder[]> => {
   return chainbaseResponse.data
 }
 
-export async function GET(_req: NextRequest, { params }: { params: { page: string } }) {
-  const maidsHolder = await fetchMaidsHolder(Number(params.page))
+const app = new Hono().get('/:page', async (c) => {
+  const page = c.req.param('page')
+  const maidsHolder = await fetchMaidsHolder(Number(page))
 
-  return NextResponse.json(maidsHolder)
-}
+  return c.json(maidsHolder)
+})
 
-export const revalidate = 60 * 60 // 1 hour
-export const runtime = 'edge'
+export default app

@@ -3,7 +3,7 @@
 import { formatEther } from 'viem'
 import { useAccount } from 'wagmi'
 import { Typography } from '@/components/ui/typography'
-import { useMaidsVotingGetVoteAmountsOfToken, useMaidsVotingGetVoteAmountsOfUser } from '@/lib/generated'
+import { useReadMaidsVotingGetVoteAmountsOfToken, useReadMaidsVotingGetVoteAmountsOfUser } from '@/lib/generated'
 
 type VotingInfoProps = {
   id: number
@@ -12,15 +12,19 @@ type VotingInfoProps = {
 export const VotingInfo = ({ id }: VotingInfoProps) => {
   const { address } = useAccount()
 
-  const { data: amountOfToken } = useMaidsVotingGetVoteAmountsOfToken({
+  const { data: amountOfToken } = useReadMaidsVotingGetVoteAmountsOfToken({
     args: [BigInt(id)],
-    select: (data) => Math.floor(Number(formatEther(data as bigint))),
+    query: {
+      select: (data) => Math.floor(Number(formatEther(data as bigint))),
+    },
   })
 
-  const { data: amountOfUser } = useMaidsVotingGetVoteAmountsOfUser({
+  const { data: amountOfUser } = useReadMaidsVotingGetVoteAmountsOfUser({
     args: [address ?? '0x0', BigInt(id)],
-    enabled: address !== undefined,
-    select: (data) => Math.floor(Number(formatEther(data as bigint))),
+    query: {
+      enabled: address !== undefined,
+      select: (data) => Math.floor(Number(formatEther(data as bigint))),
+    },
   })
 
   return (

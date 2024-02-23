@@ -1,6 +1,7 @@
 'use client'
 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import { useAccount } from 'wagmi'
 import { usePurchase } from '@/app/(features)/market/_hooks/usePurchase'
 import LoadingButtonForWeb3 from '@/app/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
 import { Input } from '@/components/ui/input'
@@ -14,18 +15,18 @@ type PurchaseFormProps = {
 }
 
 export const PurchaseForm = ({ item }: PurchaseFormProps) => {
+  const { address } = useAccount()
   const {
     amount,
     checked,
     range,
     buttonMessage,
-    isActive,
     isLoading,
     updateAmount,
     toggleChecked,
     updateAddress,
     buyItemOrApprove,
-  } = usePurchase({ item })
+  } = usePurchase({ address, item })
 
   return (
     <div className='my-2'>
@@ -40,7 +41,6 @@ export const PurchaseForm = ({ item }: PurchaseFormProps) => {
               <LoadingButtonForWeb3
                 className='w-full'
                 loading={isLoading}
-                disabled={!isActive}
                 onClick={buyItemOrApprove}>
                 {buttonMessage}
               </LoadingButtonForWeb3>

@@ -1,6 +1,19 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { Hono } from 'hono'
+import { Address } from 'viem'
 import { CHAINBASE_API_KEY } from '@/config/server'
-import { ChainbaseResponse, NFTHolder } from './nftHolder'
+
+export type NFTHolder = {
+  address: Address
+  total: number
+}
+
+export type ChainbaseResponse = {
+  code: number
+  message: string
+  data: NFTHolder[]
+  next_page: number
+  count: number
+}
 
 const fetchNFTHolder = async (page: number): Promise<NFTHolder[]> => {
   const response = await fetch(
@@ -25,11 +38,11 @@ const fetchNFTHolder = async (page: number): Promise<NFTHolder[]> => {
   return chainbaseResponse.data
 }
 
-export async function GET(_req: NextRequest, { params }: { params: { page: string } }) {
-  const nftHolder = await fetchNFTHolder(Number(params.page))
+const app = new Hono().get('/:page', async (c) => {
+  const page = c.req.param('page')
+  const nftHolder = await fetchNFTHolder(Number(page))
 
-  return NextResponse.json(nftHolder)
-}
+  return c.json(nftHolder)
+})
 
-export const revalidate = 60 * 60 // 1 hour
-export const runtime = 'edge'
+export default app
