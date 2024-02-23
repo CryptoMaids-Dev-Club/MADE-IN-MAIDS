@@ -3,7 +3,13 @@ import getOwnedNfts from '@/app/api/ownedNfts/[address]/[page]/getOwnedNfts'
 import type { OwnedNFTs } from '@/app/api/ownedNfts/[address]/[page]/ownedNft'
 import type { Address } from 'viem'
 
-export const useMaidsList = (targetAddress: Address) => {
+export type UseMaidsListReturnType = {
+    maidsList: OwnedNFTs[]
+    hasMore: boolean
+    loadMore: (page: number) => Promise<void>
+}
+
+export const useMaidsList = (targetAddress: Address): UseMaidsListReturnType => {
   const [maidsList, setMaidsList] = useState<OwnedNFTs[]>([])
   const [hasMore, setHasMore] = useState(true)
 

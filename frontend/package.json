@@ -101,7 +101,9 @@
     ]
   },
   "devDependencies": {
+    "@happy-dom/global-registrator": "^13.4.1",
     "@next/bundle-analyzer": "^13.4.9",
+    "@testing-library/react": "^14.2.1",
     "@types/react-infinite-scroller": "^1.2.3",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
