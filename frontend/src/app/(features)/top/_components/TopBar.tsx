@@ -45,7 +45,7 @@ export const TopBar = () => {
                   <span className='absolute -inset-0.5'></span>
                   <span className='sr-only'>Open main menu</span>
                   <svg
-                    className='block h-6 w-6'
+                    className='block size-6'
                     fill='none'
                     viewBox='0 0 24 24'
                     strokeWidth='1.5'
@@ -58,7 +58,7 @@ export const TopBar = () => {
                     />
                   </svg>
                   <svg
-                    className='hidden h-6 w-6'
+                    className='hidden size-6'
                     fill='none'
                     viewBox='0 0 24 24'
                     strokeWidth='1.5'
@@ -73,11 +73,11 @@ export const TopBar = () => {
                   <SheetTitle>
                     <div className='flex flex-row'>
                       {address ? (
-                        <Suspense fallback={<Skeleton className='h-10 w-10 rounded-full' />}>
+                        <Suspense fallback={<Skeleton className='size-10 rounded-full' />}>
                           <ProfileIcon address={address} />
                         </Suspense>
                       ) : (
-                        <Skeleton className='h-10 w-10 rounded-full' />
+                        <Skeleton className='size-10 rounded-full' />
                       )}
                       <div className='ml-2 mt-1'>
                         <Balance />
@@ -127,7 +127,7 @@ export const TopBar = () => {
 
             <div className='relative ml-3 hidden sm:block'>
               {address ? (
-                <Suspense fallback={<Skeleton className='h-10 w-10 rounded-full' />}>
+                <Suspense fallback={<Skeleton className='size-10 rounded-full' />}>
                   <ProfileIcon address={address} />
                 </Suspense>
               ) : (

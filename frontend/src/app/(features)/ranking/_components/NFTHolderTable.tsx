@@ -54,7 +54,7 @@ const NFTHolderTable = ({ userInfos }: NFTHolderTableProps) => {
             <TableRow key={holder.address}>
               <TableCell scope='row'>{index + 1}</TableCell>
               <TableCell>
-                <Avatar className='h-24 w-24'>
+                <Avatar className='size-24'>
                   <AvatarImage src={getUserIcon(holder.address, userInfos)} />
                   <AvatarFallback>
                     <UserRound size={50} />
