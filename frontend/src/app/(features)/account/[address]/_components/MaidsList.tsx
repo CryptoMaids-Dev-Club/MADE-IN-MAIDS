@@ -1,17 +1,13 @@
 'use client'
 
-import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import InfiniteScroll from 'react-infinite-scroller'
-import { useAccount, useSignMessage } from 'wagmi'
-import getOwnedNfts from '@/app/api/ownedNfts/[address]/[page]/getOwnedNfts'
+import { useAccount } from 'wagmi'
+import { useMaidsList } from '@/app/(features)/account/[address]/_hooks/useMaidsList'
+import { useSaveUserInfo } from '@/app/(features)/account/[address]/_hooks/useSaveUserInfo'
 import { Badge } from '@/components/ui/badge'
 import { Typography } from '@/components/ui/typography'
-import { useToast } from '@/components/ui/use-toast'
-import { useUpdateUser } from '@/hooks/useUser'
-import { getSignatureFromLocalStorage } from '@/utils/signature'
-import type { OwnedNFTs } from '@/app/api/ownedNfts/[address]/[page]/ownedNft'
 import type { Address } from 'viem'
 
 type MaidsListProps = {
@@ -19,56 +15,14 @@ type MaidsListProps = {
 }
 
 const MaidsList = ({ targetAddress }: MaidsListProps) => {
-  const [maidsList, setMaidsList] = useState<OwnedNFTs[]>([])
-  const [hasMore, setHasMore] = useState(true)
+  const { maidsList, hasMore, loadMore } = useMaidsList(targetAddress) 
   const { address } = useAccount()
-  const updateUserInfo = useUpdateUser(address ?? '0x0')
-
-  const { toast } = useToast()
-
-  const { signMessageAsync } = useSignMessage()
+  const { saveUserInfo } = useSaveUserInfo(address ?? '0x0')
 
   if (targetAddress === undefined) return <Typography>Invalid Address</Typography>
 
-  const loadMore = async (page: number) => {
-    const ownedNfts = await getOwnedNfts(targetAddress, page)
-    if (ownedNfts === null || ownedNfts.assets === undefined) {
-      setHasMore(false)
-
-      return
-    }
-    setMaidsList([...maidsList, ...ownedNfts.assets])
-
-    if (ownedNfts.next_page === undefined) {
-      setHasMore(false)
-    }
-  }
-
   const handleSaveClick = async (newIconUrl: string) => {
-    if (address === undefined) return
-
-    const signature = getSignatureFromLocalStorage(address)
-    if (signature) {
-      await updateUserInfo.mutate({ name: '', address, iconUrl: newIconUrl, signature })
-      toast({
-        title: 'Successfully updated!',
-        duration: 3000,
-      })
-    } else {
-      signMessageAsync({ message: 'Update Profile' }).then(async (data) => {
-        if (address === undefined) return
-        try {
-          await updateUserInfo.mutate({ name: '', address, iconUrl: newIconUrl, signature: data })
-          localStorage.setItem(address, JSON.stringify({ signature: data, timestamp: new Date().getTime() }))
-          toast({
-            title: 'Successfully updated!',
-            duration: 3000,
-          })
-        } catch (e) {
-          console.error(e)
-        }
-      })
-    }
+    await saveUserInfo('', newIconUrl)
   }
 
   return (
