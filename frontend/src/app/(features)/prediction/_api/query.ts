@@ -8,68 +8,68 @@ import { Prediction, SolidityPrediction } from '../_types'
 import 'server-only'
 
 export const getAllPredictions = async () => {
-	const data = await readContract(wagmiConfig, {
-		address: maidsPredictionAddress[NETWORK.id] as Address,
-		abi: maidsPredictionAbi,
-		functionName: 'getAllPredictions',
-	})
+  const data = await readContract(wagmiConfig, {
+    address: maidsPredictionAddress[NETWORK.id] as Address,
+    abi: maidsPredictionAbi,
+    functionName: 'getAllPredictions',
+  })
 
-	return convertToPredictions(data as SolidityPrediction[])
+  return convertToPredictions(data as SolidityPrediction[])
 }
 
 export const getPrediction = async (id: number) => {
-	const data = await readContract(wagmiConfig, {
-		address: maidsPredictionAddress[NETWORK.id] as Address,
-		abi: maidsPredictionAbi,
-		functionName: 'getPrediction',
-		args: [BigInt(id)],
-	})
-	return convertToPrediction(data as SolidityPrediction)
+  const data = await readContract(wagmiConfig, {
+    address: maidsPredictionAddress[NETWORK.id] as Address,
+    abi: maidsPredictionAbi,
+    functionName: 'getPrediction',
+    args: [BigInt(id)],
+  })
+  return convertToPrediction(data as SolidityPrediction)
 }
 
 export const getTopUserInfo = async () => {
-	const data = await readContract(wagmiConfig, {
-		address: maidsPredictionAddress[NETWORK.id] as Address,
-		abi: maidsPredictionAbi,
-		functionName: 'getTop3Info',
-	})
+  const data = await readContract(wagmiConfig, {
+    address: maidsPredictionAddress[NETWORK.id] as Address,
+    abi: maidsPredictionAbi,
+    functionName: 'getTop3Info',
+  })
 
-	return convertToTopUserInfo(data as unknown as SolidityTopUserInfo[])
+  return convertToTopUserInfo(data as unknown as SolidityTopUserInfo[])
 }
 
 // convert from SolidityPrediction to Prediction
 function convertToPredictions(data: SolidityPrediction[]) {
-	const predictions = [] as Prediction[]
-	data.forEach((value) => {
-		const prediction = convertToPrediction(value)
-		predictions.push(prediction)
-	})
-	return predictions
+  const predictions = [] as Prediction[]
+  data.forEach((value) => {
+    const prediction = convertToPrediction(value)
+    predictions.push(prediction)
+  })
+  return predictions
 }
 
 // convert from SolidityPrediction to Prediction
 function convertToPrediction(data: SolidityPrediction) {
-	const prediction = {
-		id: Number(data.id),
-		choicesLength: Number(data.choicesLength),
-		predictionURI: data.predictionURI,
-		rate: Number(data.rate),
-		endTime: Number(data.endTime),
-		result: Number(data.result),
-		isSettled: data.isSettled,
-	}
-	return prediction
+  const prediction = {
+    id: Number(data.id),
+    choicesLength: Number(data.choicesLength),
+    predictionURI: data.predictionURI,
+    rate: Number(data.rate),
+    endTime: Number(data.endTime),
+    result: Number(data.result),
+    isSettled: data.isSettled,
+  }
+  return prediction
 }
 
 // convert from SolidityTopUserInfo to TopUserInfo
 function convertToTopUserInfo(data: SolidityTopUserInfo[]) {
-	const topUserInfos = [] as TopUserInfo[]
-	data.forEach((value) => {
-		const topUserInfo = {
-			user: value.user,
-			amount: Math.floor(Number(formatEther(value.amount))),
-		}
-		topUserInfos.push(topUserInfo)
-	})
-	return topUserInfos
+  const topUserInfos = [] as TopUserInfo[]
+  data.forEach((value) => {
+    const topUserInfo = {
+      user: value.user,
+      amount: Math.floor(Number(formatEther(value.amount))),
+    }
+    topUserInfos.push(topUserInfo)
+  })
+  return topUserInfos
 }

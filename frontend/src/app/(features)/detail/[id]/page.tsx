@@ -3,42 +3,40 @@ import { getAsset } from '@/server/asset/query'
 import Detail from '../_components/Detail'
 
 const DetailPage = ({ params }: { params: { id: string } }) => {
-	if (Number(params.id) > 2022) {
-		// CryptoMaids max token id is 2022
-		return notFound()
-	}
+  if (Number(params.id) > 2022) {
+    // CryptoMaids max token id is 2022
+    return notFound()
+  }
 
-	return <Detail id={Number(params.id)} />
+  return <Detail id={Number(params.id)} />
 }
 
 export default DetailPage
 
-export const generateMetadata = async ({
-	params,
-}: { params: { id: number } }) => {
-	if (params.id > 2022) {
-		// CryptoMaids max token id is 2022
-		return notFound()
-	}
-	const meta = await getAsset(params.id)
+export const generateMetadata = async ({ params }: { params: { id: number } }) => {
+  if (params.id > 2022) {
+    // CryptoMaids max token id is 2022
+    return notFound()
+  }
+  const meta = await getAsset(params.id)
 
-	return {
-		title: 'Detail',
-		openGraph: {
-			title: meta.name,
-			siteName: 'CryptoMaids Made in Maids',
-			images: [
-				{
-					url: meta.image,
-				},
-			],
-			type: 'website',
-		},
-		twitter: {
-			card: 'summary_large_image',
-			title: meta.name,
-			creator: '@CryptoMaids',
-			images: [meta.image],
-		},
-	}
+  return {
+    title: 'Detail',
+    openGraph: {
+      title: meta.name,
+      siteName: 'CryptoMaids Made in Maids',
+      images: [
+        {
+          url: meta.image,
+        },
+      ],
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: meta.name,
+      creator: '@CryptoMaids',
+      images: [meta.image],
+    },
+  }
 }

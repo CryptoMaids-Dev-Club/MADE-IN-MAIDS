@@ -7,33 +7,33 @@ import { getUserInfo } from '@/server/user/query'
 import UserName from './UserName'
 
 type ProfileProps = {
-	address: Address
+  address: Address
 }
 
 const Profile = async ({ address }: ProfileProps) => {
-	const userInfo = await getUserInfo(address)
+  const userInfo = await getUserInfo(address)
 
-	return (
-		<div className='flex flex-col items-center'>
-			<Avatar className='h-40 w-40'>
-				<AvatarImage src={userInfo ? userInfo.iconUrl : ''} />
-				<AvatarFallback>
-					<UserRound size={100} />
-				</AvatarFallback>
-			</Avatar>
+  return (
+    <div className='flex flex-col items-center'>
+      <Avatar className='h-40 w-40'>
+        <AvatarImage src={userInfo ? userInfo.iconUrl : ''} />
+        <AvatarFallback>
+          <UserRound size={100} />
+        </AvatarFallback>
+      </Avatar>
 
-			<UserName targetAddress={address} userInfo={userInfo} />
-			<Typography>{address}</Typography>
-		</div>
-	)
+      <UserName targetAddress={address} userInfo={userInfo} />
+      <Typography>{address}</Typography>
+    </div>
+  )
 }
 
 export const ProfileSkelton = () => (
-	<div className='flex flex-col items-center'>
-		<Skeleton className='h-40 w-40 rounded-full' />
-		<Skeleton className='h-4 w-[210px]' />
-		<Skeleton className='h-4 w-[210px]' />
-	</div>
+  <div className='flex flex-col items-center'>
+    <Skeleton className='h-40 w-40 rounded-full' />
+    <Skeleton className='h-4 w-[210px]' />
+    <Skeleton className='h-4 w-[210px]' />
+  </div>
 )
 
 export default Profile

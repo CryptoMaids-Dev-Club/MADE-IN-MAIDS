@@ -9,78 +9,70 @@ import { verifySignature } from '@/utils/signature'
 import { UserSchema } from 'prisma/generated/zod'
 
 async function updateName(address: Address, name: string) {
-	const lowerAddress = address.toLowerCase()
-	const user = await prisma.user.upsert({
-		where: {
-			address: lowerAddress,
-		},
-		update: {
-			name,
-		},
-		create: {
-			name,
-			address: lowerAddress,
-			iconUrl: '',
-		},
-	})
+  const lowerAddress = address.toLowerCase()
+  const user = await prisma.user.upsert({
+    where: {
+      address: lowerAddress,
+    },
+    update: {
+      name,
+    },
+    create: {
+      name,
+      address: lowerAddress,
+      iconUrl: '',
+    },
+  })
 
-	return user
+  return user
 }
 
 async function updateIconUrl(address: Address, iconUrl: string) {
-	if (iconUrl.indexOf('https://cryptomaids-metadata.s3.amazonaws.com/') !== 0)
-		throw new Error('Invalid iconUrl')
+  if (iconUrl.indexOf('https://cryptomaids-metadata.s3.amazonaws.com/') !== 0) throw new Error('Invalid iconUrl')
 
-	const lowerAddress = address.toLowerCase()
+  const lowerAddress = address.toLowerCase()
 
-	const user = await prisma.user.upsert({
-		where: {
-			address: lowerAddress,
-		},
-		update: {
-			iconUrl,
-		},
-		create: {
-			name: 'NO NAME',
-			address: lowerAddress,
-			iconUrl,
-		},
-	})
+  const user = await prisma.user.upsert({
+    where: {
+      address: lowerAddress,
+    },
+    update: {
+      iconUrl,
+    },
+    create: {
+      name: 'NO NAME',
+      address: lowerAddress,
+      iconUrl,
+    },
+  })
 
-	return user
+  return user
 }
 
-const updateUserInfoSchema = UserSchema.omit({ id: true }).merge(
-	z.object({ signature: z.string() }),
-)
+const updateUserInfoSchema = UserSchema.omit({ id: true }).merge(z.object({ signature: z.string() }))
 type UpdateUserInfoSchema = z.infer<typeof updateUserInfoSchema>
 
 export const updateUserInfo = async (data: UpdateUserInfoSchema) => {
-	try {
-		const { address, name, iconUrl, signature } =
-			updateUserInfoSchema.parse(data)
+  try {
+    const { address, name, iconUrl, signature } = updateUserInfoSchema.parse(data)
 
-		const verify = await verifySignature(
-			address as Address,
-			'Update Profile',
-			signature as Address,
-		)
-		if (!verify) return { error: 'Invalid signature' }
+    const verify = await verifySignature(address as Address, 'Update Profile', signature as Address)
+    if (!verify) return { error: 'Invalid signature' }
 
-		let user: User = { id: 0, name: '', address: '', iconUrl: '' }
-		if (name !== '') {
-			user = await updateName(address as Address, name)
-		} else if (iconUrl) {
-			user = await updateIconUrl(address as Address, iconUrl)
-		}
-		revalidatePath('/')
+    let user: User = { id: 0, name: '', address: '', iconUrl: '' }
+    if (name !== '') {
+      user = await updateName(address as Address, name)
+    } else if (iconUrl) {
+      user = await updateIconUrl(address as Address, iconUrl)
+    }
+    revalidatePath('/')
 
-		return user
-	} catch (e) {
-		console.error(e)
-		if (e instanceof ZodError) {
-			return { error: e.issues[0].message }
-		}
-		return { error: 'Internal server error' }
-	}
+    return user
+  } catch (e) {
+    console.error(e)
+    if (e instanceof ZodError) {
+      return { error: e.issues[0].message }
+    }
+    return { error: 'Internal server error' }
+  }
 }

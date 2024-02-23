@@ -6,5 +6,5 @@ const VotingPage = () => <Voting />
 export default VotingPage
 
 export const metadata: Metadata = {
-	title: 'Voting',
+  title: 'Voting',
 }

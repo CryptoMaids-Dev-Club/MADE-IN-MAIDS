@@ -10,104 +10,89 @@ import { Button } from '@/components/ui/button'
 import { Typography } from '@/components/ui/typography'
 import { useToast } from '@/components/ui/use-toast'
 import { useUpdateUser } from '@/hooks/useUser'
-import {
-	getSignatureFromLocalStorage,
-	saveSignatureToLocalStorage,
-} from '@/utils/signature'
+import { getSignatureFromLocalStorage, saveSignatureToLocalStorage } from '@/utils/signature'
 import type { Address } from 'viem'
 
 type UserNameProps = {
-	targetAddress: Address
-	userInfo: User
+  targetAddress: Address
+  userInfo: User
 }
 
 const createSchema = (userInfo: User) => {
-	return z.object({
-		name: z.string().default(userInfo.name),
-	})
+  return z.object({
+    name: z.string().default(userInfo.name),
+  })
 }
 
 const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
-	const [editing, setEditing] = useState(false)
-	const { toast } = useToast()
+  const [editing, setEditing] = useState(false)
+  const { toast } = useToast()
 
-	const { address } = useAccount()
-	const updateUserInfo = useUpdateUser(address ?? '0x0')
-	const { signMessageAsync } = useSignMessage()
+  const { address } = useAccount()
+  const updateUserInfo = useUpdateUser(address ?? '0x0')
+  const { signMessageAsync } = useSignMessage()
 
-	const handleClose = async (newName: string) => {
-		setEditing(false)
-		if (userInfo.name === newName || address === undefined) return
+  const handleClose = async (newName: string) => {
+    setEditing(false)
+    if (userInfo.name === newName || address === undefined) return
 
-		const signature = getSignatureFromLocalStorage(address)
-		if (signature) {
-			await updateUserInfo.mutate({
-				name: newName,
-				address,
-				iconUrl: userInfo.iconUrl,
-				signature,
-			})
-			toast({
-				title: 'Successfully updated!',
-				duration: 3000,
-			})
-		} else {
-			signMessageAsync({ message: 'Update Profile' }).then(async (data) => {
-				if (address === undefined) return
-				try {
-					await updateUserInfo.mutate({
-						name: newName,
-						address,
-						iconUrl: '',
-						signature: data,
-					})
-					saveSignatureToLocalStorage(address, data)
-					toast({
-						title: 'Successfully updated!',
-						duration: 3000,
-					})
-				} catch (e) {
-					console.error(e)
-				}
-			})
-		}
-	}
+    const signature = getSignatureFromLocalStorage(address)
+    if (signature) {
+      await updateUserInfo.mutate({ name: newName, address, iconUrl: userInfo.iconUrl, signature })
+      toast({
+        title: 'Successfully updated!',
+        duration: 3000,
+      })
+    } else {
+      signMessageAsync({ message: 'Update Profile' }).then(async (data) => {
+        if (address === undefined) return
+        try {
+          await updateUserInfo.mutate({ name: newName, address, iconUrl: '', signature: data })
+          saveSignatureToLocalStorage(address, data)
+          toast({
+            title: 'Successfully updated!',
+            duration: 3000,
+          })
+        } catch (e) {
+          console.error(e)
+        }
+      })
+    }
+  }
 
-	return (
-		<div>
-			{!editing ? (
-				<Typography className='w-auto' variant='h3'>
-					{userInfo.name}
-					{
-						<button
-							className='ml-2 bg-black'
-							onClick={() => setEditing(true)}
-							disabled={address?.toLocaleLowerCase() !== targetAddress}
-						>
-							<Pencil className='hover:opacity-50' color='white' />
-						</button>
-					}
-				</Typography>
-			) : (
-				<AutoForm
-					formSchema={createSchema(userInfo)}
-					fieldConfig={{
-						name: {
-							inputProps: {
-								type: 'text',
-								placeholder: 'UserName',
-							},
-						},
-					}}
-					onSubmit={(data) => handleClose(data.name)}
-				>
-					<Button className='w-full' type='submit'>
-						Update
-					</Button>
-				</AutoForm>
-			)}
-		</div>
-	)
+  return (
+    <div>
+      {!editing ? (
+        <Typography className='w-auto' variant='h3'>
+          {userInfo.name}
+          {
+            <button
+              className='ml-2 bg-black'
+              onClick={() => setEditing(true)}
+              disabled={address?.toLocaleLowerCase() !== targetAddress}>
+              <Pencil className='hover:opacity-50' color='white' />
+            </button>
+          }
+        </Typography>
+      ) : (
+        <AutoForm
+          formSchema={createSchema(userInfo)}
+          fieldConfig={{
+            name: {
+              inputProps: {
+                type: 'text',
+                placeholder: 'UserName',
+              },
+            },
+          }}
+          onSubmit={(data) => handleClose(data.name)}>
+          <Button className='w-full' type='submit'>
+            Update
+          </Button>
+        </AutoForm>
+      )}
+    </div>
+  )
 }
 
 export default UserName

@@ -6,5 +6,5 @@ const PredictionPage = () => <AdminPredictionFactory />
 export default PredictionPage
 
 export const metadata: Metadata = {
-	title: 'Prediction',
+  title: 'Prediction',
 }

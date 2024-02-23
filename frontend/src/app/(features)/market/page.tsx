@@ -6,5 +6,5 @@ const MarketPage = () => <Market />
 export default MarketPage
 
 export const metadata: Metadata = {
-	title: 'Market',
+  title: 'Market',
 }

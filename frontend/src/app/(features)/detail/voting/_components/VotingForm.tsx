@@ -6,40 +6,38 @@ import LoadingButtonForWeb3 from '@/app/_components/Elements/LoadingButtonForWeb
 import AutoForm from '@/components/ui/auto-form'
 
 const schema = z.object({
-	num: z.coerce.number().positive().int().min(1),
+  num: z.coerce.number().positive().int().min(1),
 })
 
 type VotingFormProps = {
-	id: number
+  id: number
 }
 
 const VotingForm = ({ id }: VotingFormProps) => {
-	const handleSubmit = () => {
-		voteOrApprove()
-	}
+  const handleSubmit = () => {
+    voteOrApprove()
+  }
 
-	const { amount, updateAmount, voteOrApprove, isLoading, allowance } =
-		useVote(id)
+  const { amount, updateAmount, voteOrApprove, isLoading, allowance } = useVote(id)
 
-	return (
-		<AutoForm
-			formSchema={schema}
-			fieldConfig={{
-				num: {
-					inputProps: {
-						placeholder: 'Amount',
-					},
-				},
-			}}
-			onSubmit={handleSubmit}
-			values={{ num: amount }}
-			onParsedValuesChange={(values) => updateAmount(values.num ?? 1)}
-		>
-			<LoadingButtonForWeb3 className='mt-2 w-full' loading={isLoading}>
-				{allowance && allowance > Number(amount) ? `Vote` : `Approve $MAIDS`}
-			</LoadingButtonForWeb3>
-		</AutoForm>
-	)
+  return (
+    <AutoForm
+      formSchema={schema}
+      fieldConfig={{
+        num: {
+          inputProps: {
+            placeholder: 'Amount',
+          },
+        },
+      }}
+      onSubmit={handleSubmit}
+      values={{ num: amount }}
+      onParsedValuesChange={(values) => updateAmount(values.num ?? 1)}>
+      <LoadingButtonForWeb3 className='mt-2 w-full' loading={isLoading}>
+        {allowance && allowance > Number(amount) ? `Vote` : `Approve $MAIDS`}
+      </LoadingButtonForWeb3>
+    </AutoForm>
+  )
 }
 
 export default VotingForm

@@ -10,57 +10,55 @@ import { VotingInfo } from './VotingInfo'
 const VotingForm = dynamic(() => import('./VotingForm'), { ssr: false })
 
 type VotingProps = {
-	id: number
+  id: number
 }
 
 const Voting = ({ id }: VotingProps) => (
-	<div className='container mx-auto my-8 max-w-6xl'>
-		<div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2'>
-			<div className='col-span-1'>
-				<Suspense fallback={<Skeleton className='h-[800px] w-[500px]' />}>
-					<NFTImage id={id} />
-				</Suspense>
-			</div>
+  <div className='container mx-auto my-8 max-w-6xl'>
+    <div className='grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-2'>
+      <div className='col-span-1'>
+        <Suspense fallback={<Skeleton className='h-[800px] w-[500px]' />}>
+          <NFTImage id={id} />
+        </Suspense>
+      </div>
 
-			<div className='flex flex-col gap-6'>
-				<Suspense fallback={<Skeleton />}>
-					<NFTInfo id={id} />
-				</Suspense>
+      <div className='flex flex-col gap-6'>
+        <Suspense fallback={<Skeleton />}>
+          <NFTInfo id={id} />
+        </Suspense>
 
-				<VotingInfo id={Number(id)} />
+        <VotingInfo id={Number(id)} />
 
-				<VotingForm id={Number(id)} />
+        <VotingForm id={Number(id)} />
 
-				<Induction />
-			</div>
-		</div>
-	</div>
+        <Induction />
+      </div>
+    </div>
+  </div>
 )
 
 export default Voting
 
-export const generateMetadata = async ({
-	params,
-}: { params: { id: string } }) => {
-	const meta = await getAsset(Number(params.id))
+export const generateMetadata = async ({ params }: { params: { id: string } }) => {
+  const meta = await getAsset(Number(params.id))
 
-	return {
-		title: 'Detail',
-		openGraph: {
-			title: meta.name,
-			siteName: 'CryptoMaids Made in Maids',
-			images: [
-				{
-					url: meta.image,
-				},
-			],
-			type: 'website',
-		},
-		twitter: {
-			card: 'summary_large_image',
-			title: meta.name,
-			creator: '@CryptoMaids',
-			images: [meta.image],
-		},
-	}
+  return {
+    title: 'Detail',
+    openGraph: {
+      title: meta.name,
+      siteName: 'CryptoMaids Made in Maids',
+      images: [
+        {
+          url: meta.image,
+        },
+      ],
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: meta.name,
+      creator: '@CryptoMaids',
+      images: [meta.image],
+    },
+  }
 }
