@@ -24,7 +24,7 @@ export default defineConfig({
       abi: MaidsMarket.abi as Abi,
       address: {
         [polygon.id]: '0x937E61302C5565Bdd488DF35Fb7d362a323037f7',
-        [sepolia.id]: '0xB85Be6e3c82c633D1771F4c51a4F4A6CeA4A0871',
+        [sepolia.id]: '0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955',
       },
     },
     {
