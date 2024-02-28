@@ -6,12 +6,7 @@ import { useToast } from '@/components/ui/use-toast'
 import { NETWORK } from '@/config/client'
 import { useAllowance } from '@/hooks/useAllowance'
 import { useApprove } from '@/hooks/useApprove'
-import {
-  maidsMarketAddress,
-  maidsTokenAddress,
-  useReadMaidsTokenBalanceOf,
-  useSimulateMaidsMarketBuyItem,
-} from '@/lib/generated'
+import { maidsMarketAddress, useReadMaidsTokenBalanceOf, useSimulateMaidsMarketBuyItem } from '@/lib/generated'
 import type { Address } from 'viem'
 
 type usePurchaseProps = {
@@ -26,7 +21,7 @@ export const usePurchase = ({ address, item }: usePurchaseProps) => {
   const [differentAddress, setAddress] = useState<Address>(`0x${''}`)
 
   const { allowance, refetch } = useAllowance(address ?? `0x${''}`, maidsMarketAddress[NETWORK.id])
-  const { approve, isPending: isLoadingApprove } = useApprove(maidsTokenAddress[NETWORK.id])
+  const { approve, isPending: isLoadingApprove } = useApprove(maidsMarketAddress[NETWORK.id])
   const { toast } = useToast()
 
   const range = Math.min(item.supply, 10)

@@ -143,6 +143,10 @@ contract MaidsMarketPlace is Initializable, PausableUpgradeable, OwnableUpgradea
         nft.setURI(itemId, newTokenURI);
     }
 
+    function setStartTime(uint256 itemId, uint256 newStartTime) external onlyOperator {
+        _idToMarketItem[itemId].startTime = newStartTime;
+    }
+
     function _authorizeUpgrade(address) internal override onlyOwner {}
 
     function getImplementation() external view returns (address) {
@@ -164,3 +168,4 @@ contract MaidsMarketPlace is Initializable, PausableUpgradeable, OwnableUpgradea
      */
     uint256[45] private __gap;
 }
+
