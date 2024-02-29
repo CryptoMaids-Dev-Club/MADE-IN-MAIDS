@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { TwitterShareButton, XIcon } from 'react-share'
+import { formatEther, type Address } from 'viem'
 import { useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
 import { MarketItemInfo } from '@/app/(features)/market/_types'
 import { useToast } from '@/components/ui/use-toast'
@@ -7,7 +8,6 @@ import { NETWORK } from '@/config/client'
 import { useAllowance } from '@/hooks/useAllowance'
 import { useApprove } from '@/hooks/useApprove'
 import { maidsMarketAddress, useReadMaidsTokenBalanceOf, useSimulateMaidsMarketBuyItem } from '@/lib/generated'
-import type { Address } from 'viem'
 
 type usePurchaseProps = {
   address: Address | undefined
@@ -45,6 +45,9 @@ export const usePurchase = ({ address, item }: usePurchaseProps) => {
 
   const { data: balance } = useReadMaidsTokenBalanceOf({
     args: [address ?? (`0x${''}` as Address)],
+    query: {
+      select: (data) => Number(formatEther(data)),
+    },
   })
 
   const { data } = useSimulateMaidsMarketBuyItem({
@@ -93,7 +96,7 @@ export const usePurchase = ({ address, item }: usePurchaseProps) => {
 
   const buttonMessage = useCallback(() => {
     if (balance === undefined) return 'Loading...'
-    if (balance < BigInt(item.price) * BigInt(amount)) return 'Insufficient $MAIDS'
+    if (balance < item.price * amount) return 'Insufficient $MAIDS'
     if (!approved) return 'Approve $MAIDS'
     return `Purchase for ${item.price * amount} $MAIDS`
   }, [amount, approved, balance, item.price])
