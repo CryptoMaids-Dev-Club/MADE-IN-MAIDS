@@ -20,6 +20,7 @@ const ItemDetail = async ({ marketItem }: { marketItem: MarketItemInfo }) => {
               maxWidth: '100%',
               height: 'auto',
             }}
+            className={`${marketItem?.nsfw && `blur`}`}
           />
         </div>
         <div className='col-span-1'>

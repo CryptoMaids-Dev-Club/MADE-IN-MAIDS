@@ -1,7 +1,3 @@
-import { redirect } from 'next/navigation'
-
-const Page = () => {
-  redirect('/top')
-}
+const Page = () => {}
 
 export default Page

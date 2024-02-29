@@ -9,6 +9,15 @@ const withBundleAnalyzer = analyze({
 })
 
 const nextConfig = {
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/top',
+        permanent: true,
+      },
+    ]
+  },
   reactStrictMode: true,
   images: {
     remotePatterns: [
