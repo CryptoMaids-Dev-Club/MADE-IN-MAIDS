@@ -12,9 +12,13 @@ export const getMarketItems = async () => {
     abi: maidsMarketAbi,
     functionName: 'fetchMarketItems',
   })
+  console.log('data', data)
 
   const convertedItems = convert(data as unknown as SolidityItemInfo[])
+  console.log('convertedItems', convertedItems)
+
   const marketItems = await getItemInfo(convertedItems)
+  console.log('marketItems', marketItems)
 
   return marketItems
 }
