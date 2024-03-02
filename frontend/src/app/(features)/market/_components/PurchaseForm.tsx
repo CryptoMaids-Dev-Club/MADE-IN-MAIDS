@@ -38,10 +38,7 @@ export const PurchaseForm = ({ item }: PurchaseFormProps) => {
         <>
           <div className='grid grid-cols-5 gap-4'>
             <div className='col-span-4'>
-              <LoadingButtonForWeb3
-                className='w-full'
-                loading={isLoading}
-                onClick={buyItemOrApprove}>
+              <LoadingButtonForWeb3 className='w-full' loading={isLoading} onClick={buyItemOrApprove}>
                 {buttonMessage}
               </LoadingButtonForWeb3>
             </div>

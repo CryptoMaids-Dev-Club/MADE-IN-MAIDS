@@ -34,6 +34,7 @@ const ItemDetail = async ({ id }: ItemDetailProps) => {
           <Typography variant='h2'>{marketItem.name}</Typography>
           <Typography variant='h6'>{marketItem.description}</Typography>
           <Typography variant='h6'>{`Supply: ${marketItem.supply}`}</Typography>
+          <Typography variant='h6'>{`Limit Per Wallet: ${marketItem.limitPerWallet}`}</Typography>
         </div>
       </div>
       <PurchaseForm item={marketItem} />

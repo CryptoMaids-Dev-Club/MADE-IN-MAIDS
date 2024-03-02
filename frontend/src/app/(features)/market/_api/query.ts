@@ -7,28 +7,14 @@ import type { ItemInfo, MarketItemInfo, NFTMetadata, SolidityItemInfo } from '..
 import 'server-only'
 
 export const getMarketItems = async () => {
-  const res = await fetch('https://timeapi.io/api/Time/current/zone?timeZone=Europe/Amsterdam')
-
-  if (!res.ok) {
-    throw new Error('Something went wrong!')
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const jsonData = await res.json()
-  console.log('jsonData', jsonData)
-
   const data = await readContract(wagmiConfig, {
     address: maidsMarketAddress[NETWORK.id] as Address,
     abi: maidsMarketAbi,
     functionName: 'fetchMarketItems',
   })
-  console.log('data', data)
 
   const convertedItems = convert(data as unknown as SolidityItemInfo[])
-  console.log('convertedItems', convertedItems)
-
   const marketItems = await getItemInfo(convertedItems)
-  console.log('marketItems', marketItems)
 
   return marketItems
 }
@@ -41,6 +27,7 @@ const convert = (items: SolidityItemInfo[]) => {
       price: Number(formatEther(item.price)),
       supply: Number(formatUnits(item.supply, 0)),
       tokenURI: item.tokenURI,
+      limitPerWallet: Number(formatUnits(item.limitPerWallet, 0)),
     }
     convertedItems.push(convertedItem)
   })
