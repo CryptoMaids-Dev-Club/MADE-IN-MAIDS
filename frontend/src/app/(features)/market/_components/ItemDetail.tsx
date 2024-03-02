@@ -1,11 +1,18 @@
 import { unstable_noStore as noStore } from 'next/cache'
 import Image from 'next/image'
+import { getMarketItems } from '@/app/(features)/market/_api/query'
 import { Typography } from '@/components/ui/typography'
 import { PurchaseForm } from './PurchaseForm'
 import type { MarketItemInfo } from '@/app/(features)/market/_types'
 
-const ItemDetail = async ({ marketItem }: { marketItem: MarketItemInfo }) => {
+type ItemDetailProps = {
+  id: number
+}
+
+const ItemDetail = async ({ id }: ItemDetailProps) => {
   noStore()
+  const marketItems = await getMarketItems()
+  const marketItem = marketItems[id] as MarketItemInfo
 
   return (
     <div className='container mx-auto mt-4 max-w-[1200px] pb-12'>
