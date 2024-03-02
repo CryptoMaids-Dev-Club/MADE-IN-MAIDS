@@ -27,6 +27,7 @@ const convert = (items: SolidityItemInfo[]) => {
       price: Number(formatEther(item.price)),
       supply: Number(formatUnits(item.supply, 0)),
       tokenURI: item.tokenURI,
+      limitPerWallet: Number(formatUnits(item.limitPerWallet, 0)),
     }
     convertedItems.push(convertedItem)
   })

@@ -24,7 +24,7 @@ export const usePurchase = ({ address, item }: usePurchaseProps) => {
   const { approve, isPending: isLoadingApprove } = useApprove(maidsMarketAddress[NETWORK.id])
   const { toast } = useToast()
 
-  const range = Math.min(item.supply, 10)
+  const range = Math.min(item.supply, item.limitPerWallet, 10)
 
   useEffect(() => {
     const totalPrice = item.price * amount

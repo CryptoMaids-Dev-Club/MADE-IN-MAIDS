@@ -3,6 +3,7 @@ export type ItemInfo = {
   price: number
   supply: number
   tokenURI: string
+  limitPerWallet: number
 }
 
 export type MarketItemInfo = ItemInfo & {

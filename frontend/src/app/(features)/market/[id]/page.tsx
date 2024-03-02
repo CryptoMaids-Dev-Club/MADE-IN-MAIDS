@@ -3,10 +3,7 @@ import ItemDetail from '../_components/ItemDetail'
 import type { MarketItemInfo } from '@/app/(features)/market/_types'
 
 const AssetDetail = async ({ params }: { params: { id: string } }) => {
-  const marketItems = await getMarketItems()
-  const marketItem = marketItems[Number(params.id)] as MarketItemInfo
-
-  return <ItemDetail marketItem={marketItem} />
+  return <ItemDetail id={Number(params.id)} />
 }
 
 export default AssetDetail
