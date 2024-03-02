@@ -7,6 +7,16 @@ import type { ItemInfo, MarketItemInfo, NFTMetadata, SolidityItemInfo } from '..
 import 'server-only'
 
 export const getMarketItems = async () => {
+  const res = await fetch('https://timeapi.io/api/Time/current/zone?timeZone=Europe/Amsterdam')
+
+  if (!res.ok) {
+    throw new Error('Something went wrong!')
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+  const jsonData = await res.json()
+  console.log('jsonData', jsonData)
+
   const data = await readContract(wagmiConfig, {
     address: maidsMarketAddress[NETWORK.id] as Address,
     abi: maidsMarketAbi,
