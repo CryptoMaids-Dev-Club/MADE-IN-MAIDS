@@ -4,6 +4,8 @@ pragma solidity ^0.8.13;
 import "forge-std/console.sol";
 import "forge-std/Script.sol";
 import "../contracts/MaidsMarketPlace.sol";
+import "../contracts/MaidsToken.sol";
+import "../contracts/MaidsItem1155.sol";
 
 contract ContractScript is Script {
     function setUp() public {}
@@ -23,7 +25,7 @@ contract ContractScript is Script {
         
         maidsToken.addOperator(address(wrappedMarket));
         item.addOperator(address(wrappedMarket));
-        wrappedMarket.addOperator("0x23CA0c2219de2C5A6bf13B66897303c2766f3DE5");
+        wrappedMarket.addOperator(0x23CA0c2219de2C5A6bf13B66897303c2766f3DE5);
 
         vm.stopBroadcast();
     }
