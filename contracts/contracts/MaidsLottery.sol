@@ -58,6 +58,9 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC721Holde
     /// @dev Error when not winner calls claim
     error NotWinner();
 
+    /// @dev Error when not eligible to return ticket
+    error NotEligibleToReturnTicket();
+
     /*«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-*/
     /*                          STORAGE                           */
     /*-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»*/
@@ -107,19 +110,16 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC721Holde
     uint64 subscriptionId;
 
     /// @dev 150 wei gas lane
-    // bytes32 keyHash = 0x474e34a077df58807dbe9c96d3c009b23b3c6d0cce433e59bbf5b34f823bc56c;
-    bytes32 keyHash = 0xd89b2bf150e3b9e13446986e571fb9cab24b13cea0a43ea20a6049a85cc807cc;
+    bytes32 private constant keyHash = 0x474e34a077df58807dbe9c96d3c009b23b3c6d0cce433e59bbf5b34f823bc56c;
+    // bytes32 keyHash = 0xd89b2bf150e3b9e13446986e571fb9cab24b13cea0a43ea20a6049a85cc807cc;
 
     /// @dev Depends on chainlink docs, storing each word costs about 20,000 gas.
     /// So, 100,000 gas limit is enough for 5 words.
     /// Just in case, we set 300,000 gas limit.
-    uint32 callbackGasLimit = 300000;
+    uint32 private constant callbackGasLimit = 300000;
 
     /// @dev The default is 3, but you can set this higher.
-    uint16 requestConfirmations = 3;
-
-    /// @dev Ranodw words for testing
-    uint256 public randomWord;
+    uint16 private constant requestConfirmations = 3;
 
     /// @dev Array of lotteries
     LotteryInfo[] public lotteries;
@@ -193,21 +193,23 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC721Holde
     /// - must have enough tickets and medals NFT
     ///
     /// Emits a {NewEntry} event
-    function entry(uint256 lotteryId, uint256 tokenId, uint256 shareAmount) external {
+    function entry(uint256 lotteryId, uint256 shareAmount) external {
         if (shareAmount <= 0) revert ShareAmountMustBeGreaterThanZero();
-        if (block.timestamp < lotteries[lotteryId].startTime) {
-            revert LotteryIsNotOngoing();
-        }
-        if (block.timestamp > lotteries[lotteryId].endTime) {
-            revert LotteryIsNotOngoing();
-        }
-        if (lotteries[lotteryId].totalShares + shareAmount > lotteries[lotteryId].maxShares) revert OverMaxShares();
 
-        IERC1155(ticketContract).safeTransferFrom(_msgSender(), address(this), tokenId, shareAmount, "");
-        IERC1155(medalContract).safeTransferFrom(_msgSender(), address(this), tokenId, shareAmount, "");
+        LotteryInfo memory lottery = lotteries[lotteryId];
+        if (block.timestamp < lottery.startTime) {
+            revert LotteryIsNotOngoing();
+        }
+        if (block.timestamp > lottery.endTime) {
+            revert LotteryIsNotOngoing();
+        }
+        if (lottery.totalShares + shareAmount > lottery.maxShares) revert OverMaxShares();
+
+        IERC1155(ticketContract).safeTransferFrom(_msgSender(), address(this), lottery.tokenId, shareAmount, "");
+        IERC1155(medalContract).safeTransferFrom(_msgSender(), address(this), lottery.tokenId, shareAmount, "");
 
         for (uint256 i = 0; i < shareAmount; i++) {
-            uint256 shareNumber = lotteries[lotteryId].totalShares;
+            uint256 shareNumber = lottery.totalShares;
             entriesByLotteryId[lotteryId][shareNumber] = _msgSender();
             entryCountsByLotteryId[lotteryId][_msgSender()]++;
             lotteries[lotteryId].totalShares++;
@@ -266,12 +268,38 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC721Holde
         emit Claim(lotteryId, _msgSender(), prize.contractAddress, prize.tokenId, prize.amount);
     }
 
+    /// @dev Return the tickets for the loosing entries
+    ///
+    /// return twice the amount of tickets
+    function returnTicket(uint256 lotteryId) external {
+        if (block.timestamp < lotteries[lotteryId].endTime) {
+            revert LotteryIsStillOngoing();
+        }
+
+        address[] memory winners = lotteries[lotteryId].winners;
+        if (_isExist(_msgSender(), winners)) revert NotEligibleToReturnTicket();
+
+        uint256 shareAmount = entryCountsByLotteryId[lotteryId][_msgSender()];
+        entryCountsByLotteryId[lotteryId][_msgSender()] = 0;
+        IERC1155(ticketContract).safeTransferFrom(
+            address(this), _msgSender(), lotteries[lotteryId].tokenId, shareAmount * 2, ""
+        );
+    }
+
+    /*«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-*/
+    /*                          Getter                            */
+    /*-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»*/
+
     /// @dev Get lottery information
+    ///
+    /// Arrays are not returned in structs, so we need this function to get lottery information
     function getLotteryInfo(uint256 lotteryId) external view returns (LotteryInfo memory) {
         return lotteries[lotteryId];
     }
 
     /// @dev Get winners and prizes by lotteryId
+    ///
+    /// Arrays are not returned in structs, so we need this function to get winners and prizes
     function getWinnersAndPrizesByLotteryId(uint256 lotteryId, address winner)
         external
         view
@@ -279,6 +307,51 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC721Holde
     {
         return winnersAndPrizesByLotteryId[lotteryId][winner];
     }
+
+    /*«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-*/
+    /*                          Setter                            */
+    /*-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»*/
+
+    /// @dev Update Lottery Info
+    function updateLotteryInfo(
+        uint256 lotteryId,
+        uint256 tokenId,
+        uint256 maxShares,
+        uint256 startTime,
+        uint256 endTime
+    ) external onlyOwner {
+        LotteryInfo storage lottery = lotteries[lotteryId];
+
+        if (lottery.tokenId != tokenId) lottery.tokenId = tokenId;
+        if (lottery.maxShares != maxShares) lottery.maxShares = maxShares;
+        if (lottery.startTime != startTime) lottery.startTime = startTime;
+        if (lottery.endTime != endTime) lottery.endTime = endTime;
+    }
+
+    /// @dev Update Prize Info
+    function updatePrizeInfo(uint256 lotteryId, PrizeInfo[] memory prizes) external onlyOwner {
+        LotteryInfo storage lottery = lotteries[lotteryId];
+
+        // Clear the existing prizes array if necessary
+        delete lottery.prizes;
+
+        // Manually copy each prize from memory to storage
+        for (uint256 i = 0; i < prizes.length; i++) {
+            // Create a new storage reference to a PrizeInfo struct
+            PrizeInfo storage newPrize = lottery.prizes.push();
+
+            // Copy fields individually
+            newPrize.prizeType = prizes[i].prizeType;
+            newPrize.contractAddress = prizes[i].contractAddress;
+            newPrize.tokenId = prizes[i].tokenId;
+            newPrize.amount = prizes[i].amount;
+            newPrize.claimed = prizes[i].claimed;
+        }
+    }
+
+    /*«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-*/
+    /*                      Chainlink VRF                         */
+    /*-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»*/
 
     /**
      * @notice Callback function used by VRF Coordinator
@@ -310,7 +383,7 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC721Holde
     /*-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»*/
 
     /// @dev Returns true if the address is in the array
-    function isExist(address addr, address[] memory arr) internal pure returns (bool) {
+    function _isExist(address addr, address[] memory arr) internal pure returns (bool) {
         for (uint256 i = 0; i < arr.length; i++) {
             if (arr[i] == addr) {
                 return true;
