@@ -6,12 +6,9 @@ import {VRFConsumerBaseV2} from "@chainlink/contracts/src/v0.8/vrf/VRFConsumerBa
 import {ConfirmedOwner} from "@chainlink/contracts/src/v0.8/shared/access/ConfirmedOwner.sol";
 import {IERC1155} from "@openzeppelin/contracts/token/ERC1155/IERC1155.sol";
 import {ERC1155Holder} from "@openzeppelin/contracts/token/ERC1155/utils/ERC1155Holder.sol";
-import {IERC721} from "@openzeppelin/contracts/token/ERC721/IERC721.sol";
-import {ERC721Holder} from "@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol";
-import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {Context} from "@openzeppelin/contracts/utils/Context.sol";
 
-contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC721Holder, ERC1155Holder {
+contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Holder {
     /*«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-*/
     /*                           EVENTS                           */
     /*-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»*/
@@ -33,6 +30,9 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC721Holde
     /*«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-*/
     /*                        CUSTOM ERRORS                       */
     /*-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»*/
+    /// @dev Error when invalid arguments are passed
+    error InvalidArguments();
+
     /// @dev Error when share amount is less than or equal to 0
     error ShareAmountMustBeGreaterThanZero();
 
@@ -134,6 +134,10 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC721Holde
         VRFConsumerBaseV2(vrfCoordinator_)
         ConfirmedOwner(msg.sender)
     {
+        if (ticketContract_ == address(0)) revert InvalidArguments();
+        if (medalContract_ == address(0)) revert InvalidArguments();
+        if (vrfCoordinator_ == address(0)) revert InvalidArguments();
+
         ticketContract = ticketContract_;
         medalContract = medalContract_;
         vrfCoordinator = VRFCoordinatorV2Interface(vrfCoordinator_);
@@ -192,15 +196,15 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC721Holde
         }
         if (lottery.totalShares + shareAmount > lottery.maxShares) revert OverMaxShares();
 
-        IERC1155(ticketContract).safeTransferFrom(_msgSender(), address(this), lottery.tokenId, shareAmount, "");
-        IERC1155(medalContract).safeTransferFrom(_msgSender(), address(this), lottery.tokenId, shareAmount, "");
-
         for (uint256 i = 0; i < shareAmount; i++) {
             uint256 shareNumber = lottery.totalShares;
             entriesByLotteryId[lotteryId][shareNumber] = _msgSender();
             entryCountsByLotteryId[lotteryId][_msgSender()]++;
             lotteries[lotteryId].totalShares++;
         }
+
+        IERC1155(ticketContract).safeTransferFrom(_msgSender(), address(this), lottery.tokenId, shareAmount, "");
+        IERC1155(medalContract).safeTransferFrom(_msgSender(), address(this), lottery.tokenId, shareAmount, "");
 
         emit NewEntry(lotteryId, shareAmount, _msgSender());
     }
@@ -312,6 +316,16 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC721Holde
             newPrize.prizeName = prizes[i].prizeName;
             newPrize.amount = prizes[i].amount;
         }
+    }
+
+    /// @dev Update Ticket Contract
+    function setTicketContract(address ticketContract_) external onlyOwner {
+        ticketContract = ticketContract_;
+    }
+
+    /// @dev Update Medal Contract
+    function setMedalContract(address medalContract_) external onlyOwner {
+        medalContract = medalContract_;
     }
 
     /*«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-*/
