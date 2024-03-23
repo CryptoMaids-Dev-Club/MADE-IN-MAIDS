@@ -103,7 +103,7 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
     /// @dev Depends on chainlink docs, storing each word costs about 20,000 gas.
     /// So, 100,000 gas limit is enough for 5 words.
     /// Just in case, we set 300,000 gas limit.
-    uint32 private constant callbackGasLimit = 300000;
+    uint32 private constant callbackGasLimit = 300_000;
 
     /// @dev The default is 3, but you can set this higher.
     uint16 private constant requestConfirmations = 3;
@@ -203,10 +203,10 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
             lotteries[lotteryId].totalShares++;
         }
 
+        emit NewEntry(lotteryId, shareAmount, _msgSender());
+
         IERC1155(ticketContract).safeTransferFrom(_msgSender(), address(this), lottery.tokenId, shareAmount, "");
         IERC1155(medalContract).safeTransferFrom(_msgSender(), address(this), lottery.tokenId, shareAmount, "");
-
-        emit NewEntry(lotteryId, shareAmount, _msgSender());
     }
 
     /// @dev Draw the lottery
@@ -320,12 +320,25 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
 
     /// @dev Update Ticket Contract
     function setTicketContract(address ticketContract_) external onlyOwner {
+        if (ticketContract_ == address(0)) revert InvalidArguments();
         ticketContract = ticketContract_;
     }
 
     /// @dev Update Medal Contract
     function setMedalContract(address medalContract_) external onlyOwner {
+        if (medalContract_ == address(0)) revert InvalidArguments();
         medalContract = medalContract_;
+    }
+
+    /// @dev Update VRF Coordinator
+    function setVrfCoordinator(address vrfCoordinator_) external onlyOwner {
+        if (vrfCoordinator_ == address(0)) revert InvalidArguments();
+        vrfCoordinator = VRFCoordinatorV2Interface(vrfCoordinator_);
+    }
+
+    /// @dev Update Subscription Id
+    function setSubscriptionId(uint64 subscriptionId_) external onlyOwner {
+        subscriptionId = subscriptionId_;
     }
 
     /*«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-*/
@@ -336,9 +349,9 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
      * @notice Callback function used by VRF Coordinator
      *
      * @param requestId - id of the request
-     * @param _randomWords - array of random results from VRF Coordinator
+     * @param randomWords - array of random results from VRF Coordinator
      */
-    function fulfillRandomWords(uint256 requestId, uint256[] memory _randomWords) internal override {
+    function fulfillRandomWords(uint256 requestId, uint256[] memory randomWords) internal override {
         if (!requests[requestId].exists) revert LotteryDoesNotExist();
 
         requests[requestId].fulfilled = true;
@@ -346,15 +359,15 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
         uint256 lotteryId = lotteryIdsByRequestId[requestId];
         LotteryInfo memory lottery = lotteries[lotteryId];
 
-        for (uint256 i = 0; i < _randomWords.length; i++) {
-            uint256 winnerIndex = _randomWords[i] % lottery.totalShares;
+        for (uint256 i = 0; i < randomWords.length; i++) {
+            uint256 winnerIndex = randomWords[i] % lottery.totalShares;
             address winner = entriesByLotteryId[lotteryId][winnerIndex];
 
             lotteries[lotteryId].winners[i] = winner;
             winnersAndPrizesByLotteryId[lotteryId][winner] = lottery.prizes[i];
         }
 
-        emit RequestFulfilled(requestId, _randomWords);
+        emit RequestFulfilled(requestId, randomWords);
     }
 
     /*«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-*/
