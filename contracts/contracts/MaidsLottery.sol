@@ -10,7 +10,6 @@ import {IERC721} from "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import {ERC721Holder} from "@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import {Context} from "@openzeppelin/contracts/utils/Context.sol";
-import {console} from "hardhat/console.sol";
 
 contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC721Holder, ERC1155Holder {
     /*«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-*/
@@ -24,9 +23,6 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC721Holde
 
     /// @dev Emitted when draw is called
     event Draw(uint256 lotteryId, address[] winners);
-
-    /// @dev Emitted when a new claim is called
-    event Claim(uint256 lotteryId, address winner, address prizeContract, uint256 prizeTokenId, uint256 prizeAmount);
 
     /// @dev Emitted when a request is sent
     event RequestSent(uint256 requestId, uint32 numWords);
@@ -67,6 +63,7 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC721Holde
 
     /// @dev Struct managing lottery information
     struct LotteryInfo {
+        uint256 lotteryId; // lottery id
         uint256 tokenId; // NFT tokenId for entry
         uint256 maxShares; // max shares for this lottery
         uint256 totalShares; // total shares for this lottery
@@ -78,11 +75,8 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC721Holde
 
     /// @dev Struct managing prize information
     struct PrizeInfo {
-        PrizeType prizeType; // prize type
-        address contractAddress; // contract address for prize
-        uint256 tokenId; // tokenId for prize
+        string prizeName; // name for prize
         uint256 amount; // amount for prize
-        bool claimed; // claimed flag
     }
 
     /// @dev Enum for request status
@@ -90,13 +84,6 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC721Holde
         bool fulfilled; // whether the request has been successfully fulfilled
         bool exists; // whether a requestId exists
         uint256[] randomWords; // random words from Chainlink VRF
-    }
-
-    /// @dev Enum for prize type
-    enum PrizeType {
-        ERC1155,
-        ERC721,
-        ERC20
     }
 
     /// @dev NFT contract address for entry
@@ -243,31 +230,6 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC721Holde
         return requestId;
     }
 
-    /// @dev Claim the prize
-    ///
-    /// Requirements:
-    /// - caller must be winner
-    /// - prize must not be claimed
-    ///
-    /// Emits a {Claim} event
-    function claim(uint256 lotteryId) external {
-        if (winnersAndPrizesByLotteryId[lotteryId][_msgSender()].claimed) revert AlreadyClaimed();
-        if (winnersAndPrizesByLotteryId[lotteryId][_msgSender()].contractAddress == address(0)) revert NotWinner();
-
-        PrizeInfo memory prize = winnersAndPrizesByLotteryId[lotteryId][_msgSender()];
-        if (prize.prizeType == PrizeType.ERC1155) {
-            IERC1155(prize.contractAddress).safeTransferFrom(
-                address(this), _msgSender(), prize.tokenId, prize.amount, ""
-            );
-        } else if (prize.prizeType == PrizeType.ERC721) {
-            IERC721(prize.contractAddress).safeTransferFrom(address(this), _msgSender(), prize.tokenId);
-        } else if (prize.prizeType == PrizeType.ERC20) {
-            IERC20(prize.contractAddress).transfer(_msgSender(), prize.amount);
-        }
-
-        emit Claim(lotteryId, _msgSender(), prize.contractAddress, prize.tokenId, prize.amount);
-    }
-
     /// @dev Return the tickets for the loosing entries
     ///
     /// return twice the amount of tickets
@@ -289,6 +251,12 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC721Holde
     /*«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-*/
     /*                          Getter                            */
     /*-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»*/
+    /// @dev Get All Lotteries information
+    ///
+    /// Arrays are not returned, so we need this function to get all lotteries information
+    function getAllLotteries() external view returns (LotteryInfo[] memory) {
+        return lotteries;
+    }
 
     /// @dev Get lottery information
     ///
@@ -341,11 +309,8 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC721Holde
             PrizeInfo storage newPrize = lottery.prizes.push();
 
             // Copy fields individually
-            newPrize.prizeType = prizes[i].prizeType;
-            newPrize.contractAddress = prizes[i].contractAddress;
-            newPrize.tokenId = prizes[i].tokenId;
+            newPrize.prizeName = prizes[i].prizeName;
             newPrize.amount = prizes[i].amount;
-            newPrize.claimed = prizes[i].claimed;
         }
     }
 

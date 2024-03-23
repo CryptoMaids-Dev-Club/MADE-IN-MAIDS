@@ -68,14 +68,14 @@ contract MaidsLotteryTest is Test {
     modifier createNewLottery() {
         // ready three prizes
         MaidsLottery.PrizeInfo[] memory prizes = new MaidsLottery.PrizeInfo[](3);
-        MaidsLottery.PrizeInfo memory prizeERC1155 = MaidsLottery.PrizeInfo(MaidsLottery.PrizeType.ERC1155, address(erc1155), 0, 1, false);
-        prizes[0] = prizeERC1155;
+        MaidsLottery.PrizeInfo memory prize1 = MaidsLottery.PrizeInfo('Fanart NFT', 1);
+        prizes[0] = prize1;
 
-        MaidsLottery.PrizeInfo memory prizeERC721 = MaidsLottery.PrizeInfo(MaidsLottery.PrizeType.ERC721, address(erc721), 0, 1, false);
-        prizes[1] = prizeERC721;
+        MaidsLottery.PrizeInfo memory prize2 = MaidsLottery.PrizeInfo('Fanart NFT', 1);
+        prizes[1] = prize2;
 
-        MaidsLottery.PrizeInfo memory prizeERC20 = MaidsLottery.PrizeInfo(MaidsLottery.PrizeType.ERC20, address(erc20), 0, 1, false);
-        prizes[2] = prizeERC20;
+        MaidsLottery.PrizeInfo memory prize3 = MaidsLottery.PrizeInfo('MaidsToken', 100);
+        prizes[2] = prize3;
 
         vm.prank(vm.addr(deployerKey));
         maidsLottery.createNewLottery(0, MAX_SHARES, START_TIME, END_TIME, prizes);
@@ -87,7 +87,7 @@ contract MaidsLotteryTest is Test {
     function testCreateNewLottery() public {
         // ready one prize
         MaidsLottery.PrizeInfo[] memory prizes = new MaidsLottery.PrizeInfo[](1);
-        MaidsLottery.PrizeInfo memory prizeInfo = MaidsLottery.PrizeInfo(MaidsLottery.PrizeType.ERC1155, address(0), 0, 0, false);
+        MaidsLottery.PrizeInfo memory prizeInfo = MaidsLottery.PrizeInfo('Fanart NFT', 1);
         prizes[0] = prizeInfo;
 
         vm.prank(vm.addr(deployerKey));
@@ -102,9 +102,9 @@ contract MaidsLotteryTest is Test {
         assertEq(lotteryInfo.endTime, END_TIME);
 
         // check prize info
-        assertEq(uint8(lotteryInfo.prizes[0].prizeType), uint8(MaidsLottery.PrizeType.ERC1155));
-        assertEq(lotteryInfo.prizes[0].contractAddress, address(0));
-        assertEq(lotteryInfo.prizes[0].tokenId, 0);
+        assertEq(lotteryInfo.prizes.length, 1);
+        assertEq(lotteryInfo.prizes[0].prizeName, 'Fanart NFT');
+        assertEq(lotteryInfo.prizes[0].amount, 1);
     }
 
     function testEntry() public createNewLottery {
@@ -128,7 +128,7 @@ contract MaidsLotteryTest is Test {
         assertEq(ERC1155Mock(medalContract).balanceOf(address(maidsLottery), 0), 1);
     }
 
-    function testDrawAndClaim() public createNewLottery {
+    function testDraw() public createNewLottery {
         // Jump to the start time
         vm.warp(1000);
 
@@ -147,19 +147,9 @@ contract MaidsLotteryTest is Test {
 
         address[] memory winners = maidsLottery.getLotteryInfo(0).winners;
 
-        for (uint256 i = 0; i < winners.length; i++) {
-            vm.prank(winners[i]);
-            maidsLottery.claim(0);
+        MaidsLottery.LotteryInfo memory lotteryInfo = maidsLottery.getLotteryInfo(0);
 
-            MaidsLottery.PrizeInfo memory prize = maidsLottery.getWinnersAndPrizesByLotteryId(0, winners[i]);
-            if (prize.prizeType == MaidsLottery.PrizeType.ERC1155) {
-                assertEq(erc1155.balanceOf(winners[i], prize.tokenId), prize.amount, "erc1155 balance");
-            } else if (prize.prizeType == MaidsLottery.PrizeType.ERC721) {
-                assertEq(erc721.ownerOf(prize.tokenId), winners[i], "erc721 owner");
-            } else if (prize.prizeType == MaidsLottery.PrizeType.ERC20) {
-                assertEq(erc20.balanceOf(winners[i]), prize.amount, "erc20 balance");
-            }
-        }
+        assertEq(winners.length, lotteryInfo.prizes.length, "winners length");
     }
 
     function testReturnTicket() public createNewLottery {
@@ -242,22 +232,6 @@ contract MaidsLotteryTest is Test {
         // fulfill random words
         VRFCoordinatorV2Mock(vrfCoordinatorContract).fulfillRandomWords(requestId1, address(maidsLottery));
 
-        // check winners
-        address[] memory winners1 = maidsLottery.getLotteryInfo(0).winners;
-        for (uint256 i = 0; i < winners1.length; i++) {
-            vm.prank(winners1[i]);
-            maidsLottery.claim(0);
-
-            MaidsLottery.PrizeInfo memory prize = maidsLottery.getWinnersAndPrizesByLotteryId(0, winners1[i]);
-            if (prize.prizeType == MaidsLottery.PrizeType.ERC1155) {
-                assertEq(erc1155.balanceOf(winners1[i], prize.tokenId), prize.amount, "erc1155 balance");
-            } else if (prize.prizeType == MaidsLottery.PrizeType.ERC721) {
-                assertEq(erc721.ownerOf(prize.tokenId), winners1[i], "erc721 owner");
-            } else if (prize.prizeType == MaidsLottery.PrizeType.ERC20) {
-                assertEq(erc20.balanceOf(winners1[i]), prize.amount, "erc20 balance");
-            }
-        }
-
         // check totalShares
         assertEq(maidsLottery.getLotteryInfo(0).totalShares, users.length, "total shares");
 
@@ -273,13 +247,13 @@ contract MaidsLotteryTest is Test {
 
         // ready prizes for second lottery
         MaidsLottery.PrizeInfo[] memory prizes = new MaidsLottery.PrizeInfo[](3);
-        MaidsLottery.PrizeInfo memory prizeERC1155 = MaidsLottery.PrizeInfo(MaidsLottery.PrizeType.ERC1155, address(erc1155), 0, 1, false);
+        MaidsLottery.PrizeInfo memory prizeERC1155 = MaidsLottery.PrizeInfo('Fanart NFT', 1);
         prizes[0] = prizeERC1155;
 
-        MaidsLottery.PrizeInfo memory prizeERC721 = MaidsLottery.PrizeInfo(MaidsLottery.PrizeType.ERC721, address(erc721), 1, 1, false);
+        MaidsLottery.PrizeInfo memory prizeERC721 = MaidsLottery.PrizeInfo('Fanart NFT 2', 1);
         prizes[1] = prizeERC721;
         
-        MaidsLottery.PrizeInfo memory prizeERC20 = MaidsLottery.PrizeInfo(MaidsLottery.PrizeType.ERC20, address(erc20), 0, 1, false);
+        MaidsLottery.PrizeInfo memory prizeERC20 = MaidsLottery.PrizeInfo('MaidsToken', 100);
         prizes[2] = prizeERC20;
 
         // create new lottery
@@ -302,22 +276,6 @@ contract MaidsLotteryTest is Test {
         // fulfill random words
         VRFCoordinatorV2Mock(vrfCoordinatorContract).fulfillRandomWords(requestId2, address(maidsLottery));
 
-        // check winners
-        address[] memory winners2 = maidsLottery.getLotteryInfo(1).winners;
-        for (uint256 i = 0; i < winners2.length; i++) {
-            vm.prank(winners2[i]);
-            maidsLottery.claim(1);
-
-            MaidsLottery.PrizeInfo memory prize = maidsLottery.getWinnersAndPrizesByLotteryId(1, winners2[i]);
-            if (prize.prizeType == MaidsLottery.PrizeType.ERC1155) {
-                assertEq(erc1155.balanceOf(winners2[i], prize.tokenId), prize.amount, "erc1155 balance");
-            } else if (prize.prizeType == MaidsLottery.PrizeType.ERC721) {
-                assertEq(erc721.ownerOf(prize.tokenId), winners2[i], "erc721 owner");
-            } else if (prize.prizeType == MaidsLottery.PrizeType.ERC20) {
-                assertEq(erc20.balanceOf(winners2[i]), prize.amount, "erc20 balance");
-            }
-        }
-
         // check totalShares
         assertEq(maidsLottery.getLotteryInfo(1).totalShares, users.length, "total shares");
     }
@@ -335,31 +293,28 @@ contract MaidsLotteryTest is Test {
 
     function testUpdatePrizeInfo() public createNewLottery {
         MaidsLottery.PrizeInfo[] memory prizes = new MaidsLottery.PrizeInfo[](3);
-        MaidsLottery.PrizeInfo memory prizeERC1155 = MaidsLottery.PrizeInfo(MaidsLottery.PrizeType.ERC1155, address(erc1155), 0, 100, false);
+        MaidsLottery.PrizeInfo memory prizeERC1155 = MaidsLottery.PrizeInfo('Awesome NFT', 3);
         prizes[0] = prizeERC1155;
 
-        MaidsLottery.PrizeInfo memory prizeERC721 = MaidsLottery.PrizeInfo(MaidsLottery.PrizeType.ERC721, address(erc721), 0, 100, false);
+        MaidsLottery.PrizeInfo memory prizeERC721 = MaidsLottery.PrizeInfo('Awesome NFT', 5);
         prizes[1] = prizeERC721;
 
-        MaidsLottery.PrizeInfo memory prizeERC20 = MaidsLottery.PrizeInfo(MaidsLottery.PrizeType.ERC20, address(erc20), 0, 100, false);
+        MaidsLottery.PrizeInfo memory prizeERC20 = MaidsLottery.PrizeInfo('Fanart NFT', 10);
         prizes[2] = prizeERC20;
 
         vm.prank(vm.addr(deployerKey));
         maidsLottery.updatePrizeInfo(0, prizes);
 
         MaidsLottery.PrizeInfo[] memory updatedPrizes = maidsLottery.getLotteryInfo(0).prizes;
-        assertEq(uint8(updatedPrizes[0].prizeType), uint8(MaidsLottery.PrizeType.ERC1155));
-        assertEq(updatedPrizes[0].contractAddress, address(erc1155));
-        assertEq(updatedPrizes[0].tokenId, 0);
-        assertEq(updatedPrizes[0].amount, 100);
-        assertEq(uint8(updatedPrizes[1].prizeType), uint8(MaidsLottery.PrizeType.ERC721));
-        assertEq(updatedPrizes[1].contractAddress, address(erc721));
-        assertEq(updatedPrizes[1].tokenId, 0);
-        assertEq(updatedPrizes[1].amount, 100);
-        assertEq(uint8(updatedPrizes[2].prizeType), uint8(MaidsLottery.PrizeType.ERC20));
-        assertEq(updatedPrizes[2].contractAddress, address(erc20));
-        assertEq(updatedPrizes[2].tokenId, 0);
-        assertEq(updatedPrizes[2].amount, 100);
+        assertEq(updatedPrizes.length, 3);
+        assertEq(updatedPrizes[0].prizeName, 'Awesome NFT');
+        assertEq(updatedPrizes[0].amount, 3);
+
+        assertEq(updatedPrizes[1].prizeName, 'Awesome NFT');
+        assertEq(updatedPrizes[1].amount, 5);
+
+        assertEq(updatedPrizes[2].prizeName, 'Fanart NFT');
+        assertEq(updatedPrizes[2].amount, 10);
     }
 
     // Negative testing
