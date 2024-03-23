@@ -27,9 +27,12 @@ jobs:
         if: github.event_name == 'pull_request'
         env:
             REPORT: ${{ steps.slither.outputs.stdout }}
+            
         with:
           script: |
             const script = require('.github/scripts/comment')
             const header = '# Slither report'
-            const body = process.env.REPORT
-            await script({ github, context, header, body })
+            const MAX_LENGTH = 65536;
+            const truncatedReport = process.env.REPORT.length > MAX_LENGTH ? process.env.REPORT.substring(0, MAX_LENGTH) + '... (Report truncated due to length)' : process.env.REPORT;
+            const body = `${header}\n${truncatedReport}`;
+            await script({ github, context, header, body });
