@@ -3,10 +3,12 @@ import { react } from '@wagmi/cli/plugins'
 import { Abi } from 'viem'
 import { polygon, sepolia } from 'wagmi/chains'
 import MaidsItem from '../contracts/artifacts/contracts/MaidsItem1155.sol/MaidsItem1155.json'
+import MaidsLottery from '../contracts/artifacts/contracts/MaidsLottery.sol/MaidsLottery.json'
 import MaidsMarket from '../contracts/artifacts/contracts/MaidsMarketPlace.sol/MaidsMarketPlace.json'
 import MaidsPrediction from '../contracts/artifacts/contracts/MaidsPrediction.sol/MaidsPrediction.json'
 import MaidsToken from '../contracts/artifacts/contracts/MaidsToken.sol/MaidsToken.json'
 import MaidsVoting from '../contracts/artifacts/contracts/MaidsVoting.sol/MaidsVoting.json'
+import ERC1155Mock from '../contracts/artifacts/contracts/mocks/ERC1155Mock.sol/ERC1155Mock.json'
 
 export default defineConfig({
   out: 'src/lib/generated.ts',
@@ -49,6 +51,30 @@ export default defineConfig({
       address: {
         [polygon.id]: '0x936756a41B244EF81712F95fE347278d42A51C05',
         [sepolia.id]: '0x0798f26b60b7eB6a536B7ADA941Fb2f400bFB0eE',
+      },
+    },
+    {
+      name: 'MaidsLottery',
+      abi: MaidsLottery.abi as Abi,
+      address: {
+        [polygon.id]: '0x36ff93874E8B9Ca46E172534c241BEB8d0146299',
+        [sepolia.id]: '0x36ff93874E8B9Ca46E172534c241BEB8d0146299',
+      },
+    },
+    {
+      name: 'MedalNFT',
+      abi: ERC1155Mock.abi as Abi,
+      address: {
+        [polygon.id]: '0x6dA7Ae5FBc5B699a9a812C56E4D76aEc67f8c8f2',
+        [sepolia.id]: '0x6dA7Ae5FBc5B699a9a812C56E4D76aEc67f8c8f2',
+      },
+    },
+    {
+      name: 'TicketNFT',
+      abi: ERC1155Mock.abi as Abi,
+      address: {
+        [polygon.id]: '0xB380fB36E568a16ceE6eB529f621a4df26eB1f2E',
+        [sepolia.id]: '0xB380fB36E568a16ceE6eB529f621a4df26eB1f2E',
       },
     },
   ],
