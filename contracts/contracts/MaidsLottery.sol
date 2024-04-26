@@ -30,6 +30,18 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
     /*«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-*/
     /*                        CUSTOM ERRORS                       */
     /*-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»*/
+    /// @dev Error when already has an ongoing lottery
+    error AlreadyHasOngoingLottery();
+
+    /// @dev Error when prizes must be greater than 0
+    error PrizesMustBeGreaterThanZero();
+
+    /// @dev Error when start time must be less than end time
+    error StartTimeMustBeLessThanEndTime();
+
+    /// @dev Error when max shares must be greater than 0
+    error MaxSharesMustBeGreaterThanZero();
+
     /// @dev Error when invalid arguments are passed
     error InvalidArguments();
 
@@ -42,17 +54,14 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
     /// @dev Error when lottery is not ongoing
     error LotteryIsNotOngoing();
 
+    /// @dev Error when lottery has ended
+    error LotteryHasEnded();
+
     /// @dev Error when lottery does not exist
     error LotteryDoesNotExist();
 
     /// @dev Error when share amount is over max shares
     error OverMaxShares();
-
-    /// @dev Error when prize is already claimed
-    error AlreadyClaimed();
-
-    /// @dev Error when not winner calls claim
-    error NotWinner();
 
     /// @dev Error when not eligible to return ticket
     error NotEligibleToReturnTicket();
@@ -63,12 +72,12 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
 
     /// @dev Struct managing lottery information
     struct LotteryInfo {
-        uint256 lotteryId; // lottery id
         uint256 tokenId; // NFT tokenId for entry
         uint256 maxShares; // max shares for this lottery
         uint256 totalShares; // total shares for this lottery
         uint256 startTime; // start time for this lottery
         uint256 endTime; // end time for this lottery
+        bool ended; // whether the lottery has ended
         address[] winners; // winners for this lottery
         PrizeInfo[] prizes; // prizes for this lottery
     }
@@ -76,7 +85,7 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
     /// @dev Struct managing prize information
     struct PrizeInfo {
         string prizeName; // name for prize
-        uint256 amount; // amount for prize
+        string prizeImageUrl; // image url for prize
     }
 
     /// @dev Enum for request status
@@ -91,22 +100,22 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
     address public medalContract;
 
     /// @dev Chainlink VRF Coordinator
-    VRFCoordinatorV2Interface public vrfCoordinator;
+    address public vrfCoordinator;
 
     /// @dev Subscription id for Chainlink VRF
-    uint64 subscriptionId;
+    uint64 public subscriptionId;
 
     /// @dev 150 wei gas lane
-    bytes32 private constant keyHash = 0x474e34a077df58807dbe9c96d3c009b23b3c6d0cce433e59bbf5b34f823bc56c;
+    bytes32 public keyHash = 0x474e34a077df58807dbe9c96d3c009b23b3c6d0cce433e59bbf5b34f823bc56c;
     // bytes32 keyHash = 0xd89b2bf150e3b9e13446986e571fb9cab24b13cea0a43ea20a6049a85cc807cc;
 
     /// @dev Depends on chainlink docs, storing each word costs about 20,000 gas.
     /// So, 100,000 gas limit is enough for 5 words.
     /// Just in case, we set 300,000 gas limit.
-    uint32 private constant callbackGasLimit = 300_000;
+    uint32 public callbackGasLimit = 500_000;
 
     /// @dev The default is 3, but you can set this higher.
-    uint16 private constant requestConfirmations = 3;
+    uint16 public constant requestConfirmations = 3;
 
     /// @dev Array of lotteries
     LotteryInfo[] public lotteries;
@@ -116,9 +125,6 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
 
     /// @dev Mapping for entry counts
     mapping(uint256 lotteryId => mapping(address => uint256)) public entryCountsByLotteryId;
-
-    /// @dev Mapping for winners and prizes
-    mapping(uint256 lotteryId => mapping(address => PrizeInfo)) public winnersAndPrizesByLotteryId;
 
     /// @dev Mapping for chainlink requestStatus
     mapping(uint256 requestId => RequestStatus status) public requests;
@@ -140,7 +146,7 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
 
         ticketContract = ticketContract_;
         medalContract = medalContract_;
-        vrfCoordinator = VRFCoordinatorV2Interface(vrfCoordinator_);
+        vrfCoordinator = vrfCoordinator_;
         subscriptionId = subscriptionId_;
     }
 
@@ -161,11 +167,17 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
         uint256 endTime,
         PrizeInfo[] memory prize
     ) external onlyOwner {
+        if (lotteries.length != 0 && !lotteries[lotteries.length - 1].ended) revert AlreadyHasOngoingLottery();
+        if (prize.length <= 0) revert PrizesMustBeGreaterThanZero();
+        if (startTime >= endTime) revert StartTimeMustBeLessThanEndTime();
+        if (maxShares <= 0) revert MaxSharesMustBeGreaterThanZero();
+
         LotteryInfo storage lottery = lotteries.push();
         lottery.tokenId = tokenId;
         lottery.maxShares = maxShares;
         lottery.startTime = startTime;
         lottery.endTime = endTime;
+        lottery.ended = false;
         for (uint256 i = 0; i < prize.length; i++) {
             lottery.prizes.push(prize[i]);
         }
@@ -184,14 +196,13 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
     /// - must have enough tickets and medals NFT
     ///
     /// Emits a {NewEntry} event
-    function entry(uint256 lotteryId, uint256 shareAmount) external {
+    function entry(uint256 shareAmount) external {
         if (shareAmount <= 0) revert ShareAmountMustBeGreaterThanZero();
 
+        uint256 lotteryId = lotteries.length - 1;
         LotteryInfo memory lottery = lotteries[lotteryId];
-        if (block.timestamp < lottery.startTime) {
-            revert LotteryIsNotOngoing();
-        }
-        if (block.timestamp > lottery.endTime) {
+
+        if (!_isOngoing(lotteryId)) {
             revert LotteryIsNotOngoing();
         }
         if (lottery.totalShares + shareAmount > lottery.maxShares) revert OverMaxShares();
@@ -215,13 +226,16 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
     /// - lottery must be ended
     ///
     /// Emits a {Draw} event
-    function draw(uint256 lotteryId) external onlyOwner returns (uint256) {
+    function draw() external onlyOwner returns (uint256) {
+        uint256 lotteryId = lotteries.length - 1;
         LotteryInfo memory lottery = lotteries[lotteryId];
-        if (block.timestamp < lottery.endTime) {
-            revert LotteryIsStillOngoing();
+        if (lottery.endTime > block.timestamp) revert LotteryIsStillOngoing();
+
+        if (lottery.ended) {
+            revert LotteryHasEnded();
         }
 
-        uint256 requestId = vrfCoordinator.requestRandomWords(
+        uint256 requestId = VRFCoordinatorV2Interface(vrfCoordinator).requestRandomWords(
             keyHash, subscriptionId, requestConfirmations, callbackGasLimit, uint32(lottery.prizes.length)
         );
         requests[requestId] =
@@ -238,7 +252,7 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
     ///
     /// return twice the amount of tickets
     function returnTicket(uint256 lotteryId) external {
-        if (block.timestamp < lotteries[lotteryId].endTime) {
+        if (_isOngoing(lotteryId)) {
             revert LotteryIsStillOngoing();
         }
 
@@ -269,15 +283,9 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
         return lotteries[lotteryId];
     }
 
-    /// @dev Get winners and prizes by lotteryId
-    ///
-    /// Arrays are not returned in structs, so we need this function to get winners and prizes
-    function getWinnersAndPrizesByLotteryId(uint256 lotteryId, address winner)
-        external
-        view
-        returns (PrizeInfo memory)
-    {
-        return winnersAndPrizesByLotteryId[lotteryId][winner];
+    /// @dev Get the latest lottery is active or not
+    function isOngoingLatestLottery() external view returns (bool) {
+        return _isOngoing(lotteries.length - 1);
     }
 
     /*«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-*/
@@ -314,7 +322,7 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
 
             // Copy fields individually
             newPrize.prizeName = prizes[i].prizeName;
-            newPrize.amount = prizes[i].amount;
+            newPrize.prizeImageUrl = prizes[i].prizeImageUrl;
         }
     }
 
@@ -333,12 +341,22 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
     /// @dev Update VRF Coordinator
     function setVrfCoordinator(address vrfCoordinator_) external onlyOwner {
         if (vrfCoordinator_ == address(0)) revert InvalidArguments();
-        vrfCoordinator = VRFCoordinatorV2Interface(vrfCoordinator_);
+        vrfCoordinator = vrfCoordinator_;
     }
 
     /// @dev Update Subscription Id
     function setSubscriptionId(uint64 subscriptionId_) external onlyOwner {
         subscriptionId = subscriptionId_;
+    }
+
+    /// @dev Update Callback Gas Limit
+    function setCallbackGasLimit(uint32 callbackGasLimit_) external onlyOwner {
+        callbackGasLimit = callbackGasLimit_;
+    }
+
+    /// @dev Update Key Hash
+    function setKeyHash(bytes32 keyHash_) external onlyOwner {
+        keyHash = keyHash_;
     }
 
     /*«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-*/
@@ -359,12 +377,13 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
         uint256 lotteryId = lotteryIdsByRequestId[requestId];
         LotteryInfo memory lottery = lotteries[lotteryId];
 
+        lotteries[lotteryId].ended = true;
+
         for (uint256 i = 0; i < randomWords.length; i++) {
             uint256 winnerIndex = randomWords[i] % lottery.totalShares;
             address winner = entriesByLotteryId[lotteryId][winnerIndex];
 
             lotteries[lotteryId].winners[i] = winner;
-            winnersAndPrizesByLotteryId[lotteryId][winner] = lottery.prizes[i];
         }
 
         emit RequestFulfilled(requestId, randomWords);
@@ -373,6 +392,13 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
     /*«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-*/
     /*                      PRIVATE HELPERS                       */
     /*-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»*/
+    /// @dev Returns true if the lottery is ongoing
+    function _isOngoing(uint256 lotteryId) internal view returns (bool) {
+        if (lotteries.length == 0) {
+            return false;
+        }
+        return block.timestamp >= lotteries[lotteryId].startTime && block.timestamp <= lotteries[lotteryId].endTime;
+    }
 
     /// @dev Returns true if the address is in the array
     function _isExist(address addr, address[] memory arr) internal pure returns (bool) {

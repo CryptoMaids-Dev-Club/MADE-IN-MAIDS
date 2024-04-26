@@ -17,7 +17,7 @@ contract DeployMaidsLottery is Script {
 
         MaidsLottery lottery =
             new MaidsLottery(ticketContract, medalContract, vrfCoordinator, 1);
-        VRFCoordinatorV2Mock(vrfCoordinator).addConsumer(1, address(lottery));
+        VRFCoordinatorV2Mock(vrfCoordinator).addConsumer(1, address(lottery)); // For testing only
 
         vm.stopBroadcast();
 
