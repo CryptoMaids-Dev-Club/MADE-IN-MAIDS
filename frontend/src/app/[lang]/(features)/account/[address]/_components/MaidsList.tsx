@@ -6,6 +6,7 @@ import InfiniteScroll from 'react-infinite-scroller'
 import { useAccount } from 'wagmi'
 import { useMaidsList } from '@/app/[lang]/(features)/account/[address]/_hooks/useMaidsList'
 import { useSaveUserInfo } from '@/app/[lang]/(features)/account/[address]/_hooks/useSaveUserInfo'
+import { useLanguage } from '@/app/i18n/client'
 import { Badge } from '@/components/ui/badge'
 import { Typography } from '@/components/ui/typography'
 import type { Address } from 'viem'
@@ -15,6 +16,8 @@ type MaidsListProps = {
 }
 
 const MaidsList = ({ targetAddress }: MaidsListProps) => {
+  const { language } = useLanguage()
+
   const { maidsList, hasMore, loadMore } = useMaidsList(targetAddress)
   const { address } = useAccount()
   const { saveUserInfo } = useSaveUserInfo(address ?? '0x0')
@@ -30,7 +33,7 @@ const MaidsList = ({ targetAddress }: MaidsListProps) => {
       <div className='grid grid-cols-1 gap-4 md:grid-cols-3'>
         {maidsList.map((nft) => (
           <div key={nft.image}>
-            <Link href={`/detail/${nft.token_id}`}>
+            <Link href={`/${language}/detail/${nft.token_id}`}>
               <div className='relative overflow-hidden bg-cover bg-no-repeat'>
                 <Image
                   className='transition duration-300 hover:scale-110'

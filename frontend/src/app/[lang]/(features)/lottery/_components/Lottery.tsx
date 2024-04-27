@@ -1,93 +1,51 @@
+import Link from 'next/link'
+import { Trans } from 'react-i18next/TransWithoutContext'
 import HowToEntry from '@/app/[lang]/(features)/lottery/_components/HowToEntry'
 import HowToGetMedal from '@/app/[lang]/(features)/lottery/_components/HowToGetMedal'
 import HowToGetTicket from '@/app/[lang]/(features)/lottery/_components/HowToGetTicket'
 import LotteryInformation from '@/app/[lang]/(features)/lottery/_components/LotteryInformation'
-import UserInfo from '@/app/[lang]/(features)/lottery/_components/UserInfo'
 import BackToTop from '@/app/[lang]/_components/Elements/BackToTop/BackToTop'
-import { Button } from '@/components/ui/button'
-import { Divider } from '@/components/ui/divider'
+import { getTranslation } from '@/app/i18n/server'
 import { Typography } from '@/components/ui/typography'
-import type { LotteryInfo } from '@/app/[lang]/(features)/lottery/_type'
 
-const Lottery = () => {
-  const mockLotteryInfo = [
-    {
-      lotteryId: 1,
-      startTime: '2021-08-01T00:00:00Z',
-      endTime: '2021-08-01T00:00:00Z',
-      prizes: [
-        {
-          prizeType: 0,
-          contractAddress: '0x',
-          tokenId: 0,
-          amount: 100,
-          claimed: false,
-        },
-      ],
-    },
-    {
-      lotteryId: 1,
-      startTime: '2021-08-01T00:00:00Z',
-      endTime: '2021-08-01T00:00:00Z',
-      prizes: [
-        {
-          prizeType: 0,
-          contractAddress: '0x',
-          tokenId: 0,
-          amount: 100,
-          claimed: false,
-        },
-      ],
-    },
-    {
-      lotteryId: 1,
-      startTime: '2021-08-01T00:00:00Z',
-      endTime: '2021-08-01T00:00:00Z',
-      prizes: [
-        {
-          prizeType: 0,
-          contractAddress: '0x',
-          tokenId: 0,
-          amount: 100,
-          claimed: false,
-        },
-      ],
-    },
-  ] as LotteryInfo[]
-
+const Lottery = async ({ lang }: { lang: string }) => {
+  const { t } = await getTranslation(lang)
+  // ToDo: Add Suspense
   return (
-    <div className='container mx-auto h-dvh min-h-full max-w-7xl pb-12'>
+    <div className='container mx-auto h-dvh min-h-full pb-12'>
       <Typography variant='h1' className='my-2 text-center text-pink-500'>
         CryptoMaids Lottery
       </Typography>
 
-      <div className='box-border rounded-2xl border-4 border-dashed border-pink-500 p-8'>
-        <LotteryInformation lotteryInfo={mockLotteryInfo[0]} />
-        <Divider className='my-2' />
-        <UserInfo />
-        <Button className='w-full bg-yellow-300 text-2xl'>Entry</Button>
+      <div className='box-border rounded-2xl border-4 border-dashed border-pink-500 p-8 pb-4'>
+        <LotteryInformation lang={lang} />
+        <Link href='lottery/summary'>
+          <Typography variant='h4' className='cursor-pointer text-right underline'>
+            {t('lottery:pastLottery')}
+          </Typography>
+        </Link>
       </div>
 
       <Typography variant='h2' className='my-8 text-center text-pink-500'>
-        参加方法
+        {t('lottery:howToEntry')}
       </Typography>
-      <HowToEntry />
+      <HowToEntry lang={lang} />
 
-      <Typography variant='h2' className='mt-8 text-center text-pink-500'>
-        メダルNFTをゲットするには?
+      <Typography variant='h2' className='mt-8 text-center text-pink-500 [&_span]:inline-block'>
+        <Trans i18nKey='lottery:howToGetMedal' t={t} />
       </Typography>
       <Typography variant='lead' className='text-center'>
-        メダルNFTはコミュニティイベントに積極的に参加するとゲットできます!
+        {t('lottery:howToGetMedalText')}
       </Typography>
-      <HowToGetMedal />
+      <HowToGetMedal lang={lang} />
 
-      <Typography variant='h2' className='mt-8 text-center text-pink-500'>
-        チケットNFTをゲットするには?
+      <Typography variant='h2' className='mt-8 text-center text-pink-500 [&_span]:inline-block'>
+        <Trans i18nKey='lottery:howToGetTicket' t={t} />
       </Typography>
-      <Typography variant='lead' className='text-center'>
-        チケットNFTはCryptoMaids NFTを保有しているともらえる$MAIDSで購入できます!
+      <Typography variant='lead' className='text-center [&_span]:inline-block'>
+        <Trans i18nKey='lottery:howToGetTicketText' t={t} />
       </Typography>
-      <HowToGetTicket />
+      <HowToGetTicket lang={lang} />
 
       <BackToTop />
     </div>

@@ -1,46 +1,71 @@
+import { unstable_noStore as noStore } from 'next/cache'
+import { getLotteryInfo } from '@/app/[lang]/(features)/lottery/_api/query'
+import EntryForm from '@/app/[lang]/(features)/lottery/_components/EntryForm'
 import PrizeCard from '@/app/[lang]/(features)/lottery/_components/PrizeCard'
-import { LotteryInfo } from '@/app/[lang]/(features)/lottery/_type'
+import UserInfo from '@/app/[lang]/(features)/lottery/_components/UserInfo'
+import { getTranslation } from '@/app/i18n/server'
+import { Divider } from '@/components/ui/divider'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Typography } from '@/components/ui/typography'
+import { unixToDate } from '@/utils/date'
 
 type LotteryInformationProps = {
-  lotteryInfo: LotteryInfo
+  lang: string
+  lotteryId?: number
 }
 
-const LotteryInformation = ({ lotteryInfo }: LotteryInformationProps) => {
-  console.log(lotteryInfo)
+const LotteryInformation = async ({ lang, lotteryId }: LotteryInformationProps) => {
+  noStore()
+  const lotteryInfos = await getLotteryInfo()
+  console.log(lotteryInfos)
+  const lotteryInfo = lotteryInfos[lotteryId ?? lotteryInfos.length - 1]
+  const { jstTime, utcTime } = unixToDate(lotteryInfo.endTime)
+  const { t } = await getTranslation(lang)
+
   return (
     <>
       <Typography variant='h2' className='my-2  text-pink-500'>
         Lottery Info
       </Typography>
-      <Typography variant='largeText'>終了時刻: 2024/3/31</Typography>
-      <Typography variant='largeText'>現在の参加人数: 10人</Typography>
+      <Typography variant='largeText'>
+        {t('lottery:endTime')}: {lang === 'en' ? utcTime : jstTime}
+      </Typography>
+      <Typography variant='largeText'>
+        {t('lottery:currentEntries')}: {lotteryInfo.totalShares}
+      </Typography>
 
       <Typography variant='h2' className='my-2 text-yellow-400'>
         Prizes
       </Typography>
       <div className='grid justify-items-center gap-4 md:grid-cols-2 lg:grid-cols-5'>
-        <PrizeCard image='/images/mogm.png' description={'top:market'} link='/market' />
-        <PrizeCard
-          image='/images/staking.png'
-          description='Hold CryptoMaids earn $MAIDS'
-          link='https://made-in-maids.cryptomaids.tokyo/'
-        />
-        <PrizeCard image='/images/voting.png' description='Let’s make your maid NO.1' link='/voting' />
-        <PrizeCard image='/images/ranking.png' description='CryptoMaids NFT & $MAIDS holder ranking' link='/ranking' />
-        <PrizeCard
-          image='/images/prediction.png'
-          description='Predict the CryptoMaids event results'
-          link='/prediction'
-        />
+        {lotteryInfo.prizes.map((prize, index) => (
+          <PrizeCard key={index} image={prize.prizeImageUrl} description={prize.prizeName} />
+        ))}
       </div>
       <Typography variant='h2' className=' text-yellow-400'>
         Winners
       </Typography>
-      <Typography variant='largeText'>0x1234567890abcdef</Typography>
-      <Typography variant='largeText'>0x1234567890abcdef</Typography>
-      <Typography variant='largeText'>0x1234567890abcdef</Typography>
-      <Typography variant='largeText'>0x1234567890abcdef</Typography>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead>Prize</TableHead>
+            <TableHead>Winner</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {lotteryInfo.winners.map((winner, index) => (
+            <TableRow key={index}>
+              <TableCell className='text-lg'>{lotteryInfo.prizes[index].prizeName}</TableCell>
+              <TableCell className='text-lg'>
+                {winner !== '0x0000000000000000000000000000000000000000' ? winner : t('lottery:noWinnersYet')}
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+      <Divider className='my-2' />
+      <UserInfo lotteryId={lotteryId ?? lotteryInfos.length - 1} />
+      <EntryForm lotteryId={lotteryId ?? lotteryInfos.length - 1} />
     </>
   )
 }

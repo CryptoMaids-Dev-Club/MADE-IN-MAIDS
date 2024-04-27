@@ -5,6 +5,7 @@ import PredictionResult from '@/app/[lang]/(features)/prediction/_components/Pre
 import PredictionUserInfo from '@/app/[lang]/(features)/prediction/_components/PredictionUserInfo'
 import { Divider } from '@/components/ui/divider'
 import { Typography } from '@/components/ui/typography'
+import { unixToDate } from '@/utils/date'
 import type { PredictionText } from '@/app/[lang]/(features)/prediction/_types'
 
 const PredictionForm = dynamic(() => import('./PredictionForm'), { ssr: false })
@@ -18,10 +19,7 @@ const PredictionDetail = async ({ id }: PredictionDetailProps) => {
   const response = await fetch(predictionInfo.predictionURI)
   const predictionText = (await response.json()) as PredictionText
 
-  const jstTime = new Date(predictionInfo.endTime * 1000).toLocaleString('ja-JP', {
-    timeZone: 'Asia/Tokyo',
-  })
-  const utcTime = new Date(predictionInfo.endTime * 1000).toLocaleString('en-US')
+  const { jstTime, utcTime } = unixToDate(predictionInfo.endTime)
 
   return (
     <div className='container mx-auto max-w-xl pb-12'>

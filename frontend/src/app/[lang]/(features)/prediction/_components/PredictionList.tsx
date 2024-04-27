@@ -4,7 +4,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import PredictionInfoCard from './PredictionInfoCard'
 import type { Prediction } from '@/app/[lang]/(features)/prediction/_types'
 
-const PredictionList = async () => {
+const PredictionList = async ({ lang }: { lang: string }) => {
   const predictionInfos = (await getAllPredictions()) as Prediction[]
 
   return (
@@ -13,7 +13,7 @@ const PredictionList = async () => {
         {predictionInfos.reverse().map((predictionInfo) => (
           <div key={predictionInfo.id}>
             <Suspense fallback={<Skeleton className='h-40 w-full' />}>
-              <PredictionInfoCard predictionInfo={predictionInfo} />
+              <PredictionInfoCard lang={lang} predictionInfo={predictionInfo} />
             </Suspense>
           </div>
         ))}

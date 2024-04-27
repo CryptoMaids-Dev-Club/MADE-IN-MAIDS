@@ -27,6 +27,16 @@ const nextConfig = {
         hostname: 'firebasestorage.googleapis.com',
         port: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'placehold.jp', // for testing
+        port: '',
+      },
+      {
+        protocol: 'https',
+        hostname: 'ipfs.io',
+        port: '',
+      },
     ],
   },
   webpack: (config) => {

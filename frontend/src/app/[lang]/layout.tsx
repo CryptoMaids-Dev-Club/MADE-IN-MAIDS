@@ -41,7 +41,7 @@ export const metadata = {
 const RootLayout = ({ children, params: { lang } }: { children: React.ReactNode; params: { lang: string } }) => (
   <html lang={lang} dir={dir(lang)}>
     <body className={cn('min-h-screen w-screen bg-neutral-950 antialiase', dotGothic.className)}>
-      <Providers>
+      <Providers lang={lang}>
         <TopBar />
         <main className='bg-neutral-950 pb-4'>{children}</main>
         <Footer />

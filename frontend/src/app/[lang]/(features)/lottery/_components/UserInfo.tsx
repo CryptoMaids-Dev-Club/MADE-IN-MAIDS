@@ -1,42 +1,60 @@
 'use client'
 
-import { useAccount, useReadContracts } from 'wagmi'
+import { useTranslation } from 'react-i18next'
+import useLottery from '@/app/[lang]/(features)/lottery/_hooks/useLottery'
+import useMedalAndTicket from '@/app/[lang]/(features)/lottery/_hooks/useMedalAndTicket'
+import { useLanguage } from '@/app/i18n/client'
 import { Typography } from '@/components/ui/typography'
-import { maidsLotteryConfig, medalNftConfig, ticketNftConfig } from '@/lib/generated'
 
-const UserInfo = () => {
-  const { address } = useAccount()
-  const { data } = useReadContracts({
-    allowFailure: false,
-    contracts: [
-      {
-        address: medalNftConfig.address[11155111],
-        abi: medalNftConfig.abi,
-        functionName: 'balanceOf',
-        args: [address ?? '0x', 0n],
-      },
-      {
-        address: ticketNftConfig.address[11155111],
-        abi: ticketNftConfig.abi,
-        functionName: 'balanceOf',
-        args: [address ?? '0x', 0n],
-      },
-      {
-        address: maidsLotteryConfig.address[11155111],
-        abi: maidsLotteryConfig.abi,
-        functionName: 'entryCountsByLotteryId',
-        args: [1n, address ?? '0x'],
-      },
-    ],
-  })
+type UserInfoProps = {
+  lotteryId: number
+}
 
-  const [medalBalance, ticketBalance, entryCounts] = data || []
+const UserInfo = ({ lotteryId }: UserInfoProps) => {
+  const { language } = useLanguage()
+  const { t } = useTranslation(language)
+
+  const { medalBalance, ticketBalance } = useMedalAndTicket()
+  const { entryCounts } = useLottery({ lotteryId })
+
+  // const { address } = useAccount()
+  // const { data } = useReadContracts({
+  //   allowFailure: false,
+  //   contracts: [
+  //     {
+  //       address: medalNftConfig.address[NETWORK.id],
+  //       abi: medalNftConfig.abi,
+  //       functionName: 'balanceOf',
+  //       args: [address ?? '0x', 0n],
+  //     },
+  //     {
+  //       address: ticketNftConfig.address[NETWORK.id],
+  //       abi: ticketNftConfig.abi,
+  //       functionName: 'balanceOf',
+  //       args: [address ?? '0x', 0n],
+  //     },
+  //     {
+  //       address: maidsLotteryConfig.address[NETWORK.id],
+  //       abi: maidsLotteryConfig.abi,
+  //       functionName: 'entryCountsByLotteryId',
+  //       args: [BigInt(lotteryId), address ?? '0x'],
+  //     },
+  //   ],
+  // })
+
+  // const [medalBalance, ticketBalance, entryCounts] = data || []
 
   return (
     <div>
-      <Typography variant='largeText'>メダルNFT所持数: {medalBalance?.toString()}</Typography>
-      <Typography variant='largeText'>チケットNFT所持数: {ticketBalance?.toString()}</Typography>
-      <Typography variant='largeText'>エントリー済み口数: {entryCounts?.toString()}</Typography>
+      <Typography variant='largeText'>
+        {t('lottery:medalBalance')}: {medalBalance?.toString()}
+      </Typography>
+      <Typography variant='largeText'>
+        {t('lottery:ticketBalance')}: {ticketBalance?.toString()}
+      </Typography>
+      <Typography variant='largeText'>
+        {t('lottery:entryCount')}: {entryCounts?.toString()}
+      </Typography>
     </div>
   )
 }

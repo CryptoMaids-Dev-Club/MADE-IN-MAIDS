@@ -8,6 +8,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useAccount } from 'wagmi'
 import { ProfileIcon } from '@/app/[lang]/_components/Elements/ProfileIcon'
+import SwitchLanguageButton from '@/app/[lang]/_components/Elements/SwitchLanguageButton/SwitchLanguageButton'
+import { useLanguage } from '@/app/i18n/client'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -17,6 +19,8 @@ const Balance = dynamic(() => import('@/app/[lang]/_components/Elements/Balance'
 })
 
 export const TopBar = () => {
+  const { language } = useLanguage()
+
   const linkNames = ['Discord', 'X', 'WebSite', 'TACHIYOMI', 'OS', 'SHOOTING']
   const linkUrls = [
     'https://discord.gg/cryptomaids',
@@ -96,6 +100,7 @@ export const TopBar = () => {
                       </a>
                     </div>
                   ))}
+                  <SwitchLanguageButton />
                 </div>
               </SheetContent>
             </Sheet>
@@ -103,7 +108,7 @@ export const TopBar = () => {
 
           <div className='flex flex-1 items-center xl:items-stretch xl:justify-start'>
             <div className='ml-10 flex shrink-0 items-center'>
-              <Link href='/top' className='h-7 w-36 sm:h-9 sm:w-40'>
+              <Link href={`/${language}/top`} className='h-7 w-36 sm:h-9 sm:w-40'>
                 <Image src='/images/logo_set.png' width='160' height='48' alt='logo' />
               </Link>
             </div>
@@ -120,6 +125,11 @@ export const TopBar = () => {
               </div>
             </div>
           </div>
+
+          <div className='hidden md:block'>
+            <SwitchLanguageButton />
+          </div>
+
           <div className='absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
             <div className='hidden sm:block'>
               <Balance />

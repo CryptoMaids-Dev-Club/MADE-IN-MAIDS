@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { Address } from 'viem'
 import { z } from 'zod'
 import useUpdateProfile from '@/app/[lang]/(features)/detail/_hooks/useUpdateProfile'
+import { useLanguage } from '@/app/i18n/client'
 import AutoForm from '@/components/ui/auto-form'
 import { Button } from '@/components/ui/button'
 import { LoadingButton } from '@/components/ui/loading-button'
@@ -28,6 +29,8 @@ const createSchema = (profile: MaidProfile) => {
 }
 
 const MaidsProfile = ({ profile, asset, owner }: MaidsProfileProps) => {
+  const { language } = useLanguage()
+
   const { editing, updating, isOwner, maidsProfile, toggleEditing, updateProfile } = useUpdateProfile(
     profile,
     asset,
@@ -96,7 +99,7 @@ const MaidsProfile = ({ profile, asset, owner }: MaidsProfileProps) => {
         </>
       )}
 
-      <Link href={`/detail/voting/${profile.id}`}>
+      <Link href={`/${language}/detail/voting/${profile.id}`}>
         <Typography variant='h3'>Go to Vote</Typography>
       </Link>
     </div>

@@ -19,42 +19,42 @@ const Top = async ({ lang }: TopProps) => {
           color='text-pink-500'
           image='/images/mogm.png'
           description={t('top:market')}
-          link='/market'
+          link={`/${lang}/market`}
         />
         <TopCard
           title='STAKING'
           color='text-blue-400'
           image='/images/staking.png'
-          description='Hold CryptoMaids earn $MAIDS'
+          description={t('top:staking')}
           link='https://made-in-maids.cryptomaids.tokyo/'
         />
         <TopCard
           title='VOTING'
           color='text-orange-500'
           image='/images/voting.png'
-          description='Let’s make your maid NO.1'
-          link='/voting'
+          description={t('top:voting')}
+          link={`/${lang}/voting`}
         />
         <TopCard
           title='RANKING'
           color='text-yellow-500'
           image='/images/ranking.png'
-          description='CryptoMaids NFT & $MAIDS holder ranking'
-          link='/ranking'
+          description={t('top:ranking')}
+          link={`/${lang}/ranking`}
         />
         <TopCard
           title='PREDICTION'
           color='text-green-500'
           image='/images/prediction.png'
-          description='Predict the CryptoMaids event results'
-          link='/prediction'
+          description={t('top:prediction')}
+          link={`/${lang}/prediction`}
         />
         <TopCard
           title='Lottery'
           color='text-green-500'
           image='/images/lottery.png'
-          description='Let’s participate in the lottery event!'
-          link='/lottery'
+          description={t('top:lottery')}
+          link={`/${lang}/lottery`}
         />
       </div>
       <div className='m-10 pb-4'>
@@ -62,7 +62,7 @@ const Top = async ({ lang }: TopProps) => {
           Recently Updated Profiles
         </Typography>
         <Suspense fallback={<RecentlyUpdatedProfilesSkeleton />}>
-          <RecentlyUpdatedProfiles />
+          <RecentlyUpdatedProfiles lang={lang} />
         </Suspense>
       </div>
     </div>

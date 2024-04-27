@@ -1,55 +1,23 @@
-import PrizeCard from '@/app/[lang]/(features)/lottery/_components/PrizeCard'
+import LotteryInformation from '@/app/[lang]/(features)/lottery/_components/LotteryInformation'
+import BackToTop from '@/app/[lang]/_components/Elements/BackToTop/BackToTop'
 import { Typography } from '@/components/ui/typography'
 
 type LotteryProps = {
-  id: number
+  lang: string
+  lotteryId: number
 }
 
-const Lottery = ({ id }: LotteryProps) => {
-  console.log(id)
-
+const Lottery = ({ lang, lotteryId }: LotteryProps) => {
   return (
-    <div className='container mx-auto mt-4 max-w-[1200px] pb-12'>
-      <div className='grid gap-4'>
-        <Typography variant='h1' className='my-2 text-center text-pink-500'>
-          CryptoMaids Lottery
-        </Typography>
-        <Typography variant='h2' className='my-2 text-center text-pink-500'>
-          Prizes
-        </Typography>
+    <div className='container mx-auto mb-12 h-dvh min-h-full max-w-7xl'>
+      <Typography variant='h1' className='my-2 text-center text-pink-500'>
+        CryptoMaids Lottery
+      </Typography>
 
-        <div className='mx-10 grid justify-items-center gap-4 md:grid-cols-2 lg:grid-cols-5'>
-          <PrizeCard image='/images/mogm.png' description={'top:market'} link='/market' />
-          <PrizeCard
-            image='/images/staking.png'
-            description='Hold CryptoMaids earn $MAIDS'
-            link='https://made-in-maids.cryptomaids.tokyo/'
-          />
-          <PrizeCard image='/images/voting.png' description='Let’s make your maid NO.1' link='/voting' />
-          <PrizeCard
-            image='/images/ranking.png'
-            description='CryptoMaids NFT & $MAIDS holder ranking'
-            link='/ranking'
-          />
-          <PrizeCard
-            image='/images/prediction.png'
-            description='Predict the CryptoMaids event results'
-            link='/prediction'
-          />
-        </div>
-
-        <Typography variant='h2' className='my-2 text-center text-pink-500'>
-          Entry
-        </Typography>
-
-        <Typography variant='h2' className='my-2 text-center text-pink-500'>
-          Lottery Info
-        </Typography>
-
-        <Typography variant='h2' className='my-2 text-center text-pink-500'>
-          Result
-        </Typography>
+      <div className='box-border rounded-2xl border-4 border-dashed border-pink-500 p-8'>
+        <LotteryInformation lang={lang} lotteryId={lotteryId} />
       </div>
+      <BackToTop />
     </div>
   )
 }

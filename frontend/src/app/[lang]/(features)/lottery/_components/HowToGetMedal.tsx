@@ -1,19 +1,31 @@
 import Image from 'next/image'
+import { Trans } from 'react-i18next/TransWithoutContext'
 import { FadeInBottom } from '@/app/[lang]/_components/Elements/FadeInButton'
+import { getTranslation } from '@/app/i18n/server'
 import { Typography } from '@/components/ui/typography'
 
-const HowToGetMedal = () => {
+const HowToGetMedal = async ({ lang }: { lang: string }) => {
+  const { t } = await getTranslation(lang)
+
   return (
-    <div className='pb-20'>
+    <div className='pb-4'>
       <div className='my-4 grid grid-cols-1 items-center justify-center gap-4 md:grid-cols-5'>
         <FadeInBottom>
           <div className='col-span-3 grid grid-cols-3 gap-4'>
-            <Image className='col-span-2' src='/images/cluster.png' alt='medal' width={500} height={500} />
-            <Image className='col-start-2 col-end-4' src='/images/minecraft.png' alt='medal' width={500} height={500} />
+            {/* Apply order classes for mobile view */}
+            <div className='order-2 col-span-3 md:order-none md:col-span-2'>
+              <Image src='/images/cluster.png' alt='medal' width={500} height={500} />
+            </div>
+            <div className='order-3 col-span-3 md:order-none md:col-start-2 md:col-end-4'>
+              <Image src='/images/minecraft.png' alt='medal' width={500} height={500} />
+            </div>
           </div>
-          <div className='col-span-2'>
-            <Typography variant='h2'>イベント参加！</Typography>
-            <Typography variant='lead'>ClusterやMineCraft, ゲームイベントに参加しよう</Typography>
+          {/* Adjust the order to display this block first on mobile */}
+          <div className='order-first col-span-3 md:order-none md:col-span-2'>
+            <Typography variant='h2'>{t('lottery:howToGetMedalEvent')}</Typography>
+            <Typography variant='lead' className='[&_span]:inline-block'>
+              <Trans i18nKey='lottery:howToGetMedalEventText' t={t} />
+            </Typography>
           </div>
         </FadeInBottom>
       </div>
@@ -21,8 +33,8 @@ const HowToGetMedal = () => {
       <div className='my-4 grid grid-cols-1 items-center justify-center gap-4 md:grid-cols-2'>
         <FadeInBottom>
           <div>
-            <Typography variant='h2'>ファンアート！</Typography>
-            <Typography variant='lead'>CryptoMaidsのファンアートを描こう</Typography>
+            <Typography variant='h2'>{t('lottery:howToGetMedalFanart')}</Typography>
+            <Typography variant='lead'>{t('lottery:howToGetMedalFanartText')}</Typography>
           </div>
 
           <Image src='/images/fanart.png' alt='medal' width={600} height={600} />
@@ -32,20 +44,20 @@ const HowToGetMedal = () => {
       <div className='mt-8'>
         <FadeInBottom>
           <Typography variant='h2' className='text-center'>
-            部活動
+            {t('lottery:howToGetMedalClub')}
           </Typography>
-          <Typography variant='lead' className='text-center'>
-            ホルダー限定の様々な部活動に参加しよう
+          <Typography variant='lead' className='text-center [&_span]:inline-block'>
+            <Trans i18nKey='lottery:howToGetMedalClubText' t={t} />
           </Typography>
 
-          <div className='mt-4 grid grid-cols-2'>
+          <div className='mt-4 grid grid-cols-1 items-center md:grid-cols-2'>
             <div>
               <Image src='/images/club.png' alt='medal' width={800} height={800} />
             </div>
 
             <div className='mx-4'>
               <Typography variant='h3' className='mt-4'>
-                部活動一覧
+                {t('lottery:clubList')}
               </Typography>
               <ul className='space-y-2'>
                 <li>

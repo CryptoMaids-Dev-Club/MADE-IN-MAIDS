@@ -25,7 +25,7 @@ const BackToTop = () => {
   return (
     <>
       {showScrollToTop && (
-        <div className='fixed bottom-12 right-8'>
+        <div className='fixed bottom-12 right-8 hidden md:block'>
           <Button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className='rounded-full bg-pink-500 p-2 text-white hover:bg-pink-600'>

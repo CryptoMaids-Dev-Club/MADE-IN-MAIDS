@@ -4,10 +4,11 @@ import { useState } from 'react'
 import { User } from '@prisma/client'
 import { hc } from 'hono/client'
 import { UserRound } from 'lucide-react'
-import NextLink from 'next/link'
+import Link from 'next/link'
 import InfiniteScroll from 'react-infinite-scroller'
 import { NFTHolder } from '@/app/[[...route]]/nftHolder'
 import { AppType } from '@/app/[[...route]]/route'
+import { useLanguage } from '@/app/i18n/client'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Table, TableBody, TableCell, TableHeader, TableRow } from '@/components/ui/table'
 import { Typography } from '@/components/ui/typography'
@@ -20,6 +21,8 @@ type NFTHolderTableProps = {
 const client = hc<AppType>('/')
 
 const NFTHolderTable = ({ userInfos }: NFTHolderTableProps) => {
+  const { language } = useLanguage()
+
   const [holdersList, setHoldersList] = useState<NFTHolder[]>([])
   const [hasMore, setHasMore] = useState(true)
 
@@ -70,9 +73,11 @@ const NFTHolderTable = ({ userInfos }: NFTHolderTableProps) => {
                 </Avatar>
               </TableCell>
               <TableCell>
-                <NextLink href={`/account/${holder.address}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                <Link
+                  href={`/${language}/account/${holder.address}`}
+                  style={{ textDecoration: 'none', color: 'inherit' }}>
                   {getUserName(holder.address, userInfos)}
-                </NextLink>
+                </Link>
               </TableCell>
               <TableCell>{holder.total}</TableCell>
             </TableRow>

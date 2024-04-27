@@ -1,3 +1,8 @@
 {
-  "market": "$MAIDSで限定NFTを購入しよう!"
+  "market": "$MAIDSで限定NFTを購入しよう!",
+  "staking": "CryptoMaidsをホールドして$MAIDSを獲得しよう!",
+  "voting": "お気に入りのMaidsに投票しよう!",
+  "ranking": "ホルダーランキングをチェック",
+  "prediction": "イベントの結果を予想しよう",
+  "lottery": "月一回の抽選イベントに参加しよう"
 }

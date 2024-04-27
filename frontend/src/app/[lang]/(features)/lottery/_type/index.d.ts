@@ -1,16 +1,31 @@
 export type LotteryInfo = {
-  lotteryId: number
   tokenId: number
-  mexShares: number
-  startTime: string
-  endTime: string
+  maxShares: number
+  totalShares: number
+  startTime: number
+  endTime: number
+  ended: boolean
+  winners: string[]
   prizes: PrizeInfo[]
 }
 
 export type PrizeInfo = {
-  prizeType: number
-  contractAddress: string
-  tokenId: number
-  amount: number
-  claimed: boolean
+  prizeName: string
+  prizeImageUrl: string
+}
+
+export type SolidityLotteryInfo = {
+  tokenId: bigint
+  maxShares: bigint
+  totalShares: bigint
+  startTime: bigint
+  endTime: bigint
+  ended: boolean
+  winners: string[]
+  prizes: PrizeInfo[]
+}
+
+export type SolidityPrizeInfo = {
+  prizeName: string
+  prizeImageUrl: string
 }

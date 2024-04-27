@@ -1,7 +1,8 @@
 'use client'
 
 import Image from 'next/image'
-import NextLink from 'next/link'
+import Link from 'next/link'
+import { useLanguage } from '@/app/i18n/client'
 import { Typography } from '@/components/ui/typography'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import type { TopAsset } from '@/app/[lang]/(features)/voting/_types'
@@ -11,6 +12,8 @@ type TopImageProps = {
 }
 
 export const TopImage = ({ topAssets }: TopImageProps) => {
+  const { language } = useLanguage()
+
   topAssets.sort((a, b) => a.rank - b.rank)
 
   const sortedTopAssets = [...topAssets]
@@ -28,7 +31,7 @@ export const TopImage = ({ topAssets }: TopImageProps) => {
         {top3.map((asset) => (
           <div key={asset.name}>
             <Image src={`/images/${asset.rank}.png`} alt='rank' height='360' width='370' />
-            <NextLink href={`/detail/${asset.id}`}>
+            <Link href={`/${language}/detail/${asset.id}`}>
               <div className='relative overflow-hidden bg-cover bg-no-repeat'>
                 <Image
                   className='transition duration-300 hover:scale-110'
@@ -39,7 +42,7 @@ export const TopImage = ({ topAssets }: TopImageProps) => {
                   style={{ objectFit: 'cover' }}
                 />
               </div>
-            </NextLink>
+            </Link>
             <Typography variant='h3' className='text-center text-yellow-500'>
               {`Number of Votes:${asset.amount}`}
             </Typography>
@@ -50,7 +53,7 @@ export const TopImage = ({ topAssets }: TopImageProps) => {
         {top5.map((asset) => (
           <div key={asset.name} className='mx-auto'>
             <Image src={`/images/${asset.rank}.png`} alt='rank' height='360' width='370' />
-            <NextLink href={`/detail/${asset.id}`}>
+            <Link href={`/${language}/detail/${asset.id}`}>
               <div className='relative overflow-hidden bg-cover bg-no-repeat'>
                 <Image
                   className='transition duration-300 hover:scale-110'
@@ -61,7 +64,7 @@ export const TopImage = ({ topAssets }: TopImageProps) => {
                   style={{ objectFit: 'cover' }}
                 />
               </div>
-            </NextLink>
+            </Link>
             <Typography variant='h3' className='text-center text-yellow-500'>
               {`Number of Votes:${asset.amount}`}
             </Typography>

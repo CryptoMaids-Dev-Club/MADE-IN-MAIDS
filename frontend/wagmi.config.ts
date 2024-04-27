@@ -2,13 +2,13 @@ import { defineConfig } from '@wagmi/cli'
 import { react } from '@wagmi/cli/plugins'
 import { Abi } from 'viem'
 import { polygon, sepolia } from 'wagmi/chains'
-import MaidsItem from '../contracts/artifacts/contracts/MaidsItem1155.sol/MaidsItem1155.json'
-import MaidsLottery from '../contracts/artifacts/contracts/MaidsLottery.sol/MaidsLottery.json'
-import MaidsMarket from '../contracts/artifacts/contracts/MaidsMarketPlace.sol/MaidsMarketPlace.json'
-import MaidsPrediction from '../contracts/artifacts/contracts/MaidsPrediction.sol/MaidsPrediction.json'
-import MaidsToken from '../contracts/artifacts/contracts/MaidsToken.sol/MaidsToken.json'
-import MaidsVoting from '../contracts/artifacts/contracts/MaidsVoting.sol/MaidsVoting.json'
-import ERC1155Mock from '../contracts/artifacts/contracts/mocks/ERC1155Mock.sol/ERC1155Mock.json'
+import ERC1155Mock from '../contracts/out/ERC1155Mock.sol/ERC1155Mock.json'
+import MaidsItem from '../contracts/out/MaidsItem1155.sol/MaidsItem1155.json'
+import MaidsLottery from '../contracts/out/MaidsLottery.sol/MaidsLottery.json'
+import MaidsMarket from '../contracts/out/MaidsMarketPlace.sol/MaidsMarketPlace.json'
+import MaidsPrediction from '../contracts/out/MaidsPrediction.sol/MaidsPrediction.json'
+import MaidsToken from '../contracts/out/MaidsToken.sol/MaidsToken.json'
+import MaidsVoting from '../contracts/out/MaidsVoting.sol/MaidsVoting.json'
 
 export default defineConfig({
   out: 'src/lib/generated.ts',
@@ -57,15 +57,15 @@ export default defineConfig({
       name: 'MaidsLottery',
       abi: MaidsLottery.abi as Abi,
       address: {
-        [polygon.id]: '0x36ff93874E8B9Ca46E172534c241BEB8d0146299',
-        [sepolia.id]: '0x36ff93874E8B9Ca46E172534c241BEB8d0146299',
+        [polygon.id]: '0x225295ac7b0f4CB2f6BA4AAd8f8eBB287d2c56ea',
+        [sepolia.id]: '0x341d61664F5D6789Eb2Ba8E15A2E84B44a41caDE',
       },
     },
     {
       name: 'MedalNFT',
       abi: ERC1155Mock.abi as Abi,
       address: {
-        [polygon.id]: '0x6dA7Ae5FBc5B699a9a812C56E4D76aEc67f8c8f2',
+        [polygon.id]: '0x1E42B1A4B2389318E9cBC79801c9B72AEfF8786c',
         [sepolia.id]: '0x6dA7Ae5FBc5B699a9a812C56E4D76aEc67f8c8f2',
       },
     },
@@ -73,7 +73,7 @@ export default defineConfig({
       name: 'TicketNFT',
       abi: ERC1155Mock.abi as Abi,
       address: {
-        [polygon.id]: '0xB380fB36E568a16ceE6eB529f621a4df26eB1f2E',
+        [polygon.id]: '0xcF4b3f5Af27777075f4e4422e529a11E147296dC',
         [sepolia.id]: '0xB380fB36E568a16ceE6eB529f621a4df26eB1f2E',
       },
     },

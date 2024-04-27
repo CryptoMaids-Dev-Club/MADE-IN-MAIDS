@@ -5,7 +5,7 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { Typography } from '@/components/ui/typography'
 import { getRecentlyUpdateProfiles } from '@/server/maidsProfile/query'
 
-const RecentlyUpdatedProfiles = async () => {
+const RecentlyUpdatedProfiles = async ({ lang }: { lang: string }) => {
   noStore()
   const profiles = await getRecentlyUpdateProfiles()
 
@@ -14,7 +14,7 @@ const RecentlyUpdatedProfiles = async () => {
       <div className='grid grid-cols-1 gap-2 md:grid-cols-5'>
         {profiles.map((profile) => (
           <div key={profile.imageUrl}>
-            <Link href={`/detail/${profile.id}`}>
+            <Link href={`/${lang}/detail/${profile.id}`}>
               <div className='hover:opacity-50'>
                 <Image
                   height={600}

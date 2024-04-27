@@ -9,7 +9,7 @@ export const useSaveUserInfo = (address: Address) => {
   const updateUserInfo = useUpdateUser(address)
   const { signMessageAsync } = useSignMessage()
 
-  const saveUserInfo = async (newName:string, newIconUrl: string) => {
+  const saveUserInfo = async (newName: string, newIconUrl: string) => {
     if (address === undefined) return
 
     const signature = getSignatureFromLocalStorage(address)

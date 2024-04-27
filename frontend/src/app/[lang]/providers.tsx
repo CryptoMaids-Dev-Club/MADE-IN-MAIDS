@@ -7,6 +7,7 @@ import { walletConnectWallet } from '@rainbow-me/rainbowkit/wallets'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { createConfig, WagmiProvider, http } from 'wagmi'
 import { polygon, sepolia } from 'wagmi/chains'
+import { LanguageProvider } from '@/app/i18n/client'
 import { ThemeProvider } from '@/components/theme-provider'
 import { NETWORK, WALLET_CONNECT_ID } from '@/config/client'
 
@@ -34,18 +35,20 @@ export const config = createConfig({
   connectors,
   transports: {
     [polygon.id]: http(),
-    [sepolia.id]: http(),
+    [sepolia.id]: http('https://sepolia.infura.io/v3/bdd42d36e9dd409c90f343c48530cc4c'),
   },
 })
 
 const queryClient = new QueryClient()
 
-export const Providers = ({ children }: { children: React.ReactNode }) => {
+export const Providers = ({ lang, children }: { lang: string; children: React.ReactNode }) => {
   return (
     <ThemeProvider attribute='class' defaultTheme='dark'>
       <QueryClientProvider client={queryClient}>
         <WagmiProvider config={config}>
-          <RainbowKitProvider theme={darkTheme()}>{children}</RainbowKitProvider>
+          <RainbowKitProvider theme={darkTheme()}>
+            <LanguageProvider initialLanguage={lang}>{children}</LanguageProvider>
+          </RainbowKitProvider>
         </WagmiProvider>
       </QueryClientProvider>
     </ThemeProvider>

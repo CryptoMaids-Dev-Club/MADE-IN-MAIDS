@@ -4,12 +4,12 @@ import { CenteringCircularProgress } from '@/app/[lang]/_components/Elements/Cen
 import { Header } from '@/app/[lang]/_components/Header'
 import ItemList from './ItemList'
 
-const Market = () => (
+const Market = ({ lang }: { lang: string }) => (
   <>
     <Header />
     <div className='mt-8 flex items-center justify-center pb-12'>
       <Suspense fallback={<CenteringCircularProgress />}>
-        <ItemList />
+        <ItemList lang={lang} />
       </Suspense>
     </div>
   </>

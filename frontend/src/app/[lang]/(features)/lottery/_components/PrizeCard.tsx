@@ -5,7 +5,6 @@ import { Typography } from '@/components/ui/typography'
 type PrizeCardProps = {
   image: string
   description: string
-  link: string
 }
 
 const PrizeCard = ({ image, description }: PrizeCardProps) => (

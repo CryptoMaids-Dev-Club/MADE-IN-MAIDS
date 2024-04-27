@@ -5,12 +5,13 @@ import { Typography } from '@/components/ui/typography'
 import type { MarketItemInfo } from '@/app/[lang]/(features)/market/_types'
 
 type ItemCardProps = {
+  lang: string
   item: MarketItemInfo
 }
 
-const ItemCard = ({ item }: ItemCardProps) => (
+const ItemCard = ({ lang, item }: ItemCardProps) => (
   <Card className='w-80 md:w-96'>
-    <Link href={`/market/${item.id}`}>
+    <Link href={`/${lang}/market/${item.id}`}>
       <div className='relative overflow-hidden bg-cover bg-no-repeat'>
         <div className='transition duration-300 hover:scale-110'>
           <Image src={item.image} width='390' height='350' alt='item' style={{ objectFit: 'cover' }} />

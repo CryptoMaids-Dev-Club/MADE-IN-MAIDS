@@ -5,10 +5,11 @@ import { Typography } from '@/components/ui/typography'
 import type { Prediction, PredictionText } from '@/app/[lang]/(features)/prediction/_types'
 
 type PredictionProps = {
+  lang: string
   predictionInfo: Prediction
 }
 
-const PredictionInfoCard = async ({ predictionInfo }: PredictionProps) => {
+const PredictionInfoCard = async ({ lang, predictionInfo }: PredictionProps) => {
   const response = await fetch(predictionInfo.predictionURI)
   const predictionText = (await response.json()) as PredictionText
 
@@ -23,7 +24,7 @@ const PredictionInfoCard = async ({ predictionInfo }: PredictionProps) => {
   }
 
   return (
-    <Link href={`/prediction/${predictionInfo.id}`}>
+    <Link href={`/${lang}/prediction/${predictionInfo.id}`}>
       <Card className='w-full border-2 border-gray-500 bg-gray-900'>
         <CardContent>
           <Badge variant={predictionInfo.isSettled ? 'destructive' : 'success'}>{labelMessage()}</Badge>
