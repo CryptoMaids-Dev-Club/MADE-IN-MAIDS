@@ -20,6 +20,8 @@ contract MaidsLotteryHelper is Script {
     constructor() {
         if (block.chainid == 11155111) {
             activeNetworkConfig = getSepoliaEthConfig();
+        } else if (block.chainid == 137) {
+            activeNetworkConfig = getPolygonConfig();
         } else {
             activeNetworkConfig = getOrCreateAnvilEthConfig();
         }
@@ -29,7 +31,16 @@ contract MaidsLotteryHelper is Script {
         sepoliaNetworkConfig = NetworkConfig({
             vrfCoordinator: 0x8103B0A8A00be2DDC778e6e7eaa21791Cd364625,
             medalContract: 0x6dA7Ae5FBc5B699a9a812C56E4D76aEc67f8c8f2,
-            ticketContract: 0xB380fB36E568a16ceE6eB529f621a4df26eB1f2E,
+            ticketContract: 0xB380fB36E568a16ceE6eB529f621a4df26eB1f2E, 
+            deployerKey: vm.envUint("PRIVATE_KEY")
+        });
+    }
+
+    function getPolygonConfig() public view returns (NetworkConfig memory polygonNetworkConfig) {
+        polygonNetworkConfig = NetworkConfig({
+            vrfCoordinator: 0xAE975071Be8F8eE67addBC1A82488F1C24858067,
+            medalContract: 0x1E42B1A4B2389318E9cBC79801c9B72AEfF8786c,
+            ticketContract: 0xcF4b3f5Af27777075f4e4422e529a11E147296dC,
             deployerKey: vm.envUint("PRIVATE_KEY")
         });
     }

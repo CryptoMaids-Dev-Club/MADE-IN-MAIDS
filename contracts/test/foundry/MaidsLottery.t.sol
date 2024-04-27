@@ -205,6 +205,33 @@ contract MaidsLotteryTest is Test {
         assertEq(winners.length, lotteryInfo.prizes.length, "winners length");
     }
 
+    function test_draw_fromGelato() public createNewLottery {
+        // Jump to the start time
+        vm.warp(1000);
+
+        for (uint256 i = 0; i < users.length; i++) {
+            vm.prank(users[i]);
+            maidsLottery.entry(1);
+        }
+
+        // warp to end time
+        vm.warp(block.timestamp + 101);
+        vm.prank(vm.addr(deployerKey));
+        maidsLottery.setGelato(users[0]);
+
+        vm.prank(users[0]);
+        uint256 requestId = maidsLottery.draw();
+
+        // fulfill random words
+        VRFCoordinatorV2Mock(vrfCoordinatorContract).fulfillRandomWords(requestId, address(maidsLottery));
+
+        address[] memory winners = maidsLottery.getLotteryInfo(0).winners;
+
+        MaidsLottery.LotteryInfo memory lotteryInfo = maidsLottery.getLotteryInfo(0);
+
+        assertEq(winners.length, lotteryInfo.prizes.length, "winners length");
+    }
+
     function test_draw_revert_WhenLotteryIsNotEnded() public createNewLottery {
         vm.prank(vm.addr(deployerKey));
         vm.expectRevert(MaidsLottery.LotteryIsStillOngoing.selector);
@@ -214,7 +241,7 @@ contract MaidsLotteryTest is Test {
     function test_draw_revert_NotOwner() public createNewLottery {
         vm.warp(END_TIME + 1);
         vm.prank(user1);
-        vm.expectRevert(bytes("Only callable by owner"));
+        vm.expectRevert(MaidsLottery.Unauthorized.selector);
         maidsLottery.draw();
     }
 
@@ -522,6 +549,18 @@ contract MaidsLotteryTest is Test {
         vm.prank(user1);
         vm.expectRevert(bytes("Only callable by owner"));
         maidsLottery.setKeyHash(0xd89b2bf150e3b9e13446986e571fb9cab24b13cea0a43ea20a6049a85cc807cc);
+    }
+
+    function test_setGelato() public {
+        vm.prank(vm.addr(deployerKey));
+        maidsLottery.setGelato(address(0x1));
+        assertEq(maidsLottery.gelato(), address(0x1));
+    }
+
+    function test_setGelato_revert_FromNotOwner() public {
+        vm.prank(user1);
+        vm.expectRevert(bytes("Only callable by owner"));
+        maidsLottery.setGelato(address(0x1));
     }
 
     /*«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-*/

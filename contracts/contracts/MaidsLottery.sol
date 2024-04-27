@@ -30,6 +30,9 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
     /*«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-*/
     /*                        CUSTOM ERRORS                       */
     /*-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»*/
+    /// @dev Error when caller is not owner or gelato
+    error Unauthorized();
+
     /// @dev Error when already has an ongoing lottery
     error AlreadyHasOngoingLottery();
 
@@ -102,16 +105,18 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
     /// @dev Chainlink VRF Coordinator
     address public vrfCoordinator;
 
+    /// @dev Gelato address
+    address public gelato;
+
     /// @dev Subscription id for Chainlink VRF
     uint64 public subscriptionId;
 
-    /// @dev 150 wei gas lane
-    bytes32 public keyHash = 0x474e34a077df58807dbe9c96d3c009b23b3c6d0cce433e59bbf5b34f823bc56c;
-    // bytes32 keyHash = 0xd89b2bf150e3b9e13446986e571fb9cab24b13cea0a43ea20a6049a85cc807cc;
+    /// @dev 200 wei gas lane
+    bytes32 public keyHash = 0x6e099d640cde6de9d40ac749b4b594126b0169747122711109c9985d47751f93;
 
     /// @dev Depends on chainlink docs, storing each word costs about 20,000 gas.
     /// So, 100,000 gas limit is enough for 5 words.
-    /// Just in case, we set 300,000 gas limit.
+    /// Just in case, we set 500,000 gas limit.
     uint32 public callbackGasLimit = 500_000;
 
     /// @dev The default is 3, but you can set this higher.
@@ -148,6 +153,14 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
         medalContract = medalContract_;
         vrfCoordinator = vrfCoordinator_;
         subscriptionId = subscriptionId_;
+    }
+
+    /*«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-*/
+    /*                        MODIFIER                            */
+    /*-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»*/
+    modifier onlyOwnerOrGelato() {
+        if (_msgSender() != owner() && _msgSender() != gelato) revert Unauthorized();
+        _;
     }
 
     /*«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-*/
@@ -226,7 +239,7 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
     /// - lottery must be ended
     ///
     /// Emits a {Draw} event
-    function draw() external onlyOwner returns (uint256) {
+    function draw() external onlyOwnerOrGelato returns (uint256) {
         uint256 lotteryId = lotteries.length - 1;
         LotteryInfo memory lottery = lotteries[lotteryId];
         if (lottery.endTime > block.timestamp) revert LotteryIsStillOngoing();
@@ -357,6 +370,12 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
     /// @dev Update Key Hash
     function setKeyHash(bytes32 keyHash_) external onlyOwner {
         keyHash = keyHash_;
+    }
+
+    /// @dev Update Gelato
+    function setGelato(address gelato_) external onlyOwner {
+        if (gelato_ == address(0)) revert InvalidArguments();
+        gelato = gelato_;
     }
 
     /*«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-«-*/
