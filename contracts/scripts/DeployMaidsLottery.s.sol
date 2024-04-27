@@ -11,13 +11,17 @@ contract DeployMaidsLottery is Script {
 
     function run() public returns (MaidsLottery, MaidsLotteryHelper) {
         MaidsLotteryHelper helper = new MaidsLotteryHelper();
-        (address vrfCoordinator, address medalContract, address ticketContract, uint256 deployerKey) = helper.activeNetworkConfig();
+        (address vrfCoordinator, address medalContract, address ticketContract, uint64 subscriptionId, uint256 deployerKey) = helper.activeNetworkConfig();
 
         vm.startBroadcast(deployerKey);
 
         MaidsLottery lottery =
-            new MaidsLottery(ticketContract, medalContract, vrfCoordinator, 1181);
-        // VRFCoordinatorV2Mock(vrfCoordinator).addConsumer(1, address(lottery)); // For testing only
+            new MaidsLottery(ticketContract, medalContract, vrfCoordinator, subscriptionId);
+        
+        // For testing only
+        if (block.chainid != 11155111 && block.chainid != 137) {
+            VRFCoordinatorV2Mock(vrfCoordinator).addConsumer(1, address(lottery));
+        }
 
         vm.stopBroadcast();
 
@@ -29,7 +33,7 @@ contract DeployMaidsLottery is Script {
 // 0: contract ERC1155Mock 0x6dA7Ae5FBc5B699a9a812C56E4D76aEc67f8c8f2
 // 1: contract ERC1155Mock 0xB380fB36E568a16ceE6eB529f621a4df26eB1f2E
 // 2: contract VRFCoordinatorV2Mock 0x8103B0A8A00be2DDC778e6e7eaa21791Cd364625
-// 3: contract MaidsLottery 0x36ff93874E8B9Ca46E172534c241BEB8d0146299
+// 3: contract MaidsLottery 0x341d61664F5D6789Eb2Ba8E15A2E84B44a41caDE
 
 // Polygon
 // 0: contract MaidsLottery 0x225295ac7b0f4CB2f6BA4AAd8f8eBB287d2c56ea

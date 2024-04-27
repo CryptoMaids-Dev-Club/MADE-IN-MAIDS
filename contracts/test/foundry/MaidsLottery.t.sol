@@ -23,6 +23,7 @@ contract MaidsLotteryTest is Test {
     address public medalContract;
     address public ticketContract;
     address public vrfCoordinatorContract;
+    uint64 public subscriptionId;
 
     address public user1 = address(0x1);
     address public user2 = address(0x2);
@@ -45,7 +46,7 @@ contract MaidsLotteryTest is Test {
     function setUp() public {
         deployer = new DeployMaidsLottery();
         (maidsLottery, helper) = deployer.run();
-        (vrfCoordinatorContract, medalContract, ticketContract, deployerKey) = helper.activeNetworkConfig();
+        (vrfCoordinatorContract, medalContract, ticketContract, subscriptionId, deployerKey) = helper.activeNetworkConfig();
 
         // mint NFTs
         ERC1155Mock(ticketContract).mint(address(maidsLottery), 0, INITIAL_MINT);
