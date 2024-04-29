@@ -77,7 +77,7 @@ contract MaidsLotteryTest is Test {
         prizes[2] = prize3;
 
         vm.prank(vm.addr(deployerKey));
-        maidsLottery.createNewLottery(0, MAX_SHARES, START_TIME, END_TIME, prizes);
+        maidsLottery.createNewLottery(0, 0, MAX_SHARES, START_TIME, END_TIME, prizes);
         _;
     }
 
@@ -88,11 +88,12 @@ contract MaidsLotteryTest is Test {
         prizes[0] = prizeInfo;
 
         vm.prank(vm.addr(deployerKey));
-        maidsLottery.createNewLottery(1, MAX_SHARES, START_TIME, END_TIME, prizes);
+        maidsLottery.createNewLottery(1, 1, MAX_SHARES, START_TIME, END_TIME, prizes);
 
         // check lottery info
         MaidsLottery.LotteryInfo memory lotteryInfo = maidsLottery.getLotteryInfo(0);
-        assertEq(lotteryInfo.tokenId, 1);
+        assertEq(lotteryInfo.medalTokenId, 1);
+        assertEq(lotteryInfo.ticketTokenId, 1);
         assertEq(lotteryInfo.maxShares, MAX_SHARES);
         assertEq(lotteryInfo.totalShares, 0);
         assertEq(lotteryInfo.startTime, START_TIME);
@@ -106,31 +107,31 @@ contract MaidsLotteryTest is Test {
     function test_createNewLottery_revert_FromNotOwner() public {
         vm.prank(user1);
         vm.expectRevert(bytes("Only callable by owner"));
-        maidsLottery.createNewLottery(1, 100, 0, 0, new MaidsLottery.PrizeInfo[](1));
+        maidsLottery.createNewLottery(1, 1, 100, 0, 0, new MaidsLottery.PrizeInfo[](1));
     }
 
     function test_createNewLottery_revert_AlreadyOngoing() public createNewLottery {
         vm.prank(vm.addr(deployerKey));
         vm.expectRevert(MaidsLottery.AlreadyHasOngoingLottery.selector);
-        maidsLottery.createNewLottery(1, 100, 0, 0, new MaidsLottery.PrizeInfo[](1));
+        maidsLottery.createNewLottery(1, 1, 100, 0, 0, new MaidsLottery.PrizeInfo[](1));
     }
 
     function test_createNewLottery_revert_WhenPrizesIsEmpty() public {
         vm.prank(vm.addr(deployerKey));
         vm.expectRevert(MaidsLottery.PrizesMustBeGreaterThanZero.selector);
-        maidsLottery.createNewLottery(1, 100, 0, 0, new MaidsLottery.PrizeInfo[](0));
+        maidsLottery.createNewLottery(1, 1, 100, 0, 0, new MaidsLottery.PrizeInfo[](0));
     }
 
     function test_createNewLottery_revert_WhenStartTimeIsGreaterThanEndTime() public {
         vm.prank(vm.addr(deployerKey));
         vm.expectRevert(MaidsLottery.StartTimeMustBeLessThanEndTime.selector);
-        maidsLottery.createNewLottery(1, 100, 1000, 999, new MaidsLottery.PrizeInfo[](1));
+        maidsLottery.createNewLottery(1, 1, 100, 1000, 999, new MaidsLottery.PrizeInfo[](1));
     }
 
     function test_createNewLottery_revert_WhenMaxSharesIsZero() public {
         vm.prank(vm.addr(deployerKey));
         vm.expectRevert(MaidsLottery.MaxSharesMustBeGreaterThanZero.selector);
-        maidsLottery.createNewLottery(1, 0, 1000, 1100, new MaidsLottery.PrizeInfo[](1));
+        maidsLottery.createNewLottery(1, 1, 0, 1000, 1100, new MaidsLottery.PrizeInfo[](1));
     }
 
     function test_entry() public createNewLottery {
@@ -402,7 +403,7 @@ contract MaidsLotteryTest is Test {
 
         // create new lottery
         vm.prank(vm.addr(deployerKey));
-        maidsLottery.createNewLottery(1, MAX_SHARES, START_TIME, END_TIME, prizes);
+        maidsLottery.createNewLottery(1, 1, MAX_SHARES, START_TIME, END_TIME, prizes);
 
         // Jump to the start time
         vm.warp(START_TIME);
@@ -426,10 +427,11 @@ contract MaidsLotteryTest is Test {
 
     function test_updateLotteryInfo() public createNewLottery {
         vm.prank(vm.addr(deployerKey));
-        maidsLottery.updateLotteryInfo(0, 2, 2000, 1, 2100);
+        maidsLottery.updateLotteryInfo(0, 2, 2, 2000, 1, 2100);
 
         MaidsLottery.LotteryInfo memory lotteryInfo = maidsLottery.getLotteryInfo(0);
-        assertEq(lotteryInfo.tokenId, 2);
+        assertEq(lotteryInfo.medalTokenId, 2);
+        assertEq(lotteryInfo.ticketTokenId, 2);
         assertEq(lotteryInfo.maxShares, 2000);
         assertEq(lotteryInfo.startTime, 1);
         assertEq(lotteryInfo.endTime, 2100);
@@ -465,7 +467,8 @@ contract MaidsLotteryTest is Test {
 
     function test_getLotteryInfo() public createNewLottery {
         MaidsLottery.LotteryInfo memory lotteryInfo = maidsLottery.getLotteryInfo(0);
-        assertEq(lotteryInfo.tokenId, 0, "token id");
+        assertEq(lotteryInfo.medalTokenId, 0, "medalToken id");
+        assertEq(lotteryInfo.ticketTokenId, 0, "ticketToken id");
         assertEq(lotteryInfo.maxShares, MAX_SHARES, "max shares");
         assertEq(lotteryInfo.totalShares, 0, "total shares");
         assertEq(lotteryInfo.startTime, START_TIME, "start time");

@@ -13,7 +13,7 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
     /*                           EVENTS                           */
     /*-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»-»*/
     /// @dev Emitted when a new lottery is created
-    event NewLottery(uint256 lotteryId, uint256 tokenId, uint256 maxShares, uint256 startTime, uint256 endTime);
+    event NewLottery(uint256 lotteryId, uint256 medalTokenId, uint256 ticketTokenId, uint256 maxShares, uint256 startTime, uint256 endTime);
 
     /// @dev Emitted when a new entry is created
     event NewEntry(uint256 lotteryId, uint256 share, address entryAddress);
@@ -75,7 +75,8 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
 
     /// @dev Struct managing lottery information
     struct LotteryInfo {
-        uint256 tokenId; // NFT tokenId for entry
+        uint256 medalTokenId; // Medal tokenId for entry
+        uint256 ticketTokenId; // Ticket tokenId for entry
         uint256 maxShares; // max shares for this lottery
         uint256 totalShares; // total shares for this lottery
         uint256 startTime; // start time for this lottery
@@ -174,7 +175,8 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
     ///
     /// Emits a {NewLottery} event
     function createNewLottery(
-        uint256 tokenId,
+        uint256 medalTokenId,
+        uint256 ticketTokenId,
         uint256 maxShares,
         uint256 startTime,
         uint256 endTime,
@@ -186,7 +188,8 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
         if (maxShares <= 0) revert MaxSharesMustBeGreaterThanZero();
 
         LotteryInfo storage lottery = lotteries.push();
-        lottery.tokenId = tokenId;
+        lottery.medalTokenId = medalTokenId;
+        lottery.ticketTokenId = ticketTokenId;
         lottery.maxShares = maxShares;
         lottery.startTime = startTime;
         lottery.endTime = endTime;
@@ -196,7 +199,7 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
         }
         lottery.winners = new address[](prize.length);
 
-        emit NewLottery(lotteries.length - 1, tokenId, maxShares, startTime, endTime);
+        emit NewLottery(lotteries.length - 1, medalTokenId, ticketTokenId, maxShares, startTime, endTime);
     }
 
     /// @dev Entry to the lottery
@@ -229,8 +232,8 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
 
         emit NewEntry(lotteryId, shareAmount, _msgSender());
 
-        IERC1155(ticketContract).safeTransferFrom(_msgSender(), address(this), lottery.tokenId, shareAmount, "");
-        IERC1155(medalContract).safeTransferFrom(_msgSender(), address(this), lottery.tokenId, shareAmount, "");
+        IERC1155(medalContract).safeTransferFrom(_msgSender(), address(this), lottery.medalTokenId, shareAmount, "");
+        IERC1155(ticketContract).safeTransferFrom(_msgSender(), address(this), lottery.ticketTokenId, shareAmount, "");
     }
 
     /// @dev Draw the lottery
@@ -275,7 +278,7 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
         uint256 shareAmount = entryCountsByLotteryId[lotteryId][_msgSender()];
         entryCountsByLotteryId[lotteryId][_msgSender()] = 0;
         IERC1155(ticketContract).safeTransferFrom(
-            address(this), _msgSender(), lotteries[lotteryId].tokenId, shareAmount * 2, ""
+            address(this), _msgSender(), lotteries[lotteryId].ticketTokenId, shareAmount * 2, ""
         );
     }
 
@@ -308,14 +311,16 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
     /// @dev Update Lottery Info
     function updateLotteryInfo(
         uint256 lotteryId,
-        uint256 tokenId,
+        uint256 medalTokenId,
+        uint256 ticketTokenId,
         uint256 maxShares,
         uint256 startTime,
         uint256 endTime
     ) external onlyOwner {
         LotteryInfo storage lottery = lotteries[lotteryId];
 
-        if (lottery.tokenId != tokenId) lottery.tokenId = tokenId;
+        if (lottery.ticketTokenId != medalTokenId) lottery.medalTokenId = medalTokenId;
+        if (lottery.ticketTokenId != ticketTokenId) lottery.ticketTokenId = ticketTokenId;
         if (lottery.maxShares != maxShares) lottery.maxShares = maxShares;
         if (lottery.startTime != startTime) lottery.startTime = startTime;
         if (lottery.endTime != endTime) lottery.endTime = endTime;
