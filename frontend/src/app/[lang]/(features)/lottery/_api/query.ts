@@ -15,12 +15,13 @@ export const getLotteryInfo = async () => {
     functionName: 'getAllLotteries',
   })
 
-  const lotteries = convert(data as unknown as SolidityLotteryInfo[])
+  const lotteries = convert(data as SolidityLotteryInfo[])
 
   if (lotteries.length === 0)
     return [
       {
-        tokenId: 0,
+        medalTokenId: 0,
+        ticketTokenId: 0,
         maxShares: 0,
         totalShares: 0,
         startTime: 0,
@@ -39,7 +40,8 @@ const convert = (lotteries: SolidityLotteryInfo[]) => {
   const convertedLotteries: LotteryInfo[] = []
   lotteries.forEach((lottery) => {
     const convertedLottery: LotteryInfo = {
-      tokenId: Number(lottery.tokenId),
+      medalTokenId: Number(lottery.medalTokenId),
+      ticketTokenId: Number(lottery.ticketTokenId),
       maxShares: Number(lottery.maxShares),
       totalShares: Number(lottery.totalShares),
       startTime: Number(lottery.startTime),

@@ -60,7 +60,7 @@ const fetchOwnedNFTs = async (address: Address, page: number): Promise<OwnedAsse
   await Promise.all(
     ownedNFTs.map(async (nft) => {
       const res = await fetch(`https://api.cryptomaids.tokyo/metadata/crypto_maid/${nft.token_id}`)
-      const asset = (await res.json()) as unknown as AssetInfo
+      const asset = (await res.json()) as AssetInfo
 
       const index = maidProfiles.findIndex((e) => e.id === Number(nft.token_id))
       if (index !== -1) {

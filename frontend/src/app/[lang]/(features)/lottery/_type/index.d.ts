@@ -1,5 +1,6 @@
 export type LotteryInfo = {
-  tokenId: number
+  medalTokenId: number
+  ticketTokenId: number
   maxShares: number
   totalShares: number
   startTime: number
@@ -15,7 +16,8 @@ export type PrizeInfo = {
 }
 
 export type SolidityLotteryInfo = {
-  tokenId: bigint
+  medalTokenId: bigint
+  ticketTokenId: bigint
   maxShares: bigint
   totalShares: bigint
   startTime: bigint

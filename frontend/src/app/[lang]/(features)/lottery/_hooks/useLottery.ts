@@ -1,18 +1,12 @@
 import { useCallback, useEffect, useState } from 'react'
-import { useAccount, useReadContracts, useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
+import { useAccount, useReadContracts, useWaitForTransactionReceipt } from 'wagmi'
 import useMedalAndTicket from '@/app/[lang]/(features)/lottery/_hooks/useMedalAndTicket'
 import { useToast } from '@/components/ui/use-toast'
 import { NETWORK } from '@/config/client'
-import { maidsLotteryConfig, useSimulateMaidsLotteryEntry } from '@/lib/generated'
+import { maidsLotteryConfig, useWriteMaidsLotteryEntry } from '@/lib/generated'
 
 const useLottery = ({ lotteryId }: { lotteryId: number }) => {
   const [share, setShare] = useState<number>(1)
-
-  // const router = useRouter()
-
-  // useEffect(() => {
-  //   router.refresh()
-  // }, [router])
 
   const updateShare = useCallback((value: number) => {
     setShare(value)
@@ -37,11 +31,9 @@ const useLottery = ({ lotteryId }: { lotteryId: number }) => {
   })
   const [entryCounts, isOngoing] = data || [0, false]
 
-  const { data: simulate } = useSimulateMaidsLotteryEntry({
-    args: [BigInt(share)],
-  })
-  const { data: hash, isPending, writeContract } = useWriteContract()
-  // const { data: hash, isPending, writeContract, reset } = useWriteMaidsLotteryEntry()
+  // NOTE: `useSimulateContract` needs refetching after `setApprovedForAll` called.
+  // It's complicated to handle, so use `useWriteContract` instead.
+  const { data: hash, isPending, writeContract } = useWriteMaidsLotteryEntry()
 
   const {
     medalBalance,
@@ -49,18 +41,16 @@ const useLottery = ({ lotteryId }: { lotteryId: number }) => {
     isPending: isPendingApprove,
     approve,
     approved,
-    refetchBalance,
+    refetch: refetchBalance,
   } = useMedalAndTicket()
 
   const { toast } = useToast()
 
   const entry = useCallback(() => {
-    if (simulate === undefined) return
-    writeContract(simulate.request)
-    // writeContract({
-    //   args: [BigInt(share)],
-    // })
-  }, [simulate, writeContract])
+    writeContract({
+      args: [BigInt(share)],
+    })
+  }, [share, writeContract])
 
   const entryOrApprove = useCallback(() => {
     if (approved) {
@@ -83,7 +73,7 @@ const useLottery = ({ lotteryId }: { lotteryId: number }) => {
       refetch()
       refetchBalance()
     }
-  }, [refetch, refetchBalance, status, toast])
+  }, [status, toast, refetch, refetchBalance])
 
   const buttonMessage = () => {
     if (!isOngoing) {

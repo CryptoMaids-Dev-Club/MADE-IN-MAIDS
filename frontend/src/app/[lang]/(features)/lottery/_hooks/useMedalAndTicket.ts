@@ -80,17 +80,13 @@ const useMedalAndTicket = () => {
     }
   }, [medalIsApproved, queryClient, refetch, status, ticketIsApproved, toast])
 
-  const refetchBalance = () => {
-    refetch()
-  }
-
   return {
     medalBalance: medalBalance ? Number(medalBalance) : 0,
     ticketBalance: ticketBalance ? Number(ticketBalance) : 0,
     isPending: isPending || isLoading,
     approved: medalIsApproved && ticketIsApproved,
     approve,
-    refetchBalance,
+    refetch,
   }
 }
 

@@ -18,7 +18,8 @@ import {
 } from '@/lib/generated'
 
 const schema = z.object({
-  tokenId: z.coerce.number().min(0),
+  medalTokenId: z.coerce.number().min(0),
+  ticketTokenId: z.coerce.number().min(0),
   maxShares: z.coerce.number().min(1),
   startTime: z.coerce.number().min(0).default(0),
   endTime: z.coerce.number().min(1),
@@ -39,7 +40,8 @@ const LotteryMock = () => {
     query: {
       select: (data) => {
         return {
-          tokenId: Number(data?.tokenId),
+          medalTokenId: Number(data?.medalTokenId),
+          ticketTokenId: Number(data?.ticketTokenId),
           maxShares: Number(data?.maxShares),
           startTime: Number(data?.startTime),
           endTime: Number(data?.endTime),
@@ -117,9 +119,14 @@ const LotteryMock = () => {
         <AutoForm
           formSchema={schema}
           fieldConfig={{
-            tokenId: {
+            medalTokenId: {
               inputProps: {
-                placeholder: 'Token ID',
+                placeholder: 'MedalToken ID',
+              },
+            },
+            ticketTokenId: {
+              inputProps: {
+                placeholder: 'TicketToken ID',
               },
             },
             maxShares: {
@@ -149,7 +156,8 @@ const LotteryMock = () => {
               abi: maidsLotteryAbi,
               functionName: 'createNewLottery',
               args: [
-                BigInt(data.tokenId),
+                BigInt(data.medalTokenId),
+                BigInt(data.ticketTokenId),
                 BigInt(data.maxShares),
                 BigInt(data.startTime),
                 BigInt(data.endTime),
@@ -168,7 +176,8 @@ const LotteryMock = () => {
 
       <div className='my-4'>
         <Typography variant='h2'>Lottery Info</Typography>
-        <p>Token ID: {lotteryInfo?.tokenId}</p>
+        <p>MedalToken ID: {lotteryInfo?.medalTokenId}</p>
+        <p>TicketToken ID: {lotteryInfo?.ticketTokenId}</p>
         <p>Max Shares: {lotteryInfo?.maxShares}</p>
         <p>Start Time: {lotteryInfo?.startTime}</p>
         <p>End Time: {lotteryInfo?.endTime}</p>

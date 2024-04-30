@@ -58,7 +58,7 @@ export default defineConfig({
       abi: MaidsLottery.abi as Abi,
       address: {
         [polygon.id]: '0x225295ac7b0f4CB2f6BA4AAd8f8eBB287d2c56ea',
-        [sepolia.id]: '0x341d61664F5D6789Eb2Ba8E15A2E84B44a41caDE',
+        [sepolia.id]: '0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43',
       },
     },
     {

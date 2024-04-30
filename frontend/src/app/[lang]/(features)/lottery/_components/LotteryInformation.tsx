@@ -17,7 +17,6 @@ type LotteryInformationProps = {
 const LotteryInformation = async ({ lang, lotteryId }: LotteryInformationProps) => {
   noStore()
   const lotteryInfos = await getLotteryInfo()
-  console.log(lotteryInfos)
   const lotteryInfo = lotteryInfos[lotteryId ?? lotteryInfos.length - 1]
   const { jstTime, utcTime } = unixToDate(lotteryInfo.endTime)
   const { t } = await getTranslation(lang)

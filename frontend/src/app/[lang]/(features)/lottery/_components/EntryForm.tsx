@@ -15,7 +15,9 @@ const EntryForm = ({ lotteryId }: EntryFormProps) => {
   const { language } = useLanguage()
   const { t } = useTranslation(language)
 
-  const { share, maxShare, isPending, buttonMessage, disabled, updateShare, entryOrApprove } = useLottery({ lotteryId })
+  const { share, maxShare, isPending, buttonMessage, disabled, updateShare, entryOrApprove } = useLottery({
+    lotteryId,
+  })
   const range = Math.min(maxShare, 10)
 
   return (
@@ -23,7 +25,7 @@ const EntryForm = ({ lotteryId }: EntryFormProps) => {
       <div className='grid grid-cols-5 gap-4'>
         <div className='col-span-4'>
           <LoadingButtonForWeb3
-            className='w-full bg-yellow-300 text-2xl'
+            className='w-full bg-yellow-300 text-xl'
             loading={isPending}
             onClick={entryOrApprove}
             disabled={disabled}>
