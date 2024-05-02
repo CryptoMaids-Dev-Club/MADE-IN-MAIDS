@@ -41,8 +41,8 @@ contract MaidsLotteryHelper is Script {
     function getPolygonConfig() public view returns (NetworkConfig memory polygonNetworkConfig) {
         polygonNetworkConfig = NetworkConfig({
             vrfCoordinator: 0xAE975071Be8F8eE67addBC1A82488F1C24858067,
-            medalContract: 0x1E42B1A4B2389318E9cBC79801c9B72AEfF8786c,
-            ticketContract: 0xcF4b3f5Af27777075f4e4422e529a11E147296dC,
+            medalContract: 0x14c85a7307167253348319113cB5Fad6647fF1a8,
+            ticketContract: 0x74a8a863545cdf0806a12E14Eb48b728453Bf343,
             subscriptionId: 1181,
             deployerKey: vm.envUint("PRIVATE_KEY")
         });

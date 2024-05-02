@@ -36,4 +36,6 @@ contract DeployMaidsLottery is Script {
 // 3: contract MaidsLottery 0x341d61664F5D6789Eb2Ba8E15A2E84B44a41caDE
 
 // Polygon
-// 0: contract MaidsLottery 0x225295ac7b0f4CB2f6BA4AAd8f8eBB287d2c56ea
+// 0: contract MaidsLottery 0xa15383DE388101fA5071c51b3f6505696862c635
+// 1: contract MaidsMedal   0x14c85a7307167253348319113cB5Fad6647fF1a8
+// 2: contract MaidsTicket  0x74a8a863545cdf0806a12E14Eb48b728453Bf343

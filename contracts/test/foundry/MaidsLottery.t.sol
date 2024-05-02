@@ -135,8 +135,7 @@ contract MaidsLotteryTest is Test {
     }
 
     function test_entry() public createNewLottery {
-        // Jump to the start time
-        vm.warp(1000);
+        vm.warp(START_TIME);
         
         vm.prank(user1);
         maidsLottery.entry(1);
@@ -184,16 +183,14 @@ contract MaidsLotteryTest is Test {
     }
 
     function test_draw() public createNewLottery {
-        // Jump to the start time
-        vm.warp(1000);
+        vm.warp(START_TIME);
 
         for (uint256 i = 0; i < users.length; i++) {
             vm.prank(users[i]);
             maidsLottery.entry(1);
         }
 
-        // warp to end time
-        vm.warp(block.timestamp + 101);
+        vm.warp(END_TIME + 1);
         vm.prank(vm.addr(deployerKey));
         uint256 requestId = maidsLottery.draw();
 
@@ -208,16 +205,14 @@ contract MaidsLotteryTest is Test {
     }
 
     function test_draw_fromGelato() public createNewLottery {
-        // Jump to the start time
-        vm.warp(1000);
+        vm.warp(START_TIME);
 
         for (uint256 i = 0; i < users.length; i++) {
             vm.prank(users[i]);
             maidsLottery.entry(1);
         }
 
-        // warp to end time
-        vm.warp(block.timestamp + 101);
+        vm.warp(END_TIME + 1);
         vm.prank(vm.addr(deployerKey));
         maidsLottery.setGelato(users[0]);
 
@@ -234,6 +229,25 @@ contract MaidsLotteryTest is Test {
         assertEq(winners.length, lotteryInfo.prizes.length, "winners length");
     }
 
+    function test_draw_revert_lotteryHasEnded() public createNewLottery {
+        vm.warp(START_TIME);
+
+        for (uint256 i = 0; i < users.length; i++) {
+            vm.prank(users[i]);
+            maidsLottery.entry(1);
+        }
+
+        vm.warp(END_TIME + 1);
+
+        vm.prank(vm.addr(deployerKey));
+        uint256 requestId = maidsLottery.draw();
+        VRFCoordinatorV2Mock(vrfCoordinatorContract).fulfillRandomWords(requestId, address(maidsLottery));
+
+        vm.expectRevert(MaidsLottery.LotteryHasEnded.selector);
+        vm.prank(vm.addr(deployerKey));
+        maidsLottery.draw();
+    }
+
     function test_draw_revert_WhenLotteryIsNotEnded() public createNewLottery {
         vm.prank(vm.addr(deployerKey));
         vm.expectRevert(MaidsLottery.LotteryIsStillOngoing.selector);
@@ -248,8 +262,7 @@ contract MaidsLotteryTest is Test {
     }
 
     function test_returnTicket() public createNewLottery {
-        // Jump to the start time
-        vm.warp(1000);
+        vm.warp(START_TIME);
 
         for (uint256 i = 0; i < users.length; i++) {
             vm.prank(users[i]);
@@ -257,7 +270,7 @@ contract MaidsLotteryTest is Test {
         }
 
         // warp to end time
-        vm.warp(block.timestamp + 101);
+        vm.warp(END_TIME + 1);
         vm.prank(vm.addr(deployerKey));
         uint256 requestId = maidsLottery.draw();
 
@@ -283,7 +296,6 @@ contract MaidsLotteryTest is Test {
     }
 
     function test_returnTicket_revert_LotteryIsStillOngoing() public createNewLottery {
-        // Jump to the start time
         vm.warp(START_TIME);
         vm.prank(vm.addr(deployerKey));
         vm.expectRevert(MaidsLottery.LotteryIsStillOngoing.selector);
@@ -291,8 +303,7 @@ contract MaidsLotteryTest is Test {
     }
 
     function test_returnTicket_revert_NotEligibleToReturnTicket() public createNewLottery {
-        // Jump to the start time
-        vm.warp(1000);
+        vm.warp(START_TIME);
 
         for (uint256 i = 0; i < users.length; i++) {
             vm.prank(users[i]);
@@ -315,8 +326,7 @@ contract MaidsLotteryTest is Test {
     }
 
     function test_returnTicket_NotEntry() public createNewLottery {
-        // Jump to the start time
-        vm.warp(1000);
+        vm.warp(START_TIME);
 
         vm.warp(END_TIME + 1);
         vm.prank(vm.addr(deployerKey));
@@ -333,7 +343,6 @@ contract MaidsLotteryTest is Test {
     }
 
     function test_lottery_multiShares() public createNewLottery {
-        // Jump to the start time
         vm.warp(START_TIME);
 
         vm.prank(user1);
@@ -354,14 +363,12 @@ contract MaidsLotteryTest is Test {
 
         assertEq(maidsLottery.getLotteryInfo(0).totalShares, 6);
 
-        // warp to end time
         vm.warp(END_TIME + 1);
         vm.prank(vm.addr(deployerKey));
         maidsLottery.draw();
     }
 
     function test_lottery_multiply() public createNewLottery {
-        // Jump to the start time
         vm.warp(START_TIME);
 
         for (uint256 i = 0; i < users.length; i++) {
@@ -369,7 +376,6 @@ contract MaidsLotteryTest is Test {
             maidsLottery.entry(1);
         }
 
-        // warp to end time
         vm.warp(END_TIME + 1);
         vm.prank(vm.addr(deployerKey));
         uint256 requestId1 = maidsLottery.draw();
@@ -405,7 +411,6 @@ contract MaidsLotteryTest is Test {
         vm.prank(vm.addr(deployerKey));
         maidsLottery.createNewLottery(1, 1, MAX_SHARES, START_TIME, END_TIME, prizes);
 
-        // Jump to the start time
         vm.warp(START_TIME);
 
         for (uint256 i = 0; i < users.length; i++) {
@@ -413,7 +418,6 @@ contract MaidsLotteryTest is Test {
             maidsLottery.entry(1);
         }
 
-        // warp to end time
         vm.warp(END_TIME + 1);
         vm.prank(vm.addr(deployerKey));
         uint256 requestId2 = maidsLottery.draw();
