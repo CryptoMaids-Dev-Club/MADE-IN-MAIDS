@@ -4,8 +4,8 @@ import { User } from '@prisma/client'
 import { useMutation, useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
 import { hc } from 'hono/client'
 import { Address } from 'viem'
-import { AppType } from '@/app/api/[[...route]]/route'
-import { userKeys } from '@/app/api/[[...route]]/user'
+import { AppType } from '@/app/[[...route]]/route'
+import { userKeys } from '@/app/[[...route]]/user'
 import { updateUserInfo } from '@/server/user/action'
 
 const client = hc<AppType>('/')
@@ -23,8 +23,8 @@ export function useUser(address: Address) {
     queryFn: async () => {
       const res = await client.api.user[':address'].$get({
         param: {
-          address: address.toString()
-        }
+          address: address.toString(),
+        },
       })
       return await res.json()
     },
