@@ -20,12 +20,17 @@ export function middleware(request: NextRequest) {
     'accept-language': request.headers.get('accept-language') ?? '',
   }
   const preferredLanguage = getNegotiatedLanguage(headers) || defaultLanguage
-
   const pathname = request.nextUrl.pathname
+
+  // Redirect to TOP page if the user accesses the root path
+  if (pathname === `/${defaultLanguage}` || pathname === `/${preferredLanguage}`) {
+    return NextResponse.redirect(new URL(pathname + '/top', request.url))
+  }
+
+  // Redirect to the preferred language if the pathname is missing the locale
   const pathnameIsMissingLocale = availableLanguages.every(
     (lang) => !pathname.startsWith(`/${lang}/`) && pathname !== `/${lang}`
   )
-
   if (pathnameIsMissingLocale) {
     if (preferredLanguage !== defaultLanguage) {
       return NextResponse.redirect(new URL(`/${preferredLanguage}${pathname}`, request.url))
