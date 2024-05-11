@@ -65,7 +65,7 @@ export default defineConfig({
       name: 'MedalNFT',
       abi: ERC1155Mock.abi as Abi,
       address: {
-        [polygon.id]: '0x1E42B1A4B2389318E9cBC79801c9B72AEfF8786c',
+        [polygon.id]: '0x14c85a7307167253348319113cB5Fad6647fF1a8',
         [sepolia.id]: '0x6dA7Ae5FBc5B699a9a812C56E4D76aEc67f8c8f2',
       },
     },
@@ -73,7 +73,7 @@ export default defineConfig({
       name: 'TicketNFT',
       abi: ERC1155Mock.abi as Abi,
       address: {
-        [polygon.id]: '0xcF4b3f5Af27777075f4e4422e529a11E147296dC',
+        [polygon.id]: '0x74a8a863545cdf0806a12E14Eb48b728453Bf343',
         [sepolia.id]: '0xB380fB36E568a16ceE6eB529f621a4df26eB1f2E',
       },
     },

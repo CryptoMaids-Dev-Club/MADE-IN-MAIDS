@@ -80,7 +80,7 @@ const LotteryMock = () => {
               address: medalNftAddress[NETWORK.id],
               abi: medalNftAbi,
               functionName: 'setApprovalForAll',
-              args: [maidsLotteryAddress[NETWORK.id], true],
+              args: [maidsLotteryAddress[NETWORK.id], false],
             })
           }>
           Approve
@@ -106,7 +106,7 @@ const LotteryMock = () => {
               address: ticketNftAddress[NETWORK.id],
               abi: ticketNftAbi,
               functionName: 'setApprovalForAll',
-              args: [maidsLotteryAddress[NETWORK.id], true],
+              args: [maidsLotteryAddress[NETWORK.id], false],
             })
           }>
           Approve

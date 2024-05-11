@@ -28,7 +28,7 @@ const useMedalAndTicket = () => {
         address: ticketNftConfig.address[NETWORK.id],
         abi: ticketNftConfig.abi,
         functionName: 'balanceOf',
-        args: [address ?? '0x', 0n],
+        args: [address ?? '0x', 5n],
       },
       {
         address: medalNftConfig.address[NETWORK.id],

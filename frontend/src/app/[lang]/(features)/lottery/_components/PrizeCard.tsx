@@ -11,10 +11,10 @@ const PrizeCard = ({ image, description }: PrizeCardProps) => (
   <div>
     <div className='animate-fade-in '>
       <Card>
-        <Image src={image} height={220} width={220} alt='item' />
+        <Image src={image} height={500} width={500} alt='item' />
       </Card>
     </div>
-    <Typography variant='h4' className='text-center text-yellow-500'>
+    <Typography variant='h4' className='max-w-[500px] text-center text-yellow-500'>
       {description}
     </Typography>
   </div>
