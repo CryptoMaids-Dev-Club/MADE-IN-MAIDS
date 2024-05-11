@@ -9,15 +9,6 @@ const withBundleAnalyzer = analyze({
 })
 
 const nextConfig = {
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination: '/top',
-        permanent: true,
-      },
-    ]
-  },
   reactStrictMode: true,
   images: {
     remotePatterns: [
@@ -33,7 +24,22 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'made-in-maids.s3.amazonaws.com',
+        port: '',
+      },
+      {
+        protocol: 'https',
         hostname: 'firebasestorage.googleapis.com',
+        port: '',
+      },
+      {
+        protocol: 'https',
+        hostname: 'placehold.jp', // for testing
+        port: '',
+      },
+      {
+        protocol: 'https',
+        hostname: 'ipfs.io',
         port: '',
       },
     ],

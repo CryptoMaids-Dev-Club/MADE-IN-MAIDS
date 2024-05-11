@@ -17,7 +17,7 @@ export default function AutoFormEnum({
   if (!Array.isArray(baseValues)) {
     values = Object.entries(baseValues)
   } else {
-    values = baseValues.map((value) => [value, value])
+    values = baseValues.map((value) => [value as string, value as string])
   }
 
   function findItem(value: any) {

@@ -8,7 +8,7 @@ export const getAsset = async (id: number) => {
     throw new Error('HTTP error! status: ' + response.status + ' ' + response.statusText)
   }
 
-  const asset = (await response.json()) as unknown as AssetInfo
+  const asset = (await response.json()) as AssetInfo
 
   return asset
 }
