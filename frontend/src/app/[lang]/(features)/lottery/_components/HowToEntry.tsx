@@ -52,9 +52,9 @@ const HowToEntry = async ({ lang }: { lang: string }) => {
               </Typography>
               <Typography variant='largeText'>{t('lottery:howToEntryDetail3')}</Typography>
             </div>
-            <div className='mt-2 grid max-h-48 grid-cols-5'>
+            <div className='grid max-h-40 grid-cols-5'>
               <div className='col-span-3'>
-                <Image src='/images/yuki.png' alt='medal' width={300} height={300} />
+                <Image src='/images/yuki.png' alt='medal' width={280} height={280} />
               </div>
               <div className='col-span-2 mt-10'>
                 <Image src='/images/popper.png' alt='medal' width={200} height={200} />
