@@ -3,7 +3,7 @@ import { useAccount, useReadContracts, useWaitForTransactionReceipt } from 'wagm
 import useMedalAndTicket from '@/app/[lang]/(features)/lottery/_hooks/useMedalAndTicket'
 import { useToast } from '@/components/ui/use-toast'
 import { NETWORK } from '@/config/client'
-import { maidsLotteryConfig, useWriteMaidsLotteryEntry } from '@/lib/generated'
+import { maidsLotteryConfig, useWriteMaidsLotteryEntry, useWriteMaidsLotteryReturnTicket } from '@/lib/generated'
 
 const useLottery = ({ lotteryId }: { lotteryId: number }) => {
   const [share, setShare] = useState<number>(1)
@@ -44,6 +44,12 @@ const useLottery = ({ lotteryId }: { lotteryId: number }) => {
     refetch: refetchBalance,
   } = useMedalAndTicket()
 
+  const {
+    data: returnTicketHash,
+    isPending: isPendingReturnTicket,
+    writeContract: writeReturnTicket,
+  } = useWriteMaidsLotteryReturnTicket()
+
   const { toast } = useToast()
 
   const entry = useCallback(() => {
@@ -60,8 +66,18 @@ const useLottery = ({ lotteryId }: { lotteryId: number }) => {
     }
   }, [approved, entry, approve])
 
+  const returnTicket = useCallback(() => {
+    writeReturnTicket({
+      args: [BigInt(lotteryId)],
+    })
+  }, [lotteryId, writeReturnTicket])
+
   const { isLoading, status } = useWaitForTransactionReceipt({
     hash,
+  })
+
+  const { isLoading: isLoadingReturnTicket, status: statusReturnTicket } = useWaitForTransactionReceipt({
+    hash: returnTicketHash,
   })
 
   useEffect(() => {
@@ -74,6 +90,15 @@ const useLottery = ({ lotteryId }: { lotteryId: number }) => {
       refetchBalance()
     }
   }, [status, toast, refetch, refetchBalance])
+
+  useEffect(() => {
+    if (statusReturnTicket === 'success') {
+      toast({
+        title: 'Transaction Completed!',
+        duration: 3000,
+      })
+    }
+  }, [statusReturnTicket, toast])
 
   const buttonMessage = () => {
     if (!isOngoing) {
@@ -93,13 +118,14 @@ const useLottery = ({ lotteryId }: { lotteryId: number }) => {
 
   return {
     share,
-    isPending: isPending || isLoading || isPendingApprove,
+    isPending: isPending || isLoading || isPendingApprove || isPendingReturnTicket || isLoadingReturnTicket,
     maxShare: Math.min(medalBalance, ticketBalance),
     entryCounts: Number(entryCounts),
     buttonMessage: buttonMessage(),
     disabled: medalBalance === 0 || ticketBalance === 0 || !isOngoing,
     updateShare,
     entryOrApprove,
+    returnTicket,
   }
 }
 

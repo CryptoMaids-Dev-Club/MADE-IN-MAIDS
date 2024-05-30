@@ -70,7 +70,7 @@ const LotteryInformation = async ({ lang, lotteryId }: LotteryInformationProps) 
       </Table>
       <Divider className='my-2' />
       <UserInfo lotteryId={lotteryId ?? lotteryInfos.length - 1} />
-      <EntryForm lotteryId={lotteryId ?? lotteryInfos.length - 1} />
+      <EntryForm lotteryId={lotteryId ?? lotteryInfos.length - 1} lotteryInfo={lotteryInfo} />
     </>
   )
 }
