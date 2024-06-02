@@ -224,7 +224,7 @@ contract MaidsLottery is VRFConsumerBaseV2, ConfirmedOwner, Context, ERC1155Hold
         if (lottery.totalShares + shareAmount > lottery.maxShares) revert OverMaxShares();
 
         for (uint256 i = 0; i < shareAmount; i++) {
-            uint256 shareNumber = lottery.totalShares;
+            uint256 shareNumber = lotteries[lotteryId].totalShares;
             entriesByLotteryId[lotteryId][shareNumber] = _msgSender();
             entryCountsByLotteryId[lotteryId][_msgSender()]++;
             lotteries[lotteryId].totalShares++;
