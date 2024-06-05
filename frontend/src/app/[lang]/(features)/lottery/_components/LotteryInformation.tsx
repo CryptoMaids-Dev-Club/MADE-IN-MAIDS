@@ -21,14 +21,6 @@ const LotteryInformation = async ({ lang, lotteryId }: LotteryInformationProps) 
   const { jstTime, utcTime } = unixToDate(lotteryInfo.endTime)
   const { t } = await getTranslation(lang)
 
-  const winners = [
-    '0xF15f58195A4F646C66363eA8bFc30BbBa450DE1A',
-    '0x1a78Ce6Ad347e4ae2DfC03FAfF6981a2E82a4200',
-    '0xE78AB91f0e7FD82d35e5e250Da2924363F205233',
-    '0xde38c6964f840afeEB6D891cb4F6B132498579AE',
-    '0xE78AB91f0e7FD82d35e5e250Da2924363F205233',
-  ]
-
   return (
     <>
       <Typography variant='h2' className='my-2  text-pink-500'>
@@ -60,10 +52,12 @@ const LotteryInformation = async ({ lang, lotteryId }: LotteryInformationProps) 
           </TableRow>
         </TableHeader>
         <TableBody>
-          {winners.map((winner, index) => (
+          {lotteryInfo.winners.map((winner, index) => (
             <TableRow key={index}>
               <TableCell className='text-lg'>{lotteryInfo.prizes[index].prizeName}</TableCell>
-              <TableCell className='text-lg'>{winner}</TableCell>
+              <TableCell className='text-lg'>
+                {winner !== '0x0000000000000000000000000000000000000000' ? winner : t('lottery:noWinnersYet')}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>

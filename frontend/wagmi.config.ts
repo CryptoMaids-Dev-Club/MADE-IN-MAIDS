@@ -54,11 +54,19 @@ export default defineConfig({
       },
     },
     {
-      name: 'MaidsLottery',
+      name: 'MaidsLotteryOld',
       abi: MaidsLottery.abi as Abi,
       address: {
         [polygon.id]: '0xa15383DE388101fA5071c51b3f6505696862c635',
         [sepolia.id]: '0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43',
+      },
+    },
+    {
+      name: 'MaidsLottery',
+      abi: MaidsLottery.abi as Abi,
+      address: {
+        [polygon.id]: '0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58',
+        [sepolia.id]: '0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26',
       },
     },
     {
