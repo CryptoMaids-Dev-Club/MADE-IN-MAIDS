@@ -3,7 +3,13 @@ import { useAccount, useReadContracts, useWaitForTransactionReceipt } from 'wagm
 import useMedalAndTicket from '@/app/[lang]/(features)/lottery/_hooks/useMedalAndTicket'
 import { useToast } from '@/components/ui/use-toast'
 import { NETWORK } from '@/config/client'
-import { maidsLotteryConfig, useWriteMaidsLotteryEntry, useWriteMaidsLotteryReturnTicket } from '@/lib/generated'
+import {
+  maidsLotteryConfig,
+  maidsLotteryOldConfig,
+  useWriteMaidsLotteryEntry,
+  useWriteMaidsLotteryOldReturnTicket,
+  useWriteMaidsLotteryReturnTicket,
+} from '@/lib/generated'
 
 const useLottery = ({ lotteryId }: { lotteryId: number }) => {
   const [share, setShare] = useState<number>(1)
@@ -20,16 +26,22 @@ const useLottery = ({ lotteryId }: { lotteryId: number }) => {
         address: maidsLotteryConfig.address[NETWORK.id],
         abi: maidsLotteryConfig.abi,
         functionName: 'entryCountsByLotteryId',
-        args: [BigInt(lotteryId), address ?? '0x'],
+        args: [BigInt(lotteryId - 1), address ?? '0x'],
       },
       {
         address: maidsLotteryConfig.address[NETWORK.id],
         abi: maidsLotteryConfig.abi,
         functionName: 'isOngoingLatestLottery',
       },
+      {
+        address: maidsLotteryOldConfig.address[NETWORK.id],
+        abi: maidsLotteryOldConfig.abi,
+        functionName: 'entryCountsByLotteryId',
+        args: [0n, address ?? '0x'],
+      },
     ],
   })
-  const [entryCounts, isOngoing] = data || [0, false]
+  const [entryCounts, isOngoing, entryCountsOld] = data || [0, false, 0]
 
   // NOTE: `useSimulateContract` needs refetching after `setApprovedForAll` called.
   // It's complicated to handle, so use `useWriteContract` instead.
@@ -50,6 +62,12 @@ const useLottery = ({ lotteryId }: { lotteryId: number }) => {
     writeContract: writeReturnTicket,
   } = useWriteMaidsLotteryReturnTicket()
 
+  const {
+    data: returnTicketHashOld,
+    isPending: isPendingReturnTicketOld,
+    writeContract: writeReturnTicketOld,
+  } = useWriteMaidsLotteryOldReturnTicket()
+
   const { toast } = useToast()
 
   const entry = useCallback(() => {
@@ -67,10 +85,16 @@ const useLottery = ({ lotteryId }: { lotteryId: number }) => {
   }, [approved, entry, approve])
 
   const returnTicket = useCallback(() => {
-    writeReturnTicket({
-      args: [BigInt(lotteryId)],
-    })
-  }, [lotteryId, writeReturnTicket])
+    if (lotteryId === 0) {
+      writeReturnTicketOld({
+        args: [BigInt(lotteryId)],
+      })
+    } else {
+      writeReturnTicket({
+        args: [BigInt(lotteryId)],
+      })
+    }
+  }, [lotteryId, writeReturnTicket, writeReturnTicketOld])
 
   const { isLoading, status } = useWaitForTransactionReceipt({
     hash,
@@ -78,6 +102,10 @@ const useLottery = ({ lotteryId }: { lotteryId: number }) => {
 
   const { isLoading: isLoadingReturnTicket, status: statusReturnTicket } = useWaitForTransactionReceipt({
     hash: returnTicketHash,
+  })
+
+  const { isLoading: isLoadingReturnTicketOld, status: statusReturnTicketOld } = useWaitForTransactionReceipt({
+    hash: returnTicketHashOld,
   })
 
   useEffect(() => {
@@ -100,6 +128,15 @@ const useLottery = ({ lotteryId }: { lotteryId: number }) => {
     }
   }, [statusReturnTicket, toast])
 
+  useEffect(() => {
+    if (statusReturnTicketOld === 'success') {
+      toast({
+        title: 'Transaction Completed!',
+        duration: 3000,
+      })
+    }
+  }, [statusReturnTicketOld, toast])
+
   const buttonMessage = () => {
     if (!isOngoing) {
       return 'Not ongoing'
@@ -118,9 +155,16 @@ const useLottery = ({ lotteryId }: { lotteryId: number }) => {
 
   return {
     share,
-    isPending: isPending || isLoading || isPendingApprove || isPendingReturnTicket || isLoadingReturnTicket,
+    isPending:
+      isPending ||
+      isLoading ||
+      isPendingApprove ||
+      isPendingReturnTicket ||
+      isLoadingReturnTicket ||
+      isPendingReturnTicketOld ||
+      isLoadingReturnTicketOld,
     maxShare: Math.min(medalBalance, ticketBalance),
-    entryCounts: Number(entryCounts),
+    entryCounts: lotteryId === 0 ? entryCountsOld : Number(entryCounts),
     buttonMessage: buttonMessage(),
     disabled: medalBalance === 0 || ticketBalance === 0 || !isOngoing,
     updateShare,

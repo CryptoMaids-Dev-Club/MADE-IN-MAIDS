@@ -154,6 +154,29 @@ contract MaidsLotteryTest is Test {
         assertEq(ERC1155Mock(medalContract).balanceOf(address(maidsLottery), 0), INITIAL_MINT + 1);
     }
 
+    function test_entry_multishare() public createNewLottery {
+        vm.warp(START_TIME);
+
+        vm.prank(user1);
+        maidsLottery.entry(3);
+
+        // check entry
+        assertEq(maidsLottery.entriesByLotteryId(0, 0), user1);
+        assertEq(maidsLottery.entriesByLotteryId(0, 1), user1);
+        assertEq(maidsLottery.entriesByLotteryId(0, 2), user1);
+
+        assertEq(maidsLottery.entryCountsByLotteryId(0, user1), 3, "entry count");
+
+        // check totalShares
+        assertEq(maidsLottery.getLotteryInfo(0).totalShares, 3, "total shares");
+
+        // check nft balance
+        assertEq(ERC1155Mock(ticketContract).balanceOf(user1, 0), INITIAL_MINT - 3);
+        assertEq(ERC1155Mock(medalContract).balanceOf(user1, 0), INITIAL_MINT - 3);
+        assertEq(ERC1155Mock(ticketContract).balanceOf(address(maidsLottery), 0), INITIAL_MINT + 3);
+        assertEq(ERC1155Mock(medalContract).balanceOf(address(maidsLottery), 0), INITIAL_MINT + 3);
+    }
+
     function test_entry_revert_WhenShareAmountIsZero() public createNewLottery {
         vm.prank(user1);
         vm.expectRevert(MaidsLottery.ShareAmountMustBeGreaterThanZero.selector);

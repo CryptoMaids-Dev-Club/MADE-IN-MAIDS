@@ -277,10 +277,592 @@ export const maidsItemConfig = {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
+ */
+export const maidsLotteryAbi = [
+  {
+    type: 'constructor',
+    inputs: [
+      { name: 'ticketContract_', internalType: 'address', type: 'address' },
+      { name: 'medalContract_', internalType: 'address', type: 'address' },
+      { name: 'vrfCoordinator_', internalType: 'address', type: 'address' },
+      { name: 'subscriptionId_', internalType: 'uint64', type: 'uint64' },
+    ],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'acceptOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'callbackGasLimit',
+    outputs: [{ name: '', internalType: 'uint32', type: 'uint32' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'medalTokenId', internalType: 'uint256', type: 'uint256' },
+      { name: 'ticketTokenId', internalType: 'uint256', type: 'uint256' },
+      { name: 'maxShares', internalType: 'uint256', type: 'uint256' },
+      { name: 'startTime', internalType: 'uint256', type: 'uint256' },
+      { name: 'endTime', internalType: 'uint256', type: 'uint256' },
+      {
+        name: 'prize',
+        internalType: 'struct MaidsLottery.PrizeInfo[]',
+        type: 'tuple[]',
+        components: [
+          { name: 'prizeName', internalType: 'string', type: 'string' },
+          { name: 'prizeImageUrl', internalType: 'string', type: 'string' },
+        ],
+      },
+    ],
+    name: 'createNewLottery',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'draw',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'lotteryId', internalType: 'uint256', type: 'uint256' },
+      { name: 'share', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'entriesByLotteryId',
+    outputs: [
+      { name: 'entryAddress', internalType: 'address', type: 'address' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'shareAmount', internalType: 'uint256', type: 'uint256' }],
+    name: 'entry',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'lotteryId', internalType: 'uint256', type: 'uint256' },
+      { name: '', internalType: 'address', type: 'address' },
+    ],
+    name: 'entryCountsByLotteryId',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'gelato',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getAllLotteries',
+    outputs: [
+      {
+        name: '',
+        internalType: 'struct MaidsLottery.LotteryInfo[]',
+        type: 'tuple[]',
+        components: [
+          { name: 'medalTokenId', internalType: 'uint256', type: 'uint256' },
+          { name: 'ticketTokenId', internalType: 'uint256', type: 'uint256' },
+          { name: 'maxShares', internalType: 'uint256', type: 'uint256' },
+          { name: 'totalShares', internalType: 'uint256', type: 'uint256' },
+          { name: 'startTime', internalType: 'uint256', type: 'uint256' },
+          { name: 'endTime', internalType: 'uint256', type: 'uint256' },
+          { name: 'ended', internalType: 'bool', type: 'bool' },
+          { name: 'winners', internalType: 'address[]', type: 'address[]' },
+          {
+            name: 'prizes',
+            internalType: 'struct MaidsLottery.PrizeInfo[]',
+            type: 'tuple[]',
+            components: [
+              { name: 'prizeName', internalType: 'string', type: 'string' },
+              { name: 'prizeImageUrl', internalType: 'string', type: 'string' },
+            ],
+          },
+        ],
+      },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'lotteryId', internalType: 'uint256', type: 'uint256' }],
+    name: 'getLotteryInfo',
+    outputs: [
+      {
+        name: '',
+        internalType: 'struct MaidsLottery.LotteryInfo',
+        type: 'tuple',
+        components: [
+          { name: 'medalTokenId', internalType: 'uint256', type: 'uint256' },
+          { name: 'ticketTokenId', internalType: 'uint256', type: 'uint256' },
+          { name: 'maxShares', internalType: 'uint256', type: 'uint256' },
+          { name: 'totalShares', internalType: 'uint256', type: 'uint256' },
+          { name: 'startTime', internalType: 'uint256', type: 'uint256' },
+          { name: 'endTime', internalType: 'uint256', type: 'uint256' },
+          { name: 'ended', internalType: 'bool', type: 'bool' },
+          { name: 'winners', internalType: 'address[]', type: 'address[]' },
+          {
+            name: 'prizes',
+            internalType: 'struct MaidsLottery.PrizeInfo[]',
+            type: 'tuple[]',
+            components: [
+              { name: 'prizeName', internalType: 'string', type: 'string' },
+              { name: 'prizeImageUrl', internalType: 'string', type: 'string' },
+            ],
+          },
+        ],
+      },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'isOngoingLatestLottery',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'keyHash',
+    outputs: [{ name: '', internalType: 'bytes32', type: 'bytes32' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    name: 'lotteries',
+    outputs: [
+      { name: 'medalTokenId', internalType: 'uint256', type: 'uint256' },
+      { name: 'ticketTokenId', internalType: 'uint256', type: 'uint256' },
+      { name: 'maxShares', internalType: 'uint256', type: 'uint256' },
+      { name: 'totalShares', internalType: 'uint256', type: 'uint256' },
+      { name: 'startTime', internalType: 'uint256', type: 'uint256' },
+      { name: 'endTime', internalType: 'uint256', type: 'uint256' },
+      { name: 'ended', internalType: 'bool', type: 'bool' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'requestId', internalType: 'uint256', type: 'uint256' }],
+    name: 'lotteryIdsByRequestId',
+    outputs: [{ name: 'lotteryId', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'medalContract',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: '', internalType: 'address', type: 'address' },
+      { name: '', internalType: 'address', type: 'address' },
+      { name: '', internalType: 'uint256[]', type: 'uint256[]' },
+      { name: '', internalType: 'uint256[]', type: 'uint256[]' },
+      { name: '', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'onERC1155BatchReceived',
+    outputs: [{ name: '', internalType: 'bytes4', type: 'bytes4' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: '', internalType: 'address', type: 'address' },
+      { name: '', internalType: 'address', type: 'address' },
+      { name: '', internalType: 'uint256', type: 'uint256' },
+      { name: '', internalType: 'uint256', type: 'uint256' },
+      { name: '', internalType: 'bytes', type: 'bytes' },
+    ],
+    name: 'onERC1155Received',
+    outputs: [{ name: '', internalType: 'bytes4', type: 'bytes4' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'owner',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'requestId', internalType: 'uint256', type: 'uint256' },
+      { name: 'randomWords', internalType: 'uint256[]', type: 'uint256[]' },
+    ],
+    name: 'rawFulfillRandomWords',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'requestConfirmations',
+    outputs: [{ name: '', internalType: 'uint16', type: 'uint16' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'requestId', internalType: 'uint256', type: 'uint256' }],
+    name: 'requests',
+    outputs: [
+      { name: 'fulfilled', internalType: 'bool', type: 'bool' },
+      { name: 'exists', internalType: 'bool', type: 'bool' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'lotteryId', internalType: 'uint256', type: 'uint256' }],
+    name: 'returnTicket',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'callbackGasLimit_', internalType: 'uint32', type: 'uint32' },
+    ],
+    name: 'setCallbackGasLimit',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'gelato_', internalType: 'address', type: 'address' }],
+    name: 'setGelato',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'keyHash_', internalType: 'bytes32', type: 'bytes32' }],
+    name: 'setKeyHash',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'medalContract_', internalType: 'address', type: 'address' },
+    ],
+    name: 'setMedalContract',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'subscriptionId_', internalType: 'uint64', type: 'uint64' },
+    ],
+    name: 'setSubscriptionId',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'ticketContract_', internalType: 'address', type: 'address' },
+    ],
+    name: 'setTicketContract',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'vrfCoordinator_', internalType: 'address', type: 'address' },
+    ],
+    name: 'setVrfCoordinator',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'subscriptionId',
+    outputs: [{ name: '', internalType: 'uint64', type: 'uint64' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'interfaceId', internalType: 'bytes4', type: 'bytes4' }],
+    name: 'supportsInterface',
+    outputs: [{ name: '', internalType: 'bool', type: 'bool' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'ticketContract',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'to', internalType: 'address', type: 'address' }],
+    name: 'transferOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'lotteryId', internalType: 'uint256', type: 'uint256' },
+      { name: 'medalTokenId', internalType: 'uint256', type: 'uint256' },
+      { name: 'ticketTokenId', internalType: 'uint256', type: 'uint256' },
+      { name: 'maxShares', internalType: 'uint256', type: 'uint256' },
+      { name: 'startTime', internalType: 'uint256', type: 'uint256' },
+      { name: 'endTime', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'updateLotteryInfo',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'lotteryId', internalType: 'uint256', type: 'uint256' },
+      {
+        name: 'prizes',
+        internalType: 'struct MaidsLottery.PrizeInfo[]',
+        type: 'tuple[]',
+        components: [
+          { name: 'prizeName', internalType: 'string', type: 'string' },
+          { name: 'prizeImageUrl', internalType: 'string', type: 'string' },
+        ],
+      },
+    ],
+    name: 'updatePrizeInfo',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'vrfCoordinator',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'lotteryId',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'winners',
+        internalType: 'address[]',
+        type: 'address[]',
+        indexed: false,
+      },
+    ],
+    name: 'Draw',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'lotteryId',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'share',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'entryAddress',
+        internalType: 'address',
+        type: 'address',
+        indexed: false,
+      },
+    ],
+    name: 'NewEntry',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'lotteryId',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'medalTokenId',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'ticketTokenId',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'maxShares',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'startTime',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'endTime',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+    ],
+    name: 'NewLottery',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'from', internalType: 'address', type: 'address', indexed: true },
+      { name: 'to', internalType: 'address', type: 'address', indexed: true },
+    ],
+    name: 'OwnershipTransferRequested',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'from', internalType: 'address', type: 'address', indexed: true },
+      { name: 'to', internalType: 'address', type: 'address', indexed: true },
+    ],
+    name: 'OwnershipTransferred',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'requestId',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'randomWords',
+        internalType: 'uint256[]',
+        type: 'uint256[]',
+        indexed: false,
+      },
+    ],
+    name: 'RequestFulfilled',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'requestId',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: false,
+      },
+      {
+        name: 'numWords',
+        internalType: 'uint32',
+        type: 'uint32',
+        indexed: false,
+      },
+    ],
+    name: 'RequestSent',
+  },
+  { type: 'error', inputs: [], name: 'AlreadyHasOngoingLottery' },
+  { type: 'error', inputs: [], name: 'InvalidArguments' },
+  { type: 'error', inputs: [], name: 'LotteryDoesNotExist' },
+  { type: 'error', inputs: [], name: 'LotteryHasEnded' },
+  { type: 'error', inputs: [], name: 'LotteryIsNotOngoing' },
+  { type: 'error', inputs: [], name: 'LotteryIsStillOngoing' },
+  { type: 'error', inputs: [], name: 'MaxSharesMustBeGreaterThanZero' },
+  { type: 'error', inputs: [], name: 'NotEligibleToReturnTicket' },
+  {
+    type: 'error',
+    inputs: [
+      { name: 'have', internalType: 'address', type: 'address' },
+      { name: 'want', internalType: 'address', type: 'address' },
+    ],
+    name: 'OnlyCoordinatorCanFulfill',
+  },
+  { type: 'error', inputs: [], name: 'OverMaxShares' },
+  { type: 'error', inputs: [], name: 'PrizesMustBeGreaterThanZero' },
+  { type: 'error', inputs: [], name: 'ShareAmountMustBeGreaterThanZero' },
+  { type: 'error', inputs: [], name: 'StartTimeMustBeLessThanEndTime' },
+  { type: 'error', inputs: [], name: 'Unauthorized' },
+] as const
+
+/**
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
+ */
+export const maidsLotteryAddress = {
+  137: '0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58',
+  11155111: '0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26',
+} as const
+
+/**
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
+ */
+export const maidsLotteryConfig = {
+  address: maidsLotteryAddress,
+  abi: maidsLotteryAbi,
+} as const
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// MaidsLotteryOld
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const maidsLotteryAbi = [
+export const maidsLotteryOldAbi = [
   {
     type: 'constructor',
     inputs: [
@@ -840,7 +1422,7 @@ export const maidsLotteryAbi = [
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const maidsLotteryAddress = {
+export const maidsLotteryOldAddress = {
   137: '0xa15383DE388101fA5071c51b3f6505696862c635',
   11155111: '0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43',
 } as const
@@ -849,9 +1431,9 @@ export const maidsLotteryAddress = {
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const maidsLotteryConfig = {
-  address: maidsLotteryAddress,
-  abi: maidsLotteryAbi,
+export const maidsLotteryOldConfig = {
+  address: maidsLotteryOldAddress,
+  abi: maidsLotteryOldAbi,
 } as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -2946,8 +3528,8 @@ export const useWatchMaidsItemUriEvent =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useReadMaidsLottery = /*#__PURE__*/ createUseReadContract({
   abi: maidsLotteryAbi,
@@ -2957,8 +3539,8 @@ export const useReadMaidsLottery = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"callbackGasLimit"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useReadMaidsLotteryCallbackGasLimit =
   /*#__PURE__*/ createUseReadContract({
@@ -2970,8 +3552,8 @@ export const useReadMaidsLotteryCallbackGasLimit =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"entriesByLotteryId"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useReadMaidsLotteryEntriesByLotteryId =
   /*#__PURE__*/ createUseReadContract({
@@ -2983,8 +3565,8 @@ export const useReadMaidsLotteryEntriesByLotteryId =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"entryCountsByLotteryId"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useReadMaidsLotteryEntryCountsByLotteryId =
   /*#__PURE__*/ createUseReadContract({
@@ -2996,8 +3578,8 @@ export const useReadMaidsLotteryEntryCountsByLotteryId =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"gelato"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useReadMaidsLotteryGelato = /*#__PURE__*/ createUseReadContract({
   abi: maidsLotteryAbi,
@@ -3008,8 +3590,8 @@ export const useReadMaidsLotteryGelato = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"getAllLotteries"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useReadMaidsLotteryGetAllLotteries =
   /*#__PURE__*/ createUseReadContract({
@@ -3021,8 +3603,8 @@ export const useReadMaidsLotteryGetAllLotteries =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"getLotteryInfo"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useReadMaidsLotteryGetLotteryInfo =
   /*#__PURE__*/ createUseReadContract({
@@ -3034,8 +3616,8 @@ export const useReadMaidsLotteryGetLotteryInfo =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"isOngoingLatestLottery"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useReadMaidsLotteryIsOngoingLatestLottery =
   /*#__PURE__*/ createUseReadContract({
@@ -3047,8 +3629,8 @@ export const useReadMaidsLotteryIsOngoingLatestLottery =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"keyHash"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useReadMaidsLotteryKeyHash = /*#__PURE__*/ createUseReadContract({
   abi: maidsLotteryAbi,
@@ -3059,8 +3641,8 @@ export const useReadMaidsLotteryKeyHash = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"lotteries"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useReadMaidsLotteryLotteries = /*#__PURE__*/ createUseReadContract(
   {
@@ -3073,8 +3655,8 @@ export const useReadMaidsLotteryLotteries = /*#__PURE__*/ createUseReadContract(
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"lotteryIdsByRequestId"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useReadMaidsLotteryLotteryIdsByRequestId =
   /*#__PURE__*/ createUseReadContract({
@@ -3086,8 +3668,8 @@ export const useReadMaidsLotteryLotteryIdsByRequestId =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"medalContract"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useReadMaidsLotteryMedalContract =
   /*#__PURE__*/ createUseReadContract({
@@ -3099,8 +3681,8 @@ export const useReadMaidsLotteryMedalContract =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"owner"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useReadMaidsLotteryOwner = /*#__PURE__*/ createUseReadContract({
   abi: maidsLotteryAbi,
@@ -3111,8 +3693,8 @@ export const useReadMaidsLotteryOwner = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"requestConfirmations"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useReadMaidsLotteryRequestConfirmations =
   /*#__PURE__*/ createUseReadContract({
@@ -3124,8 +3706,8 @@ export const useReadMaidsLotteryRequestConfirmations =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"requests"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useReadMaidsLotteryRequests = /*#__PURE__*/ createUseReadContract({
   abi: maidsLotteryAbi,
@@ -3136,8 +3718,8 @@ export const useReadMaidsLotteryRequests = /*#__PURE__*/ createUseReadContract({
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"subscriptionId"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useReadMaidsLotterySubscriptionId =
   /*#__PURE__*/ createUseReadContract({
@@ -3149,8 +3731,8 @@ export const useReadMaidsLotterySubscriptionId =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"supportsInterface"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useReadMaidsLotterySupportsInterface =
   /*#__PURE__*/ createUseReadContract({
@@ -3162,8 +3744,8 @@ export const useReadMaidsLotterySupportsInterface =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"ticketContract"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useReadMaidsLotteryTicketContract =
   /*#__PURE__*/ createUseReadContract({
@@ -3175,8 +3757,8 @@ export const useReadMaidsLotteryTicketContract =
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"vrfCoordinator"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useReadMaidsLotteryVrfCoordinator =
   /*#__PURE__*/ createUseReadContract({
@@ -3188,8 +3770,8 @@ export const useReadMaidsLotteryVrfCoordinator =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useWriteMaidsLottery = /*#__PURE__*/ createUseWriteContract({
   abi: maidsLotteryAbi,
@@ -3199,8 +3781,8 @@ export const useWriteMaidsLottery = /*#__PURE__*/ createUseWriteContract({
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"acceptOwnership"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useWriteMaidsLotteryAcceptOwnership =
   /*#__PURE__*/ createUseWriteContract({
@@ -3212,8 +3794,8 @@ export const useWriteMaidsLotteryAcceptOwnership =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"createNewLottery"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useWriteMaidsLotteryCreateNewLottery =
   /*#__PURE__*/ createUseWriteContract({
@@ -3225,8 +3807,8 @@ export const useWriteMaidsLotteryCreateNewLottery =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"draw"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useWriteMaidsLotteryDraw = /*#__PURE__*/ createUseWriteContract({
   abi: maidsLotteryAbi,
@@ -3237,8 +3819,8 @@ export const useWriteMaidsLotteryDraw = /*#__PURE__*/ createUseWriteContract({
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"entry"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useWriteMaidsLotteryEntry = /*#__PURE__*/ createUseWriteContract({
   abi: maidsLotteryAbi,
@@ -3249,8 +3831,8 @@ export const useWriteMaidsLotteryEntry = /*#__PURE__*/ createUseWriteContract({
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"onERC1155BatchReceived"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useWriteMaidsLotteryOnErc1155BatchReceived =
   /*#__PURE__*/ createUseWriteContract({
@@ -3262,8 +3844,8 @@ export const useWriteMaidsLotteryOnErc1155BatchReceived =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"onERC1155Received"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useWriteMaidsLotteryOnErc1155Received =
   /*#__PURE__*/ createUseWriteContract({
@@ -3275,8 +3857,8 @@ export const useWriteMaidsLotteryOnErc1155Received =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"rawFulfillRandomWords"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useWriteMaidsLotteryRawFulfillRandomWords =
   /*#__PURE__*/ createUseWriteContract({
@@ -3288,8 +3870,8 @@ export const useWriteMaidsLotteryRawFulfillRandomWords =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"returnTicket"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useWriteMaidsLotteryReturnTicket =
   /*#__PURE__*/ createUseWriteContract({
@@ -3301,8 +3883,8 @@ export const useWriteMaidsLotteryReturnTicket =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"setCallbackGasLimit"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useWriteMaidsLotterySetCallbackGasLimit =
   /*#__PURE__*/ createUseWriteContract({
@@ -3314,8 +3896,8 @@ export const useWriteMaidsLotterySetCallbackGasLimit =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"setGelato"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useWriteMaidsLotterySetGelato =
   /*#__PURE__*/ createUseWriteContract({
@@ -3327,8 +3909,8 @@ export const useWriteMaidsLotterySetGelato =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"setKeyHash"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useWriteMaidsLotterySetKeyHash =
   /*#__PURE__*/ createUseWriteContract({
@@ -3340,8 +3922,8 @@ export const useWriteMaidsLotterySetKeyHash =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"setMedalContract"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useWriteMaidsLotterySetMedalContract =
   /*#__PURE__*/ createUseWriteContract({
@@ -3353,8 +3935,8 @@ export const useWriteMaidsLotterySetMedalContract =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"setSubscriptionId"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useWriteMaidsLotterySetSubscriptionId =
   /*#__PURE__*/ createUseWriteContract({
@@ -3366,8 +3948,8 @@ export const useWriteMaidsLotterySetSubscriptionId =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"setTicketContract"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useWriteMaidsLotterySetTicketContract =
   /*#__PURE__*/ createUseWriteContract({
@@ -3379,8 +3961,8 @@ export const useWriteMaidsLotterySetTicketContract =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"setVrfCoordinator"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useWriteMaidsLotterySetVrfCoordinator =
   /*#__PURE__*/ createUseWriteContract({
@@ -3392,8 +3974,8 @@ export const useWriteMaidsLotterySetVrfCoordinator =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"transferOwnership"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useWriteMaidsLotteryTransferOwnership =
   /*#__PURE__*/ createUseWriteContract({
@@ -3405,8 +3987,8 @@ export const useWriteMaidsLotteryTransferOwnership =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"updateLotteryInfo"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useWriteMaidsLotteryUpdateLotteryInfo =
   /*#__PURE__*/ createUseWriteContract({
@@ -3418,8 +4000,8 @@ export const useWriteMaidsLotteryUpdateLotteryInfo =
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"updatePrizeInfo"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useWriteMaidsLotteryUpdatePrizeInfo =
   /*#__PURE__*/ createUseWriteContract({
@@ -3431,8 +4013,8 @@ export const useWriteMaidsLotteryUpdatePrizeInfo =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useSimulateMaidsLottery = /*#__PURE__*/ createUseSimulateContract({
   abi: maidsLotteryAbi,
@@ -3442,8 +4024,8 @@ export const useSimulateMaidsLottery = /*#__PURE__*/ createUseSimulateContract({
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"acceptOwnership"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useSimulateMaidsLotteryAcceptOwnership =
   /*#__PURE__*/ createUseSimulateContract({
@@ -3455,8 +4037,8 @@ export const useSimulateMaidsLotteryAcceptOwnership =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"createNewLottery"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useSimulateMaidsLotteryCreateNewLottery =
   /*#__PURE__*/ createUseSimulateContract({
@@ -3468,8 +4050,8 @@ export const useSimulateMaidsLotteryCreateNewLottery =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"draw"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useSimulateMaidsLotteryDraw =
   /*#__PURE__*/ createUseSimulateContract({
@@ -3481,8 +4063,8 @@ export const useSimulateMaidsLotteryDraw =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"entry"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useSimulateMaidsLotteryEntry =
   /*#__PURE__*/ createUseSimulateContract({
@@ -3494,8 +4076,8 @@ export const useSimulateMaidsLotteryEntry =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"onERC1155BatchReceived"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useSimulateMaidsLotteryOnErc1155BatchReceived =
   /*#__PURE__*/ createUseSimulateContract({
@@ -3507,8 +4089,8 @@ export const useSimulateMaidsLotteryOnErc1155BatchReceived =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"onERC1155Received"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useSimulateMaidsLotteryOnErc1155Received =
   /*#__PURE__*/ createUseSimulateContract({
@@ -3520,8 +4102,8 @@ export const useSimulateMaidsLotteryOnErc1155Received =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"rawFulfillRandomWords"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useSimulateMaidsLotteryRawFulfillRandomWords =
   /*#__PURE__*/ createUseSimulateContract({
@@ -3533,8 +4115,8 @@ export const useSimulateMaidsLotteryRawFulfillRandomWords =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"returnTicket"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useSimulateMaidsLotteryReturnTicket =
   /*#__PURE__*/ createUseSimulateContract({
@@ -3546,8 +4128,8 @@ export const useSimulateMaidsLotteryReturnTicket =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"setCallbackGasLimit"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useSimulateMaidsLotterySetCallbackGasLimit =
   /*#__PURE__*/ createUseSimulateContract({
@@ -3559,8 +4141,8 @@ export const useSimulateMaidsLotterySetCallbackGasLimit =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"setGelato"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useSimulateMaidsLotterySetGelato =
   /*#__PURE__*/ createUseSimulateContract({
@@ -3572,8 +4154,8 @@ export const useSimulateMaidsLotterySetGelato =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"setKeyHash"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useSimulateMaidsLotterySetKeyHash =
   /*#__PURE__*/ createUseSimulateContract({
@@ -3585,8 +4167,8 @@ export const useSimulateMaidsLotterySetKeyHash =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"setMedalContract"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useSimulateMaidsLotterySetMedalContract =
   /*#__PURE__*/ createUseSimulateContract({
@@ -3598,8 +4180,8 @@ export const useSimulateMaidsLotterySetMedalContract =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"setSubscriptionId"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useSimulateMaidsLotterySetSubscriptionId =
   /*#__PURE__*/ createUseSimulateContract({
@@ -3611,8 +4193,8 @@ export const useSimulateMaidsLotterySetSubscriptionId =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"setTicketContract"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useSimulateMaidsLotterySetTicketContract =
   /*#__PURE__*/ createUseSimulateContract({
@@ -3624,8 +4206,8 @@ export const useSimulateMaidsLotterySetTicketContract =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"setVrfCoordinator"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useSimulateMaidsLotterySetVrfCoordinator =
   /*#__PURE__*/ createUseSimulateContract({
@@ -3637,8 +4219,8 @@ export const useSimulateMaidsLotterySetVrfCoordinator =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"transferOwnership"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useSimulateMaidsLotteryTransferOwnership =
   /*#__PURE__*/ createUseSimulateContract({
@@ -3650,8 +4232,8 @@ export const useSimulateMaidsLotteryTransferOwnership =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"updateLotteryInfo"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useSimulateMaidsLotteryUpdateLotteryInfo =
   /*#__PURE__*/ createUseSimulateContract({
@@ -3663,8 +4245,8 @@ export const useSimulateMaidsLotteryUpdateLotteryInfo =
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"updatePrizeInfo"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useSimulateMaidsLotteryUpdatePrizeInfo =
   /*#__PURE__*/ createUseSimulateContract({
@@ -3676,8 +4258,8 @@ export const useSimulateMaidsLotteryUpdatePrizeInfo =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryAbi}__
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useWatchMaidsLotteryEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -3688,8 +4270,8 @@ export const useWatchMaidsLotteryEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryAbi}__ and `eventName` set to `"Draw"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useWatchMaidsLotteryDrawEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -3701,8 +4283,8 @@ export const useWatchMaidsLotteryDrawEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryAbi}__ and `eventName` set to `"NewEntry"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useWatchMaidsLotteryNewEntryEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -3714,8 +4296,8 @@ export const useWatchMaidsLotteryNewEntryEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryAbi}__ and `eventName` set to `"NewLottery"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useWatchMaidsLotteryNewLotteryEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -3727,8 +4309,8 @@ export const useWatchMaidsLotteryNewLotteryEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryAbi}__ and `eventName` set to `"OwnershipTransferRequested"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useWatchMaidsLotteryOwnershipTransferRequestedEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -3740,8 +4322,8 @@ export const useWatchMaidsLotteryOwnershipTransferRequestedEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryAbi}__ and `eventName` set to `"OwnershipTransferred"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useWatchMaidsLotteryOwnershipTransferredEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -3753,8 +4335,8 @@ export const useWatchMaidsLotteryOwnershipTransferredEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryAbi}__ and `eventName` set to `"RequestFulfilled"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useWatchMaidsLotteryRequestFulfilledEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
@@ -3766,13 +4348,853 @@ export const useWatchMaidsLotteryRequestFulfilledEvent =
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryAbi}__ and `eventName` set to `"RequestSent"`
  *
- * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
- * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
 export const useWatchMaidsLotteryRequestSentEvent =
   /*#__PURE__*/ createUseWatchContractEvent({
     abi: maidsLotteryAbi,
     address: maidsLotteryAddress,
+    eventName: 'RequestSent',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useReadMaidsLotteryOld = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"callbackGasLimit"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useReadMaidsLotteryOldCallbackGasLimit =
+  /*#__PURE__*/ createUseReadContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'callbackGasLimit',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"entriesByLotteryId"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useReadMaidsLotteryOldEntriesByLotteryId =
+  /*#__PURE__*/ createUseReadContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'entriesByLotteryId',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"entryCountsByLotteryId"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useReadMaidsLotteryOldEntryCountsByLotteryId =
+  /*#__PURE__*/ createUseReadContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'entryCountsByLotteryId',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"gelato"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useReadMaidsLotteryOldGelato = /*#__PURE__*/ createUseReadContract(
+  {
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'gelato',
+  },
+)
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"getAllLotteries"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useReadMaidsLotteryOldGetAllLotteries =
+  /*#__PURE__*/ createUseReadContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'getAllLotteries',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"getLotteryInfo"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useReadMaidsLotteryOldGetLotteryInfo =
+  /*#__PURE__*/ createUseReadContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'getLotteryInfo',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"isOngoingLatestLottery"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useReadMaidsLotteryOldIsOngoingLatestLottery =
+  /*#__PURE__*/ createUseReadContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'isOngoingLatestLottery',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"keyHash"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useReadMaidsLotteryOldKeyHash =
+  /*#__PURE__*/ createUseReadContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'keyHash',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"lotteries"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useReadMaidsLotteryOldLotteries =
+  /*#__PURE__*/ createUseReadContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'lotteries',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"lotteryIdsByRequestId"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useReadMaidsLotteryOldLotteryIdsByRequestId =
+  /*#__PURE__*/ createUseReadContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'lotteryIdsByRequestId',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"medalContract"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useReadMaidsLotteryOldMedalContract =
+  /*#__PURE__*/ createUseReadContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'medalContract',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"owner"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useReadMaidsLotteryOldOwner = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'owner',
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"requestConfirmations"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useReadMaidsLotteryOldRequestConfirmations =
+  /*#__PURE__*/ createUseReadContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'requestConfirmations',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"requests"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useReadMaidsLotteryOldRequests =
+  /*#__PURE__*/ createUseReadContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'requests',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"subscriptionId"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useReadMaidsLotteryOldSubscriptionId =
+  /*#__PURE__*/ createUseReadContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'subscriptionId',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"supportsInterface"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useReadMaidsLotteryOldSupportsInterface =
+  /*#__PURE__*/ createUseReadContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'supportsInterface',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"ticketContract"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useReadMaidsLotteryOldTicketContract =
+  /*#__PURE__*/ createUseReadContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'ticketContract',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"vrfCoordinator"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useReadMaidsLotteryOldVrfCoordinator =
+  /*#__PURE__*/ createUseReadContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'vrfCoordinator',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useWriteMaidsLotteryOld = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+})
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"acceptOwnership"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useWriteMaidsLotteryOldAcceptOwnership =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'acceptOwnership',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"createNewLottery"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useWriteMaidsLotteryOldCreateNewLottery =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'createNewLottery',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"draw"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useWriteMaidsLotteryOldDraw = /*#__PURE__*/ createUseWriteContract(
+  {
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'draw',
+  },
+)
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"entry"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useWriteMaidsLotteryOldEntry =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'entry',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"onERC1155BatchReceived"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useWriteMaidsLotteryOldOnErc1155BatchReceived =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'onERC1155BatchReceived',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"onERC1155Received"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useWriteMaidsLotteryOldOnErc1155Received =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'onERC1155Received',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"rawFulfillRandomWords"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useWriteMaidsLotteryOldRawFulfillRandomWords =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'rawFulfillRandomWords',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"returnTicket"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useWriteMaidsLotteryOldReturnTicket =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'returnTicket',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"setCallbackGasLimit"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useWriteMaidsLotteryOldSetCallbackGasLimit =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'setCallbackGasLimit',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"setGelato"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useWriteMaidsLotteryOldSetGelato =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'setGelato',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"setKeyHash"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useWriteMaidsLotteryOldSetKeyHash =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'setKeyHash',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"setMedalContract"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useWriteMaidsLotteryOldSetMedalContract =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'setMedalContract',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"setSubscriptionId"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useWriteMaidsLotteryOldSetSubscriptionId =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'setSubscriptionId',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"setTicketContract"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useWriteMaidsLotteryOldSetTicketContract =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'setTicketContract',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"setVrfCoordinator"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useWriteMaidsLotteryOldSetVrfCoordinator =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'setVrfCoordinator',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useWriteMaidsLotteryOldTransferOwnership =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"updateLotteryInfo"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useWriteMaidsLotteryOldUpdateLotteryInfo =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'updateLotteryInfo',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"updatePrizeInfo"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useWriteMaidsLotteryOldUpdatePrizeInfo =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'updatePrizeInfo',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useSimulateMaidsLotteryOld =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"acceptOwnership"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useSimulateMaidsLotteryOldAcceptOwnership =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'acceptOwnership',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"createNewLottery"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useSimulateMaidsLotteryOldCreateNewLottery =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'createNewLottery',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"draw"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useSimulateMaidsLotteryOldDraw =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'draw',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"entry"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useSimulateMaidsLotteryOldEntry =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'entry',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"onERC1155BatchReceived"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useSimulateMaidsLotteryOldOnErc1155BatchReceived =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'onERC1155BatchReceived',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"onERC1155Received"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useSimulateMaidsLotteryOldOnErc1155Received =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'onERC1155Received',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"rawFulfillRandomWords"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useSimulateMaidsLotteryOldRawFulfillRandomWords =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'rawFulfillRandomWords',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"returnTicket"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useSimulateMaidsLotteryOldReturnTicket =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'returnTicket',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"setCallbackGasLimit"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useSimulateMaidsLotteryOldSetCallbackGasLimit =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'setCallbackGasLimit',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"setGelato"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useSimulateMaidsLotteryOldSetGelato =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'setGelato',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"setKeyHash"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useSimulateMaidsLotteryOldSetKeyHash =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'setKeyHash',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"setMedalContract"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useSimulateMaidsLotteryOldSetMedalContract =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'setMedalContract',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"setSubscriptionId"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useSimulateMaidsLotteryOldSetSubscriptionId =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'setSubscriptionId',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"setTicketContract"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useSimulateMaidsLotteryOldSetTicketContract =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'setTicketContract',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"setVrfCoordinator"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useSimulateMaidsLotteryOldSetVrfCoordinator =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'setVrfCoordinator',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useSimulateMaidsLotteryOldTransferOwnership =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"updateLotteryInfo"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useSimulateMaidsLotteryOldUpdateLotteryInfo =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'updateLotteryInfo',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"updatePrizeInfo"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useSimulateMaidsLotteryOldUpdatePrizeInfo =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    functionName: 'updatePrizeInfo',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryOldAbi}__
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useWatchMaidsLotteryOldEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `eventName` set to `"Draw"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useWatchMaidsLotteryOldDrawEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    eventName: 'Draw',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `eventName` set to `"NewEntry"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useWatchMaidsLotteryOldNewEntryEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    eventName: 'NewEntry',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `eventName` set to `"NewLottery"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useWatchMaidsLotteryOldNewLotteryEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    eventName: 'NewLottery',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `eventName` set to `"OwnershipTransferRequested"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useWatchMaidsLotteryOldOwnershipTransferRequestedEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    eventName: 'OwnershipTransferRequested',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useWatchMaidsLotteryOldOwnershipTransferredEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    eventName: 'OwnershipTransferred',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `eventName` set to `"RequestFulfilled"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useWatchMaidsLotteryOldRequestFulfilledEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
+    eventName: 'RequestFulfilled',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `eventName` set to `"RequestSent"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
+ */
+export const useWatchMaidsLotteryOldRequestSentEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: maidsLotteryOldAbi,
+    address: maidsLotteryOldAddress,
     eventName: 'RequestSent',
   })
 
