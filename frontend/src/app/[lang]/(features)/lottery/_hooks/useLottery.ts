@@ -91,7 +91,7 @@ const useLottery = ({ lotteryId }: { lotteryId: number }) => {
       })
     } else {
       writeReturnTicket({
-        args: [BigInt(lotteryId)],
+        args: [BigInt(lotteryId - 1)],
       })
     }
   }, [lotteryId, writeReturnTicket, writeReturnTicketOld])
