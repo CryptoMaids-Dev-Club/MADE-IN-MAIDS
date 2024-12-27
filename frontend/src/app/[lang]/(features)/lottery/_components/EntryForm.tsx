@@ -2,7 +2,7 @@
 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import useLottery from '@/app/[lang]/(features)/lottery/_hooks/useLottery'
-import { LotteryInfo } from '@/app/[lang]/(features)/lottery/_type'
+import type { LotteryInfo } from '@/app/[lang]/(features)/lottery/_type'
 import LoadingButtonForWeb3 from '@/app/[lang]/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
 import { useLanguage, useTranslation } from '@/app/i18n/client'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'

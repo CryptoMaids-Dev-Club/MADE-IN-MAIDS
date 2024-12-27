@@ -1,10 +1,10 @@
 import { readContract } from '@wagmi/core'
-import { Address, formatEther } from 'viem'
+import { type Address, formatEther } from 'viem'
 import { NETWORK } from '@/config/server'
 import { maidsPredictionAbi, maidsPredictionAddress } from '@/lib/generated'
 import { wagmiConfig } from '@/lib/wagmicore'
-import { SolidityTopUserInfo, TopUserInfo } from '../_types'
-import { Prediction, SolidityPrediction } from '../_types'
+import type { SolidityTopUserInfo, TopUserInfo } from '../_types'
+import type { Prediction, SolidityPrediction } from '../_types'
 import 'server-only'
 
 export const getAllPredictions = async () => {

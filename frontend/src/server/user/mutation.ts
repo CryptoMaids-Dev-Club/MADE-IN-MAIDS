@@ -1,6 +1,6 @@
 'use server'
 
-import { User } from '@prisma/client'
+import type { User } from '@prisma/client'
 import { revalidatePath } from 'next/cache'
 import { recoverMessageAddress } from 'viem'
 import prisma from '@/lib/prisma'

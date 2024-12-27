@@ -1,29 +1,22 @@
-import { useCallback, useEffect, useState } from 'react'
-import { TwitterShareButton, XIcon } from 'react-share'
-import { parseEther } from 'viem'
-import { useAccount, useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
 import { useToast } from '@/components/ui/use-toast'
 import { NETWORK } from '@/config/client'
 import { useAllowance } from '@/hooks/useAllowance'
 import { useApprove } from '@/hooks/useApprove'
-import { useDebounce } from '@/hooks/useDebounce'
-import { maidsVotingAddress, useSimulateMaidsVotingVote } from '@/lib/generated'
+import { maidsVotingAddress, useWriteMaidsVotingVote } from '@/lib/generated'
+import { useCallback, useEffect } from 'react'
+import { TwitterShareButton, XIcon } from 'react-share'
+import { parseEther } from 'viem'
+import { useAccount, useWaitForTransactionReceipt } from 'wagmi'
 
 const useVote = (id: number) => {
   const { toast } = useToast()
 
   const { address } = useAccount()
-  const [amount, setAmount] = useState(0)
-  const debounceAmount = useDebounce(amount, 500)
-
   const { allowance, refetch } = useAllowance(address ?? `0x${''}`, maidsVotingAddress[NETWORK.id])
   // const { isPending: isLoadingApprove, writeContract: approve } = useWriteMaidsTokenApprove()
   const { isPending: isLoadingApprove, approve } = useApprove(maidsVotingAddress[NETWORK.id])
 
-  const { data } = useSimulateMaidsVotingVote({
-    args: [BigInt(id), parseEther(`${debounceAmount}`)],
-  })
-  const { data: writeData, isPending: isLoadingVote, writeContract: vote } = useWriteContract()
+  const { data: writeData, isPending: isLoadingVote, writeContract: vote } = useWriteMaidsVotingVote()
   const { isLoading, status } = useWaitForTransactionReceipt({
     hash: writeData,
   })
@@ -38,7 +31,8 @@ const useVote = (id: number) => {
           <TwitterShareButton
             url={`https://market.cryptomaids.tokyo/detail/${id}`}
             title={`Voted for CryptoMaids #${id}!`}
-            hashtags={['CryptoMaids']}>
+            hashtags={['CryptoMaids']}
+          >
             <XIcon size={32} round />
           </TwitterShareButton>
         ),
@@ -47,22 +41,21 @@ const useVote = (id: number) => {
     }
   }, [status, refetch, toast, id])
 
-  const updateAmount = useCallback((amount: number) => {
-    setAmount(amount)
-  }, [])
-
-  const voteOrApprove = useCallback(() => {
-    if (allowance && allowance > debounceAmount && data) {
-      if (debounceAmount <= 0) return
-      vote(data.request)
-    } else {
-      approve()
-    }
-  }, [allowance, approve, data, debounceAmount, vote])
+  const voteOrApprove = useCallback(
+    (amount: number) => {
+      if (allowance && allowance > amount) {
+        if (amount <= 0) return
+        vote({
+          args: [BigInt(id), parseEther(`${amount}`)],
+        })
+      } else {
+        approve()
+      }
+    },
+    [allowance, approve, vote],
+  )
 
   return {
-    amount,
-    updateAmount,
     voteOrApprove,
     isLoading: isLoadingApprove || isLoadingVote || isLoading,
     allowance,

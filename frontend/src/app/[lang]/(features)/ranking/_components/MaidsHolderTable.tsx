@@ -1,17 +1,17 @@
 'use client'
 
-import { useState } from 'react'
-import { User } from '@prisma/client'
-import { hc } from 'hono/client'
-import { UserRound } from 'lucide-react'
-import Link from 'next/link'
-import InfiniteScroll from 'react-infinite-scroller'
-import { MaidsHolder } from '@/app/[[...route]]/maidsHolder'
-import { AppType } from '@/app/[[...route]]/route'
+import type { MaidsHolder } from '@/app/[[...route]]/maidsHolder'
+import type { AppType } from '@/app/[[...route]]/route'
 import { useLanguage } from '@/app/i18n/client'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Table, TableBody, TableCell, TableHeader, TableRow } from '@/components/ui/table'
 import { Typography } from '@/components/ui/typography'
+import type { User } from '@prisma/client'
+import { hc } from 'hono/client'
+import { UserRound } from 'lucide-react'
+import Link from 'next/link'
+import { useState } from 'react'
+import InfiniteScroll from 'react-infinite-scroller'
 import { getUserIcon, getUserName } from '../utils'
 
 type MaidsHolderTableProps = {
@@ -75,7 +75,8 @@ const MaidsHolderTable = ({ userInfos }: MaidsHolderTableProps) => {
               <TableCell>
                 <Link
                   href={`/${language}/account/${holder.wallet_address}`}
-                  style={{ textDecoration: 'none', color: 'inherit' }}>
+                  style={{ textDecoration: 'none', color: 'inherit' }}
+                >
                   {getUserName(holder.wallet_address, userInfos)}
                 </Link>
               </TableCell>

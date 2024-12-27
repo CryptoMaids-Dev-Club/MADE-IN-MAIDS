@@ -1,9 +1,12 @@
 'use client'
 
-import { z } from 'zod'
 import useVote from '@/app/[lang]/(features)/detail/voting/_hooks/useVote'
 import LoadingButtonForWeb3 from '@/app/[lang]/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
-import AutoForm from '@/components/ui/auto-form'
+import { FormControl, FormField, FormLabel } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Form, useForm } from 'react-hook-form'
+import { z } from 'zod'
 
 const schema = z.object({
   num: z.coerce.number().positive().int().min(1),
@@ -14,29 +17,37 @@ type VotingFormProps = {
 }
 
 const VotingForm = ({ id }: VotingFormProps) => {
-  const handleSubmit = () => {
-    voteOrApprove()
+  const handleSubmit = (data: z.infer<typeof schema>) => {
+    voteOrApprove(data.num)
   }
 
-  const { amount, updateAmount, voteOrApprove, isLoading, allowance } = useVote(id)
+  const { voteOrApprove, isLoading, allowance } = useVote(id)
+
+  const form = useForm({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      num: 0,
+    },
+  })
 
   return (
-    <AutoForm
-      formSchema={schema}
-      fieldConfig={{
-        num: {
-          inputProps: {
-            placeholder: 'Amount',
-          },
-        },
-      }}
-      onSubmit={handleSubmit}
-      values={{ num: amount }}
-      onParsedValuesChange={(values) => updateAmount(values.num ?? 1)}>
-      <LoadingButtonForWeb3 className='mt-2 w-full' loading={isLoading}>
-        {allowance && allowance > Number(amount) ? `Vote` : `Approve $MAIDS`}
-      </LoadingButtonForWeb3>
-    </AutoForm>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(handleSubmit)} className='space-y-4'>
+        <FormField
+          control={form.control}
+          name='num'
+          render={({ field }) => (
+            <FormControl>
+              <FormLabel htmlFor='num'>Amount</FormLabel>
+              <Input {...field} placeholder='Amount' />
+            </FormControl>
+          )}
+        />
+        <LoadingButtonForWeb3 className='mt-2 w-full' loading={isLoading}>
+          {allowance && allowance > Number(form.getValues) ? `Vote` : `Approve $MAIDS`}
+        </LoadingButtonForWeb3>
+      </form>
+    </Form>
   )
 }
 

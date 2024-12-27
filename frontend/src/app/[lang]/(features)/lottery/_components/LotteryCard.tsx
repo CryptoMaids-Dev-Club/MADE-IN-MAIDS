@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { LotteryInfo } from '@/app/[lang]/(features)/lottery/_type'
+import type { LotteryInfo } from '@/app/[lang]/(features)/lottery/_type'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent } from '@/components/ui/card'
 import { Typography } from '@/components/ui/typography'

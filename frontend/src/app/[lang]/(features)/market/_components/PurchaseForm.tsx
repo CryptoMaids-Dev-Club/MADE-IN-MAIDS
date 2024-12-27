@@ -1,14 +1,14 @@
 'use client'
 
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { useAccount } from 'wagmi'
 import { usePurchase } from '@/app/[lang]/(features)/market/_hooks/usePurchase'
+import type { MarketItemInfo } from '@/app/[lang]/(features)/market/_types'
 import LoadingButtonForWeb3 from '@/app/[lang]/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Switch } from '@/components/ui/switch'
 import { Typography } from '@/components/ui/typography'
-import type { MarketItemInfo } from '@/app/[lang]/(features)/market/_types'
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import { useAccount } from 'wagmi'
 
 type PurchaseFormProps = {
   item: MarketItemInfo
@@ -50,6 +50,7 @@ export const PurchaseForm = ({ item }: PurchaseFormProps) => {
                 <SelectContent>
                   <SelectGroup>
                     {[...Array(range)].map((_, i) => (
+                      // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                       <SelectItem key={i + 1} value={(i + 1).toString()}>
                         {i + 1}
                       </SelectItem>

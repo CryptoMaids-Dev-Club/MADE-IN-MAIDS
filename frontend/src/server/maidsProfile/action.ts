@@ -1,7 +1,7 @@
 'use server'
 
 import { revalidatePath } from 'next/cache'
-import { Address } from 'viem'
+import type { Address } from 'viem'
 import { ZodError, z } from 'zod'
 import prisma from '@/lib/prisma'
 import { getNftOwner } from '@/server/nftOwner/query'

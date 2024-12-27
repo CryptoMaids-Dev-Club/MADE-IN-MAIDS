@@ -1,10 +1,12 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
-import { SubmitHandler } from 'react-hook-form'
-import { z } from 'zod'
-import AutoForm from '@/components/ui/auto-form'
 import { Button } from '@/components/ui/button'
+import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/navigation'
+import { type SubmitHandler, useForm } from 'react-hook-form'
+import { z } from 'zod'
 
 export const formSchema = z.object({
   tokenId: z.coerce.number().positive().int().min(1),
@@ -14,27 +16,33 @@ export type FormSchema = z.infer<typeof formSchema>
 
 export const VotingTransitionForm = () => {
   const router = useRouter()
-  const handleSubmit: SubmitHandler<FormSchema> = (data) => {
+  const form = useForm<FormSchema>({
+    resolver: zodResolver(formSchema),
+  })
+
+  const onSubmit: SubmitHandler<FormSchema> = (data) => {
     router.push(`/detail/${data.tokenId}`)
   }
 
   return (
-    <AutoForm
-      className='mt-4'
-      formSchema={formSchema}
-      onSubmit={(data) => handleSubmit(data)}
-      fieldConfig={{
-        tokenId: {
-          inputProps: {
-            placeholder: 'TokenID',
-            showLabel: false,
-          },
-        },
-      }}>
-      <Button type='submit' className='w-full'>
-        Go to Voting Page
-      </Button>
-    </AutoForm>
+    <Form {...form}>
+      <form className='mt-4 space-y-2 w-40' onSubmit={form.handleSubmit(onSubmit)}>
+        <FormField
+          control={form.control}
+          name='tokenId'
+          render={({ field }) => (
+            <FormItem>
+              <FormControl>
+                <Input {...field} placeholder='TokenId' />
+              </FormControl>
+            </FormItem>
+          )}
+        ></FormField>
+        <Button type='submit' className='w-full'>
+          Go to Voting Page
+        </Button>
+      </form>
+    </Form>
   )
 }
 

@@ -1,5 +1,5 @@
 import { Hono } from 'hono'
-import { Address } from 'viem'
+import type { Address } from 'viem'
 import prisma from '@/lib/prisma'
 
 export const userKeys = {

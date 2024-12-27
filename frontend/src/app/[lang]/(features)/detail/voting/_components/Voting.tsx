@@ -1,13 +1,11 @@
-import { Suspense } from 'react'
-import dynamic from 'next/dynamic'
+import VotingForm from '@/app/[lang]/(features)/detail/voting/_components/VotingForm'
 import { Skeleton } from '@/components/ui/skeleton'
 import { getAsset } from '@/server/asset/query'
+import { Suspense } from 'react'
 import { NFTImage } from '../../_components/NFTImage'
 import { Induction } from './Induction'
 import { NFTInfo } from './NFTInfo'
 import { VotingInfo } from './VotingInfo'
-
-const VotingForm = dynamic(() => import('./VotingForm'), { ssr: false })
 
 type VotingProps = {
   id: number
@@ -39,8 +37,9 @@ const Voting = ({ id }: VotingProps) => (
 
 export default Voting
 
-export const generateMetadata = async ({ params }: { params: { id: string } }) => {
-  const meta = await getAsset(Number(params.id))
+export const generateMetadata = async (params: { params: Promise<{ id: string }> }) => {
+  const { id } = await params.params
+  const meta = await getAsset(Number(id))
 
   return {
     title: 'Detail',

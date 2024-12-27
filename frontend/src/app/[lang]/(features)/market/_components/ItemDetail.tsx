@@ -1,9 +1,9 @@
+import { getMarketItems } from '@/app/[lang]/(features)/market/_api/query'
+import type { MarketItemInfo } from '@/app/[lang]/(features)/market/_types'
+import { Typography } from '@/components/ui/typography'
 import { unstable_noStore as noStore } from 'next/cache'
 import Image from 'next/image'
-import { getMarketItems } from '@/app/[lang]/(features)/market/_api/query'
-import { Typography } from '@/components/ui/typography'
 import { PurchaseForm } from './PurchaseForm'
-import type { MarketItemInfo } from '@/app/[lang]/(features)/market/_types'
 
 type ItemDetailProps = {
   id: number
@@ -27,7 +27,7 @@ const ItemDetail = async ({ id }: ItemDetailProps) => {
               maxWidth: '100%',
               height: 'auto',
             }}
-            className={`${marketItem?.nsfw && `blur-md`}`}
+            className={`${marketItem?.nsfw && 'blur-md'}`}
           />
         </div>
         <div className='col-span-1'>

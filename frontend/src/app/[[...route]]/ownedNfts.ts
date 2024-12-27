@@ -1,5 +1,5 @@
 import { Hono } from 'hono'
-import { Address } from 'viem'
+import type { Address } from 'viem'
 import { CHAINBASE_API_KEY } from '@/config/server'
 import prisma from '@/lib/prisma'
 import type { AssetInfo } from '@/server/asset'

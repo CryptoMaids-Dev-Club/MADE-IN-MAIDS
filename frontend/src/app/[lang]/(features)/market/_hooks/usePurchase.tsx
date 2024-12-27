@@ -1,13 +1,13 @@
-import { useState, useEffect, useCallback } from 'react'
-import { TwitterShareButton, XIcon } from 'react-share'
-import { formatEther, type Address } from 'viem'
-import { useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
-import { MarketItemInfo } from '@/app/[lang]/(features)/market/_types'
+import type { MarketItemInfo } from '@/app/[lang]/(features)/market/_types'
 import { useToast } from '@/components/ui/use-toast'
 import { NETWORK } from '@/config/client'
 import { useAllowance } from '@/hooks/useAllowance'
 import { useApprove } from '@/hooks/useApprove'
 import { maidsMarketAddress, useReadMaidsTokenBalanceOf, useSimulateMaidsMarketBuyItem } from '@/lib/generated'
+import { useCallback, useEffect, useState } from 'react'
+import { TwitterShareButton, XIcon } from 'react-share'
+import { type Address, formatEther } from 'viem'
+import { useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
 
 type usePurchaseProps = {
   address: Address | undefined
@@ -58,12 +58,13 @@ export const usePurchase = ({ address, item }: usePurchaseProps) => {
 
   const { data: writeData, isPending: isLoadingBuyItem, writeContract } = useWriteContract()
 
-  const { isLoading, status } = useWaitForTransactionReceipt({
+  const { isLoading, status, isSuccess } = useWaitForTransactionReceipt({
     hash: writeData,
   })
 
   useEffect(() => {
-    if (status === 'success') {
+    if (isSuccess) {
+      console.log('Successfully bought!')
       toast({
         title: 'Successfully bought!',
         description: 'Share your purchase on X!',
@@ -71,14 +72,15 @@ export const usePurchase = ({ address, item }: usePurchaseProps) => {
         action: (
           <TwitterShareButton
             url={`https://market.cryptomaids.tokyo/market/item/${item.id}`}
-            title={`Successfully bought ${item.name}!`}>
+            title={`Successfully bought ${item.name}!`}
+          >
             <XIcon size={32} round />
           </TwitterShareButton>
         ),
       })
       refetch()
     }
-  }, [status, refetch, toast, item.id, item.name])
+  }, [refetch, toast, item.id, item.name, isSuccess])
 
   const buyItem = useCallback(() => {
     if (data === undefined) return

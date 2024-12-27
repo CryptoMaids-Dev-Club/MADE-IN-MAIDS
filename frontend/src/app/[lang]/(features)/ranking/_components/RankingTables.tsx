@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { User } from '@prisma/client'
+import type { User } from '@prisma/client'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import MaidsHolderTable from './MaidsHolderTable'
 import NFTHolderTable from './NFTHolderTable'

@@ -1,12 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import LoadingButtonForWeb3 from '@/app/[lang]/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
+import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { useWriteMaidsPredictionSettle } from '@/lib/generated'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
 import { useWaitForTransactionReceipt } from 'wagmi'
 import { z } from 'zod'
-import LoadingButtonForWeb3 from '@/app/[lang]/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
-import AutoForm from '@/components/ui/auto-form'
-import { useDebounce } from '@/hooks/useDebounce'
-import { useWriteMaidsPredictionSettle } from '@/lib/generated'
 
 const schema = z.object({
   choice: z.number().int().min(0).optional(),
@@ -17,34 +18,41 @@ type SettleForm = {
 }
 
 const SettleForm = ({ id }: SettleForm) => {
-  const [choice, setChoice] = useState(0)
-  const debounceChoice = useDebounce(choice, 500)
-
   const { data, isPending, writeContract } = useWriteMaidsPredictionSettle({})
 
   const settleTx = useWaitForTransactionReceipt({
     hash: data,
   })
 
+  const form = useForm({
+    resolver: zodResolver(schema),
+  })
+
   return (
-    <AutoForm
-      formSchema={schema}
-      onSubmit={() =>
-        writeContract({
-          args: [BigInt(id), BigInt(debounceChoice)],
-        })
-      }
-      fieldConfig={{
-        choice: {
-          inputProps: {
-            placeholder: 'Settle',
-          },
-        },
-      }}
-      values={{ choice }}
-      onParsedValuesChange={(values) => setChoice(values.choice ?? 1)}>
-      <LoadingButtonForWeb3 loading={isPending || settleTx.isLoading}>Settle</LoadingButtonForWeb3>
-    </AutoForm>
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit((data) => {
+          writeContract({
+            args: [BigInt(id), BigInt(data.choice)],
+          })
+        })}
+        className='p-8'
+      >
+        <FormField
+          control={form.control}
+          name='choice'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Settle</FormLabel>
+              <FormControl>
+                <Input {...field} placeholder='Settle' />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+        <LoadingButtonForWeb3 loading={isPending || settleTx.isLoading}>Settle</LoadingButtonForWeb3>
+      </form>
+    </Form>
   )
 }
 

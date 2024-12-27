@@ -1,50 +1,48 @@
 'use client'
 
-import { useState } from 'react'
+import LoadingButtonForWeb3 from '@/app/[lang]/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
+import { useWriteMaidsPredictionSetRate } from '@/lib/generated'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
 import { useWaitForTransactionReceipt } from 'wagmi'
 import { z } from 'zod'
-import LoadingButtonForWeb3 from '@/app/[lang]/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
-import AutoForm from '@/components/ui/auto-form'
-import { useDebounce } from '@/hooks/useDebounce'
-import { useWriteMaidsPredictionSetRate } from '@/lib/generated'
 
 const schema = z.object({
   rate: z.number().positive().int().min(1),
 })
 
-type SetRateForm = {
+type SetRateFormProps = {
   id: number
 }
 
-const SetRateForm = ({ id }: SetRateForm) => {
-  const [rate, setRate] = useState(0)
-  const debounceRate = useDebounce(rate, 500)
-
-  const { data, isPending, writeContract } = useWriteMaidsPredictionSetRate()
-
-  const writeRateTx = useWaitForTransactionReceipt({
-    hash: data,
+const SetRateForm = ({ id }: SetRateFormProps) => {
+  const form = useForm({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      rate: 0,
+    },
   })
 
+  const { data: rateData, isPending, writeContract: writeRate } = useWriteMaidsPredictionSetRate()
+
+  const writeRateTx = useWaitForTransactionReceipt({
+    hash: rateData,
+  })
+
+  const onSubmit = (values: z.infer<typeof schema>) => {
+    writeRate({
+      args: [BigInt(id), BigInt(values.rate)],
+    })
+  }
+
   return (
-    <AutoForm
-      formSchema={schema}
-      onSubmit={() =>
-        writeContract({
-          args: [BigInt(id), BigInt(debounceRate)],
-        })
-      }
-      fieldConfig={{
-        rate: {
-          inputProps: {
-            placeholder: 'Rate',
-          },
-        },
-      }}
-      values={{ rate }}
-      onParsedValuesChange={(values) => setRate(values.rate ?? 1)}>
+    <form onSubmit={form.handleSubmit((values) => onSubmit(values as z.infer<typeof schema>))} className='p-8'>
+      <div>
+        <label htmlFor='rate'>Rate</label>
+        <input {...form.register('rate')} placeholder='Rate' />
+      </div>
       <LoadingButtonForWeb3 loading={isPending || writeRateTx.isLoading}>Set Rate</LoadingButtonForWeb3>
-    </AutoForm>
+    </form>
   )
 }
 

@@ -1,7 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
-import { TwitterShareButton, XIcon } from 'react-share'
-import { parseEther } from 'viem'
-import { useAccount, useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
+import type { SolidityUserInfo } from '@/app/[lang]/(features)/prediction/_types'
 import { convertUserInfo } from '@/app/[lang]/(features)/prediction/utils'
 import { useToast } from '@/components/ui/use-toast'
 import { NETWORK } from '@/config/client'
@@ -11,9 +8,12 @@ import { useDebounce } from '@/hooks/useDebounce'
 import {
   maidsPredictionAddress,
   useReadMaidsPredictionGetUserInfo,
-  useSimulateMaidsPredictionPredict,
+  useWriteMaidsPredictionPredict,
 } from '@/lib/generated'
-import type { SolidityUserInfo } from '@/app/[lang]/(features)/prediction/_types'
+import { useCallback, useEffect, useState } from 'react'
+import { TwitterShareButton, XIcon } from 'react-share'
+import { parseEther } from 'viem'
+import { useAccount, useWaitForTransactionReceipt } from 'wagmi'
 
 const usePredict = (predictionId: number) => {
   const { toast } = useToast()
@@ -35,10 +35,7 @@ const usePredict = (predictionId: number) => {
     },
   })
 
-  const { data } = useSimulateMaidsPredictionPredict({
-    args: [BigInt(predictionId), parseEther(`${debounceAmount}`), BigInt(debounceChoice)],
-  })
-  const { data: writeData, isPending: isLoadingPredict, writeContract: predict } = useWriteContract()
+  const { data: writeData, isPending: isLoadingPredict, writeContract: predict } = useWriteMaidsPredictionPredict()
   const { isLoading, status } = useWaitForTransactionReceipt({
     hash: writeData,
   })
@@ -53,7 +50,8 @@ const usePredict = (predictionId: number) => {
           <TwitterShareButton
             url={`https://market.cryptomaids.tokyo/detail/${predictionId}`}
             title={`Predicted for CryptoMaids #${predictionId}!`}
-            hashtags={['CryptoMaids']}>
+            hashtags={['CryptoMaids']}
+          >
             <XIcon size={32} round />
           </TwitterShareButton>
         ),
@@ -73,12 +71,14 @@ const usePredict = (predictionId: number) => {
   }, [])
 
   const predictOrApprove = useCallback(() => {
-    if (canPredict && data) {
-      predict(data.request)
+    if (canPredict) {
+      predict({
+        args: [BigInt(predictionId), parseEther(`${debounceAmount}`), BigInt(debounceChoice)],
+      })
     } else {
       approve()
     }
-  }, [approve, canPredict, data, predict])
+  }, [approve, canPredict, predict])
 
   const buttonMessage = useCallback(() => {
     if (userInfo?.isPredicted) {

@@ -1,11 +1,11 @@
 'use client'
 
-import Image from 'next/image'
-import Link from 'next/link'
+import type { TopAsset } from '@/app/[lang]/(features)/voting/_types'
 import { useLanguage } from '@/app/i18n/client'
 import { Typography } from '@/components/ui/typography'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
-import type { TopAsset } from '@/app/[lang]/(features)/voting/_types'
+import Image from 'next/image'
+import Link from 'next/link'
 
 type TopImageProps = {
   topAssets: TopAsset[]
@@ -17,7 +17,7 @@ export const TopImage = ({ topAssets }: TopImageProps) => {
   topAssets.sort((a, b) => a.rank - b.rank)
 
   const sortedTopAssets = [...topAssets]
-  const matches = useMediaQuery('(min-width: 560px)')
+  const matches = true //useMediaQuery('(min-width: 560px)')
   if (matches) {
     ;[sortedTopAssets[1], sortedTopAssets[0]] = [topAssets[0], topAssets[1]]
   }

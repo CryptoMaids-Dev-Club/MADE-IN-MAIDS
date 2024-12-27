@@ -2,7 +2,7 @@
 
 import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { useAccount, useSwitchChain } from 'wagmi'
-import { ButtonProps } from '@/components/ui/button'
+import type { ButtonProps } from '@/components/ui/button'
 import { LoadingButton } from '@/components/ui/loading-button'
 
 export type ButtonLoadingProps = ButtonProps & {

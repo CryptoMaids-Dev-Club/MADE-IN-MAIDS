@@ -1,7 +1,7 @@
-import { Suspense } from 'react'
 import { MaidsProfileSkeleton } from '@/app/[lang]/(features)/detail/_components/MaidsProfile'
 import MaidsProfileWrapper from '@/app/[lang]/(features)/detail/_components/MaidsProfileWrapper'
 import { Skeleton } from '@/components/ui/skeleton'
+import { Suspense } from 'react'
 import { NFTImage } from './NFTImage'
 
 type DetailProps = {

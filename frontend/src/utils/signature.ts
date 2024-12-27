@@ -1,4 +1,4 @@
-import { Address, recoverMessageAddress } from 'viem'
+import { type Address, recoverMessageAddress } from 'viem'
 
 const localStorageLimit = 60 * 60 * 24 * 7 * 1000 // 7 days
 

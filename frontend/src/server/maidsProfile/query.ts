@@ -1,4 +1,4 @@
-import { MaidProfile } from '@prisma/client'
+import type { MaidProfile } from '@prisma/client'
 import prisma from '@/lib/prisma'
 import 'server-only'
 

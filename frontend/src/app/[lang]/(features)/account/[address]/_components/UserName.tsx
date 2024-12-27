@@ -1,26 +1,27 @@
 'use client'
 
-import { useState } from 'react'
-import { User } from '@prisma/client'
+import { useSaveUserInfo } from '@/app/[lang]/(features)/account/[address]/_hooks/useSaveUserInfo'
+import { Button } from '@/components/ui/button'
+import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { Typography } from '@/components/ui/typography'
+import { zodResolver } from '@hookform/resolvers/zod'
+import type { User } from '@prisma/client'
 import { Pencil } from 'lucide-react'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import type { Address } from 'viem'
 import { useAccount } from 'wagmi'
 import { z } from 'zod'
-import { useSaveUserInfo } from '@/app/[lang]/(features)/account/[address]/_hooks/useSaveUserInfo'
-import AutoForm from '@/components/ui/auto-form'
-import { Button } from '@/components/ui/button'
-import { Typography } from '@/components/ui/typography'
-import type { Address } from 'viem'
 
 type UserNameProps = {
   targetAddress: Address
   userInfo: User
 }
 
-const createSchema = (userInfo: User) => {
-  return z.object({
-    name: z.string().default(userInfo.name),
-  })
-}
+const schema = z.object({
+  name: z.string(),
+})
 
 const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
   const [editing, setEditing] = useState(false)
@@ -28,9 +29,17 @@ const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
   const { address } = useAccount()
   const { saveUserInfo } = useSaveUserInfo(address ?? '0x0')
 
+  const form = useForm({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      name: userInfo.name,
+    },
+  })
+
   const handleClose = async (newName: string) => {
     setEditing(false)
     if (userInfo.name === newName || address === undefined) return
+    console.log('newName:', newName)
 
     await saveUserInfo(newName, userInfo.iconUrl)
   }
@@ -42,29 +51,34 @@ const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
           {userInfo.name}
           {
             <button
+              type='button'
               className='ml-2 bg-black'
               onClick={() => setEditing(true)}
-              disabled={address?.toLocaleLowerCase() !== targetAddress}>
+              disabled={address?.toLocaleLowerCase() !== targetAddress}
+            >
               <Pencil className='hover:opacity-50' color='white' />
             </button>
           }
         </Typography>
       ) : (
-        <AutoForm
-          formSchema={createSchema(userInfo)}
-          fieldConfig={{
-            name: {
-              inputProps: {
-                type: 'text',
-                placeholder: 'UserName',
-              },
-            },
-          }}
-          onSubmit={(data) => handleClose(data.name)}>
-          <Button className='w-full' type='submit'>
-            Update
-          </Button>
-        </AutoForm>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit((data) => handleClose(data.name))} className='mt-2 space-y-2'>
+            <FormField
+              control={form.control}
+              name='name'
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            <Button className='w-full' type='submit'>
+              Update
+            </Button>
+          </form>
+        </Form>
       )}
     </div>
   )

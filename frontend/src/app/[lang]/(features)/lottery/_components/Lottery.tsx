@@ -20,7 +20,7 @@ const Lottery = async ({ lang }: { lang: string }) => {
 			<div className="box-border rounded-2xl border-4 border-dashed border-pink-500 p-8 pb-4">
 				<LotteryInformation lang={lang} />
 
-				<Typography variant="h4" className="underline text-end">
+				<Typography variant="h4" className="text-end underline">
 					<Link href="lottery/summary">{t("lottery:pastLottery")}</Link>
 				</Typography>
 			</div>

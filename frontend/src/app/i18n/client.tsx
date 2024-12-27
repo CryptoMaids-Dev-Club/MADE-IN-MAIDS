@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react'
+import React, { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
 import i18next from 'i18next'
 import resourcesToBackend from 'i18next-resources-to-backend'
 import { initReactI18next, useTranslation as useTranslationOrigin } from 'react-i18next'

@@ -1,18 +1,21 @@
 'use client'
 
-import { MaidProfile } from '@prisma/client'
-import Image from 'next/image'
-import Link from 'next/link'
-import { Address } from 'viem'
-import { z } from 'zod'
 import useUpdateProfile from '@/app/[lang]/(features)/detail/_hooks/useUpdateProfile'
 import { useLanguage } from '@/app/i18n/client'
-import AutoForm from '@/components/ui/auto-form'
 import { Button } from '@/components/ui/button'
+import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
 import { LoadingButton } from '@/components/ui/loading-button'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Typography } from '@/components/ui/typography'
 import type { AssetInfo } from '@/server/asset'
+import { zodResolver } from '@hookform/resolvers/zod'
+import type { MaidProfile } from '@prisma/client'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useForm } from 'react-hook-form'
+import type { Address } from 'viem'
+import { z } from 'zod'
 
 type MaidsProfileProps = {
   profile: MaidProfile
@@ -20,63 +23,90 @@ type MaidsProfileProps = {
   owner: Address
 }
 
-const createSchema = (profile: MaidProfile) => {
-  return z.object({
-    name: z.string().min(1).default(profile.name),
-    character: z.string().min(1).default(profile.character),
-    description: z.string().min(1).default(profile.description),
-  })
-}
+const schema = z.object({
+  name: z.string().min(1),
+  character: z.string().min(1),
+  description: z.string().min(1),
+})
 
 const MaidsProfile = ({ profile, asset, owner }: MaidsProfileProps) => {
   const { language } = useLanguage()
 
+  const form = useForm({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      name: profile.name,
+      character: profile.character,
+      description: profile.description,
+    },
+  })
+
   const { editing, updating, isOwner, maidsProfile, toggleEditing, updateProfile } = useUpdateProfile(
     profile,
     asset,
-    owner
+    owner,
   )
 
-  const handleSubmit = (data: { name: string; character: string; description: string }) => {
+  const onSubmit = (data: { name: string; character: string; description: string }) => {
     updateProfile({ ...maidsProfile, ...data })
   }
 
   return (
     <div className='flex flex-col gap-6'>
       {editing ? (
-        <AutoForm
-          formSchema={createSchema(profile)}
-          onSubmit={(data) => handleSubmit(data)}
-          fieldConfig={{
-            name: {
-              inputProps: {
-                placeholder: 'Name',
-              },
-            },
-            character: {
-              inputProps: {
-                placeholder: 'Character',
-              },
-            },
-            description: {
-              inputProps: {
-                placeholder: 'Description',
-              },
-            },
-          }}>
-          {isOwner && (
-            <LoadingButton loading={updating} type='submit' className='w-full'>
-              Save
-            </LoadingButton>
-          )}
-        </AutoForm>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
+            <FormField
+              control={form.control}
+              name='name'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Name</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='character'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Character</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='description'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Description</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            {isOwner && (
+              <LoadingButton loading={updating} type='submit' className='w-full'>
+                Save
+              </LoadingButton>
+            )}
+          </form>
+        </Form>
       ) : (
         <>
           <div className='flex flex-row'>
             <Typography variant='h2'>{maidsProfile.name ?? `CryptoMaids #${profile.id}`}</Typography>
             <a
               className='mx-2'
-              href={`https://opensea.io/assets/ethereum/0x5703a3245ff6fad37fa2a2500f0739d4f6a234e7/${profile.id}`}>
+              href={`https://opensea.io/assets/ethereum/0x5703a3245ff6fad37fa2a2500f0739d4f6a234e7/${profile.id}`}
+            >
               <Image src='/images/Logomark-Blue.png' alt='logo' height='35' width='35' />
             </a>
           </div>

@@ -1,4 +1,4 @@
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 import { unstable_noStore as noStore } from 'next/cache'
 import { Typography } from '@/components/ui/typography'
 import { getAllUserInfo } from '@/server/user/query'

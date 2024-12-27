@@ -1,5 +1,5 @@
 import { readContract } from '@wagmi/core'
-import { Address, formatEther } from 'viem'
+import { type Address, formatEther } from 'viem'
 import { NETWORK } from '@/config/server'
 import { maidsVotingAbi, maidsVotingAddress } from '@/lib/generated'
 import { wagmiConfig } from '@/lib/wagmicore'

@@ -1,15 +1,15 @@
 'use client'
 
-import React from 'react'
+import type React from 'react'
 import '@rainbow-me/rainbowkit/styles.css'
-import { RainbowKitProvider, connectorsForWallets, darkTheme, getDefaultWallets } from '@rainbow-me/rainbowkit'
-import { walletConnectWallet } from '@rainbow-me/rainbowkit/wallets'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { createConfig, WagmiProvider, http } from 'wagmi'
-import { polygon, sepolia } from 'wagmi/chains'
 import { LanguageProvider } from '@/app/i18n/client'
 import { ThemeProvider } from '@/components/theme-provider'
 import { NETWORK, WALLET_CONNECT_ID } from '@/config/client'
+import { RainbowKitProvider, connectorsForWallets, darkTheme, getDefaultWallets } from '@rainbow-me/rainbowkit'
+import { walletConnectWallet } from '@rainbow-me/rainbowkit/wallets'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { http, WagmiProvider, createConfig } from 'wagmi'
+import { polygon, sepolia } from 'wagmi/chains'
 
 const appName = 'MadeInMaids'
 const projectId = WALLET_CONNECT_ID
@@ -26,7 +26,7 @@ const connectors = connectorsForWallets(
   {
     appName,
     projectId,
-  }
+  },
 )
 
 export const config = createConfig({

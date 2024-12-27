@@ -1,4 +1,4 @@
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 import Voting from './_components/Voting'
 
 const VotingPage = () => <Voting />

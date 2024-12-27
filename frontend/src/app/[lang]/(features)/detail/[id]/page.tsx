@@ -2,23 +2,26 @@ import { notFound } from 'next/navigation'
 import { getAsset } from '@/server/asset/query'
 import Detail from '../_components/Detail'
 
-const DetailPage = ({ params }: { params: { id: string } }) => {
-  if (Number(params.id) > 2022) {
+const DetailPage = async (props: { params: Promise<{ id: string }> }) => {
+  const { id } = await (await props).params
+  if (Number(id) > 2022) {
     // CryptoMaids max token id is 2022
     return notFound()
   }
 
-  return <Detail id={Number(params.id)} />
+  return <Detail id={Number(id)} />
 }
 
 export default DetailPage
 
-export const generateMetadata = async ({ params }: { params: { id: number } }) => {
-  if (params.id > 2022) {
+export const generateMetadata = async (props: { params: Promise<{ id: number }> }) => {
+  const { id } = await (await props).params
+
+  if (id > 2022) {
     // CryptoMaids max token id is 2022
     return notFound()
   }
-  const meta = await getAsset(params.id)
+  const meta = await getAsset(id)
 
   return {
     title: 'Detail',

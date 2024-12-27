@@ -1,6 +1,6 @@
 import { defineConfig } from '@wagmi/cli'
 import { react } from '@wagmi/cli/plugins'
-import { Abi } from 'viem'
+import type { Abi } from 'viem'
 import { polygon, sepolia } from 'wagmi/chains'
 import ERC1155Mock from '../contracts/out/ERC1155Mock.sol/ERC1155Mock.json'
 import MaidsItem from '../contracts/out/MaidsItem1155.sol/MaidsItem1155.json'

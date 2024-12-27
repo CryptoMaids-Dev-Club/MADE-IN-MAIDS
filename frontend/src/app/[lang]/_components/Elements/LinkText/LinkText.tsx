@@ -1,4 +1,4 @@
-import Link, { LinkProps } from 'next/link'
+import Link, { type LinkProps } from 'next/link'
 type ILinkText<T> = React.AnchorHTMLAttributes<HTMLAnchorElement> & React.PropsWithChildren<T>
 
 export const LinkText = ({ href, children, ...restProps }: ILinkText<LinkProps>) => {

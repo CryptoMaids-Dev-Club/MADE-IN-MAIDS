@@ -1,12 +1,16 @@
 import { getAsset } from '@/server/asset/query'
 import Voting from '../_components/Voting'
 
-const VotingPage = ({ params }: { params: { id: string } }) => <Voting id={Number(params.id)} />
+const VotingPage = async (params: { params: Promise<{ id: string }> }) => {
+  const { id } = await (await params).params
+  return <Voting id={Number(id)} />
+}
 
 export default VotingPage
 
-export const generateMetadata = async ({ params }: { params: { id: number } }) => {
-  const meta = await getAsset(params.id)
+export const generateMetadata = async (params: { params: Promise<{ id: number }> }) => {
+  const { id } = await (await params).params
+  const meta = await getAsset(id)
 
   return {
     title: 'Detail',
