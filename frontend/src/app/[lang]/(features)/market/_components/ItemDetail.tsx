@@ -1,7 +1,6 @@
 import { getMarketItems } from '@/app/[lang]/(features)/market/_api/query'
 import type { MarketItemInfo } from '@/app/[lang]/(features)/market/_types'
 import { Typography } from '@/components/ui/typography'
-import { unstable_noStore as noStore } from 'next/cache'
 import Image from 'next/image'
 import { PurchaseForm } from './PurchaseForm'
 
@@ -10,7 +9,6 @@ type ItemDetailProps = {
 }
 
 const ItemDetail = async ({ id }: ItemDetailProps) => {
-  noStore()
   const marketItems = await getMarketItems()
   const marketItem = marketItems[id] as MarketItemInfo
 
