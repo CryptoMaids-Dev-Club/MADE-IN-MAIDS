@@ -1,8 +1,8 @@
-import type { Address } from 'viem'
-import { useSignMessage } from 'wagmi'
-import { useToast } from '@/components/ui/use-toast'
+import { useToast } from '@/components/hooks/use-toast'
 import { useUpdateUser } from '@/hooks/useUser'
 import { getSignatureFromLocalStorage } from '@/utils/signature'
+import type { Address } from 'viem'
+import { useSignMessage } from 'wagmi'
 
 export const useSaveUserInfo = (address: Address) => {
   const { toast } = useToast()

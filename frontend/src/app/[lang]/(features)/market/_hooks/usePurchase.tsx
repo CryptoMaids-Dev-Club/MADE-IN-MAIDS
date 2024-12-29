@@ -1,5 +1,5 @@
 import type { MarketItemInfo } from '@/app/[lang]/(features)/market/_types'
-import { useToast } from '@/components/ui/use-toast'
+import { useToast } from '@/components/hooks/use-toast'
 import { NETWORK } from '@/config/client'
 import { useAllowance } from '@/hooks/useAllowance'
 import { useApprove } from '@/hooks/useApprove'
@@ -64,7 +64,6 @@ export const usePurchase = ({ address, item }: usePurchaseProps) => {
 
   useEffect(() => {
     if (isSuccess) {
-      console.log('Successfully bought!')
       toast({
         title: 'Successfully bought!',
         description: 'Share your purchase on X!',

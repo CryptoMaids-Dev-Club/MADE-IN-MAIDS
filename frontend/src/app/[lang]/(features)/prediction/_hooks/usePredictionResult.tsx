@@ -1,15 +1,15 @@
-import { useEffect, useCallback } from 'react'
-import { TwitterShareButton, XIcon } from 'react-share'
-import { formatEther } from 'viem'
-import { useAccount, useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
+import type { Prediction, SolidityUserInfo } from '@/app/[lang]/(features)/prediction/_types'
 import { convertUserInfo } from '@/app/[lang]/(features)/prediction/utils'
-import { useToast } from '@/components/ui/use-toast'
+import { useToast } from '@/components/hooks/use-toast'
 import {
   useReadMaidsPredictionGetRewardAmount,
   useReadMaidsPredictionGetUserInfo,
   useSimulateMaidsPredictionClaimReward,
 } from '@/lib/generated'
-import type { Prediction, SolidityUserInfo } from '@/app/[lang]/(features)/prediction/_types'
+import { useCallback, useEffect } from 'react'
+import { TwitterShareButton, XIcon } from 'react-share'
+import { formatEther } from 'viem'
+import { useAccount, useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
 
 const usePredictionResult = (predictionInfo: Prediction) => {
   const { toast } = useToast()
@@ -49,7 +49,8 @@ const usePredictionResult = (predictionInfo: Prediction) => {
           <TwitterShareButton
             url={`https://market.cryptomaids.tokyo/detail/${predictionInfo.id}`}
             title={`Claimed ${rewardAmount} $MAIDS!`}
-            hashtags={['CryptoMaids']}>
+            hashtags={['CryptoMaids']}
+          >
             <XIcon size={32} round />
           </TwitterShareButton>
         ),
@@ -60,23 +61,24 @@ const usePredictionResult = (predictionInfo: Prediction) => {
   const buttonMessage = useCallback(() => {
     if (userInfo?.isClaimed) {
       return 'Already Claimed'
-    } else if (!predictionInfo.isSettled) {
-      return 'Pending'
-    } else if (rewardAmount === 0) {
-      return 'No Hit'
-    } else {
-      return 'Claim Reward'
     }
+    if (!predictionInfo.isSettled) {
+      return 'Pending'
+    }
+    if (rewardAmount === 0) {
+      return 'No Hit'
+    }
+    return 'Claim Reward'
   }, [predictionInfo.isSettled, rewardAmount, userInfo?.isClaimed])
 
   const resultMessage = useCallback(() => {
     if (!predictionInfo.isSettled) {
       return 'Reward: Pending'
-    } else if (rewardAmount === 0) {
-      return 'No Hit'
-    } else {
-      return `Reward: ${rewardAmount ?? 0}`
     }
+    if (rewardAmount === 0) {
+      return 'No Hit'
+    }
+    return `Reward: ${rewardAmount ?? 0}`
   }, [predictionInfo.isSettled, rewardAmount])
 
   return {

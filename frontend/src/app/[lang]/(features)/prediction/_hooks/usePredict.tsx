@@ -1,6 +1,6 @@
 import type { SolidityUserInfo } from '@/app/[lang]/(features)/prediction/_types'
 import { convertUserInfo } from '@/app/[lang]/(features)/prediction/utils'
-import { useToast } from '@/components/ui/use-toast'
+import { useToast } from '@/components/hooks/use-toast'
 import { NETWORK } from '@/config/client'
 import useAllowance from '@/hooks/useAllowance'
 import { useApprove } from '@/hooks/useApprove'
@@ -78,16 +78,16 @@ const usePredict = (predictionId: number) => {
     } else {
       approve()
     }
-  }, [approve, canPredict, predict])
+  }, [approve, canPredict, predict, debounceAmount, debounceChoice, predictionId])
 
   const buttonMessage = useCallback(() => {
     if (userInfo?.isPredicted) {
       return 'Already Predicted'
-    } else if (canPredict) {
-      return 'Vote'
-    } else {
-      return 'Approve $MAIDS'
     }
+    if (canPredict) {
+      return 'Vote'
+    }
+    return 'Approve $MAIDS'
   }, [canPredict, userInfo])
 
   return {
