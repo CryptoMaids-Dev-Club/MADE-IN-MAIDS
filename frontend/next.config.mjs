@@ -29,6 +29,11 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'made-in-maids.s3.us-east-1.amazonaws.com',
+        port: '',
+      },
+      {
+        protocol: 'https',
         hostname: 'firebasestorage.googleapis.com',
         port: '',
       },
