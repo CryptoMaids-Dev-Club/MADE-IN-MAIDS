@@ -1,4 +1,4 @@
-import { useToast } from '@/components/ui/use-toast'
+import { useToast } from '@/components/hooks/use-toast'
 import { NETWORK } from '@/config/client'
 import { useAllowance } from '@/hooks/useAllowance'
 import { useApprove } from '@/hooks/useApprove'
@@ -52,7 +52,7 @@ const useVote = (id: number) => {
         approve()
       }
     },
-    [allowance, approve, vote],
+    [allowance, approve, vote, id],
   )
 
   return {

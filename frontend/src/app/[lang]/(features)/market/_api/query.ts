@@ -1,8 +1,8 @@
-import { readContract } from '@wagmi/core'
-import { type Address, formatEther, formatUnits } from 'viem'
 import { NETWORK } from '@/config/server'
 import { maidsMarketAbi, maidsMarketAddress } from '@/lib/generated'
 import { wagmiConfig } from '@/lib/wagmicore'
+import { readContract } from '@wagmi/core'
+import { type Address, formatEther, formatUnits } from 'viem'
 import type { ItemInfo, MarketItemInfo, NFTMetadata, SolidityItemInfo } from '../_types'
 import 'server-only'
 
@@ -21,7 +21,7 @@ export const getMarketItems = async () => {
 
 const convert = (items: SolidityItemInfo[]) => {
   const convertedItems: ItemInfo[] = []
-  items.forEach((item) => {
+  for (const item of items) {
     const convertedItem: ItemInfo = {
       name: item.name,
       price: Number(formatEther(item.price)),
@@ -30,8 +30,7 @@ const convert = (items: SolidityItemInfo[]) => {
       limitPerWallet: Number(formatUnits(item.limitPerWallet, 0)),
     }
     convertedItems.push(convertedItem)
-  })
-
+  }
   return convertedItems
 }
 
@@ -50,14 +49,14 @@ const getItemInfo = async (items: ItemInfo[]): Promise<MarketItemInfo[]> => {
           name: metadata.name,
           description: metadata.description,
           image: metadata.image.replace('ipfs://', 'https://ipfs.io/ipfs/'),
-          external_url: metadata.external_url && metadata.external_url.replace('ipfs://', 'https://ipfs.io/ipfs/'),
+          external_url: metadata.external_url?.replace('ipfs://', 'https://ipfs.io/ipfs/'),
           nsfw: metadata.nsfw,
         }
         infos.push(info)
       } catch (e) {
         console.error(e)
       }
-    })
+    }),
   )
 
   infos.sort((a, b) => Number(a.id) - Number(b.id))

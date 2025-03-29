@@ -1,9 +1,7 @@
-import { unstable_noStore as noStore } from 'next/cache'
 import { getMarketItems } from '@/app/[lang]/(features)/market/_api/query'
 import ItemCard from './ItemCard'
 
 const ItemList = async ({ lang }: { lang: string }) => {
-  noStore()
   const marketItems = await getMarketItems()
 
   return (

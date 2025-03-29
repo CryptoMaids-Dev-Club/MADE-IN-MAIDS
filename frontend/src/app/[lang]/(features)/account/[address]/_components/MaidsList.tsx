@@ -8,7 +8,7 @@ import { Typography } from '@/components/ui/typography'
 import Image from 'next/image'
 import Link from 'next/link'
 import InfiniteScroll from 'react-infinite-scroller'
-import type { Address } from 'viem'
+import { type Address, isAddressEqual } from 'viem'
 import { useAccount } from 'wagmi'
 
 type MaidsListProps = {
@@ -52,7 +52,7 @@ const MaidsList = ({ targetAddress }: MaidsListProps) => {
               <Typography variant='h4' className='truncate'>
                 {nft.name}
               </Typography>
-              {address && address.toLowerCase() === nft.owner && (
+              {address && isAddressEqual(address, nft.owner) && (
                 <Badge className='ml-4 cursor-pointer' onClick={() => handleSaveClick(nft.image)}>
                   Set as Icon
                 </Badge>

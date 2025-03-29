@@ -1,7 +1,5 @@
-import { useCallback, useEffect, useState } from 'react'
-import { useAccount, useReadContracts, useWaitForTransactionReceipt } from 'wagmi'
 import useMedalAndTicket from '@/app/[lang]/(features)/lottery/_hooks/useMedalAndTicket'
-import { useToast } from '@/components/ui/use-toast'
+import { useToast } from '@/components/hooks/use-toast'
 import { NETWORK } from '@/config/client'
 import {
   maidsLotteryConfig,
@@ -10,6 +8,8 @@ import {
   useWriteMaidsLotteryOldReturnTicket,
   useWriteMaidsLotteryReturnTicket,
 } from '@/lib/generated'
+import { useCallback, useEffect, useState } from 'react'
+import { useAccount, useReadContracts, useWaitForTransactionReceipt } from 'wagmi'
 
 const useLottery = ({ lotteryId }: { lotteryId: number }) => {
   const [share, setShare] = useState<number>(1)
