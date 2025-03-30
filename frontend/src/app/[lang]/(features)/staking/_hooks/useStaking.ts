@@ -1,8 +1,7 @@
 'use client'
 
 import { useToast } from '@/components/hooks/use-toast'
-import { NETWORK } from '@/config/client'
-import { env } from '@/env/client.mjs'
+import { API_SERVER, NETWORK } from '@/config/client'
 import { maidsTokenAddress, useReadMaidsTokenBalanceOf } from '@/lib/generated'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { formatEther } from 'viem'
@@ -21,7 +20,7 @@ export const useStaking = () => {
     queryKey: ['pendingRewards', address],
     queryFn: async () => {
       if (!address) return { pendingTokens: '0' }
-      const response = await fetch(`${env.NEXT_PUBLIC_API_SERVER}/getPendingTokensMany?address=${address}`)
+      const response = await fetch(`${API_SERVER}/getPendingTokensMany?address=${address}`)
       if (!response.ok) {
         throw new Error('Failed to fetch pending rewards')
       }
@@ -66,7 +65,7 @@ export const useStaking = () => {
         const message = `Claim $MAIDS: ${address}`
         const signature = await signMessageAsync({ message })
 
-        const response = await fetch(`${env.NEXT_PUBLIC_API_SERVER}/claim`, {
+        const response = await fetch(`${API_SERVER}/claim`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
