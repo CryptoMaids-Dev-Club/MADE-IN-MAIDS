@@ -2,9 +2,11 @@ name: Slither Analysis action
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
+    paths: ["contracts/**"]
   pull_request:
-    branches: [ main, develop ]
+    branches: [main, develop]
+    paths: ["contracts/**"]
   workflow_dispatch:
 
 jobs:
@@ -26,8 +28,8 @@ jobs:
         uses: actions/github-script@v6
         if: github.event_name == 'pull_request'
         env:
-            REPORT: ${{ steps.slither.outputs.stdout }}
-            
+          REPORT: ${{ steps.slither.outputs.stdout }}
+
         with:
           script: |
             const script = require('.github/scripts/comment')
