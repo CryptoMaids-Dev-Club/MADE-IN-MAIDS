@@ -2562,6 +2562,227 @@ export const maidsTokenConfig = {
 } as const
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// MaidsTokenYield
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const maidsTokenYieldAbi = [
+  {
+    type: 'constructor',
+    inputs: [
+      { name: 'token_', internalType: 'address', type: 'address' },
+      { name: 'minter_', internalType: 'address', type: 'address' },
+    ],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'Token',
+    outputs: [
+      { name: '', internalType: 'contract IMaidsToken', type: 'address' },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'caller_', internalType: 'address', type: 'address' },
+      { name: 'tokenIds_', internalType: 'uint256[]', type: 'uint256[]' },
+    ],
+    name: 'claim',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'tokenId_', internalType: 'uint256', type: 'uint256' }],
+    name: 'getPendingTokens',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'tokenIds_', internalType: 'uint256[]', type: 'uint256[]' },
+    ],
+    name: 'getPendingTokensMany',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'getYieldRateData',
+    outputs: [
+      {
+        name: '',
+        internalType: 'struct MaidsTokenYield.yieldRate[]',
+        type: 'tuple[]',
+        components: [
+          { name: 'day', internalType: 'uint256', type: 'uint256' },
+          { name: 'rate', internalType: 'uint256', type: 'uint256' },
+        ],
+      },
+    ],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'minter',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'owner',
+    outputs: [{ name: '', internalType: 'address', type: 'address' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'renounceOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'minter_', internalType: 'address', type: 'address' }],
+    name: 'setMinter',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'address_', internalType: 'address', type: 'address' }],
+    name: 'setToken',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'yieldEndTime_', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'setYieldEndTime',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'day_', internalType: 'uint256', type: 'uint256' },
+      { name: 'rate_', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'setYieldRateData',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [
+      { name: 'yieldStartTime_', internalType: 'uint256', type: 'uint256' },
+    ],
+    name: 'setYieldStartTime',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    name: 'tokenToLastClaimedTimestamp',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [{ name: 'newOwner', internalType: 'address', type: 'address' }],
+    name: 'transferOwnership',
+    outputs: [],
+    stateMutability: 'nonpayable',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'yieldEndTime',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'function',
+    inputs: [],
+    name: 'yieldStartTime',
+    outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
+    stateMutability: 'view',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      { name: 'to_', internalType: 'address', type: 'address', indexed: true },
+      {
+        name: 'tokenIds_',
+        internalType: 'uint256[]',
+        type: 'uint256[]',
+        indexed: false,
+      },
+      {
+        name: 'totalClaimed_',
+        internalType: 'uint256',
+        type: 'uint256',
+        indexed: true,
+      },
+    ],
+    name: 'Claim',
+  },
+  {
+    type: 'event',
+    anonymous: false,
+    inputs: [
+      {
+        name: 'previousOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+      {
+        name: 'newOwner',
+        internalType: 'address',
+        type: 'address',
+        indexed: true,
+      },
+    ],
+    name: 'OwnershipTransferred',
+  },
+  { type: 'error', inputs: [], name: 'InvalidTimestamp' },
+  { type: 'error', inputs: [], name: 'NotMinter' },
+] as const
+
+/**
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const maidsTokenYieldAddress = {
+  137: '0x9803445DA8701F6cbc9AE0dD24928961847bdAc2',
+  11155111: '0x9803445DA8701F6cbc9AE0dD24928961847bdAc2',
+} as const
+
+/**
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const maidsTokenYieldConfig = {
+  address: maidsTokenYieldAddress,
+  abi: maidsTokenYieldAbi,
+} as const
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // MaidsVoting
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -7030,6 +7251,402 @@ export const useWatchMaidsTokenTransferEvent =
     abi: maidsTokenAbi,
     address: maidsTokenAddress,
     eventName: 'Transfer',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useReadMaidsTokenYield = /*#__PURE__*/ createUseReadContract({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"Token"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useReadMaidsTokenYieldToken = /*#__PURE__*/ createUseReadContract({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+  functionName: 'Token',
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"getPendingTokens"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useReadMaidsTokenYieldGetPendingTokens =
+  /*#__PURE__*/ createUseReadContract({
+    abi: maidsTokenYieldAbi,
+    address: maidsTokenYieldAddress,
+    functionName: 'getPendingTokens',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"getPendingTokensMany"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useReadMaidsTokenYieldGetPendingTokensMany =
+  /*#__PURE__*/ createUseReadContract({
+    abi: maidsTokenYieldAbi,
+    address: maidsTokenYieldAddress,
+    functionName: 'getPendingTokensMany',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"getYieldRateData"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useReadMaidsTokenYieldGetYieldRateData =
+  /*#__PURE__*/ createUseReadContract({
+    abi: maidsTokenYieldAbi,
+    address: maidsTokenYieldAddress,
+    functionName: 'getYieldRateData',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"minter"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useReadMaidsTokenYieldMinter = /*#__PURE__*/ createUseReadContract(
+  {
+    abi: maidsTokenYieldAbi,
+    address: maidsTokenYieldAddress,
+    functionName: 'minter',
+  },
+)
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"owner"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useReadMaidsTokenYieldOwner = /*#__PURE__*/ createUseReadContract({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+  functionName: 'owner',
+})
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"tokenToLastClaimedTimestamp"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useReadMaidsTokenYieldTokenToLastClaimedTimestamp =
+  /*#__PURE__*/ createUseReadContract({
+    abi: maidsTokenYieldAbi,
+    address: maidsTokenYieldAddress,
+    functionName: 'tokenToLastClaimedTimestamp',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"yieldEndTime"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useReadMaidsTokenYieldYieldEndTime =
+  /*#__PURE__*/ createUseReadContract({
+    abi: maidsTokenYieldAbi,
+    address: maidsTokenYieldAddress,
+    functionName: 'yieldEndTime',
+  })
+
+/**
+ * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"yieldStartTime"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useReadMaidsTokenYieldYieldStartTime =
+  /*#__PURE__*/ createUseReadContract({
+    abi: maidsTokenYieldAbi,
+    address: maidsTokenYieldAddress,
+    functionName: 'yieldStartTime',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useWriteMaidsTokenYield = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+})
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"claim"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useWriteMaidsTokenYieldClaim =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: maidsTokenYieldAbi,
+    address: maidsTokenYieldAddress,
+    functionName: 'claim',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useWriteMaidsTokenYieldRenounceOwnership =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: maidsTokenYieldAbi,
+    address: maidsTokenYieldAddress,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"setMinter"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useWriteMaidsTokenYieldSetMinter =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: maidsTokenYieldAbi,
+    address: maidsTokenYieldAddress,
+    functionName: 'setMinter',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"setToken"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useWriteMaidsTokenYieldSetToken =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: maidsTokenYieldAbi,
+    address: maidsTokenYieldAddress,
+    functionName: 'setToken',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"setYieldEndTime"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useWriteMaidsTokenYieldSetYieldEndTime =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: maidsTokenYieldAbi,
+    address: maidsTokenYieldAddress,
+    functionName: 'setYieldEndTime',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"setYieldRateData"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useWriteMaidsTokenYieldSetYieldRateData =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: maidsTokenYieldAbi,
+    address: maidsTokenYieldAddress,
+    functionName: 'setYieldRateData',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"setYieldStartTime"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useWriteMaidsTokenYieldSetYieldStartTime =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: maidsTokenYieldAbi,
+    address: maidsTokenYieldAddress,
+    functionName: 'setYieldStartTime',
+  })
+
+/**
+ * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useWriteMaidsTokenYieldTransferOwnership =
+  /*#__PURE__*/ createUseWriteContract({
+    abi: maidsTokenYieldAbi,
+    address: maidsTokenYieldAddress,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useSimulateMaidsTokenYield =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: maidsTokenYieldAbi,
+    address: maidsTokenYieldAddress,
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"claim"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useSimulateMaidsTokenYieldClaim =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: maidsTokenYieldAbi,
+    address: maidsTokenYieldAddress,
+    functionName: 'claim',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"renounceOwnership"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useSimulateMaidsTokenYieldRenounceOwnership =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: maidsTokenYieldAbi,
+    address: maidsTokenYieldAddress,
+    functionName: 'renounceOwnership',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"setMinter"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useSimulateMaidsTokenYieldSetMinter =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: maidsTokenYieldAbi,
+    address: maidsTokenYieldAddress,
+    functionName: 'setMinter',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"setToken"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useSimulateMaidsTokenYieldSetToken =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: maidsTokenYieldAbi,
+    address: maidsTokenYieldAddress,
+    functionName: 'setToken',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"setYieldEndTime"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useSimulateMaidsTokenYieldSetYieldEndTime =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: maidsTokenYieldAbi,
+    address: maidsTokenYieldAddress,
+    functionName: 'setYieldEndTime',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"setYieldRateData"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useSimulateMaidsTokenYieldSetYieldRateData =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: maidsTokenYieldAbi,
+    address: maidsTokenYieldAddress,
+    functionName: 'setYieldRateData',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"setYieldStartTime"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useSimulateMaidsTokenYieldSetYieldStartTime =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: maidsTokenYieldAbi,
+    address: maidsTokenYieldAddress,
+    functionName: 'setYieldStartTime',
+  })
+
+/**
+ * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"transferOwnership"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useSimulateMaidsTokenYieldTransferOwnership =
+  /*#__PURE__*/ createUseSimulateContract({
+    abi: maidsTokenYieldAbi,
+    address: maidsTokenYieldAddress,
+    functionName: 'transferOwnership',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsTokenYieldAbi}__
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useWatchMaidsTokenYieldEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: maidsTokenYieldAbi,
+    address: maidsTokenYieldAddress,
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `eventName` set to `"Claim"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useWatchMaidsTokenYieldClaimEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: maidsTokenYieldAbi,
+    address: maidsTokenYieldAddress,
+    eventName: 'Claim',
+  })
+
+/**
+ * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `eventName` set to `"OwnershipTransferred"`
+ *
+ * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
+ */
+export const useWatchMaidsTokenYieldOwnershipTransferredEvent =
+  /*#__PURE__*/ createUseWatchContractEvent({
+    abi: maidsTokenYieldAbi,
+    address: maidsTokenYieldAddress,
+    eventName: 'OwnershipTransferred',
   })
 
 /**

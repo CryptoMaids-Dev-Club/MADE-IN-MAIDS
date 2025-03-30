@@ -34,6 +34,11 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'maidsstakingpolygon.onrender.com',
+        port: '',
+      },
+      {
+        protocol: 'https',
         hostname: 'placehold.jp', // for testing
         port: '',
       },

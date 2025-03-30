@@ -1,5 +1,5 @@
-import { polygon, sepolia } from 'wagmi/chains'
 import { env } from '@/env/client.mjs'
+import { polygon, sepolia } from 'wagmi/chains'
 
 export const INFURA_API_KEY = env.NEXT_PUBLIC_INFURA_API_KEY
 export const WALLET_CONNECT_ID = env.NEXT_PUBLIC_WALLET_CONNECT_ID

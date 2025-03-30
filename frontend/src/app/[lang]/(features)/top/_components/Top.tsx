@@ -1,6 +1,6 @@
-import { Suspense } from 'react'
 import { getTranslation } from '@/app/i18n/server'
 import { Typography } from '@/components/ui/typography'
+import { Suspense } from 'react'
 import RecentlyUpdatedProfiles, { RecentlyUpdatedProfilesSkeleton } from './RecentlyUpdatedProfiles'
 import TopCard from './TopCard'
 
@@ -26,7 +26,7 @@ const Top = async ({ lang }: TopProps) => {
           color='text-blue-400'
           image='/images/staking.png'
           description={t('top:staking')}
-          link='https://made-in-maids.cryptomaids.tokyo/'
+          link={`/${lang}/staking`}
         />
         <TopCard
           title='VOTING'
