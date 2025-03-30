@@ -37,6 +37,7 @@
     "@wagmi/core": "^2.16.7",
     "autoprefixer": "^10.4.16",
     "buffer": "^6.0.3",
+    "caniuse-lite": "^1.0.30001707",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "date-fns": "^4.1.0",
