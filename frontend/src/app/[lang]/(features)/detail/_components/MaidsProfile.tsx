@@ -107,7 +107,7 @@ const MaidsProfile = ({ profile, asset, owner }: MaidsProfileProps) => {
               className='mx-2'
               href={`https://opensea.io/assets/ethereum/0x5703a3245ff6fad37fa2a2500f0739d4f6a234e7/${profile.id}`}
             >
-              <Image src='/images/Logomark-Blue.png' alt='logo' height='35' width='35' />
+              <Image src='/images/common/Logomark-Blue.png' alt='logo' height='35' width='35' />
             </a>
           </div>
 

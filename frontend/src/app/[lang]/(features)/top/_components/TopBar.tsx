@@ -1,18 +1,18 @@
 'use client'
 
-import { Suspense } from 'react'
-import { ConnectButton } from '@rainbow-me/rainbowkit'
-import { UserRound } from 'lucide-react'
-import dynamic from 'next/dynamic'
-import Image from 'next/image'
-import Link from 'next/link'
-import { useAccount } from 'wagmi'
 import { ProfileIcon } from '@/app/[lang]/_components/Elements/ProfileIcon'
 import SwitchLanguageButton from '@/app/[lang]/_components/Elements/SwitchLanguageButton/SwitchLanguageButton'
 import { useLanguage } from '@/app/i18n/client'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { Skeleton } from '@/components/ui/skeleton'
+import { ConnectButton } from '@rainbow-me/rainbowkit'
+import { UserRound } from 'lucide-react'
+import dynamic from 'next/dynamic'
+import Image from 'next/image'
+import Link from 'next/link'
+import { Suspense } from 'react'
+import { useAccount } from 'wagmi'
 
 const Balance = dynamic(() => import('@/app/[lang]/_components/Elements/Balance').then((mod) => mod.Balance), {
   ssr: false,
@@ -45,7 +45,8 @@ export const TopBar = () => {
                   data-drawer-target='drawer-example'
                   data-drawer-show='drawer-example'
                   aria-controls='drawer-example'
-                  className='relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white'>
+                  className='relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white'
+                >
                   <span className='absolute -inset-0.5'></span>
                   <span className='sr-only'>Open main menu</span>
                   <svg
@@ -54,7 +55,8 @@ export const TopBar = () => {
                     viewBox='0 0 24 24'
                     strokeWidth='1.5'
                     stroke='currentColor'
-                    aria-hidden='true'>
+                    aria-hidden='true'
+                  >
                     <path
                       strokeLinecap='round'
                       strokeLinejoin='round'
@@ -67,7 +69,8 @@ export const TopBar = () => {
                     viewBox='0 0 24 24'
                     strokeWidth='1.5'
                     stroke='currentColor'
-                    aria-hidden='true'>
+                    aria-hidden='true'
+                  >
                     <path strokeLinecap='round' strokeLinejoin='round' d='M6 18L18 6M6 6l12 12' />
                   </svg>
                 </button>
@@ -95,7 +98,8 @@ export const TopBar = () => {
                       <a
                         key={name}
                         href={linkUrls[index]}
-                        className='rounded-md px-3 py-1 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'>
+                        className='rounded-md px-3 py-1 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white'
+                      >
                         {name}
                       </a>
                     </div>
@@ -109,7 +113,7 @@ export const TopBar = () => {
           <div className='flex flex-1 items-center xl:items-stretch xl:justify-start'>
             <div className='ml-10 flex shrink-0 items-center'>
               <Link href={`/${language}/top`} className='h-7 w-36 sm:h-9 sm:w-40'>
-                <Image src='/images/logo_set.png' width='160' height='48' alt='logo' />
+                <Image src='/images/common/logo_set.png' width='160' height='48' alt='logo' />
               </Link>
             </div>
             <div className='hidden sm:ml-6 lg:block'>
@@ -118,7 +122,8 @@ export const TopBar = () => {
                   <a
                     key={name}
                     href={linkUrls[index]}
-                    className='rounded-md p-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white xl:text-xl'>
+                    className='rounded-md p-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white xl:text-xl'
+                  >
                     {name}
                   </a>
                 ))}
