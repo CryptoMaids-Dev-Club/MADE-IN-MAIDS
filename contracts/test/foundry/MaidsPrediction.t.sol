@@ -164,10 +164,9 @@ contract MaidsPredictionTest is Test {
 
         vm.startPrank(USER);
         token.approve(address(prediction), amount);
-        token.transfer(address(this), 1 ether);
 
         vm.expectRevert(MaidsPrediction.MaidsPrediction_InsufficientAllowance.selector);
-        prediction.predict(0, amount, choice);
+        prediction.predict(0, amount + 1 ether, choice);
         vm.stopPrank();
     }
 
