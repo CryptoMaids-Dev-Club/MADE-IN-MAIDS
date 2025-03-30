@@ -1,0 +1,29 @@
+{
+  "title": "Staking",
+  "welcome": "Welcome to the CryptoMaids Staking!",
+  "holdEarn": "CryptoMaidsを保有して$MAIDSを獲得",
+  "description": {
+    "part1": "$MAIDSはコミュニティトークンです。",
+    "part2": "投票やファンアートの購入など、様々な用途に使えます！"
+  },
+  "rewardRate": "CryptoMaids NFT 1枚につき 10 $MAIDS/日",
+  "import": {
+    "title": "$MAIDSをインポート",
+    "description": "Maids Worldに参加するために$MAIDSをインポートしましょう！",
+    "button": "$MAIDSをインポート"
+  },
+  "claim": {
+    "title": "$MAIDSを受け取る",
+    "description": "$MAIDSを受け取りましょう！ガス代は不要です",
+    "pendingRewards": "保留中の報酬：",
+    "minClaimNote": "100トークン以上の場合のみ受け取り可能です",
+    "button": "受け取る"
+  },
+  "buy": {
+    "title": "CryptoMaidsアイテムを購入",
+    "description": "$MAIDSでCryptoMaidsアイテムを購入",
+    "balance": "保有残高：",
+    "button": "MAIDS MARKET"
+  },
+  "connectWallet": "ウォレットを接続"
+}
