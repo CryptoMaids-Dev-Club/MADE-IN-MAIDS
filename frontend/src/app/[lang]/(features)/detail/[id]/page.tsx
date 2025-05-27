@@ -14,14 +14,14 @@ const DetailPage = async (props: { params: Promise<{ id: string }> }) => {
 
 export default DetailPage
 
-export const generateMetadata = async ({ params }: { params: { id: number } }) => {
-  const { id } = params
+export const generateMetadata = async ({ params }: { params: Promise<{ id: string }> }) => {
+  const { id } = await params
 
-  if (id > 2022) {
+  if (Number(id) > 2022) {
     // CryptoMaids max token id is 2022
     return notFound()
   }
-  const meta = await getAsset(id)
+  const meta = await getAsset(Number(id))
 
   return {
     title: 'Detail',
