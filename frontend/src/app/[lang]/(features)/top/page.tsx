@@ -1,7 +1,7 @@
 import Top from '@/app/[lang]/(features)/top/_components/Top'
 
-const Page = async ({ params }: { params: { lang: string } }) => {
-  const { lang } = params
+const Page = async (props: { params: Promise<{ lang: string }> }) => {
+  const { lang } = await props.params
 
   return <Top lang={lang} />
 }

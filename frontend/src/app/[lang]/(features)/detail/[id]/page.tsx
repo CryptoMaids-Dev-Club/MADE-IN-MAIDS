@@ -2,8 +2,8 @@ import { notFound } from 'next/navigation'
 import { getAsset } from '@/server/asset/query'
 import Detail from '../_components/Detail'
 
-const DetailPage = async ({ params }: { params: { id: string } }) => {
-  const { id } = params
+const DetailPage = async (props: { params: Promise<{ id: string }> }) => {
+  const { id } = await props.params
   if (Number(id) > 2022) {
     // CryptoMaids max token id is 2022
     return notFound()
