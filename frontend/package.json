@@ -26,7 +26,7 @@
     "@rainbow-me/rainbowkit": "2.0.0",
     "@t3-oss/env-nextjs": "^0.11.1",
     "@tanstack/react-query": "^5.10.0",
-    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/jest-dom": "^6.6.3",
     "@types/jest": "^27.5.2",
     "@types/node": "^22.10.2",
     "@types/react": "^19.0.2",
@@ -81,6 +81,10 @@
     "prisma:generate": "prisma generate",
     "start": "next start",
     "analyze": "ANALYZE=true next build",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run",
+    "test:watch": "vitest --watch",
     "fix": "bun run -s format && bun run -s lint:fix",
     "format": "biome format .",
     "lint": "biome lint --write"
@@ -88,10 +92,14 @@
   "devDependencies": {
     "@happy-dom/global-registrator": "^13.4.1",
     "@next/bundle-analyzer": "^13.4.9",
-    "@testing-library/react": "^14.2.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
     "@total-typescript/ts-reset": "^0.5.1",
     "@types/negotiator": "^0.6.3",
     "@types/react-infinite-scroller": "^1.2.3",
-    "@wagmi/cli": "latest"
+    "@vitejs/plugin-react": "^4.5.0",
+    "@wagmi/cli": "latest",
+    "jsdom": "^26.1.0",
+    "vitest": "^3.1.4"
   }
 }
