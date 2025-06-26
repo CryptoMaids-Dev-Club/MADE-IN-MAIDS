@@ -4,7 +4,7 @@ import { Typography } from '@/components/ui/typography'
 import { getAllUserInfo } from '@/server/user/query'
 import RankingTables from './RankingTables'
 
-// TODO: Insert Maids Image
+// Consider adding header image for visual appeal
 const Ranking = async () => {
   noStore()
   const userInfos = await getAllUserInfo()

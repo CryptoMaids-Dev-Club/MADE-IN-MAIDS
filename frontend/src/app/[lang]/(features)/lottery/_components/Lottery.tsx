@@ -10,7 +10,7 @@ import { Typography } from "@/components/ui/typography";
 
 const Lottery = async ({ lang }: { lang: string }) => {
 	const { t } = await getTranslation(lang);
-	// ToDo: Add Suspense
+	// Consider wrapping LotteryInformation with Suspense for better loading UX
 	return (
 		<div className="container mx-auto h-dvh min-h-full pb-12">
 			<Typography variant="h1" className="my-2 text-center text-pink-500">
