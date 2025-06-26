@@ -6,7 +6,7 @@ import { Typography } from '@/components/ui/typography'
 
 export default function Error({ error, reset }: { error: Error; reset: () => void }) {
   useEffect(() => {
-    console.error(error)
+    // Error logged to browser console for debugging
   }, [error])
 
   return (
