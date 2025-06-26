@@ -4,8 +4,9 @@ import './src/env/server.mjs'
 import analyze from '@next/bundle-analyzer'
 
 const withBundleAnalyzer = analyze({
-  enabled: false,
+  enabled: process.env.ANALYZE === 'true',
   defaultSizes: 'gzip',
+  openAnalyzer: false,
 })
 
 const nextConfig = {

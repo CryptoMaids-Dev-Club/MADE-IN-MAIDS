@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import { Trans } from "react-i18next/TransWithoutContext";
 import HowToEntry from "@/app/[lang]/(features)/lottery/_components/HowToEntry";
 import HowToGetMedal from "@/app/[lang]/(features)/lottery/_components/HowToGetMedal";
@@ -6,6 +7,7 @@ import HowToGetTicket from "@/app/[lang]/(features)/lottery/_components/HowToGet
 import LotteryInformation from "@/app/[lang]/(features)/lottery/_components/LotteryInformation";
 import BackToTop from "@/app/[lang]/_components/Elements/BackToTop/BackToTop";
 import { getTranslation } from "@/app/i18n/server";
+import { Skeleton } from "@/components/ui/skeleton";
 import { Typography } from "@/components/ui/typography";
 
 const Lottery = async ({ lang }: { lang: string }) => {
@@ -18,7 +20,20 @@ const Lottery = async ({ lang }: { lang: string }) => {
 			</Typography>
 
 			<div className="box-border rounded-2xl border-4 border-dashed border-pink-500 p-8 pb-4">
-				<LotteryInformation lang={lang} />
+				<Suspense fallback={
+					<div className="space-y-4">
+						<Skeleton className="h-8 w-32" />
+						<Skeleton className="h-6 w-48" />
+						<Skeleton className="h-6 w-40" />
+						<div className="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+							{Array.from({ length: 5 }).map((_, i) => (
+								<Skeleton key={i} className="h-32 w-full" />
+							))}
+						</div>
+					</div>
+				}>
+					<LotteryInformation lang={lang} />
+				</Suspense>
 
 				<Typography variant="h4" className="text-end underline">
 					<Link href="lottery/summary">{t("lottery:pastLottery")}</Link>

@@ -113,7 +113,13 @@ export const TopBar = () => {
           <div className='flex flex-1 items-center xl:items-stretch xl:justify-start'>
             <div className='ml-10 flex shrink-0 items-center'>
               <Link href={`/${language}/top`} className='h-7 w-36 sm:h-9 sm:w-40'>
-                <Image src='/images/common/logo_set.png' width='160' height='48' alt='logo' />
+                <Image 
+                  src='/images/common/logo_set.png' 
+                  width={160} 
+                  height={48} 
+                  alt='CryptoMaids - NFT Collection & Marketplace' 
+                  priority
+                />
               </Link>
             </div>
             <div className='hidden sm:ml-6 lg:block'>
