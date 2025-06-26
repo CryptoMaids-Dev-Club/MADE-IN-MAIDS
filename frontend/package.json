@@ -37,7 +37,7 @@
     "@wagmi/core": "^2.16.7",
     "autoprefixer": "^10.4.16",
     "buffer": "^6.0.3",
-    "caniuse-lite": "^1.0.30001707",
+    "caniuse-lite": "^1.0.30001720",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "date-fns": "^4.1.0",
@@ -85,7 +85,7 @@
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
     "test:watch": "vitest --watch",
-    "fix": "bun run -s format && bun run -s lint:fix",
+    "fix": "bun run format && bun run lint",
     "format": "biome format .",
     "lint": "biome lint --write"
   },
