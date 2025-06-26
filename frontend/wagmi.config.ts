@@ -27,7 +27,7 @@ export default defineConfig({
       abi: MaidsTokenYield.abi as Abi,
       address: {
         [polygon.id]: '0x9803445DA8701F6cbc9AE0dD24928961847bdAc2',
-        [sepolia.id]: '0x9803445DA8701F6cbc9AE0dD24928961847bdAc2', // TODO: Update address
+        [sepolia.id]: '0x9803445DA8701F6cbc9AE0dD24928961847bdAc2', // Update when testnet contract deployed
       },
     },
     {
