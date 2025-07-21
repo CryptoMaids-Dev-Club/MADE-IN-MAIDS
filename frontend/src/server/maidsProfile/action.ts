@@ -13,7 +13,7 @@ const maidProfileUpdateSchema = MaidProfileSchema.merge(
     imageUrl: z.string(),
     address: z.string(),
     signature: z.string(),
-  })
+  }),
 )
 
 type MaidProfileUpdateSchema = z.infer<typeof maidProfileUpdateSchema>

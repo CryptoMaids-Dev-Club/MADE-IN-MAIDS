@@ -20,7 +20,7 @@ export const getTopAssets = async (slug: number) => {
     topVotes.map(async (vote, index) => {
       const asset = await getAsset(vote.id)
       topAssets.push({ ...vote, ...asset, rank: index + 1 })
-    })
+    }),
   )
 
   return topAssets

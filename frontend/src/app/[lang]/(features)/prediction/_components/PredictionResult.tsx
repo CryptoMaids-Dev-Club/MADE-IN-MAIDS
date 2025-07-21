@@ -25,7 +25,8 @@ const Result = ({ predictionInfo, predictionText }: ResultProps) => {
         className='w-full bg-blue-300 hover:bg-blue-300/80'
         onClick={() => claim()}
         loading={isLoading}
-        disabled={!predictionInfo.isSettled || rewardAmount === 0 || userInfo?.isClaimed}>
+        disabled={!predictionInfo.isSettled || rewardAmount === 0 || userInfo?.isClaimed}
+      >
         {buttonMessage}
       </LoadingButtonForWeb3>
     </>

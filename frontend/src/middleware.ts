@@ -29,7 +29,7 @@ export function middleware(request: NextRequest) {
 
   // Redirect to the preferred language if the pathname is missing the locale
   const pathnameIsMissingLocale = availableLanguages.every(
-    (lang) => !pathname.startsWith(`/${lang}/`) && pathname !== `/${lang}`
+    (lang) => !pathname.startsWith(`/${lang}/`) && pathname !== `/${lang}`,
   )
   if (pathnameIsMissingLocale) {
     if (preferredLanguage !== defaultLanguage) {

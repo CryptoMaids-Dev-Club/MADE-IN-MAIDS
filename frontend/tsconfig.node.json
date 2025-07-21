@@ -3,5 +3,5 @@
     "composite": true,
     "module": "esnext",
     "moduleResolution": "node"
-  },
+  }
 }

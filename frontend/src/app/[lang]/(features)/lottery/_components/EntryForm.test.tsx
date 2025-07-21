@@ -14,7 +14,8 @@ vi.mock('@/app/[lang]/_components/Elements/LoadingButtonForWeb3/LoadingButtonFor
       disabled={disabled || loading}
       className={className}
       data-testid='loading-button'
-      data-loading={loading}>
+      data-loading={loading}
+    >
       {children}
     </button>
   ),
@@ -24,10 +25,7 @@ vi.mock('@/app/[lang]/_components/Elements/LoadingButtonForWeb3/LoadingButtonFor
 vi.mock('@/components/ui/select', () => ({
   Select: ({ children, value, onValueChange }: any) => (
     <div data-testid='select' data-value={value}>
-      <select
-        value={value}
-        onChange={(e) => onValueChange(e.target.value)}
-        data-testid='select-trigger'>
+      <select value={value} onChange={(e) => onValueChange(e.target.value)} data-testid='select-trigger'>
         <option value=''></option>
         {Array.from({ length: 10 }, (_, i) => (
           <option key={i + 1} value={(i + 1).toString()}>
@@ -267,7 +265,7 @@ describe('EntryForm', () => {
 
     const select = screen.getByTestId('select-trigger')
     const options = select.querySelectorAll('option')
-    
+
     // Should have 11 options (empty + 1-10)
     expect(options).toHaveLength(11)
     expect(options[options.length - 1]).toHaveValue('10')
@@ -290,7 +288,7 @@ describe('EntryForm', () => {
 
     const select = screen.getByTestId('select-trigger')
     const options = select.querySelectorAll('option')
-    
+
     // Should have 4 options (empty + 1-3)
     expect(options).toHaveLength(4)
     expect(options[options.length - 1]).toHaveValue('3')

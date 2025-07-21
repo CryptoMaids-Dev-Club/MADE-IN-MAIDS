@@ -11,7 +11,7 @@ vi.mock('./useMedalAndTicket')
 describe('useLottery', () => {
   beforeEach(() => {
     vi.clearAllMocks()
-    
+
     // Mock useMedalAndTicket
     vi.mocked(useMedalAndTicket).mockReturnValue({
       medalBalance: 10,
