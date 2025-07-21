@@ -43,7 +43,7 @@ const RootLayout = async ({ children, params }: { children: React.ReactNode; par
 
   return (
     <html lang={lang} dir={dir(lang)}>
-      <body className={cn('min-h-screen w-screen bg-neutral-950 antialiase', dotGothic.className)}>
+      <body className={cn('min-h-screen w-screen bg-neutral-950 antialiased', dotGothic.className)}>
         <Providers lang={lang}>
           <TopBar />
           <main className='bg-neutral-950 pb-4'>{children}</main>
