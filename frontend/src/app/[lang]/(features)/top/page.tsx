@@ -6,7 +6,7 @@ const Page = async (props: { params: Promise<{ lang: string }> }) => {
   const { lang } = await props.params
 
   return (
-    <Suspense fallback={<Skeleton className="h-40 w-full" />}>
+    <Suspense fallback={<Skeleton className='h-40 w-full' />}>
       <Top lang={lang} />
     </Suspense>
   )

@@ -341,9 +341,7 @@ export const maidsLotteryAbi = [
       { name: 'share', internalType: 'uint256', type: 'uint256' },
     ],
     name: 'entriesByLotteryId',
-    outputs: [
-      { name: 'entryAddress', internalType: 'address', type: 'address' },
-    ],
+    outputs: [{ name: 'entryAddress', internalType: 'address', type: 'address' }],
     stateMutability: 'view',
   },
   {
@@ -546,9 +544,7 @@ export const maidsLotteryAbi = [
   },
   {
     type: 'function',
-    inputs: [
-      { name: 'callbackGasLimit_', internalType: 'uint32', type: 'uint32' },
-    ],
+    inputs: [{ name: 'callbackGasLimit_', internalType: 'uint32', type: 'uint32' }],
     name: 'setCallbackGasLimit',
     outputs: [],
     stateMutability: 'nonpayable',
@@ -569,36 +565,28 @@ export const maidsLotteryAbi = [
   },
   {
     type: 'function',
-    inputs: [
-      { name: 'medalContract_', internalType: 'address', type: 'address' },
-    ],
+    inputs: [{ name: 'medalContract_', internalType: 'address', type: 'address' }],
     name: 'setMedalContract',
     outputs: [],
     stateMutability: 'nonpayable',
   },
   {
     type: 'function',
-    inputs: [
-      { name: 'subscriptionId_', internalType: 'uint64', type: 'uint64' },
-    ],
+    inputs: [{ name: 'subscriptionId_', internalType: 'uint64', type: 'uint64' }],
     name: 'setSubscriptionId',
     outputs: [],
     stateMutability: 'nonpayable',
   },
   {
     type: 'function',
-    inputs: [
-      { name: 'ticketContract_', internalType: 'address', type: 'address' },
-    ],
+    inputs: [{ name: 'ticketContract_', internalType: 'address', type: 'address' }],
     name: 'setTicketContract',
     outputs: [],
     stateMutability: 'nonpayable',
   },
   {
     type: 'function',
-    inputs: [
-      { name: 'vrfCoordinator_', internalType: 'address', type: 'address' },
-    ],
+    inputs: [{ name: 'vrfCoordinator_', internalType: 'address', type: 'address' }],
     name: 'setVrfCoordinator',
     outputs: [],
     stateMutability: 'nonpayable',
@@ -923,9 +911,7 @@ export const maidsLotteryOldAbi = [
       { name: 'share', internalType: 'uint256', type: 'uint256' },
     ],
     name: 'entriesByLotteryId',
-    outputs: [
-      { name: 'entryAddress', internalType: 'address', type: 'address' },
-    ],
+    outputs: [{ name: 'entryAddress', internalType: 'address', type: 'address' }],
     stateMutability: 'view',
   },
   {
@@ -1128,9 +1114,7 @@ export const maidsLotteryOldAbi = [
   },
   {
     type: 'function',
-    inputs: [
-      { name: 'callbackGasLimit_', internalType: 'uint32', type: 'uint32' },
-    ],
+    inputs: [{ name: 'callbackGasLimit_', internalType: 'uint32', type: 'uint32' }],
     name: 'setCallbackGasLimit',
     outputs: [],
     stateMutability: 'nonpayable',
@@ -1151,36 +1135,28 @@ export const maidsLotteryOldAbi = [
   },
   {
     type: 'function',
-    inputs: [
-      { name: 'medalContract_', internalType: 'address', type: 'address' },
-    ],
+    inputs: [{ name: 'medalContract_', internalType: 'address', type: 'address' }],
     name: 'setMedalContract',
     outputs: [],
     stateMutability: 'nonpayable',
   },
   {
     type: 'function',
-    inputs: [
-      { name: 'subscriptionId_', internalType: 'uint64', type: 'uint64' },
-    ],
+    inputs: [{ name: 'subscriptionId_', internalType: 'uint64', type: 'uint64' }],
     name: 'setSubscriptionId',
     outputs: [],
     stateMutability: 'nonpayable',
   },
   {
     type: 'function',
-    inputs: [
-      { name: 'ticketContract_', internalType: 'address', type: 'address' },
-    ],
+    inputs: [{ name: 'ticketContract_', internalType: 'address', type: 'address' }],
     name: 'setTicketContract',
     outputs: [],
     stateMutability: 'nonpayable',
   },
   {
     type: 'function',
-    inputs: [
-      { name: 'vrfCoordinator_', internalType: 'address', type: 'address' },
-    ],
+    inputs: [{ name: 'vrfCoordinator_', internalType: 'address', type: 'address' }],
     name: 'setVrfCoordinator',
     outputs: [],
     stateMutability: 'nonpayable',
@@ -1536,9 +1512,7 @@ export const maidsMarketAbi = [
     type: 'function',
     inputs: [],
     name: 'nft',
-    outputs: [
-      { name: '', internalType: 'contract IMaidsItem1155', type: 'address' },
-    ],
+    outputs: [{ name: '', internalType: 'contract IMaidsItem1155', type: 'address' }],
     stateMutability: 'view',
   },
   {
@@ -1641,9 +1615,7 @@ export const maidsMarketAbi = [
     type: 'function',
     inputs: [],
     name: 'token',
-    outputs: [
-      { name: '', internalType: 'contract IMaidsToken', type: 'address' },
-    ],
+    outputs: [{ name: '', internalType: 'contract IMaidsToken', type: 'address' }],
     stateMutability: 'view',
   },
   {
@@ -1662,9 +1634,7 @@ export const maidsMarketAbi = [
   },
   {
     type: 'function',
-    inputs: [
-      { name: 'newImplementation', internalType: 'address', type: 'address' },
-    ],
+    inputs: [{ name: 'newImplementation', internalType: 'address', type: 'address' }],
     name: 'upgradeTo',
     outputs: [],
     stateMutability: 'nonpayable',
@@ -1739,9 +1709,7 @@ export const maidsMarketAbi = [
   {
     type: 'event',
     anonymous: false,
-    inputs: [
-      { name: 'version', internalType: 'uint8', type: 'uint8', indexed: false },
-    ],
+    inputs: [{ name: 'version', internalType: 'uint8', type: 'uint8', indexed: false }],
     name: 'Initialized',
   },
   {
@@ -2091,9 +2059,7 @@ export const maidsPredictionAbi = [
     type: 'function',
     inputs: [],
     name: 'token',
-    outputs: [
-      { name: '', internalType: 'contract IMaidsToken', type: 'address' },
-    ],
+    outputs: [{ name: '', internalType: 'contract IMaidsToken', type: 'address' }],
     stateMutability: 'view',
   },
   {
@@ -2115,9 +2081,7 @@ export const maidsPredictionAbi = [
   },
   {
     type: 'function',
-    inputs: [
-      { name: 'newImplementation', internalType: 'address', type: 'address' },
-    ],
+    inputs: [{ name: 'newImplementation', internalType: 'address', type: 'address' }],
     name: 'upgradeTo',
     outputs: [],
     stateMutability: 'nonpayable',
@@ -2197,9 +2161,7 @@ export const maidsPredictionAbi = [
   {
     type: 'event',
     anonymous: false,
-    inputs: [
-      { name: 'version', internalType: 'uint8', type: 'uint8', indexed: false },
-    ],
+    inputs: [{ name: 'version', internalType: 'uint8', type: 'uint8', indexed: false }],
     name: 'Initialized',
   },
   {
@@ -2582,9 +2544,7 @@ export const maidsTokenYieldAbi = [
     type: 'function',
     inputs: [],
     name: 'Token',
-    outputs: [
-      { name: '', internalType: 'contract IMaidsToken', type: 'address' },
-    ],
+    outputs: [{ name: '', internalType: 'contract IMaidsToken', type: 'address' }],
     stateMutability: 'view',
   },
   {
@@ -2606,9 +2566,7 @@ export const maidsTokenYieldAbi = [
   },
   {
     type: 'function',
-    inputs: [
-      { name: 'tokenIds_', internalType: 'uint256[]', type: 'uint256[]' },
-    ],
+    inputs: [{ name: 'tokenIds_', internalType: 'uint256[]', type: 'uint256[]' }],
     name: 'getPendingTokensMany',
     outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
     stateMutability: 'view',
@@ -2667,9 +2625,7 @@ export const maidsTokenYieldAbi = [
   },
   {
     type: 'function',
-    inputs: [
-      { name: 'yieldEndTime_', internalType: 'uint256', type: 'uint256' },
-    ],
+    inputs: [{ name: 'yieldEndTime_', internalType: 'uint256', type: 'uint256' }],
     name: 'setYieldEndTime',
     outputs: [],
     stateMutability: 'nonpayable',
@@ -2686,9 +2642,7 @@ export const maidsTokenYieldAbi = [
   },
   {
     type: 'function',
-    inputs: [
-      { name: 'yieldStartTime_', internalType: 'uint256', type: 'uint256' },
-    ],
+    inputs: [{ name: 'yieldStartTime_', internalType: 'uint256', type: 'uint256' }],
     name: 'setYieldStartTime',
     outputs: [],
     stateMutability: 'nonpayable',
@@ -2869,9 +2823,7 @@ export const maidsVotingAbi = [
     type: 'function',
     inputs: [],
     name: 'token',
-    outputs: [
-      { name: '', internalType: 'contract IMaidsToken', type: 'address' },
-    ],
+    outputs: [{ name: '', internalType: 'contract IMaidsToken', type: 'address' }],
     stateMutability: 'view',
   },
   {
@@ -3363,12 +3315,11 @@ export const useReadMaidsItemBalanceOf = /*#__PURE__*/ createUseReadContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44C90619A015EF1B679D638ECa693b10fB28DC83)
  */
-export const useReadMaidsItemBalanceOfBatch =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsItemAbi,
-    address: maidsItemAddress,
-    functionName: 'balanceOfBatch',
-  })
+export const useReadMaidsItemBalanceOfBatch = /*#__PURE__*/ createUseReadContract({
+  abi: maidsItemAbi,
+  address: maidsItemAddress,
+  functionName: 'balanceOfBatch',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsItemAbi}__ and `functionName` set to `"isApprovedForAll"`
@@ -3376,12 +3327,11 @@ export const useReadMaidsItemBalanceOfBatch =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44C90619A015EF1B679D638ECa693b10fB28DC83)
  */
-export const useReadMaidsItemIsApprovedForAll =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsItemAbi,
-    address: maidsItemAddress,
-    functionName: 'isApprovedForAll',
-  })
+export const useReadMaidsItemIsApprovedForAll = /*#__PURE__*/ createUseReadContract({
+  abi: maidsItemAbi,
+  address: maidsItemAddress,
+  functionName: 'isApprovedForAll',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsItemAbi}__ and `functionName` set to `"owner"`
@@ -3401,12 +3351,11 @@ export const useReadMaidsItemOwner = /*#__PURE__*/ createUseReadContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44C90619A015EF1B679D638ECa693b10fB28DC83)
  */
-export const useReadMaidsItemSupportsInterface =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsItemAbi,
-    address: maidsItemAddress,
-    functionName: 'supportsInterface',
-  })
+export const useReadMaidsItemSupportsInterface = /*#__PURE__*/ createUseReadContract({
+  abi: maidsItemAbi,
+  address: maidsItemAddress,
+  functionName: 'supportsInterface',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsItemAbi}__ and `functionName` set to `"uri"`
@@ -3437,12 +3386,11 @@ export const useWriteMaidsItem = /*#__PURE__*/ createUseWriteContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44C90619A015EF1B679D638ECa693b10fB28DC83)
  */
-export const useWriteMaidsItemAddOperator =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsItemAbi,
-    address: maidsItemAddress,
-    functionName: 'addOperator',
-  })
+export const useWriteMaidsItemAddOperator = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsItemAbi,
+  address: maidsItemAddress,
+  functionName: 'addOperator',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsItemAbi}__ and `functionName` set to `"mint"`
@@ -3462,12 +3410,11 @@ export const useWriteMaidsItemMint = /*#__PURE__*/ createUseWriteContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44C90619A015EF1B679D638ECa693b10fB28DC83)
  */
-export const useWriteMaidsItemRemoveOperator =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsItemAbi,
-    address: maidsItemAddress,
-    functionName: 'removeOperator',
-  })
+export const useWriteMaidsItemRemoveOperator = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsItemAbi,
+  address: maidsItemAddress,
+  functionName: 'removeOperator',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsItemAbi}__ and `functionName` set to `"renounceOwnership"`
@@ -3475,12 +3422,11 @@ export const useWriteMaidsItemRemoveOperator =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44C90619A015EF1B679D638ECa693b10fB28DC83)
  */
-export const useWriteMaidsItemRenounceOwnership =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsItemAbi,
-    address: maidsItemAddress,
-    functionName: 'renounceOwnership',
-  })
+export const useWriteMaidsItemRenounceOwnership = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsItemAbi,
+  address: maidsItemAddress,
+  functionName: 'renounceOwnership',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsItemAbi}__ and `functionName` set to `"safeBatchTransferFrom"`
@@ -3488,12 +3434,11 @@ export const useWriteMaidsItemRenounceOwnership =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44C90619A015EF1B679D638ECa693b10fB28DC83)
  */
-export const useWriteMaidsItemSafeBatchTransferFrom =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsItemAbi,
-    address: maidsItemAddress,
-    functionName: 'safeBatchTransferFrom',
-  })
+export const useWriteMaidsItemSafeBatchTransferFrom = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsItemAbi,
+  address: maidsItemAddress,
+  functionName: 'safeBatchTransferFrom',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsItemAbi}__ and `functionName` set to `"safeTransferFrom"`
@@ -3501,12 +3446,11 @@ export const useWriteMaidsItemSafeBatchTransferFrom =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44C90619A015EF1B679D638ECa693b10fB28DC83)
  */
-export const useWriteMaidsItemSafeTransferFrom =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsItemAbi,
-    address: maidsItemAddress,
-    functionName: 'safeTransferFrom',
-  })
+export const useWriteMaidsItemSafeTransferFrom = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsItemAbi,
+  address: maidsItemAddress,
+  functionName: 'safeTransferFrom',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsItemAbi}__ and `functionName` set to `"setApprovalForAll"`
@@ -3514,12 +3458,11 @@ export const useWriteMaidsItemSafeTransferFrom =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44C90619A015EF1B679D638ECa693b10fB28DC83)
  */
-export const useWriteMaidsItemSetApprovalForAll =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsItemAbi,
-    address: maidsItemAddress,
-    functionName: 'setApprovalForAll',
-  })
+export const useWriteMaidsItemSetApprovalForAll = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsItemAbi,
+  address: maidsItemAddress,
+  functionName: 'setApprovalForAll',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsItemAbi}__ and `functionName` set to `"setURI"`
@@ -3539,12 +3482,11 @@ export const useWriteMaidsItemSetUri = /*#__PURE__*/ createUseWriteContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44C90619A015EF1B679D638ECa693b10fB28DC83)
  */
-export const useWriteMaidsItemTransferOwnership =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsItemAbi,
-    address: maidsItemAddress,
-    functionName: 'transferOwnership',
-  })
+export const useWriteMaidsItemTransferOwnership = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsItemAbi,
+  address: maidsItemAddress,
+  functionName: 'transferOwnership',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsItemAbi}__
@@ -3563,12 +3505,11 @@ export const useSimulateMaidsItem = /*#__PURE__*/ createUseSimulateContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44C90619A015EF1B679D638ECa693b10fB28DC83)
  */
-export const useSimulateMaidsItemAddOperator =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsItemAbi,
-    address: maidsItemAddress,
-    functionName: 'addOperator',
-  })
+export const useSimulateMaidsItemAddOperator = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsItemAbi,
+  address: maidsItemAddress,
+  functionName: 'addOperator',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsItemAbi}__ and `functionName` set to `"mint"`
@@ -3576,9 +3517,11 @@ export const useSimulateMaidsItemAddOperator =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44C90619A015EF1B679D638ECa693b10fB28DC83)
  */
-export const useSimulateMaidsItemMint = /*#__PURE__*/ createUseSimulateContract(
-  { abi: maidsItemAbi, address: maidsItemAddress, functionName: 'mint' },
-)
+export const useSimulateMaidsItemMint = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsItemAbi,
+  address: maidsItemAddress,
+  functionName: 'mint',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsItemAbi}__ and `functionName` set to `"removeOperator"`
@@ -3586,12 +3529,11 @@ export const useSimulateMaidsItemMint = /*#__PURE__*/ createUseSimulateContract(
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44C90619A015EF1B679D638ECa693b10fB28DC83)
  */
-export const useSimulateMaidsItemRemoveOperator =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsItemAbi,
-    address: maidsItemAddress,
-    functionName: 'removeOperator',
-  })
+export const useSimulateMaidsItemRemoveOperator = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsItemAbi,
+  address: maidsItemAddress,
+  functionName: 'removeOperator',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsItemAbi}__ and `functionName` set to `"renounceOwnership"`
@@ -3599,12 +3541,11 @@ export const useSimulateMaidsItemRemoveOperator =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44C90619A015EF1B679D638ECa693b10fB28DC83)
  */
-export const useSimulateMaidsItemRenounceOwnership =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsItemAbi,
-    address: maidsItemAddress,
-    functionName: 'renounceOwnership',
-  })
+export const useSimulateMaidsItemRenounceOwnership = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsItemAbi,
+  address: maidsItemAddress,
+  functionName: 'renounceOwnership',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsItemAbi}__ and `functionName` set to `"safeBatchTransferFrom"`
@@ -3612,12 +3553,11 @@ export const useSimulateMaidsItemRenounceOwnership =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44C90619A015EF1B679D638ECa693b10fB28DC83)
  */
-export const useSimulateMaidsItemSafeBatchTransferFrom =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsItemAbi,
-    address: maidsItemAddress,
-    functionName: 'safeBatchTransferFrom',
-  })
+export const useSimulateMaidsItemSafeBatchTransferFrom = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsItemAbi,
+  address: maidsItemAddress,
+  functionName: 'safeBatchTransferFrom',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsItemAbi}__ and `functionName` set to `"safeTransferFrom"`
@@ -3625,12 +3565,11 @@ export const useSimulateMaidsItemSafeBatchTransferFrom =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44C90619A015EF1B679D638ECa693b10fB28DC83)
  */
-export const useSimulateMaidsItemSafeTransferFrom =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsItemAbi,
-    address: maidsItemAddress,
-    functionName: 'safeTransferFrom',
-  })
+export const useSimulateMaidsItemSafeTransferFrom = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsItemAbi,
+  address: maidsItemAddress,
+  functionName: 'safeTransferFrom',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsItemAbi}__ and `functionName` set to `"setApprovalForAll"`
@@ -3638,12 +3577,11 @@ export const useSimulateMaidsItemSafeTransferFrom =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44C90619A015EF1B679D638ECa693b10fB28DC83)
  */
-export const useSimulateMaidsItemSetApprovalForAll =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsItemAbi,
-    address: maidsItemAddress,
-    functionName: 'setApprovalForAll',
-  })
+export const useSimulateMaidsItemSetApprovalForAll = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsItemAbi,
+  address: maidsItemAddress,
+  functionName: 'setApprovalForAll',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsItemAbi}__ and `functionName` set to `"setURI"`
@@ -3651,12 +3589,11 @@ export const useSimulateMaidsItemSetApprovalForAll =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44C90619A015EF1B679D638ECa693b10fB28DC83)
  */
-export const useSimulateMaidsItemSetUri =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsItemAbi,
-    address: maidsItemAddress,
-    functionName: 'setURI',
-  })
+export const useSimulateMaidsItemSetUri = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsItemAbi,
+  address: maidsItemAddress,
+  functionName: 'setURI',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsItemAbi}__ and `functionName` set to `"transferOwnership"`
@@ -3664,12 +3601,11 @@ export const useSimulateMaidsItemSetUri =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44C90619A015EF1B679D638ECa693b10fB28DC83)
  */
-export const useSimulateMaidsItemTransferOwnership =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsItemAbi,
-    address: maidsItemAddress,
-    functionName: 'transferOwnership',
-  })
+export const useSimulateMaidsItemTransferOwnership = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsItemAbi,
+  address: maidsItemAddress,
+  functionName: 'transferOwnership',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsItemAbi}__
@@ -3677,9 +3613,10 @@ export const useSimulateMaidsItemTransferOwnership =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44C90619A015EF1B679D638ECa693b10fB28DC83)
  */
-export const useWatchMaidsItemEvent = /*#__PURE__*/ createUseWatchContractEvent(
-  { abi: maidsItemAbi, address: maidsItemAddress },
-)
+export const useWatchMaidsItemEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsItemAbi,
+  address: maidsItemAddress,
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsItemAbi}__ and `eventName` set to `"ApprovalForAll"`
@@ -3687,12 +3624,11 @@ export const useWatchMaidsItemEvent = /*#__PURE__*/ createUseWatchContractEvent(
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44C90619A015EF1B679D638ECa693b10fB28DC83)
  */
-export const useWatchMaidsItemApprovalForAllEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsItemAbi,
-    address: maidsItemAddress,
-    eventName: 'ApprovalForAll',
-  })
+export const useWatchMaidsItemApprovalForAllEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsItemAbi,
+  address: maidsItemAddress,
+  eventName: 'ApprovalForAll',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsItemAbi}__ and `eventName` set to `"OwnershipTransferred"`
@@ -3700,12 +3636,11 @@ export const useWatchMaidsItemApprovalForAllEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44C90619A015EF1B679D638ECa693b10fB28DC83)
  */
-export const useWatchMaidsItemOwnershipTransferredEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsItemAbi,
-    address: maidsItemAddress,
-    eventName: 'OwnershipTransferred',
-  })
+export const useWatchMaidsItemOwnershipTransferredEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsItemAbi,
+  address: maidsItemAddress,
+  eventName: 'OwnershipTransferred',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsItemAbi}__ and `eventName` set to `"TransferBatch"`
@@ -3713,12 +3648,11 @@ export const useWatchMaidsItemOwnershipTransferredEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44C90619A015EF1B679D638ECa693b10fB28DC83)
  */
-export const useWatchMaidsItemTransferBatchEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsItemAbi,
-    address: maidsItemAddress,
-    eventName: 'TransferBatch',
-  })
+export const useWatchMaidsItemTransferBatchEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsItemAbi,
+  address: maidsItemAddress,
+  eventName: 'TransferBatch',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsItemAbi}__ and `eventName` set to `"TransferSingle"`
@@ -3726,12 +3660,11 @@ export const useWatchMaidsItemTransferBatchEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44C90619A015EF1B679D638ECa693b10fB28DC83)
  */
-export const useWatchMaidsItemTransferSingleEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsItemAbi,
-    address: maidsItemAddress,
-    eventName: 'TransferSingle',
-  })
+export const useWatchMaidsItemTransferSingleEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsItemAbi,
+  address: maidsItemAddress,
+  eventName: 'TransferSingle',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsItemAbi}__ and `eventName` set to `"URI"`
@@ -3739,12 +3672,11 @@ export const useWatchMaidsItemTransferSingleEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44C90619A015EF1B679D638ECa693b10fB28DC83)
  */
-export const useWatchMaidsItemUriEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsItemAbi,
-    address: maidsItemAddress,
-    eventName: 'URI',
-  })
+export const useWatchMaidsItemUriEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsItemAbi,
+  address: maidsItemAddress,
+  eventName: 'URI',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__
@@ -3763,12 +3695,11 @@ export const useReadMaidsLottery = /*#__PURE__*/ createUseReadContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useReadMaidsLotteryCallbackGasLimit =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'callbackGasLimit',
-  })
+export const useReadMaidsLotteryCallbackGasLimit = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'callbackGasLimit',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"entriesByLotteryId"`
@@ -3776,12 +3707,11 @@ export const useReadMaidsLotteryCallbackGasLimit =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useReadMaidsLotteryEntriesByLotteryId =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'entriesByLotteryId',
-  })
+export const useReadMaidsLotteryEntriesByLotteryId = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'entriesByLotteryId',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"entryCountsByLotteryId"`
@@ -3789,12 +3719,11 @@ export const useReadMaidsLotteryEntriesByLotteryId =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useReadMaidsLotteryEntryCountsByLotteryId =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'entryCountsByLotteryId',
-  })
+export const useReadMaidsLotteryEntryCountsByLotteryId = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'entryCountsByLotteryId',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"gelato"`
@@ -3814,12 +3743,11 @@ export const useReadMaidsLotteryGelato = /*#__PURE__*/ createUseReadContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useReadMaidsLotteryGetAllLotteries =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'getAllLotteries',
-  })
+export const useReadMaidsLotteryGetAllLotteries = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'getAllLotteries',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"getLotteryInfo"`
@@ -3827,12 +3755,11 @@ export const useReadMaidsLotteryGetAllLotteries =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useReadMaidsLotteryGetLotteryInfo =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'getLotteryInfo',
-  })
+export const useReadMaidsLotteryGetLotteryInfo = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'getLotteryInfo',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"isOngoingLatestLottery"`
@@ -3840,12 +3767,11 @@ export const useReadMaidsLotteryGetLotteryInfo =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useReadMaidsLotteryIsOngoingLatestLottery =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'isOngoingLatestLottery',
-  })
+export const useReadMaidsLotteryIsOngoingLatestLottery = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'isOngoingLatestLottery',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"keyHash"`
@@ -3865,13 +3791,11 @@ export const useReadMaidsLotteryKeyHash = /*#__PURE__*/ createUseReadContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useReadMaidsLotteryLotteries = /*#__PURE__*/ createUseReadContract(
-  {
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'lotteries',
-  },
-)
+export const useReadMaidsLotteryLotteries = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'lotteries',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"lotteryIdsByRequestId"`
@@ -3879,12 +3803,11 @@ export const useReadMaidsLotteryLotteries = /*#__PURE__*/ createUseReadContract(
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useReadMaidsLotteryLotteryIdsByRequestId =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'lotteryIdsByRequestId',
-  })
+export const useReadMaidsLotteryLotteryIdsByRequestId = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'lotteryIdsByRequestId',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"medalContract"`
@@ -3892,12 +3815,11 @@ export const useReadMaidsLotteryLotteryIdsByRequestId =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useReadMaidsLotteryMedalContract =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'medalContract',
-  })
+export const useReadMaidsLotteryMedalContract = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'medalContract',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"owner"`
@@ -3917,12 +3839,11 @@ export const useReadMaidsLotteryOwner = /*#__PURE__*/ createUseReadContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useReadMaidsLotteryRequestConfirmations =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'requestConfirmations',
-  })
+export const useReadMaidsLotteryRequestConfirmations = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'requestConfirmations',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"requests"`
@@ -3942,12 +3863,11 @@ export const useReadMaidsLotteryRequests = /*#__PURE__*/ createUseReadContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useReadMaidsLotterySubscriptionId =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'subscriptionId',
-  })
+export const useReadMaidsLotterySubscriptionId = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'subscriptionId',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"supportsInterface"`
@@ -3955,12 +3875,11 @@ export const useReadMaidsLotterySubscriptionId =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useReadMaidsLotterySupportsInterface =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'supportsInterface',
-  })
+export const useReadMaidsLotterySupportsInterface = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'supportsInterface',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"ticketContract"`
@@ -3968,12 +3887,11 @@ export const useReadMaidsLotterySupportsInterface =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useReadMaidsLotteryTicketContract =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'ticketContract',
-  })
+export const useReadMaidsLotteryTicketContract = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'ticketContract',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"vrfCoordinator"`
@@ -3981,12 +3899,11 @@ export const useReadMaidsLotteryTicketContract =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useReadMaidsLotteryVrfCoordinator =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'vrfCoordinator',
-  })
+export const useReadMaidsLotteryVrfCoordinator = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'vrfCoordinator',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__
@@ -4005,12 +3922,11 @@ export const useWriteMaidsLottery = /*#__PURE__*/ createUseWriteContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useWriteMaidsLotteryAcceptOwnership =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'acceptOwnership',
-  })
+export const useWriteMaidsLotteryAcceptOwnership = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'acceptOwnership',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"createNewLottery"`
@@ -4018,12 +3934,11 @@ export const useWriteMaidsLotteryAcceptOwnership =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useWriteMaidsLotteryCreateNewLottery =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'createNewLottery',
-  })
+export const useWriteMaidsLotteryCreateNewLottery = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'createNewLottery',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"draw"`
@@ -4055,12 +3970,11 @@ export const useWriteMaidsLotteryEntry = /*#__PURE__*/ createUseWriteContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useWriteMaidsLotteryOnErc1155BatchReceived =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'onERC1155BatchReceived',
-  })
+export const useWriteMaidsLotteryOnErc1155BatchReceived = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'onERC1155BatchReceived',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"onERC1155Received"`
@@ -4068,12 +3982,11 @@ export const useWriteMaidsLotteryOnErc1155BatchReceived =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useWriteMaidsLotteryOnErc1155Received =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'onERC1155Received',
-  })
+export const useWriteMaidsLotteryOnErc1155Received = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'onERC1155Received',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"rawFulfillRandomWords"`
@@ -4081,12 +3994,11 @@ export const useWriteMaidsLotteryOnErc1155Received =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useWriteMaidsLotteryRawFulfillRandomWords =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'rawFulfillRandomWords',
-  })
+export const useWriteMaidsLotteryRawFulfillRandomWords = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'rawFulfillRandomWords',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"returnTicket"`
@@ -4094,12 +4006,11 @@ export const useWriteMaidsLotteryRawFulfillRandomWords =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useWriteMaidsLotteryReturnTicket =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'returnTicket',
-  })
+export const useWriteMaidsLotteryReturnTicket = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'returnTicket',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"setCallbackGasLimit"`
@@ -4107,12 +4018,11 @@ export const useWriteMaidsLotteryReturnTicket =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useWriteMaidsLotterySetCallbackGasLimit =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'setCallbackGasLimit',
-  })
+export const useWriteMaidsLotterySetCallbackGasLimit = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'setCallbackGasLimit',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"setGelato"`
@@ -4120,12 +4030,11 @@ export const useWriteMaidsLotterySetCallbackGasLimit =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useWriteMaidsLotterySetGelato =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'setGelato',
-  })
+export const useWriteMaidsLotterySetGelato = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'setGelato',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"setKeyHash"`
@@ -4133,12 +4042,11 @@ export const useWriteMaidsLotterySetGelato =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useWriteMaidsLotterySetKeyHash =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'setKeyHash',
-  })
+export const useWriteMaidsLotterySetKeyHash = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'setKeyHash',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"setMedalContract"`
@@ -4146,12 +4054,11 @@ export const useWriteMaidsLotterySetKeyHash =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useWriteMaidsLotterySetMedalContract =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'setMedalContract',
-  })
+export const useWriteMaidsLotterySetMedalContract = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'setMedalContract',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"setSubscriptionId"`
@@ -4159,12 +4066,11 @@ export const useWriteMaidsLotterySetMedalContract =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useWriteMaidsLotterySetSubscriptionId =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'setSubscriptionId',
-  })
+export const useWriteMaidsLotterySetSubscriptionId = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'setSubscriptionId',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"setTicketContract"`
@@ -4172,12 +4078,11 @@ export const useWriteMaidsLotterySetSubscriptionId =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useWriteMaidsLotterySetTicketContract =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'setTicketContract',
-  })
+export const useWriteMaidsLotterySetTicketContract = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'setTicketContract',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"setVrfCoordinator"`
@@ -4185,12 +4090,11 @@ export const useWriteMaidsLotterySetTicketContract =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useWriteMaidsLotterySetVrfCoordinator =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'setVrfCoordinator',
-  })
+export const useWriteMaidsLotterySetVrfCoordinator = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'setVrfCoordinator',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"transferOwnership"`
@@ -4198,12 +4102,11 @@ export const useWriteMaidsLotterySetVrfCoordinator =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useWriteMaidsLotteryTransferOwnership =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'transferOwnership',
-  })
+export const useWriteMaidsLotteryTransferOwnership = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'transferOwnership',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"updateLotteryInfo"`
@@ -4211,12 +4114,11 @@ export const useWriteMaidsLotteryTransferOwnership =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useWriteMaidsLotteryUpdateLotteryInfo =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'updateLotteryInfo',
-  })
+export const useWriteMaidsLotteryUpdateLotteryInfo = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'updateLotteryInfo',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"updatePrizeInfo"`
@@ -4224,12 +4126,11 @@ export const useWriteMaidsLotteryUpdateLotteryInfo =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useWriteMaidsLotteryUpdatePrizeInfo =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'updatePrizeInfo',
-  })
+export const useWriteMaidsLotteryUpdatePrizeInfo = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'updatePrizeInfo',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__
@@ -4248,12 +4149,11 @@ export const useSimulateMaidsLottery = /*#__PURE__*/ createUseSimulateContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useSimulateMaidsLotteryAcceptOwnership =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'acceptOwnership',
-  })
+export const useSimulateMaidsLotteryAcceptOwnership = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'acceptOwnership',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"createNewLottery"`
@@ -4261,12 +4161,11 @@ export const useSimulateMaidsLotteryAcceptOwnership =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useSimulateMaidsLotteryCreateNewLottery =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'createNewLottery',
-  })
+export const useSimulateMaidsLotteryCreateNewLottery = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'createNewLottery',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"draw"`
@@ -4274,12 +4173,11 @@ export const useSimulateMaidsLotteryCreateNewLottery =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useSimulateMaidsLotteryDraw =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'draw',
-  })
+export const useSimulateMaidsLotteryDraw = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'draw',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"entry"`
@@ -4287,12 +4185,11 @@ export const useSimulateMaidsLotteryDraw =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useSimulateMaidsLotteryEntry =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'entry',
-  })
+export const useSimulateMaidsLotteryEntry = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'entry',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"onERC1155BatchReceived"`
@@ -4300,12 +4197,11 @@ export const useSimulateMaidsLotteryEntry =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useSimulateMaidsLotteryOnErc1155BatchReceived =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'onERC1155BatchReceived',
-  })
+export const useSimulateMaidsLotteryOnErc1155BatchReceived = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'onERC1155BatchReceived',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"onERC1155Received"`
@@ -4313,12 +4209,11 @@ export const useSimulateMaidsLotteryOnErc1155BatchReceived =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useSimulateMaidsLotteryOnErc1155Received =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'onERC1155Received',
-  })
+export const useSimulateMaidsLotteryOnErc1155Received = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'onERC1155Received',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"rawFulfillRandomWords"`
@@ -4326,12 +4221,11 @@ export const useSimulateMaidsLotteryOnErc1155Received =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useSimulateMaidsLotteryRawFulfillRandomWords =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'rawFulfillRandomWords',
-  })
+export const useSimulateMaidsLotteryRawFulfillRandomWords = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'rawFulfillRandomWords',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"returnTicket"`
@@ -4339,12 +4233,11 @@ export const useSimulateMaidsLotteryRawFulfillRandomWords =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useSimulateMaidsLotteryReturnTicket =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'returnTicket',
-  })
+export const useSimulateMaidsLotteryReturnTicket = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'returnTicket',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"setCallbackGasLimit"`
@@ -4352,12 +4245,11 @@ export const useSimulateMaidsLotteryReturnTicket =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useSimulateMaidsLotterySetCallbackGasLimit =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'setCallbackGasLimit',
-  })
+export const useSimulateMaidsLotterySetCallbackGasLimit = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'setCallbackGasLimit',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"setGelato"`
@@ -4365,12 +4257,11 @@ export const useSimulateMaidsLotterySetCallbackGasLimit =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useSimulateMaidsLotterySetGelato =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'setGelato',
-  })
+export const useSimulateMaidsLotterySetGelato = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'setGelato',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"setKeyHash"`
@@ -4378,12 +4269,11 @@ export const useSimulateMaidsLotterySetGelato =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useSimulateMaidsLotterySetKeyHash =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'setKeyHash',
-  })
+export const useSimulateMaidsLotterySetKeyHash = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'setKeyHash',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"setMedalContract"`
@@ -4391,12 +4281,11 @@ export const useSimulateMaidsLotterySetKeyHash =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useSimulateMaidsLotterySetMedalContract =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'setMedalContract',
-  })
+export const useSimulateMaidsLotterySetMedalContract = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'setMedalContract',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"setSubscriptionId"`
@@ -4404,12 +4293,11 @@ export const useSimulateMaidsLotterySetMedalContract =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useSimulateMaidsLotterySetSubscriptionId =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'setSubscriptionId',
-  })
+export const useSimulateMaidsLotterySetSubscriptionId = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'setSubscriptionId',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"setTicketContract"`
@@ -4417,12 +4305,11 @@ export const useSimulateMaidsLotterySetSubscriptionId =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useSimulateMaidsLotterySetTicketContract =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'setTicketContract',
-  })
+export const useSimulateMaidsLotterySetTicketContract = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'setTicketContract',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"setVrfCoordinator"`
@@ -4430,12 +4317,11 @@ export const useSimulateMaidsLotterySetTicketContract =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useSimulateMaidsLotterySetVrfCoordinator =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'setVrfCoordinator',
-  })
+export const useSimulateMaidsLotterySetVrfCoordinator = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'setVrfCoordinator',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"transferOwnership"`
@@ -4443,12 +4329,11 @@ export const useSimulateMaidsLotterySetVrfCoordinator =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useSimulateMaidsLotteryTransferOwnership =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'transferOwnership',
-  })
+export const useSimulateMaidsLotteryTransferOwnership = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'transferOwnership',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"updateLotteryInfo"`
@@ -4456,12 +4341,11 @@ export const useSimulateMaidsLotteryTransferOwnership =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useSimulateMaidsLotteryUpdateLotteryInfo =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'updateLotteryInfo',
-  })
+export const useSimulateMaidsLotteryUpdateLotteryInfo = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'updateLotteryInfo',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryAbi}__ and `functionName` set to `"updatePrizeInfo"`
@@ -4469,12 +4353,11 @@ export const useSimulateMaidsLotteryUpdateLotteryInfo =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useSimulateMaidsLotteryUpdatePrizeInfo =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    functionName: 'updatePrizeInfo',
-  })
+export const useSimulateMaidsLotteryUpdatePrizeInfo = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  functionName: 'updatePrizeInfo',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryAbi}__
@@ -4482,11 +4365,10 @@ export const useSimulateMaidsLotteryUpdatePrizeInfo =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useWatchMaidsLotteryEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-  })
+export const useWatchMaidsLotteryEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryAbi}__ and `eventName` set to `"Draw"`
@@ -4494,12 +4376,11 @@ export const useWatchMaidsLotteryEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useWatchMaidsLotteryDrawEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    eventName: 'Draw',
-  })
+export const useWatchMaidsLotteryDrawEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  eventName: 'Draw',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryAbi}__ and `eventName` set to `"NewEntry"`
@@ -4507,12 +4388,11 @@ export const useWatchMaidsLotteryDrawEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useWatchMaidsLotteryNewEntryEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    eventName: 'NewEntry',
-  })
+export const useWatchMaidsLotteryNewEntryEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  eventName: 'NewEntry',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryAbi}__ and `eventName` set to `"NewLottery"`
@@ -4520,12 +4400,11 @@ export const useWatchMaidsLotteryNewEntryEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useWatchMaidsLotteryNewLotteryEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    eventName: 'NewLottery',
-  })
+export const useWatchMaidsLotteryNewLotteryEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  eventName: 'NewLottery',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryAbi}__ and `eventName` set to `"OwnershipTransferRequested"`
@@ -4533,12 +4412,11 @@ export const useWatchMaidsLotteryNewLotteryEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useWatchMaidsLotteryOwnershipTransferRequestedEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    eventName: 'OwnershipTransferRequested',
-  })
+export const useWatchMaidsLotteryOwnershipTransferRequestedEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  eventName: 'OwnershipTransferRequested',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryAbi}__ and `eventName` set to `"OwnershipTransferred"`
@@ -4546,12 +4424,11 @@ export const useWatchMaidsLotteryOwnershipTransferRequestedEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useWatchMaidsLotteryOwnershipTransferredEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    eventName: 'OwnershipTransferred',
-  })
+export const useWatchMaidsLotteryOwnershipTransferredEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  eventName: 'OwnershipTransferred',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryAbi}__ and `eventName` set to `"RequestFulfilled"`
@@ -4559,12 +4436,11 @@ export const useWatchMaidsLotteryOwnershipTransferredEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useWatchMaidsLotteryRequestFulfilledEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    eventName: 'RequestFulfilled',
-  })
+export const useWatchMaidsLotteryRequestFulfilledEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  eventName: 'RequestFulfilled',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryAbi}__ and `eventName` set to `"RequestSent"`
@@ -4572,12 +4448,11 @@ export const useWatchMaidsLotteryRequestFulfilledEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x170aD3a28ecFa2A9902f5f6F046CBc6C7BC3aF58)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0d95B0D591448a3fe988d3EF975ACC9eCa009A26)
  */
-export const useWatchMaidsLotteryRequestSentEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsLotteryAbi,
-    address: maidsLotteryAddress,
-    eventName: 'RequestSent',
-  })
+export const useWatchMaidsLotteryRequestSentEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsLotteryAbi,
+  address: maidsLotteryAddress,
+  eventName: 'RequestSent',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__
@@ -4596,12 +4471,11 @@ export const useReadMaidsLotteryOld = /*#__PURE__*/ createUseReadContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useReadMaidsLotteryOldCallbackGasLimit =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'callbackGasLimit',
-  })
+export const useReadMaidsLotteryOldCallbackGasLimit = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'callbackGasLimit',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"entriesByLotteryId"`
@@ -4609,12 +4483,11 @@ export const useReadMaidsLotteryOldCallbackGasLimit =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useReadMaidsLotteryOldEntriesByLotteryId =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'entriesByLotteryId',
-  })
+export const useReadMaidsLotteryOldEntriesByLotteryId = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'entriesByLotteryId',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"entryCountsByLotteryId"`
@@ -4622,12 +4495,11 @@ export const useReadMaidsLotteryOldEntriesByLotteryId =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useReadMaidsLotteryOldEntryCountsByLotteryId =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'entryCountsByLotteryId',
-  })
+export const useReadMaidsLotteryOldEntryCountsByLotteryId = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'entryCountsByLotteryId',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"gelato"`
@@ -4635,13 +4507,11 @@ export const useReadMaidsLotteryOldEntryCountsByLotteryId =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useReadMaidsLotteryOldGelato = /*#__PURE__*/ createUseReadContract(
-  {
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'gelato',
-  },
-)
+export const useReadMaidsLotteryOldGelato = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'gelato',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"getAllLotteries"`
@@ -4649,12 +4519,11 @@ export const useReadMaidsLotteryOldGelato = /*#__PURE__*/ createUseReadContract(
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useReadMaidsLotteryOldGetAllLotteries =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'getAllLotteries',
-  })
+export const useReadMaidsLotteryOldGetAllLotteries = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'getAllLotteries',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"getLotteryInfo"`
@@ -4662,12 +4531,11 @@ export const useReadMaidsLotteryOldGetAllLotteries =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useReadMaidsLotteryOldGetLotteryInfo =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'getLotteryInfo',
-  })
+export const useReadMaidsLotteryOldGetLotteryInfo = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'getLotteryInfo',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"isOngoingLatestLottery"`
@@ -4675,12 +4543,11 @@ export const useReadMaidsLotteryOldGetLotteryInfo =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useReadMaidsLotteryOldIsOngoingLatestLottery =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'isOngoingLatestLottery',
-  })
+export const useReadMaidsLotteryOldIsOngoingLatestLottery = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'isOngoingLatestLottery',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"keyHash"`
@@ -4688,12 +4555,11 @@ export const useReadMaidsLotteryOldIsOngoingLatestLottery =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useReadMaidsLotteryOldKeyHash =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'keyHash',
-  })
+export const useReadMaidsLotteryOldKeyHash = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'keyHash',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"lotteries"`
@@ -4701,12 +4567,11 @@ export const useReadMaidsLotteryOldKeyHash =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useReadMaidsLotteryOldLotteries =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'lotteries',
-  })
+export const useReadMaidsLotteryOldLotteries = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'lotteries',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"lotteryIdsByRequestId"`
@@ -4714,12 +4579,11 @@ export const useReadMaidsLotteryOldLotteries =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useReadMaidsLotteryOldLotteryIdsByRequestId =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'lotteryIdsByRequestId',
-  })
+export const useReadMaidsLotteryOldLotteryIdsByRequestId = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'lotteryIdsByRequestId',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"medalContract"`
@@ -4727,12 +4591,11 @@ export const useReadMaidsLotteryOldLotteryIdsByRequestId =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useReadMaidsLotteryOldMedalContract =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'medalContract',
-  })
+export const useReadMaidsLotteryOldMedalContract = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'medalContract',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"owner"`
@@ -4752,12 +4615,11 @@ export const useReadMaidsLotteryOldOwner = /*#__PURE__*/ createUseReadContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useReadMaidsLotteryOldRequestConfirmations =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'requestConfirmations',
-  })
+export const useReadMaidsLotteryOldRequestConfirmations = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'requestConfirmations',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"requests"`
@@ -4765,12 +4627,11 @@ export const useReadMaidsLotteryOldRequestConfirmations =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useReadMaidsLotteryOldRequests =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'requests',
-  })
+export const useReadMaidsLotteryOldRequests = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'requests',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"subscriptionId"`
@@ -4778,12 +4639,11 @@ export const useReadMaidsLotteryOldRequests =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useReadMaidsLotteryOldSubscriptionId =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'subscriptionId',
-  })
+export const useReadMaidsLotteryOldSubscriptionId = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'subscriptionId',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"supportsInterface"`
@@ -4791,12 +4651,11 @@ export const useReadMaidsLotteryOldSubscriptionId =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useReadMaidsLotteryOldSupportsInterface =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'supportsInterface',
-  })
+export const useReadMaidsLotteryOldSupportsInterface = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'supportsInterface',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"ticketContract"`
@@ -4804,12 +4663,11 @@ export const useReadMaidsLotteryOldSupportsInterface =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useReadMaidsLotteryOldTicketContract =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'ticketContract',
-  })
+export const useReadMaidsLotteryOldTicketContract = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'ticketContract',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"vrfCoordinator"`
@@ -4817,12 +4675,11 @@ export const useReadMaidsLotteryOldTicketContract =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useReadMaidsLotteryOldVrfCoordinator =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'vrfCoordinator',
-  })
+export const useReadMaidsLotteryOldVrfCoordinator = /*#__PURE__*/ createUseReadContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'vrfCoordinator',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__
@@ -4841,12 +4698,11 @@ export const useWriteMaidsLotteryOld = /*#__PURE__*/ createUseWriteContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useWriteMaidsLotteryOldAcceptOwnership =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'acceptOwnership',
-  })
+export const useWriteMaidsLotteryOldAcceptOwnership = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'acceptOwnership',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"createNewLottery"`
@@ -4854,12 +4710,11 @@ export const useWriteMaidsLotteryOldAcceptOwnership =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useWriteMaidsLotteryOldCreateNewLottery =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'createNewLottery',
-  })
+export const useWriteMaidsLotteryOldCreateNewLottery = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'createNewLottery',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"draw"`
@@ -4867,13 +4722,11 @@ export const useWriteMaidsLotteryOldCreateNewLottery =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useWriteMaidsLotteryOldDraw = /*#__PURE__*/ createUseWriteContract(
-  {
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'draw',
-  },
-)
+export const useWriteMaidsLotteryOldDraw = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'draw',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"entry"`
@@ -4881,12 +4734,11 @@ export const useWriteMaidsLotteryOldDraw = /*#__PURE__*/ createUseWriteContract(
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useWriteMaidsLotteryOldEntry =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'entry',
-  })
+export const useWriteMaidsLotteryOldEntry = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'entry',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"onERC1155BatchReceived"`
@@ -4894,12 +4746,11 @@ export const useWriteMaidsLotteryOldEntry =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useWriteMaidsLotteryOldOnErc1155BatchReceived =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'onERC1155BatchReceived',
-  })
+export const useWriteMaidsLotteryOldOnErc1155BatchReceived = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'onERC1155BatchReceived',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"onERC1155Received"`
@@ -4907,12 +4758,11 @@ export const useWriteMaidsLotteryOldOnErc1155BatchReceived =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useWriteMaidsLotteryOldOnErc1155Received =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'onERC1155Received',
-  })
+export const useWriteMaidsLotteryOldOnErc1155Received = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'onERC1155Received',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"rawFulfillRandomWords"`
@@ -4920,12 +4770,11 @@ export const useWriteMaidsLotteryOldOnErc1155Received =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useWriteMaidsLotteryOldRawFulfillRandomWords =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'rawFulfillRandomWords',
-  })
+export const useWriteMaidsLotteryOldRawFulfillRandomWords = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'rawFulfillRandomWords',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"returnTicket"`
@@ -4933,12 +4782,11 @@ export const useWriteMaidsLotteryOldRawFulfillRandomWords =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useWriteMaidsLotteryOldReturnTicket =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'returnTicket',
-  })
+export const useWriteMaidsLotteryOldReturnTicket = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'returnTicket',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"setCallbackGasLimit"`
@@ -4946,12 +4794,11 @@ export const useWriteMaidsLotteryOldReturnTicket =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useWriteMaidsLotteryOldSetCallbackGasLimit =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'setCallbackGasLimit',
-  })
+export const useWriteMaidsLotteryOldSetCallbackGasLimit = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'setCallbackGasLimit',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"setGelato"`
@@ -4959,12 +4806,11 @@ export const useWriteMaidsLotteryOldSetCallbackGasLimit =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useWriteMaidsLotteryOldSetGelato =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'setGelato',
-  })
+export const useWriteMaidsLotteryOldSetGelato = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'setGelato',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"setKeyHash"`
@@ -4972,12 +4818,11 @@ export const useWriteMaidsLotteryOldSetGelato =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useWriteMaidsLotteryOldSetKeyHash =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'setKeyHash',
-  })
+export const useWriteMaidsLotteryOldSetKeyHash = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'setKeyHash',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"setMedalContract"`
@@ -4985,12 +4830,11 @@ export const useWriteMaidsLotteryOldSetKeyHash =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useWriteMaidsLotteryOldSetMedalContract =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'setMedalContract',
-  })
+export const useWriteMaidsLotteryOldSetMedalContract = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'setMedalContract',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"setSubscriptionId"`
@@ -4998,12 +4842,11 @@ export const useWriteMaidsLotteryOldSetMedalContract =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useWriteMaidsLotteryOldSetSubscriptionId =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'setSubscriptionId',
-  })
+export const useWriteMaidsLotteryOldSetSubscriptionId = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'setSubscriptionId',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"setTicketContract"`
@@ -5011,12 +4854,11 @@ export const useWriteMaidsLotteryOldSetSubscriptionId =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useWriteMaidsLotteryOldSetTicketContract =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'setTicketContract',
-  })
+export const useWriteMaidsLotteryOldSetTicketContract = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'setTicketContract',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"setVrfCoordinator"`
@@ -5024,12 +4866,11 @@ export const useWriteMaidsLotteryOldSetTicketContract =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useWriteMaidsLotteryOldSetVrfCoordinator =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'setVrfCoordinator',
-  })
+export const useWriteMaidsLotteryOldSetVrfCoordinator = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'setVrfCoordinator',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"transferOwnership"`
@@ -5037,12 +4878,11 @@ export const useWriteMaidsLotteryOldSetVrfCoordinator =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useWriteMaidsLotteryOldTransferOwnership =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'transferOwnership',
-  })
+export const useWriteMaidsLotteryOldTransferOwnership = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'transferOwnership',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"updateLotteryInfo"`
@@ -5050,12 +4890,11 @@ export const useWriteMaidsLotteryOldTransferOwnership =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useWriteMaidsLotteryOldUpdateLotteryInfo =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'updateLotteryInfo',
-  })
+export const useWriteMaidsLotteryOldUpdateLotteryInfo = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'updateLotteryInfo',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"updatePrizeInfo"`
@@ -5063,12 +4902,11 @@ export const useWriteMaidsLotteryOldUpdateLotteryInfo =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useWriteMaidsLotteryOldUpdatePrizeInfo =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'updatePrizeInfo',
-  })
+export const useWriteMaidsLotteryOldUpdatePrizeInfo = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'updatePrizeInfo',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__
@@ -5076,11 +4914,10 @@ export const useWriteMaidsLotteryOldUpdatePrizeInfo =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useSimulateMaidsLotteryOld =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-  })
+export const useSimulateMaidsLotteryOld = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"acceptOwnership"`
@@ -5088,12 +4925,11 @@ export const useSimulateMaidsLotteryOld =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useSimulateMaidsLotteryOldAcceptOwnership =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'acceptOwnership',
-  })
+export const useSimulateMaidsLotteryOldAcceptOwnership = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'acceptOwnership',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"createNewLottery"`
@@ -5101,12 +4937,11 @@ export const useSimulateMaidsLotteryOldAcceptOwnership =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useSimulateMaidsLotteryOldCreateNewLottery =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'createNewLottery',
-  })
+export const useSimulateMaidsLotteryOldCreateNewLottery = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'createNewLottery',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"draw"`
@@ -5114,12 +4949,11 @@ export const useSimulateMaidsLotteryOldCreateNewLottery =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useSimulateMaidsLotteryOldDraw =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'draw',
-  })
+export const useSimulateMaidsLotteryOldDraw = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'draw',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"entry"`
@@ -5127,12 +4961,11 @@ export const useSimulateMaidsLotteryOldDraw =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useSimulateMaidsLotteryOldEntry =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'entry',
-  })
+export const useSimulateMaidsLotteryOldEntry = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'entry',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"onERC1155BatchReceived"`
@@ -5140,12 +4973,11 @@ export const useSimulateMaidsLotteryOldEntry =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useSimulateMaidsLotteryOldOnErc1155BatchReceived =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'onERC1155BatchReceived',
-  })
+export const useSimulateMaidsLotteryOldOnErc1155BatchReceived = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'onERC1155BatchReceived',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"onERC1155Received"`
@@ -5153,12 +4985,11 @@ export const useSimulateMaidsLotteryOldOnErc1155BatchReceived =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useSimulateMaidsLotteryOldOnErc1155Received =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'onERC1155Received',
-  })
+export const useSimulateMaidsLotteryOldOnErc1155Received = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'onERC1155Received',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"rawFulfillRandomWords"`
@@ -5166,12 +4997,11 @@ export const useSimulateMaidsLotteryOldOnErc1155Received =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useSimulateMaidsLotteryOldRawFulfillRandomWords =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'rawFulfillRandomWords',
-  })
+export const useSimulateMaidsLotteryOldRawFulfillRandomWords = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'rawFulfillRandomWords',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"returnTicket"`
@@ -5179,12 +5009,11 @@ export const useSimulateMaidsLotteryOldRawFulfillRandomWords =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useSimulateMaidsLotteryOldReturnTicket =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'returnTicket',
-  })
+export const useSimulateMaidsLotteryOldReturnTicket = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'returnTicket',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"setCallbackGasLimit"`
@@ -5192,12 +5021,11 @@ export const useSimulateMaidsLotteryOldReturnTicket =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useSimulateMaidsLotteryOldSetCallbackGasLimit =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'setCallbackGasLimit',
-  })
+export const useSimulateMaidsLotteryOldSetCallbackGasLimit = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'setCallbackGasLimit',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"setGelato"`
@@ -5205,12 +5033,11 @@ export const useSimulateMaidsLotteryOldSetCallbackGasLimit =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useSimulateMaidsLotteryOldSetGelato =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'setGelato',
-  })
+export const useSimulateMaidsLotteryOldSetGelato = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'setGelato',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"setKeyHash"`
@@ -5218,12 +5045,11 @@ export const useSimulateMaidsLotteryOldSetGelato =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useSimulateMaidsLotteryOldSetKeyHash =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'setKeyHash',
-  })
+export const useSimulateMaidsLotteryOldSetKeyHash = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'setKeyHash',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"setMedalContract"`
@@ -5231,12 +5057,11 @@ export const useSimulateMaidsLotteryOldSetKeyHash =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useSimulateMaidsLotteryOldSetMedalContract =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'setMedalContract',
-  })
+export const useSimulateMaidsLotteryOldSetMedalContract = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'setMedalContract',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"setSubscriptionId"`
@@ -5244,12 +5069,11 @@ export const useSimulateMaidsLotteryOldSetMedalContract =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useSimulateMaidsLotteryOldSetSubscriptionId =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'setSubscriptionId',
-  })
+export const useSimulateMaidsLotteryOldSetSubscriptionId = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'setSubscriptionId',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"setTicketContract"`
@@ -5257,12 +5081,11 @@ export const useSimulateMaidsLotteryOldSetSubscriptionId =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useSimulateMaidsLotteryOldSetTicketContract =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'setTicketContract',
-  })
+export const useSimulateMaidsLotteryOldSetTicketContract = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'setTicketContract',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"setVrfCoordinator"`
@@ -5270,12 +5093,11 @@ export const useSimulateMaidsLotteryOldSetTicketContract =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useSimulateMaidsLotteryOldSetVrfCoordinator =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'setVrfCoordinator',
-  })
+export const useSimulateMaidsLotteryOldSetVrfCoordinator = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'setVrfCoordinator',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"transferOwnership"`
@@ -5283,12 +5105,11 @@ export const useSimulateMaidsLotteryOldSetVrfCoordinator =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useSimulateMaidsLotteryOldTransferOwnership =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'transferOwnership',
-  })
+export const useSimulateMaidsLotteryOldTransferOwnership = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'transferOwnership',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"updateLotteryInfo"`
@@ -5296,12 +5117,11 @@ export const useSimulateMaidsLotteryOldTransferOwnership =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useSimulateMaidsLotteryOldUpdateLotteryInfo =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'updateLotteryInfo',
-  })
+export const useSimulateMaidsLotteryOldUpdateLotteryInfo = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'updateLotteryInfo',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `functionName` set to `"updatePrizeInfo"`
@@ -5309,12 +5129,11 @@ export const useSimulateMaidsLotteryOldUpdateLotteryInfo =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useSimulateMaidsLotteryOldUpdatePrizeInfo =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    functionName: 'updatePrizeInfo',
-  })
+export const useSimulateMaidsLotteryOldUpdatePrizeInfo = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  functionName: 'updatePrizeInfo',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryOldAbi}__
@@ -5322,11 +5141,10 @@ export const useSimulateMaidsLotteryOldUpdatePrizeInfo =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useWatchMaidsLotteryOldEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-  })
+export const useWatchMaidsLotteryOldEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `eventName` set to `"Draw"`
@@ -5334,12 +5152,11 @@ export const useWatchMaidsLotteryOldEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useWatchMaidsLotteryOldDrawEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    eventName: 'Draw',
-  })
+export const useWatchMaidsLotteryOldDrawEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  eventName: 'Draw',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `eventName` set to `"NewEntry"`
@@ -5347,12 +5164,11 @@ export const useWatchMaidsLotteryOldDrawEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useWatchMaidsLotteryOldNewEntryEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    eventName: 'NewEntry',
-  })
+export const useWatchMaidsLotteryOldNewEntryEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  eventName: 'NewEntry',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `eventName` set to `"NewLottery"`
@@ -5360,12 +5176,11 @@ export const useWatchMaidsLotteryOldNewEntryEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useWatchMaidsLotteryOldNewLotteryEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    eventName: 'NewLottery',
-  })
+export const useWatchMaidsLotteryOldNewLotteryEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  eventName: 'NewLottery',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `eventName` set to `"OwnershipTransferRequested"`
@@ -5373,12 +5188,11 @@ export const useWatchMaidsLotteryOldNewLotteryEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useWatchMaidsLotteryOldOwnershipTransferRequestedEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    eventName: 'OwnershipTransferRequested',
-  })
+export const useWatchMaidsLotteryOldOwnershipTransferRequestedEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  eventName: 'OwnershipTransferRequested',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `eventName` set to `"OwnershipTransferred"`
@@ -5386,12 +5200,11 @@ export const useWatchMaidsLotteryOldOwnershipTransferRequestedEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useWatchMaidsLotteryOldOwnershipTransferredEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    eventName: 'OwnershipTransferred',
-  })
+export const useWatchMaidsLotteryOldOwnershipTransferredEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  eventName: 'OwnershipTransferred',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `eventName` set to `"RequestFulfilled"`
@@ -5399,12 +5212,11 @@ export const useWatchMaidsLotteryOldOwnershipTransferredEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useWatchMaidsLotteryOldRequestFulfilledEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    eventName: 'RequestFulfilled',
-  })
+export const useWatchMaidsLotteryOldRequestFulfilledEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  eventName: 'RequestFulfilled',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsLotteryOldAbi}__ and `eventName` set to `"RequestSent"`
@@ -5412,12 +5224,11 @@ export const useWatchMaidsLotteryOldRequestFulfilledEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xa15383DE388101fA5071c51b3f6505696862c635)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x44b9473bD8B06FaE1B0396c2f9b31fBA32039D43)
  */
-export const useWatchMaidsLotteryOldRequestSentEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsLotteryOldAbi,
-    address: maidsLotteryOldAddress,
-    eventName: 'RequestSent',
-  })
+export const useWatchMaidsLotteryOldRequestSentEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsLotteryOldAbi,
+  address: maidsLotteryOldAddress,
+  eventName: 'RequestSent',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsMarketAbi}__
@@ -5436,12 +5247,11 @@ export const useReadMaidsMarket = /*#__PURE__*/ createUseReadContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useReadMaidsMarketFetchMarketItems =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'fetchMarketItems',
-  })
+export const useReadMaidsMarketFetchMarketItems = /*#__PURE__*/ createUseReadContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'fetchMarketItems',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"getImplementation"`
@@ -5449,12 +5259,11 @@ export const useReadMaidsMarketFetchMarketItems =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useReadMaidsMarketGetImplementation =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'getImplementation',
-  })
+export const useReadMaidsMarketGetImplementation = /*#__PURE__*/ createUseReadContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'getImplementation',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"nft"`
@@ -5498,12 +5307,11 @@ export const useReadMaidsMarketPaused = /*#__PURE__*/ createUseReadContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useReadMaidsMarketProxiableUuid =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'proxiableUUID',
-  })
+export const useReadMaidsMarketProxiableUuid = /*#__PURE__*/ createUseReadContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'proxiableUUID',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"token"`
@@ -5534,12 +5342,11 @@ export const useWriteMaidsMarket = /*#__PURE__*/ createUseWriteContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useWriteMaidsMarketAddOperator =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'addOperator',
-  })
+export const useWriteMaidsMarketAddOperator = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'addOperator',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"airdrop"`
@@ -5571,12 +5378,11 @@ export const useWriteMaidsMarketBuyItem = /*#__PURE__*/ createUseWriteContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useWriteMaidsMarketCreateMarketItem =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'createMarketItem',
-  })
+export const useWriteMaidsMarketCreateMarketItem = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'createMarketItem',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"initialize"`
@@ -5584,12 +5390,11 @@ export const useWriteMaidsMarketCreateMarketItem =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useWriteMaidsMarketInitialize =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'initialize',
-  })
+export const useWriteMaidsMarketInitialize = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'initialize',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"pause"`
@@ -5609,12 +5414,11 @@ export const useWriteMaidsMarketPause = /*#__PURE__*/ createUseWriteContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useWriteMaidsMarketRemoveOperator =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'removeOperator',
-  })
+export const useWriteMaidsMarketRemoveOperator = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'removeOperator',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"renounceOwnership"`
@@ -5622,12 +5426,11 @@ export const useWriteMaidsMarketRemoveOperator =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useWriteMaidsMarketRenounceOwnership =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'renounceOwnership',
-  })
+export const useWriteMaidsMarketRenounceOwnership = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'renounceOwnership',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"setNFT"`
@@ -5647,13 +5450,11 @@ export const useWriteMaidsMarketSetNft = /*#__PURE__*/ createUseWriteContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useWriteMaidsMarketSetPrice = /*#__PURE__*/ createUseWriteContract(
-  {
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'setPrice',
-  },
-)
+export const useWriteMaidsMarketSetPrice = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'setPrice',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"setStartTime"`
@@ -5661,12 +5462,11 @@ export const useWriteMaidsMarketSetPrice = /*#__PURE__*/ createUseWriteContract(
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useWriteMaidsMarketSetStartTime =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'setStartTime',
-  })
+export const useWriteMaidsMarketSetStartTime = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'setStartTime',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"setSupply"`
@@ -5674,12 +5474,11 @@ export const useWriteMaidsMarketSetStartTime =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useWriteMaidsMarketSetSupply =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'setSupply',
-  })
+export const useWriteMaidsMarketSetSupply = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'setSupply',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"setToken"`
@@ -5687,13 +5486,11 @@ export const useWriteMaidsMarketSetSupply =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useWriteMaidsMarketSetToken = /*#__PURE__*/ createUseWriteContract(
-  {
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'setToken',
-  },
-)
+export const useWriteMaidsMarketSetToken = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'setToken',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"setTokenURI"`
@@ -5701,12 +5498,11 @@ export const useWriteMaidsMarketSetToken = /*#__PURE__*/ createUseWriteContract(
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useWriteMaidsMarketSetTokenUri =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'setTokenURI',
-  })
+export const useWriteMaidsMarketSetTokenUri = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'setTokenURI',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"transferOwnership"`
@@ -5714,12 +5510,11 @@ export const useWriteMaidsMarketSetTokenUri =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useWriteMaidsMarketTransferOwnership =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'transferOwnership',
-  })
+export const useWriteMaidsMarketTransferOwnership = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'transferOwnership',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"unpause"`
@@ -5739,12 +5534,11 @@ export const useWriteMaidsMarketUnpause = /*#__PURE__*/ createUseWriteContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useWriteMaidsMarketUpgradeTo =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'upgradeTo',
-  })
+export const useWriteMaidsMarketUpgradeTo = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'upgradeTo',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"upgradeToAndCall"`
@@ -5752,12 +5546,11 @@ export const useWriteMaidsMarketUpgradeTo =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useWriteMaidsMarketUpgradeToAndCall =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'upgradeToAndCall',
-  })
+export const useWriteMaidsMarketUpgradeToAndCall = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'upgradeToAndCall',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsMarketAbi}__
@@ -5776,12 +5569,11 @@ export const useSimulateMaidsMarket = /*#__PURE__*/ createUseSimulateContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useSimulateMaidsMarketAddOperator =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'addOperator',
-  })
+export const useSimulateMaidsMarketAddOperator = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'addOperator',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"airdrop"`
@@ -5789,12 +5581,11 @@ export const useSimulateMaidsMarketAddOperator =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useSimulateMaidsMarketAirdrop =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'airdrop',
-  })
+export const useSimulateMaidsMarketAirdrop = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'airdrop',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"buyItem"`
@@ -5802,12 +5593,11 @@ export const useSimulateMaidsMarketAirdrop =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useSimulateMaidsMarketBuyItem =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'buyItem',
-  })
+export const useSimulateMaidsMarketBuyItem = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'buyItem',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"createMarketItem"`
@@ -5815,12 +5605,11 @@ export const useSimulateMaidsMarketBuyItem =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useSimulateMaidsMarketCreateMarketItem =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'createMarketItem',
-  })
+export const useSimulateMaidsMarketCreateMarketItem = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'createMarketItem',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"initialize"`
@@ -5828,12 +5617,11 @@ export const useSimulateMaidsMarketCreateMarketItem =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useSimulateMaidsMarketInitialize =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'initialize',
-  })
+export const useSimulateMaidsMarketInitialize = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'initialize',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"pause"`
@@ -5841,12 +5629,11 @@ export const useSimulateMaidsMarketInitialize =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useSimulateMaidsMarketPause =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'pause',
-  })
+export const useSimulateMaidsMarketPause = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'pause',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"removeOperator"`
@@ -5854,12 +5641,11 @@ export const useSimulateMaidsMarketPause =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useSimulateMaidsMarketRemoveOperator =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'removeOperator',
-  })
+export const useSimulateMaidsMarketRemoveOperator = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'removeOperator',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"renounceOwnership"`
@@ -5867,12 +5653,11 @@ export const useSimulateMaidsMarketRemoveOperator =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useSimulateMaidsMarketRenounceOwnership =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'renounceOwnership',
-  })
+export const useSimulateMaidsMarketRenounceOwnership = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'renounceOwnership',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"setNFT"`
@@ -5880,12 +5665,11 @@ export const useSimulateMaidsMarketRenounceOwnership =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useSimulateMaidsMarketSetNft =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'setNFT',
-  })
+export const useSimulateMaidsMarketSetNft = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'setNFT',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"setPrice"`
@@ -5893,12 +5677,11 @@ export const useSimulateMaidsMarketSetNft =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useSimulateMaidsMarketSetPrice =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'setPrice',
-  })
+export const useSimulateMaidsMarketSetPrice = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'setPrice',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"setStartTime"`
@@ -5906,12 +5689,11 @@ export const useSimulateMaidsMarketSetPrice =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useSimulateMaidsMarketSetStartTime =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'setStartTime',
-  })
+export const useSimulateMaidsMarketSetStartTime = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'setStartTime',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"setSupply"`
@@ -5919,12 +5701,11 @@ export const useSimulateMaidsMarketSetStartTime =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useSimulateMaidsMarketSetSupply =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'setSupply',
-  })
+export const useSimulateMaidsMarketSetSupply = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'setSupply',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"setToken"`
@@ -5932,12 +5713,11 @@ export const useSimulateMaidsMarketSetSupply =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useSimulateMaidsMarketSetToken =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'setToken',
-  })
+export const useSimulateMaidsMarketSetToken = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'setToken',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"setTokenURI"`
@@ -5945,12 +5725,11 @@ export const useSimulateMaidsMarketSetToken =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useSimulateMaidsMarketSetTokenUri =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'setTokenURI',
-  })
+export const useSimulateMaidsMarketSetTokenUri = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'setTokenURI',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"transferOwnership"`
@@ -5958,12 +5737,11 @@ export const useSimulateMaidsMarketSetTokenUri =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useSimulateMaidsMarketTransferOwnership =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'transferOwnership',
-  })
+export const useSimulateMaidsMarketTransferOwnership = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'transferOwnership',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"unpause"`
@@ -5971,12 +5749,11 @@ export const useSimulateMaidsMarketTransferOwnership =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useSimulateMaidsMarketUnpause =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'unpause',
-  })
+export const useSimulateMaidsMarketUnpause = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'unpause',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"upgradeTo"`
@@ -5984,12 +5761,11 @@ export const useSimulateMaidsMarketUnpause =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useSimulateMaidsMarketUpgradeTo =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'upgradeTo',
-  })
+export const useSimulateMaidsMarketUpgradeTo = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'upgradeTo',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsMarketAbi}__ and `functionName` set to `"upgradeToAndCall"`
@@ -5997,12 +5773,11 @@ export const useSimulateMaidsMarketUpgradeTo =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useSimulateMaidsMarketUpgradeToAndCall =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    functionName: 'upgradeToAndCall',
-  })
+export const useSimulateMaidsMarketUpgradeToAndCall = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  functionName: 'upgradeToAndCall',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsMarketAbi}__
@@ -6010,11 +5785,10 @@ export const useSimulateMaidsMarketUpgradeToAndCall =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useWatchMaidsMarketEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-  })
+export const useWatchMaidsMarketEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsMarketAbi}__ and `eventName` set to `"AdminChanged"`
@@ -6022,12 +5796,11 @@ export const useWatchMaidsMarketEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useWatchMaidsMarketAdminChangedEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    eventName: 'AdminChanged',
-  })
+export const useWatchMaidsMarketAdminChangedEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  eventName: 'AdminChanged',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsMarketAbi}__ and `eventName` set to `"BeaconUpgraded"`
@@ -6035,12 +5808,11 @@ export const useWatchMaidsMarketAdminChangedEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useWatchMaidsMarketBeaconUpgradedEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    eventName: 'BeaconUpgraded',
-  })
+export const useWatchMaidsMarketBeaconUpgradedEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  eventName: 'BeaconUpgraded',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsMarketAbi}__ and `eventName` set to `"BuyItem"`
@@ -6048,12 +5820,11 @@ export const useWatchMaidsMarketBeaconUpgradedEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useWatchMaidsMarketBuyItemEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    eventName: 'BuyItem',
-  })
+export const useWatchMaidsMarketBuyItemEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  eventName: 'BuyItem',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsMarketAbi}__ and `eventName` set to `"Initialized"`
@@ -6061,12 +5832,11 @@ export const useWatchMaidsMarketBuyItemEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useWatchMaidsMarketInitializedEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    eventName: 'Initialized',
-  })
+export const useWatchMaidsMarketInitializedEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  eventName: 'Initialized',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsMarketAbi}__ and `eventName` set to `"OwnershipTransferred"`
@@ -6074,12 +5844,11 @@ export const useWatchMaidsMarketInitializedEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useWatchMaidsMarketOwnershipTransferredEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    eventName: 'OwnershipTransferred',
-  })
+export const useWatchMaidsMarketOwnershipTransferredEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  eventName: 'OwnershipTransferred',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsMarketAbi}__ and `eventName` set to `"Paused"`
@@ -6087,12 +5856,11 @@ export const useWatchMaidsMarketOwnershipTransferredEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useWatchMaidsMarketPausedEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    eventName: 'Paused',
-  })
+export const useWatchMaidsMarketPausedEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  eventName: 'Paused',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsMarketAbi}__ and `eventName` set to `"Unpaused"`
@@ -6100,12 +5868,11 @@ export const useWatchMaidsMarketPausedEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useWatchMaidsMarketUnpausedEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    eventName: 'Unpaused',
-  })
+export const useWatchMaidsMarketUnpausedEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  eventName: 'Unpaused',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsMarketAbi}__ and `eventName` set to `"Upgraded"`
@@ -6113,12 +5880,11 @@ export const useWatchMaidsMarketUnpausedEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x937E61302C5565Bdd488DF35Fb7d362a323037f7)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xA61c6ce07bd1D1Ab98CA005896a1C6dee34B1955)
  */
-export const useWatchMaidsMarketUpgradedEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsMarketAbi,
-    address: maidsMarketAddress,
-    eventName: 'Upgraded',
-  })
+export const useWatchMaidsMarketUpgradedEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsMarketAbi,
+  address: maidsMarketAddress,
+  eventName: 'Upgraded',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsPredictionAbi}__
@@ -6137,12 +5903,11 @@ export const useReadMaidsPrediction = /*#__PURE__*/ createUseReadContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useReadMaidsPredictionGetAllPredictions =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'getAllPredictions',
-  })
+export const useReadMaidsPredictionGetAllPredictions = /*#__PURE__*/ createUseReadContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'getAllPredictions',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"getImplementation"`
@@ -6150,12 +5915,11 @@ export const useReadMaidsPredictionGetAllPredictions =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useReadMaidsPredictionGetImplementation =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'getImplementation',
-  })
+export const useReadMaidsPredictionGetImplementation = /*#__PURE__*/ createUseReadContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'getImplementation',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"getPrediction"`
@@ -6163,12 +5927,11 @@ export const useReadMaidsPredictionGetImplementation =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useReadMaidsPredictionGetPrediction =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'getPrediction',
-  })
+export const useReadMaidsPredictionGetPrediction = /*#__PURE__*/ createUseReadContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'getPrediction',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"getRewardAmount"`
@@ -6176,12 +5939,11 @@ export const useReadMaidsPredictionGetPrediction =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useReadMaidsPredictionGetRewardAmount =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'getRewardAmount',
-  })
+export const useReadMaidsPredictionGetRewardAmount = /*#__PURE__*/ createUseReadContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'getRewardAmount',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"getTop3Info"`
@@ -6189,12 +5951,11 @@ export const useReadMaidsPredictionGetRewardAmount =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useReadMaidsPredictionGetTop3Info =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'getTop3Info',
-  })
+export const useReadMaidsPredictionGetTop3Info = /*#__PURE__*/ createUseReadContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'getTop3Info',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"getUserInfo"`
@@ -6202,12 +5963,11 @@ export const useReadMaidsPredictionGetTop3Info =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useReadMaidsPredictionGetUserInfo =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'getUserInfo',
-  })
+export const useReadMaidsPredictionGetUserInfo = /*#__PURE__*/ createUseReadContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'getUserInfo',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"getUserInfoOfPrediction"`
@@ -6215,12 +5975,11 @@ export const useReadMaidsPredictionGetUserInfo =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useReadMaidsPredictionGetUserInfoOfPrediction =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'getUserInfoOfPrediction',
-  })
+export const useReadMaidsPredictionGetUserInfoOfPrediction = /*#__PURE__*/ createUseReadContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'getUserInfoOfPrediction',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"owner"`
@@ -6240,12 +5999,11 @@ export const useReadMaidsPredictionOwner = /*#__PURE__*/ createUseReadContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useReadMaidsPredictionPredictions =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'predictions',
-  })
+export const useReadMaidsPredictionPredictions = /*#__PURE__*/ createUseReadContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'predictions',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"proxiableUUID"`
@@ -6253,12 +6011,11 @@ export const useReadMaidsPredictionPredictions =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useReadMaidsPredictionProxiableUuid =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'proxiableUUID',
-  })
+export const useReadMaidsPredictionProxiableUuid = /*#__PURE__*/ createUseReadContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'proxiableUUID',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"token"`
@@ -6278,12 +6035,11 @@ export const useReadMaidsPredictionToken = /*#__PURE__*/ createUseReadContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useReadMaidsPredictionTop3Users =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'top3Users',
-  })
+export const useReadMaidsPredictionTop3Users = /*#__PURE__*/ createUseReadContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'top3Users',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"userInfo"`
@@ -6291,12 +6047,11 @@ export const useReadMaidsPredictionTop3Users =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useReadMaidsPredictionUserInfo =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'userInfo',
-  })
+export const useReadMaidsPredictionUserInfo = /*#__PURE__*/ createUseReadContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'userInfo',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"userInfos"`
@@ -6304,12 +6059,11 @@ export const useReadMaidsPredictionUserInfo =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useReadMaidsPredictionUserInfos =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'userInfos',
-  })
+export const useReadMaidsPredictionUserInfos = /*#__PURE__*/ createUseReadContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'userInfos',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsPredictionAbi}__
@@ -6328,12 +6082,11 @@ export const useWriteMaidsPrediction = /*#__PURE__*/ createUseWriteContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useWriteMaidsPredictionClaimReward =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'claimReward',
-  })
+export const useWriteMaidsPredictionClaimReward = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'claimReward',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"createPrediction"`
@@ -6341,12 +6094,11 @@ export const useWriteMaidsPredictionClaimReward =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useWriteMaidsPredictionCreatePrediction =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'createPrediction',
-  })
+export const useWriteMaidsPredictionCreatePrediction = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'createPrediction',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"initialize"`
@@ -6354,12 +6106,11 @@ export const useWriteMaidsPredictionCreatePrediction =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useWriteMaidsPredictionInitialize =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'initialize',
-  })
+export const useWriteMaidsPredictionInitialize = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'initialize',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"predict"`
@@ -6367,12 +6118,11 @@ export const useWriteMaidsPredictionInitialize =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useWriteMaidsPredictionPredict =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'predict',
-  })
+export const useWriteMaidsPredictionPredict = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'predict',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"renounceOwnership"`
@@ -6380,12 +6130,11 @@ export const useWriteMaidsPredictionPredict =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useWriteMaidsPredictionRenounceOwnership =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'renounceOwnership',
-  })
+export const useWriteMaidsPredictionRenounceOwnership = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'renounceOwnership',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"setChoicesLength"`
@@ -6393,12 +6142,11 @@ export const useWriteMaidsPredictionRenounceOwnership =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useWriteMaidsPredictionSetChoicesLength =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'setChoicesLength',
-  })
+export const useWriteMaidsPredictionSetChoicesLength = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'setChoicesLength',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"setEndTime"`
@@ -6406,12 +6154,11 @@ export const useWriteMaidsPredictionSetChoicesLength =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useWriteMaidsPredictionSetEndTime =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'setEndTime',
-  })
+export const useWriteMaidsPredictionSetEndTime = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'setEndTime',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"setPredictionURI"`
@@ -6419,12 +6166,11 @@ export const useWriteMaidsPredictionSetEndTime =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useWriteMaidsPredictionSetPredictionUri =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'setPredictionURI',
-  })
+export const useWriteMaidsPredictionSetPredictionUri = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'setPredictionURI',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"setRate"`
@@ -6432,12 +6178,11 @@ export const useWriteMaidsPredictionSetPredictionUri =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useWriteMaidsPredictionSetRate =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'setRate',
-  })
+export const useWriteMaidsPredictionSetRate = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'setRate',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"setToken"`
@@ -6445,12 +6190,11 @@ export const useWriteMaidsPredictionSetRate =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useWriteMaidsPredictionSetToken =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'setToken',
-  })
+export const useWriteMaidsPredictionSetToken = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'setToken',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"settle"`
@@ -6458,12 +6202,11 @@ export const useWriteMaidsPredictionSetToken =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useWriteMaidsPredictionSettle =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'settle',
-  })
+export const useWriteMaidsPredictionSettle = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'settle',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"transferOwnership"`
@@ -6471,12 +6214,11 @@ export const useWriteMaidsPredictionSettle =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useWriteMaidsPredictionTransferOwnership =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'transferOwnership',
-  })
+export const useWriteMaidsPredictionTransferOwnership = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'transferOwnership',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"upgradeTo"`
@@ -6484,12 +6226,11 @@ export const useWriteMaidsPredictionTransferOwnership =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useWriteMaidsPredictionUpgradeTo =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'upgradeTo',
-  })
+export const useWriteMaidsPredictionUpgradeTo = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'upgradeTo',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"upgradeToAndCall"`
@@ -6497,12 +6238,11 @@ export const useWriteMaidsPredictionUpgradeTo =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useWriteMaidsPredictionUpgradeToAndCall =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'upgradeToAndCall',
-  })
+export const useWriteMaidsPredictionUpgradeToAndCall = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'upgradeToAndCall',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsPredictionAbi}__
@@ -6510,11 +6250,10 @@ export const useWriteMaidsPredictionUpgradeToAndCall =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useSimulateMaidsPrediction =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-  })
+export const useSimulateMaidsPrediction = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"claimReward"`
@@ -6522,12 +6261,11 @@ export const useSimulateMaidsPrediction =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useSimulateMaidsPredictionClaimReward =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'claimReward',
-  })
+export const useSimulateMaidsPredictionClaimReward = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'claimReward',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"createPrediction"`
@@ -6535,12 +6273,11 @@ export const useSimulateMaidsPredictionClaimReward =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useSimulateMaidsPredictionCreatePrediction =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'createPrediction',
-  })
+export const useSimulateMaidsPredictionCreatePrediction = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'createPrediction',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"initialize"`
@@ -6548,12 +6285,11 @@ export const useSimulateMaidsPredictionCreatePrediction =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useSimulateMaidsPredictionInitialize =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'initialize',
-  })
+export const useSimulateMaidsPredictionInitialize = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'initialize',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"predict"`
@@ -6561,12 +6297,11 @@ export const useSimulateMaidsPredictionInitialize =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useSimulateMaidsPredictionPredict =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'predict',
-  })
+export const useSimulateMaidsPredictionPredict = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'predict',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"renounceOwnership"`
@@ -6574,12 +6309,11 @@ export const useSimulateMaidsPredictionPredict =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useSimulateMaidsPredictionRenounceOwnership =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'renounceOwnership',
-  })
+export const useSimulateMaidsPredictionRenounceOwnership = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'renounceOwnership',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"setChoicesLength"`
@@ -6587,12 +6321,11 @@ export const useSimulateMaidsPredictionRenounceOwnership =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useSimulateMaidsPredictionSetChoicesLength =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'setChoicesLength',
-  })
+export const useSimulateMaidsPredictionSetChoicesLength = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'setChoicesLength',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"setEndTime"`
@@ -6600,12 +6333,11 @@ export const useSimulateMaidsPredictionSetChoicesLength =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useSimulateMaidsPredictionSetEndTime =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'setEndTime',
-  })
+export const useSimulateMaidsPredictionSetEndTime = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'setEndTime',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"setPredictionURI"`
@@ -6613,12 +6345,11 @@ export const useSimulateMaidsPredictionSetEndTime =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useSimulateMaidsPredictionSetPredictionUri =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'setPredictionURI',
-  })
+export const useSimulateMaidsPredictionSetPredictionUri = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'setPredictionURI',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"setRate"`
@@ -6626,12 +6357,11 @@ export const useSimulateMaidsPredictionSetPredictionUri =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useSimulateMaidsPredictionSetRate =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'setRate',
-  })
+export const useSimulateMaidsPredictionSetRate = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'setRate',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"setToken"`
@@ -6639,12 +6369,11 @@ export const useSimulateMaidsPredictionSetRate =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useSimulateMaidsPredictionSetToken =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'setToken',
-  })
+export const useSimulateMaidsPredictionSetToken = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'setToken',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"settle"`
@@ -6652,12 +6381,11 @@ export const useSimulateMaidsPredictionSetToken =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useSimulateMaidsPredictionSettle =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'settle',
-  })
+export const useSimulateMaidsPredictionSettle = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'settle',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"transferOwnership"`
@@ -6665,12 +6393,11 @@ export const useSimulateMaidsPredictionSettle =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useSimulateMaidsPredictionTransferOwnership =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'transferOwnership',
-  })
+export const useSimulateMaidsPredictionTransferOwnership = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'transferOwnership',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"upgradeTo"`
@@ -6678,12 +6405,11 @@ export const useSimulateMaidsPredictionTransferOwnership =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useSimulateMaidsPredictionUpgradeTo =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'upgradeTo',
-  })
+export const useSimulateMaidsPredictionUpgradeTo = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'upgradeTo',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsPredictionAbi}__ and `functionName` set to `"upgradeToAndCall"`
@@ -6691,12 +6417,11 @@ export const useSimulateMaidsPredictionUpgradeTo =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useSimulateMaidsPredictionUpgradeToAndCall =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    functionName: 'upgradeToAndCall',
-  })
+export const useSimulateMaidsPredictionUpgradeToAndCall = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  functionName: 'upgradeToAndCall',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsPredictionAbi}__
@@ -6704,11 +6429,10 @@ export const useSimulateMaidsPredictionUpgradeToAndCall =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useWatchMaidsPredictionEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-  })
+export const useWatchMaidsPredictionEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsPredictionAbi}__ and `eventName` set to `"AdminChanged"`
@@ -6716,12 +6440,11 @@ export const useWatchMaidsPredictionEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useWatchMaidsPredictionAdminChangedEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    eventName: 'AdminChanged',
-  })
+export const useWatchMaidsPredictionAdminChangedEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  eventName: 'AdminChanged',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsPredictionAbi}__ and `eventName` set to `"BeaconUpgraded"`
@@ -6729,12 +6452,11 @@ export const useWatchMaidsPredictionAdminChangedEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useWatchMaidsPredictionBeaconUpgradedEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    eventName: 'BeaconUpgraded',
-  })
+export const useWatchMaidsPredictionBeaconUpgradedEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  eventName: 'BeaconUpgraded',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsPredictionAbi}__ and `eventName` set to `"Initialized"`
@@ -6742,12 +6464,11 @@ export const useWatchMaidsPredictionBeaconUpgradedEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useWatchMaidsPredictionInitializedEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    eventName: 'Initialized',
-  })
+export const useWatchMaidsPredictionInitializedEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  eventName: 'Initialized',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsPredictionAbi}__ and `eventName` set to `"OwnershipTransferred"`
@@ -6755,12 +6476,11 @@ export const useWatchMaidsPredictionInitializedEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useWatchMaidsPredictionOwnershipTransferredEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    eventName: 'OwnershipTransferred',
-  })
+export const useWatchMaidsPredictionOwnershipTransferredEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  eventName: 'OwnershipTransferred',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsPredictionAbi}__ and `eventName` set to `"PredictionCreated"`
@@ -6768,12 +6488,11 @@ export const useWatchMaidsPredictionOwnershipTransferredEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useWatchMaidsPredictionPredictionCreatedEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    eventName: 'PredictionCreated',
-  })
+export const useWatchMaidsPredictionPredictionCreatedEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  eventName: 'PredictionCreated',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsPredictionAbi}__ and `eventName` set to `"Settle"`
@@ -6781,12 +6500,11 @@ export const useWatchMaidsPredictionPredictionCreatedEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useWatchMaidsPredictionSettleEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    eventName: 'Settle',
-  })
+export const useWatchMaidsPredictionSettleEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  eventName: 'Settle',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsPredictionAbi}__ and `eventName` set to `"Upgraded"`
@@ -6794,12 +6512,11 @@ export const useWatchMaidsPredictionSettleEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x478fF14966Fe50645EDc6D1ACa2a5193801d6944)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x11828753AA5C7E93F705b2dC11F9eA4DBC767A8A)
  */
-export const useWatchMaidsPredictionUpgradedEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsPredictionAbi,
-    address: maidsPredictionAddress,
-    eventName: 'Upgraded',
-  })
+export const useWatchMaidsPredictionUpgradedEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsPredictionAbi,
+  address: maidsPredictionAddress,
+  eventName: 'Upgraded',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsTokenAbi}__
@@ -6890,13 +6607,11 @@ export const useReadMaidsTokenSymbol = /*#__PURE__*/ createUseReadContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xFf46623eF19871Ff9Abc5F66CA0B1c6a9bdD39cF)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x3cc3E7DFa0CC1d188bf3c6F40C98c7dE466f11D6)
  */
-export const useReadMaidsTokenTotalSupply = /*#__PURE__*/ createUseReadContract(
-  {
-    abi: maidsTokenAbi,
-    address: maidsTokenAddress,
-    functionName: 'totalSupply',
-  },
-)
+export const useReadMaidsTokenTotalSupply = /*#__PURE__*/ createUseReadContract({
+  abi: maidsTokenAbi,
+  address: maidsTokenAddress,
+  functionName: 'totalSupply',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsTokenAbi}__
@@ -6915,12 +6630,11 @@ export const useWriteMaidsToken = /*#__PURE__*/ createUseWriteContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xFf46623eF19871Ff9Abc5F66CA0B1c6a9bdD39cF)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x3cc3E7DFa0CC1d188bf3c6F40C98c7dE466f11D6)
  */
-export const useWriteMaidsTokenAddOperator =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsTokenAbi,
-    address: maidsTokenAddress,
-    functionName: 'addOperator',
-  })
+export const useWriteMaidsTokenAddOperator = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsTokenAbi,
+  address: maidsTokenAddress,
+  functionName: 'addOperator',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsTokenAbi}__ and `functionName` set to `"airdrop"`
@@ -6952,12 +6666,11 @@ export const useWriteMaidsTokenApprove = /*#__PURE__*/ createUseWriteContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xFf46623eF19871Ff9Abc5F66CA0B1c6a9bdD39cF)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x3cc3E7DFa0CC1d188bf3c6F40C98c7dE466f11D6)
  */
-export const useWriteMaidsTokenDecreaseAllowance =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsTokenAbi,
-    address: maidsTokenAddress,
-    functionName: 'decreaseAllowance',
-  })
+export const useWriteMaidsTokenDecreaseAllowance = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsTokenAbi,
+  address: maidsTokenAddress,
+  functionName: 'decreaseAllowance',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsTokenAbi}__ and `functionName` set to `"increaseAllowance"`
@@ -6965,12 +6678,11 @@ export const useWriteMaidsTokenDecreaseAllowance =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xFf46623eF19871Ff9Abc5F66CA0B1c6a9bdD39cF)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x3cc3E7DFa0CC1d188bf3c6F40C98c7dE466f11D6)
  */
-export const useWriteMaidsTokenIncreaseAllowance =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsTokenAbi,
-    address: maidsTokenAddress,
-    functionName: 'increaseAllowance',
-  })
+export const useWriteMaidsTokenIncreaseAllowance = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsTokenAbi,
+  address: maidsTokenAddress,
+  functionName: 'increaseAllowance',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsTokenAbi}__ and `functionName` set to `"mint"`
@@ -6990,12 +6702,11 @@ export const useWriteMaidsTokenMint = /*#__PURE__*/ createUseWriteContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xFf46623eF19871Ff9Abc5F66CA0B1c6a9bdD39cF)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x3cc3E7DFa0CC1d188bf3c6F40C98c7dE466f11D6)
  */
-export const useWriteMaidsTokenRemoveOperator =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsTokenAbi,
-    address: maidsTokenAddress,
-    functionName: 'removeOperator',
-  })
+export const useWriteMaidsTokenRemoveOperator = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsTokenAbi,
+  address: maidsTokenAddress,
+  functionName: 'removeOperator',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsTokenAbi}__ and `functionName` set to `"renounceOwnership"`
@@ -7003,12 +6714,11 @@ export const useWriteMaidsTokenRemoveOperator =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xFf46623eF19871Ff9Abc5F66CA0B1c6a9bdD39cF)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x3cc3E7DFa0CC1d188bf3c6F40C98c7dE466f11D6)
  */
-export const useWriteMaidsTokenRenounceOwnership =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsTokenAbi,
-    address: maidsTokenAddress,
-    functionName: 'renounceOwnership',
-  })
+export const useWriteMaidsTokenRenounceOwnership = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsTokenAbi,
+  address: maidsTokenAddress,
+  functionName: 'renounceOwnership',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsTokenAbi}__ and `functionName` set to `"transfer"`
@@ -7028,12 +6738,11 @@ export const useWriteMaidsTokenTransfer = /*#__PURE__*/ createUseWriteContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xFf46623eF19871Ff9Abc5F66CA0B1c6a9bdD39cF)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x3cc3E7DFa0CC1d188bf3c6F40C98c7dE466f11D6)
  */
-export const useWriteMaidsTokenTransferFrom =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsTokenAbi,
-    address: maidsTokenAddress,
-    functionName: 'transferFrom',
-  })
+export const useWriteMaidsTokenTransferFrom = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsTokenAbi,
+  address: maidsTokenAddress,
+  functionName: 'transferFrom',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsTokenAbi}__ and `functionName` set to `"transferOwnership"`
@@ -7041,12 +6750,11 @@ export const useWriteMaidsTokenTransferFrom =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xFf46623eF19871Ff9Abc5F66CA0B1c6a9bdD39cF)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x3cc3E7DFa0CC1d188bf3c6F40C98c7dE466f11D6)
  */
-export const useWriteMaidsTokenTransferOwnership =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsTokenAbi,
-    address: maidsTokenAddress,
-    functionName: 'transferOwnership',
-  })
+export const useWriteMaidsTokenTransferOwnership = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsTokenAbi,
+  address: maidsTokenAddress,
+  functionName: 'transferOwnership',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsTokenAbi}__
@@ -7065,12 +6773,11 @@ export const useSimulateMaidsToken = /*#__PURE__*/ createUseSimulateContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xFf46623eF19871Ff9Abc5F66CA0B1c6a9bdD39cF)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x3cc3E7DFa0CC1d188bf3c6F40C98c7dE466f11D6)
  */
-export const useSimulateMaidsTokenAddOperator =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsTokenAbi,
-    address: maidsTokenAddress,
-    functionName: 'addOperator',
-  })
+export const useSimulateMaidsTokenAddOperator = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsTokenAbi,
+  address: maidsTokenAddress,
+  functionName: 'addOperator',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsTokenAbi}__ and `functionName` set to `"airdrop"`
@@ -7078,12 +6785,11 @@ export const useSimulateMaidsTokenAddOperator =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xFf46623eF19871Ff9Abc5F66CA0B1c6a9bdD39cF)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x3cc3E7DFa0CC1d188bf3c6F40C98c7dE466f11D6)
  */
-export const useSimulateMaidsTokenAirdrop =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsTokenAbi,
-    address: maidsTokenAddress,
-    functionName: 'airdrop',
-  })
+export const useSimulateMaidsTokenAirdrop = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsTokenAbi,
+  address: maidsTokenAddress,
+  functionName: 'airdrop',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsTokenAbi}__ and `functionName` set to `"approve"`
@@ -7091,12 +6797,11 @@ export const useSimulateMaidsTokenAirdrop =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xFf46623eF19871Ff9Abc5F66CA0B1c6a9bdD39cF)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x3cc3E7DFa0CC1d188bf3c6F40C98c7dE466f11D6)
  */
-export const useSimulateMaidsTokenApprove =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsTokenAbi,
-    address: maidsTokenAddress,
-    functionName: 'approve',
-  })
+export const useSimulateMaidsTokenApprove = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsTokenAbi,
+  address: maidsTokenAddress,
+  functionName: 'approve',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsTokenAbi}__ and `functionName` set to `"decreaseAllowance"`
@@ -7104,12 +6809,11 @@ export const useSimulateMaidsTokenApprove =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xFf46623eF19871Ff9Abc5F66CA0B1c6a9bdD39cF)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x3cc3E7DFa0CC1d188bf3c6F40C98c7dE466f11D6)
  */
-export const useSimulateMaidsTokenDecreaseAllowance =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsTokenAbi,
-    address: maidsTokenAddress,
-    functionName: 'decreaseAllowance',
-  })
+export const useSimulateMaidsTokenDecreaseAllowance = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsTokenAbi,
+  address: maidsTokenAddress,
+  functionName: 'decreaseAllowance',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsTokenAbi}__ and `functionName` set to `"increaseAllowance"`
@@ -7117,12 +6821,11 @@ export const useSimulateMaidsTokenDecreaseAllowance =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xFf46623eF19871Ff9Abc5F66CA0B1c6a9bdD39cF)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x3cc3E7DFa0CC1d188bf3c6F40C98c7dE466f11D6)
  */
-export const useSimulateMaidsTokenIncreaseAllowance =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsTokenAbi,
-    address: maidsTokenAddress,
-    functionName: 'increaseAllowance',
-  })
+export const useSimulateMaidsTokenIncreaseAllowance = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsTokenAbi,
+  address: maidsTokenAddress,
+  functionName: 'increaseAllowance',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsTokenAbi}__ and `functionName` set to `"mint"`
@@ -7130,12 +6833,11 @@ export const useSimulateMaidsTokenIncreaseAllowance =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xFf46623eF19871Ff9Abc5F66CA0B1c6a9bdD39cF)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x3cc3E7DFa0CC1d188bf3c6F40C98c7dE466f11D6)
  */
-export const useSimulateMaidsTokenMint =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsTokenAbi,
-    address: maidsTokenAddress,
-    functionName: 'mint',
-  })
+export const useSimulateMaidsTokenMint = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsTokenAbi,
+  address: maidsTokenAddress,
+  functionName: 'mint',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsTokenAbi}__ and `functionName` set to `"removeOperator"`
@@ -7143,12 +6845,11 @@ export const useSimulateMaidsTokenMint =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xFf46623eF19871Ff9Abc5F66CA0B1c6a9bdD39cF)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x3cc3E7DFa0CC1d188bf3c6F40C98c7dE466f11D6)
  */
-export const useSimulateMaidsTokenRemoveOperator =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsTokenAbi,
-    address: maidsTokenAddress,
-    functionName: 'removeOperator',
-  })
+export const useSimulateMaidsTokenRemoveOperator = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsTokenAbi,
+  address: maidsTokenAddress,
+  functionName: 'removeOperator',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsTokenAbi}__ and `functionName` set to `"renounceOwnership"`
@@ -7156,12 +6857,11 @@ export const useSimulateMaidsTokenRemoveOperator =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xFf46623eF19871Ff9Abc5F66CA0B1c6a9bdD39cF)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x3cc3E7DFa0CC1d188bf3c6F40C98c7dE466f11D6)
  */
-export const useSimulateMaidsTokenRenounceOwnership =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsTokenAbi,
-    address: maidsTokenAddress,
-    functionName: 'renounceOwnership',
-  })
+export const useSimulateMaidsTokenRenounceOwnership = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsTokenAbi,
+  address: maidsTokenAddress,
+  functionName: 'renounceOwnership',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsTokenAbi}__ and `functionName` set to `"transfer"`
@@ -7169,12 +6869,11 @@ export const useSimulateMaidsTokenRenounceOwnership =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xFf46623eF19871Ff9Abc5F66CA0B1c6a9bdD39cF)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x3cc3E7DFa0CC1d188bf3c6F40C98c7dE466f11D6)
  */
-export const useSimulateMaidsTokenTransfer =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsTokenAbi,
-    address: maidsTokenAddress,
-    functionName: 'transfer',
-  })
+export const useSimulateMaidsTokenTransfer = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsTokenAbi,
+  address: maidsTokenAddress,
+  functionName: 'transfer',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsTokenAbi}__ and `functionName` set to `"transferFrom"`
@@ -7182,12 +6881,11 @@ export const useSimulateMaidsTokenTransfer =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xFf46623eF19871Ff9Abc5F66CA0B1c6a9bdD39cF)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x3cc3E7DFa0CC1d188bf3c6F40C98c7dE466f11D6)
  */
-export const useSimulateMaidsTokenTransferFrom =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsTokenAbi,
-    address: maidsTokenAddress,
-    functionName: 'transferFrom',
-  })
+export const useSimulateMaidsTokenTransferFrom = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsTokenAbi,
+  address: maidsTokenAddress,
+  functionName: 'transferFrom',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsTokenAbi}__ and `functionName` set to `"transferOwnership"`
@@ -7195,12 +6893,11 @@ export const useSimulateMaidsTokenTransferFrom =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xFf46623eF19871Ff9Abc5F66CA0B1c6a9bdD39cF)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x3cc3E7DFa0CC1d188bf3c6F40C98c7dE466f11D6)
  */
-export const useSimulateMaidsTokenTransferOwnership =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsTokenAbi,
-    address: maidsTokenAddress,
-    functionName: 'transferOwnership',
-  })
+export const useSimulateMaidsTokenTransferOwnership = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsTokenAbi,
+  address: maidsTokenAddress,
+  functionName: 'transferOwnership',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsTokenAbi}__
@@ -7208,11 +6905,10 @@ export const useSimulateMaidsTokenTransferOwnership =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xFf46623eF19871Ff9Abc5F66CA0B1c6a9bdD39cF)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x3cc3E7DFa0CC1d188bf3c6F40C98c7dE466f11D6)
  */
-export const useWatchMaidsTokenEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsTokenAbi,
-    address: maidsTokenAddress,
-  })
+export const useWatchMaidsTokenEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsTokenAbi,
+  address: maidsTokenAddress,
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsTokenAbi}__ and `eventName` set to `"Approval"`
@@ -7220,12 +6916,11 @@ export const useWatchMaidsTokenEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xFf46623eF19871Ff9Abc5F66CA0B1c6a9bdD39cF)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x3cc3E7DFa0CC1d188bf3c6F40C98c7dE466f11D6)
  */
-export const useWatchMaidsTokenApprovalEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsTokenAbi,
-    address: maidsTokenAddress,
-    eventName: 'Approval',
-  })
+export const useWatchMaidsTokenApprovalEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsTokenAbi,
+  address: maidsTokenAddress,
+  eventName: 'Approval',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsTokenAbi}__ and `eventName` set to `"OwnershipTransferred"`
@@ -7233,12 +6928,11 @@ export const useWatchMaidsTokenApprovalEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xFf46623eF19871Ff9Abc5F66CA0B1c6a9bdD39cF)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x3cc3E7DFa0CC1d188bf3c6F40C98c7dE466f11D6)
  */
-export const useWatchMaidsTokenOwnershipTransferredEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsTokenAbi,
-    address: maidsTokenAddress,
-    eventName: 'OwnershipTransferred',
-  })
+export const useWatchMaidsTokenOwnershipTransferredEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsTokenAbi,
+  address: maidsTokenAddress,
+  eventName: 'OwnershipTransferred',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsTokenAbi}__ and `eventName` set to `"Transfer"`
@@ -7246,12 +6940,11 @@ export const useWatchMaidsTokenOwnershipTransferredEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0xFf46623eF19871Ff9Abc5F66CA0B1c6a9bdD39cF)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x3cc3E7DFa0CC1d188bf3c6F40C98c7dE466f11D6)
  */
-export const useWatchMaidsTokenTransferEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsTokenAbi,
-    address: maidsTokenAddress,
-    eventName: 'Transfer',
-  })
+export const useWatchMaidsTokenTransferEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsTokenAbi,
+  address: maidsTokenAddress,
+  eventName: 'Transfer',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__
@@ -7282,12 +6975,11 @@ export const useReadMaidsTokenYieldToken = /*#__PURE__*/ createUseReadContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  */
-export const useReadMaidsTokenYieldGetPendingTokens =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsTokenYieldAbi,
-    address: maidsTokenYieldAddress,
-    functionName: 'getPendingTokens',
-  })
+export const useReadMaidsTokenYieldGetPendingTokens = /*#__PURE__*/ createUseReadContract({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+  functionName: 'getPendingTokens',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"getPendingTokensMany"`
@@ -7295,12 +6987,11 @@ export const useReadMaidsTokenYieldGetPendingTokens =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  */
-export const useReadMaidsTokenYieldGetPendingTokensMany =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsTokenYieldAbi,
-    address: maidsTokenYieldAddress,
-    functionName: 'getPendingTokensMany',
-  })
+export const useReadMaidsTokenYieldGetPendingTokensMany = /*#__PURE__*/ createUseReadContract({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+  functionName: 'getPendingTokensMany',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"getYieldRateData"`
@@ -7308,12 +6999,11 @@ export const useReadMaidsTokenYieldGetPendingTokensMany =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  */
-export const useReadMaidsTokenYieldGetYieldRateData =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsTokenYieldAbi,
-    address: maidsTokenYieldAddress,
-    functionName: 'getYieldRateData',
-  })
+export const useReadMaidsTokenYieldGetYieldRateData = /*#__PURE__*/ createUseReadContract({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+  functionName: 'getYieldRateData',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"minter"`
@@ -7321,13 +7011,11 @@ export const useReadMaidsTokenYieldGetYieldRateData =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  */
-export const useReadMaidsTokenYieldMinter = /*#__PURE__*/ createUseReadContract(
-  {
-    abi: maidsTokenYieldAbi,
-    address: maidsTokenYieldAddress,
-    functionName: 'minter',
-  },
-)
+export const useReadMaidsTokenYieldMinter = /*#__PURE__*/ createUseReadContract({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+  functionName: 'minter',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"owner"`
@@ -7347,12 +7035,11 @@ export const useReadMaidsTokenYieldOwner = /*#__PURE__*/ createUseReadContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  */
-export const useReadMaidsTokenYieldTokenToLastClaimedTimestamp =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsTokenYieldAbi,
-    address: maidsTokenYieldAddress,
-    functionName: 'tokenToLastClaimedTimestamp',
-  })
+export const useReadMaidsTokenYieldTokenToLastClaimedTimestamp = /*#__PURE__*/ createUseReadContract({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+  functionName: 'tokenToLastClaimedTimestamp',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"yieldEndTime"`
@@ -7360,12 +7047,11 @@ export const useReadMaidsTokenYieldTokenToLastClaimedTimestamp =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  */
-export const useReadMaidsTokenYieldYieldEndTime =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsTokenYieldAbi,
-    address: maidsTokenYieldAddress,
-    functionName: 'yieldEndTime',
-  })
+export const useReadMaidsTokenYieldYieldEndTime = /*#__PURE__*/ createUseReadContract({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+  functionName: 'yieldEndTime',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"yieldStartTime"`
@@ -7373,12 +7059,11 @@ export const useReadMaidsTokenYieldYieldEndTime =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  */
-export const useReadMaidsTokenYieldYieldStartTime =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsTokenYieldAbi,
-    address: maidsTokenYieldAddress,
-    functionName: 'yieldStartTime',
-  })
+export const useReadMaidsTokenYieldYieldStartTime = /*#__PURE__*/ createUseReadContract({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+  functionName: 'yieldStartTime',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__
@@ -7397,12 +7082,11 @@ export const useWriteMaidsTokenYield = /*#__PURE__*/ createUseWriteContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  */
-export const useWriteMaidsTokenYieldClaim =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsTokenYieldAbi,
-    address: maidsTokenYieldAddress,
-    functionName: 'claim',
-  })
+export const useWriteMaidsTokenYieldClaim = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+  functionName: 'claim',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"renounceOwnership"`
@@ -7410,12 +7094,11 @@ export const useWriteMaidsTokenYieldClaim =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  */
-export const useWriteMaidsTokenYieldRenounceOwnership =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsTokenYieldAbi,
-    address: maidsTokenYieldAddress,
-    functionName: 'renounceOwnership',
-  })
+export const useWriteMaidsTokenYieldRenounceOwnership = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+  functionName: 'renounceOwnership',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"setMinter"`
@@ -7423,12 +7106,11 @@ export const useWriteMaidsTokenYieldRenounceOwnership =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  */
-export const useWriteMaidsTokenYieldSetMinter =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsTokenYieldAbi,
-    address: maidsTokenYieldAddress,
-    functionName: 'setMinter',
-  })
+export const useWriteMaidsTokenYieldSetMinter = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+  functionName: 'setMinter',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"setToken"`
@@ -7436,12 +7118,11 @@ export const useWriteMaidsTokenYieldSetMinter =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  */
-export const useWriteMaidsTokenYieldSetToken =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsTokenYieldAbi,
-    address: maidsTokenYieldAddress,
-    functionName: 'setToken',
-  })
+export const useWriteMaidsTokenYieldSetToken = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+  functionName: 'setToken',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"setYieldEndTime"`
@@ -7449,12 +7130,11 @@ export const useWriteMaidsTokenYieldSetToken =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  */
-export const useWriteMaidsTokenYieldSetYieldEndTime =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsTokenYieldAbi,
-    address: maidsTokenYieldAddress,
-    functionName: 'setYieldEndTime',
-  })
+export const useWriteMaidsTokenYieldSetYieldEndTime = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+  functionName: 'setYieldEndTime',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"setYieldRateData"`
@@ -7462,12 +7142,11 @@ export const useWriteMaidsTokenYieldSetYieldEndTime =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  */
-export const useWriteMaidsTokenYieldSetYieldRateData =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsTokenYieldAbi,
-    address: maidsTokenYieldAddress,
-    functionName: 'setYieldRateData',
-  })
+export const useWriteMaidsTokenYieldSetYieldRateData = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+  functionName: 'setYieldRateData',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"setYieldStartTime"`
@@ -7475,12 +7154,11 @@ export const useWriteMaidsTokenYieldSetYieldRateData =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  */
-export const useWriteMaidsTokenYieldSetYieldStartTime =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsTokenYieldAbi,
-    address: maidsTokenYieldAddress,
-    functionName: 'setYieldStartTime',
-  })
+export const useWriteMaidsTokenYieldSetYieldStartTime = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+  functionName: 'setYieldStartTime',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"transferOwnership"`
@@ -7488,12 +7166,11 @@ export const useWriteMaidsTokenYieldSetYieldStartTime =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  */
-export const useWriteMaidsTokenYieldTransferOwnership =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsTokenYieldAbi,
-    address: maidsTokenYieldAddress,
-    functionName: 'transferOwnership',
-  })
+export const useWriteMaidsTokenYieldTransferOwnership = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+  functionName: 'transferOwnership',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__
@@ -7501,11 +7178,10 @@ export const useWriteMaidsTokenYieldTransferOwnership =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  */
-export const useSimulateMaidsTokenYield =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsTokenYieldAbi,
-    address: maidsTokenYieldAddress,
-  })
+export const useSimulateMaidsTokenYield = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"claim"`
@@ -7513,12 +7189,11 @@ export const useSimulateMaidsTokenYield =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  */
-export const useSimulateMaidsTokenYieldClaim =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsTokenYieldAbi,
-    address: maidsTokenYieldAddress,
-    functionName: 'claim',
-  })
+export const useSimulateMaidsTokenYieldClaim = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+  functionName: 'claim',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"renounceOwnership"`
@@ -7526,12 +7201,11 @@ export const useSimulateMaidsTokenYieldClaim =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  */
-export const useSimulateMaidsTokenYieldRenounceOwnership =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsTokenYieldAbi,
-    address: maidsTokenYieldAddress,
-    functionName: 'renounceOwnership',
-  })
+export const useSimulateMaidsTokenYieldRenounceOwnership = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+  functionName: 'renounceOwnership',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"setMinter"`
@@ -7539,12 +7213,11 @@ export const useSimulateMaidsTokenYieldRenounceOwnership =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  */
-export const useSimulateMaidsTokenYieldSetMinter =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsTokenYieldAbi,
-    address: maidsTokenYieldAddress,
-    functionName: 'setMinter',
-  })
+export const useSimulateMaidsTokenYieldSetMinter = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+  functionName: 'setMinter',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"setToken"`
@@ -7552,12 +7225,11 @@ export const useSimulateMaidsTokenYieldSetMinter =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  */
-export const useSimulateMaidsTokenYieldSetToken =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsTokenYieldAbi,
-    address: maidsTokenYieldAddress,
-    functionName: 'setToken',
-  })
+export const useSimulateMaidsTokenYieldSetToken = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+  functionName: 'setToken',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"setYieldEndTime"`
@@ -7565,12 +7237,11 @@ export const useSimulateMaidsTokenYieldSetToken =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  */
-export const useSimulateMaidsTokenYieldSetYieldEndTime =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsTokenYieldAbi,
-    address: maidsTokenYieldAddress,
-    functionName: 'setYieldEndTime',
-  })
+export const useSimulateMaidsTokenYieldSetYieldEndTime = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+  functionName: 'setYieldEndTime',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"setYieldRateData"`
@@ -7578,12 +7249,11 @@ export const useSimulateMaidsTokenYieldSetYieldEndTime =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  */
-export const useSimulateMaidsTokenYieldSetYieldRateData =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsTokenYieldAbi,
-    address: maidsTokenYieldAddress,
-    functionName: 'setYieldRateData',
-  })
+export const useSimulateMaidsTokenYieldSetYieldRateData = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+  functionName: 'setYieldRateData',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"setYieldStartTime"`
@@ -7591,12 +7261,11 @@ export const useSimulateMaidsTokenYieldSetYieldRateData =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  */
-export const useSimulateMaidsTokenYieldSetYieldStartTime =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsTokenYieldAbi,
-    address: maidsTokenYieldAddress,
-    functionName: 'setYieldStartTime',
-  })
+export const useSimulateMaidsTokenYieldSetYieldStartTime = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+  functionName: 'setYieldStartTime',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `functionName` set to `"transferOwnership"`
@@ -7604,12 +7273,11 @@ export const useSimulateMaidsTokenYieldSetYieldStartTime =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  */
-export const useSimulateMaidsTokenYieldTransferOwnership =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsTokenYieldAbi,
-    address: maidsTokenYieldAddress,
-    functionName: 'transferOwnership',
-  })
+export const useSimulateMaidsTokenYieldTransferOwnership = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+  functionName: 'transferOwnership',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsTokenYieldAbi}__
@@ -7617,11 +7285,10 @@ export const useSimulateMaidsTokenYieldTransferOwnership =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  */
-export const useWatchMaidsTokenYieldEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsTokenYieldAbi,
-    address: maidsTokenYieldAddress,
-  })
+export const useWatchMaidsTokenYieldEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `eventName` set to `"Claim"`
@@ -7629,12 +7296,11 @@ export const useWatchMaidsTokenYieldEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  */
-export const useWatchMaidsTokenYieldClaimEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsTokenYieldAbi,
-    address: maidsTokenYieldAddress,
-    eventName: 'Claim',
-  })
+export const useWatchMaidsTokenYieldClaimEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+  eventName: 'Claim',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsTokenYieldAbi}__ and `eventName` set to `"OwnershipTransferred"`
@@ -7642,12 +7308,11 @@ export const useWatchMaidsTokenYieldClaimEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x9803445DA8701F6cbc9AE0dD24928961847bdAc2)
  */
-export const useWatchMaidsTokenYieldOwnershipTransferredEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsTokenYieldAbi,
-    address: maidsTokenYieldAddress,
-    eventName: 'OwnershipTransferred',
-  })
+export const useWatchMaidsTokenYieldOwnershipTransferredEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsTokenYieldAbi,
+  address: maidsTokenYieldAddress,
+  eventName: 'OwnershipTransferred',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsVotingAbi}__
@@ -7666,12 +7331,11 @@ export const useReadMaidsVoting = /*#__PURE__*/ createUseReadContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x936756a41B244EF81712F95fE347278d42A51C05)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0798f26b60b7eB6a536B7ADA941Fb2f400bFB0eE)
  */
-export const useReadMaidsVotingGetAllVotes =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsVotingAbi,
-    address: maidsVotingAddress,
-    functionName: 'getAllVotes',
-  })
+export const useReadMaidsVotingGetAllVotes = /*#__PURE__*/ createUseReadContract({
+  abi: maidsVotingAbi,
+  address: maidsVotingAddress,
+  functionName: 'getAllVotes',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsVotingAbi}__ and `functionName` set to `"getVoteAmountsOfToken"`
@@ -7679,12 +7343,11 @@ export const useReadMaidsVotingGetAllVotes =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x936756a41B244EF81712F95fE347278d42A51C05)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0798f26b60b7eB6a536B7ADA941Fb2f400bFB0eE)
  */
-export const useReadMaidsVotingGetVoteAmountsOfToken =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsVotingAbi,
-    address: maidsVotingAddress,
-    functionName: 'getVoteAmountsOfToken',
-  })
+export const useReadMaidsVotingGetVoteAmountsOfToken = /*#__PURE__*/ createUseReadContract({
+  abi: maidsVotingAbi,
+  address: maidsVotingAddress,
+  functionName: 'getVoteAmountsOfToken',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsVotingAbi}__ and `functionName` set to `"getVoteAmountsOfUser"`
@@ -7692,12 +7355,11 @@ export const useReadMaidsVotingGetVoteAmountsOfToken =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x936756a41B244EF81712F95fE347278d42A51C05)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0798f26b60b7eB6a536B7ADA941Fb2f400bFB0eE)
  */
-export const useReadMaidsVotingGetVoteAmountsOfUser =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsVotingAbi,
-    address: maidsVotingAddress,
-    functionName: 'getVoteAmountsOfUser',
-  })
+export const useReadMaidsVotingGetVoteAmountsOfUser = /*#__PURE__*/ createUseReadContract({
+  abi: maidsVotingAbi,
+  address: maidsVotingAddress,
+  functionName: 'getVoteAmountsOfUser',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsVotingAbi}__ and `functionName` set to `"getVotedAddress"`
@@ -7705,12 +7367,11 @@ export const useReadMaidsVotingGetVoteAmountsOfUser =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x936756a41B244EF81712F95fE347278d42A51C05)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0798f26b60b7eB6a536B7ADA941Fb2f400bFB0eE)
  */
-export const useReadMaidsVotingGetVotedAddress =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsVotingAbi,
-    address: maidsVotingAddress,
-    functionName: 'getVotedAddress',
-  })
+export const useReadMaidsVotingGetVotedAddress = /*#__PURE__*/ createUseReadContract({
+  abi: maidsVotingAbi,
+  address: maidsVotingAddress,
+  functionName: 'getVotedAddress',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsVotingAbi}__ and `functionName` set to `"getVotedAddressOfToken"`
@@ -7718,12 +7379,11 @@ export const useReadMaidsVotingGetVotedAddress =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x936756a41B244EF81712F95fE347278d42A51C05)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0798f26b60b7eB6a536B7ADA941Fb2f400bFB0eE)
  */
-export const useReadMaidsVotingGetVotedAddressOfToken =
-  /*#__PURE__*/ createUseReadContract({
-    abi: maidsVotingAbi,
-    address: maidsVotingAddress,
-    functionName: 'getVotedAddressOfToken',
-  })
+export const useReadMaidsVotingGetVotedAddressOfToken = /*#__PURE__*/ createUseReadContract({
+  abi: maidsVotingAbi,
+  address: maidsVotingAddress,
+  functionName: 'getVotedAddressOfToken',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link maidsVotingAbi}__ and `functionName` set to `"owner"`
@@ -7766,12 +7426,11 @@ export const useWriteMaidsVoting = /*#__PURE__*/ createUseWriteContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x936756a41B244EF81712F95fE347278d42A51C05)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0798f26b60b7eB6a536B7ADA941Fb2f400bFB0eE)
  */
-export const useWriteMaidsVotingRenounceOwnership =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsVotingAbi,
-    address: maidsVotingAddress,
-    functionName: 'renounceOwnership',
-  })
+export const useWriteMaidsVotingRenounceOwnership = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsVotingAbi,
+  address: maidsVotingAddress,
+  functionName: 'renounceOwnership',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsVotingAbi}__ and `functionName` set to `"setEndTime"`
@@ -7779,12 +7438,11 @@ export const useWriteMaidsVotingRenounceOwnership =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x936756a41B244EF81712F95fE347278d42A51C05)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0798f26b60b7eB6a536B7ADA941Fb2f400bFB0eE)
  */
-export const useWriteMaidsVotingSetEndTime =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsVotingAbi,
-    address: maidsVotingAddress,
-    functionName: 'setEndTime',
-  })
+export const useWriteMaidsVotingSetEndTime = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsVotingAbi,
+  address: maidsVotingAddress,
+  functionName: 'setEndTime',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsVotingAbi}__ and `functionName` set to `"transferOwnership"`
@@ -7792,12 +7450,11 @@ export const useWriteMaidsVotingSetEndTime =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x936756a41B244EF81712F95fE347278d42A51C05)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0798f26b60b7eB6a536B7ADA941Fb2f400bFB0eE)
  */
-export const useWriteMaidsVotingTransferOwnership =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: maidsVotingAbi,
-    address: maidsVotingAddress,
-    functionName: 'transferOwnership',
-  })
+export const useWriteMaidsVotingTransferOwnership = /*#__PURE__*/ createUseWriteContract({
+  abi: maidsVotingAbi,
+  address: maidsVotingAddress,
+  functionName: 'transferOwnership',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link maidsVotingAbi}__ and `functionName` set to `"vote"`
@@ -7828,12 +7485,11 @@ export const useSimulateMaidsVoting = /*#__PURE__*/ createUseSimulateContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x936756a41B244EF81712F95fE347278d42A51C05)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0798f26b60b7eB6a536B7ADA941Fb2f400bFB0eE)
  */
-export const useSimulateMaidsVotingRenounceOwnership =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsVotingAbi,
-    address: maidsVotingAddress,
-    functionName: 'renounceOwnership',
-  })
+export const useSimulateMaidsVotingRenounceOwnership = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsVotingAbi,
+  address: maidsVotingAddress,
+  functionName: 'renounceOwnership',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsVotingAbi}__ and `functionName` set to `"setEndTime"`
@@ -7841,12 +7497,11 @@ export const useSimulateMaidsVotingRenounceOwnership =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x936756a41B244EF81712F95fE347278d42A51C05)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0798f26b60b7eB6a536B7ADA941Fb2f400bFB0eE)
  */
-export const useSimulateMaidsVotingSetEndTime =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsVotingAbi,
-    address: maidsVotingAddress,
-    functionName: 'setEndTime',
-  })
+export const useSimulateMaidsVotingSetEndTime = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsVotingAbi,
+  address: maidsVotingAddress,
+  functionName: 'setEndTime',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsVotingAbi}__ and `functionName` set to `"transferOwnership"`
@@ -7854,12 +7509,11 @@ export const useSimulateMaidsVotingSetEndTime =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x936756a41B244EF81712F95fE347278d42A51C05)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0798f26b60b7eB6a536B7ADA941Fb2f400bFB0eE)
  */
-export const useSimulateMaidsVotingTransferOwnership =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsVotingAbi,
-    address: maidsVotingAddress,
-    functionName: 'transferOwnership',
-  })
+export const useSimulateMaidsVotingTransferOwnership = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsVotingAbi,
+  address: maidsVotingAddress,
+  functionName: 'transferOwnership',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link maidsVotingAbi}__ and `functionName` set to `"vote"`
@@ -7867,12 +7521,11 @@ export const useSimulateMaidsVotingTransferOwnership =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x936756a41B244EF81712F95fE347278d42A51C05)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0798f26b60b7eB6a536B7ADA941Fb2f400bFB0eE)
  */
-export const useSimulateMaidsVotingVote =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: maidsVotingAbi,
-    address: maidsVotingAddress,
-    functionName: 'vote',
-  })
+export const useSimulateMaidsVotingVote = /*#__PURE__*/ createUseSimulateContract({
+  abi: maidsVotingAbi,
+  address: maidsVotingAddress,
+  functionName: 'vote',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsVotingAbi}__
@@ -7880,11 +7533,10 @@ export const useSimulateMaidsVotingVote =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x936756a41B244EF81712F95fE347278d42A51C05)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0798f26b60b7eB6a536B7ADA941Fb2f400bFB0eE)
  */
-export const useWatchMaidsVotingEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsVotingAbi,
-    address: maidsVotingAddress,
-  })
+export const useWatchMaidsVotingEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsVotingAbi,
+  address: maidsVotingAddress,
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link maidsVotingAbi}__ and `eventName` set to `"OwnershipTransferred"`
@@ -7892,12 +7544,11 @@ export const useWatchMaidsVotingEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x936756a41B244EF81712F95fE347278d42A51C05)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x0798f26b60b7eB6a536B7ADA941Fb2f400bFB0eE)
  */
-export const useWatchMaidsVotingOwnershipTransferredEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: maidsVotingAbi,
-    address: maidsVotingAddress,
-    eventName: 'OwnershipTransferred',
-  })
+export const useWatchMaidsVotingOwnershipTransferredEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: maidsVotingAbi,
+  address: maidsVotingAddress,
+  eventName: 'OwnershipTransferred',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link medalNftAbi}__
@@ -7928,12 +7579,11 @@ export const useReadMedalNftBalanceOf = /*#__PURE__*/ createUseReadContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x14c85a7307167253348319113cB5Fad6647fF1a8)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6dA7Ae5FBc5B699a9a812C56E4D76aEc67f8c8f2)
  */
-export const useReadMedalNftBalanceOfBatch =
-  /*#__PURE__*/ createUseReadContract({
-    abi: medalNftAbi,
-    address: medalNftAddress,
-    functionName: 'balanceOfBatch',
-  })
+export const useReadMedalNftBalanceOfBatch = /*#__PURE__*/ createUseReadContract({
+  abi: medalNftAbi,
+  address: medalNftAddress,
+  functionName: 'balanceOfBatch',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link medalNftAbi}__ and `functionName` set to `"isApprovedForAll"`
@@ -7941,12 +7591,11 @@ export const useReadMedalNftBalanceOfBatch =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x14c85a7307167253348319113cB5Fad6647fF1a8)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6dA7Ae5FBc5B699a9a812C56E4D76aEc67f8c8f2)
  */
-export const useReadMedalNftIsApprovedForAll =
-  /*#__PURE__*/ createUseReadContract({
-    abi: medalNftAbi,
-    address: medalNftAddress,
-    functionName: 'isApprovedForAll',
-  })
+export const useReadMedalNftIsApprovedForAll = /*#__PURE__*/ createUseReadContract({
+  abi: medalNftAbi,
+  address: medalNftAddress,
+  functionName: 'isApprovedForAll',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link medalNftAbi}__ and `functionName` set to `"supportsInterface"`
@@ -7954,12 +7603,11 @@ export const useReadMedalNftIsApprovedForAll =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x14c85a7307167253348319113cB5Fad6647fF1a8)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6dA7Ae5FBc5B699a9a812C56E4D76aEc67f8c8f2)
  */
-export const useReadMedalNftSupportsInterface =
-  /*#__PURE__*/ createUseReadContract({
-    abi: medalNftAbi,
-    address: medalNftAddress,
-    functionName: 'supportsInterface',
-  })
+export const useReadMedalNftSupportsInterface = /*#__PURE__*/ createUseReadContract({
+  abi: medalNftAbi,
+  address: medalNftAddress,
+  functionName: 'supportsInterface',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link medalNftAbi}__ and `functionName` set to `"uri"`
@@ -8002,12 +7650,11 @@ export const useWriteMedalNftMint = /*#__PURE__*/ createUseWriteContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x14c85a7307167253348319113cB5Fad6647fF1a8)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6dA7Ae5FBc5B699a9a812C56E4D76aEc67f8c8f2)
  */
-export const useWriteMedalNftSafeBatchTransferFrom =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: medalNftAbi,
-    address: medalNftAddress,
-    functionName: 'safeBatchTransferFrom',
-  })
+export const useWriteMedalNftSafeBatchTransferFrom = /*#__PURE__*/ createUseWriteContract({
+  abi: medalNftAbi,
+  address: medalNftAddress,
+  functionName: 'safeBatchTransferFrom',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link medalNftAbi}__ and `functionName` set to `"safeTransferFrom"`
@@ -8015,12 +7662,11 @@ export const useWriteMedalNftSafeBatchTransferFrom =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x14c85a7307167253348319113cB5Fad6647fF1a8)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6dA7Ae5FBc5B699a9a812C56E4D76aEc67f8c8f2)
  */
-export const useWriteMedalNftSafeTransferFrom =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: medalNftAbi,
-    address: medalNftAddress,
-    functionName: 'safeTransferFrom',
-  })
+export const useWriteMedalNftSafeTransferFrom = /*#__PURE__*/ createUseWriteContract({
+  abi: medalNftAbi,
+  address: medalNftAddress,
+  functionName: 'safeTransferFrom',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link medalNftAbi}__ and `functionName` set to `"setApprovalForAll"`
@@ -8028,12 +7674,11 @@ export const useWriteMedalNftSafeTransferFrom =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x14c85a7307167253348319113cB5Fad6647fF1a8)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6dA7Ae5FBc5B699a9a812C56E4D76aEc67f8c8f2)
  */
-export const useWriteMedalNftSetApprovalForAll =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: medalNftAbi,
-    address: medalNftAddress,
-    functionName: 'setApprovalForAll',
-  })
+export const useWriteMedalNftSetApprovalForAll = /*#__PURE__*/ createUseWriteContract({
+  abi: medalNftAbi,
+  address: medalNftAddress,
+  functionName: 'setApprovalForAll',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link medalNftAbi}__
@@ -8064,12 +7709,11 @@ export const useSimulateMedalNftMint = /*#__PURE__*/ createUseSimulateContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x14c85a7307167253348319113cB5Fad6647fF1a8)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6dA7Ae5FBc5B699a9a812C56E4D76aEc67f8c8f2)
  */
-export const useSimulateMedalNftSafeBatchTransferFrom =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: medalNftAbi,
-    address: medalNftAddress,
-    functionName: 'safeBatchTransferFrom',
-  })
+export const useSimulateMedalNftSafeBatchTransferFrom = /*#__PURE__*/ createUseSimulateContract({
+  abi: medalNftAbi,
+  address: medalNftAddress,
+  functionName: 'safeBatchTransferFrom',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link medalNftAbi}__ and `functionName` set to `"safeTransferFrom"`
@@ -8077,12 +7721,11 @@ export const useSimulateMedalNftSafeBatchTransferFrom =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x14c85a7307167253348319113cB5Fad6647fF1a8)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6dA7Ae5FBc5B699a9a812C56E4D76aEc67f8c8f2)
  */
-export const useSimulateMedalNftSafeTransferFrom =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: medalNftAbi,
-    address: medalNftAddress,
-    functionName: 'safeTransferFrom',
-  })
+export const useSimulateMedalNftSafeTransferFrom = /*#__PURE__*/ createUseSimulateContract({
+  abi: medalNftAbi,
+  address: medalNftAddress,
+  functionName: 'safeTransferFrom',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link medalNftAbi}__ and `functionName` set to `"setApprovalForAll"`
@@ -8090,12 +7733,11 @@ export const useSimulateMedalNftSafeTransferFrom =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x14c85a7307167253348319113cB5Fad6647fF1a8)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6dA7Ae5FBc5B699a9a812C56E4D76aEc67f8c8f2)
  */
-export const useSimulateMedalNftSetApprovalForAll =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: medalNftAbi,
-    address: medalNftAddress,
-    functionName: 'setApprovalForAll',
-  })
+export const useSimulateMedalNftSetApprovalForAll = /*#__PURE__*/ createUseSimulateContract({
+  abi: medalNftAbi,
+  address: medalNftAddress,
+  functionName: 'setApprovalForAll',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link medalNftAbi}__
@@ -8114,12 +7756,11 @@ export const useWatchMedalNftEvent = /*#__PURE__*/ createUseWatchContractEvent({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x14c85a7307167253348319113cB5Fad6647fF1a8)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6dA7Ae5FBc5B699a9a812C56E4D76aEc67f8c8f2)
  */
-export const useWatchMedalNftApprovalForAllEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: medalNftAbi,
-    address: medalNftAddress,
-    eventName: 'ApprovalForAll',
-  })
+export const useWatchMedalNftApprovalForAllEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: medalNftAbi,
+  address: medalNftAddress,
+  eventName: 'ApprovalForAll',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link medalNftAbi}__ and `eventName` set to `"TransferBatch"`
@@ -8127,12 +7768,11 @@ export const useWatchMedalNftApprovalForAllEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x14c85a7307167253348319113cB5Fad6647fF1a8)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6dA7Ae5FBc5B699a9a812C56E4D76aEc67f8c8f2)
  */
-export const useWatchMedalNftTransferBatchEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: medalNftAbi,
-    address: medalNftAddress,
-    eventName: 'TransferBatch',
-  })
+export const useWatchMedalNftTransferBatchEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: medalNftAbi,
+  address: medalNftAddress,
+  eventName: 'TransferBatch',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link medalNftAbi}__ and `eventName` set to `"TransferSingle"`
@@ -8140,12 +7780,11 @@ export const useWatchMedalNftTransferBatchEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x14c85a7307167253348319113cB5Fad6647fF1a8)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6dA7Ae5FBc5B699a9a812C56E4D76aEc67f8c8f2)
  */
-export const useWatchMedalNftTransferSingleEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: medalNftAbi,
-    address: medalNftAddress,
-    eventName: 'TransferSingle',
-  })
+export const useWatchMedalNftTransferSingleEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: medalNftAbi,
+  address: medalNftAddress,
+  eventName: 'TransferSingle',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link medalNftAbi}__ and `eventName` set to `"URI"`
@@ -8153,12 +7792,11 @@ export const useWatchMedalNftTransferSingleEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x14c85a7307167253348319113cB5Fad6647fF1a8)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0x6dA7Ae5FBc5B699a9a812C56E4D76aEc67f8c8f2)
  */
-export const useWatchMedalNftUriEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: medalNftAbi,
-    address: medalNftAddress,
-    eventName: 'URI',
-  })
+export const useWatchMedalNftUriEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: medalNftAbi,
+  address: medalNftAddress,
+  eventName: 'URI',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link ticketNftAbi}__
@@ -8189,12 +7827,11 @@ export const useReadTicketNftBalanceOf = /*#__PURE__*/ createUseReadContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xB380fB36E568a16ceE6eB529f621a4df26eB1f2E)
  */
-export const useReadTicketNftBalanceOfBatch =
-  /*#__PURE__*/ createUseReadContract({
-    abi: ticketNftAbi,
-    address: ticketNftAddress,
-    functionName: 'balanceOfBatch',
-  })
+export const useReadTicketNftBalanceOfBatch = /*#__PURE__*/ createUseReadContract({
+  abi: ticketNftAbi,
+  address: ticketNftAddress,
+  functionName: 'balanceOfBatch',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link ticketNftAbi}__ and `functionName` set to `"isApprovedForAll"`
@@ -8202,12 +7839,11 @@ export const useReadTicketNftBalanceOfBatch =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xB380fB36E568a16ceE6eB529f621a4df26eB1f2E)
  */
-export const useReadTicketNftIsApprovedForAll =
-  /*#__PURE__*/ createUseReadContract({
-    abi: ticketNftAbi,
-    address: ticketNftAddress,
-    functionName: 'isApprovedForAll',
-  })
+export const useReadTicketNftIsApprovedForAll = /*#__PURE__*/ createUseReadContract({
+  abi: ticketNftAbi,
+  address: ticketNftAddress,
+  functionName: 'isApprovedForAll',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link ticketNftAbi}__ and `functionName` set to `"supportsInterface"`
@@ -8215,12 +7851,11 @@ export const useReadTicketNftIsApprovedForAll =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xB380fB36E568a16ceE6eB529f621a4df26eB1f2E)
  */
-export const useReadTicketNftSupportsInterface =
-  /*#__PURE__*/ createUseReadContract({
-    abi: ticketNftAbi,
-    address: ticketNftAddress,
-    functionName: 'supportsInterface',
-  })
+export const useReadTicketNftSupportsInterface = /*#__PURE__*/ createUseReadContract({
+  abi: ticketNftAbi,
+  address: ticketNftAddress,
+  functionName: 'supportsInterface',
+})
 
 /**
  * Wraps __{@link useReadContract}__ with `abi` set to __{@link ticketNftAbi}__ and `functionName` set to `"uri"`
@@ -8263,12 +7898,11 @@ export const useWriteTicketNftMint = /*#__PURE__*/ createUseWriteContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xB380fB36E568a16ceE6eB529f621a4df26eB1f2E)
  */
-export const useWriteTicketNftSafeBatchTransferFrom =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: ticketNftAbi,
-    address: ticketNftAddress,
-    functionName: 'safeBatchTransferFrom',
-  })
+export const useWriteTicketNftSafeBatchTransferFrom = /*#__PURE__*/ createUseWriteContract({
+  abi: ticketNftAbi,
+  address: ticketNftAddress,
+  functionName: 'safeBatchTransferFrom',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ticketNftAbi}__ and `functionName` set to `"safeTransferFrom"`
@@ -8276,12 +7910,11 @@ export const useWriteTicketNftSafeBatchTransferFrom =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xB380fB36E568a16ceE6eB529f621a4df26eB1f2E)
  */
-export const useWriteTicketNftSafeTransferFrom =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: ticketNftAbi,
-    address: ticketNftAddress,
-    functionName: 'safeTransferFrom',
-  })
+export const useWriteTicketNftSafeTransferFrom = /*#__PURE__*/ createUseWriteContract({
+  abi: ticketNftAbi,
+  address: ticketNftAddress,
+  functionName: 'safeTransferFrom',
+})
 
 /**
  * Wraps __{@link useWriteContract}__ with `abi` set to __{@link ticketNftAbi}__ and `functionName` set to `"setApprovalForAll"`
@@ -8289,12 +7922,11 @@ export const useWriteTicketNftSafeTransferFrom =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xB380fB36E568a16ceE6eB529f621a4df26eB1f2E)
  */
-export const useWriteTicketNftSetApprovalForAll =
-  /*#__PURE__*/ createUseWriteContract({
-    abi: ticketNftAbi,
-    address: ticketNftAddress,
-    functionName: 'setApprovalForAll',
-  })
+export const useWriteTicketNftSetApprovalForAll = /*#__PURE__*/ createUseWriteContract({
+  abi: ticketNftAbi,
+  address: ticketNftAddress,
+  functionName: 'setApprovalForAll',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ticketNftAbi}__
@@ -8313,9 +7945,11 @@ export const useSimulateTicketNft = /*#__PURE__*/ createUseSimulateContract({
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xB380fB36E568a16ceE6eB529f621a4df26eB1f2E)
  */
-export const useSimulateTicketNftMint = /*#__PURE__*/ createUseSimulateContract(
-  { abi: ticketNftAbi, address: ticketNftAddress, functionName: 'mint' },
-)
+export const useSimulateTicketNftMint = /*#__PURE__*/ createUseSimulateContract({
+  abi: ticketNftAbi,
+  address: ticketNftAddress,
+  functionName: 'mint',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ticketNftAbi}__ and `functionName` set to `"safeBatchTransferFrom"`
@@ -8323,12 +7957,11 @@ export const useSimulateTicketNftMint = /*#__PURE__*/ createUseSimulateContract(
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xB380fB36E568a16ceE6eB529f621a4df26eB1f2E)
  */
-export const useSimulateTicketNftSafeBatchTransferFrom =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: ticketNftAbi,
-    address: ticketNftAddress,
-    functionName: 'safeBatchTransferFrom',
-  })
+export const useSimulateTicketNftSafeBatchTransferFrom = /*#__PURE__*/ createUseSimulateContract({
+  abi: ticketNftAbi,
+  address: ticketNftAddress,
+  functionName: 'safeBatchTransferFrom',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ticketNftAbi}__ and `functionName` set to `"safeTransferFrom"`
@@ -8336,12 +7969,11 @@ export const useSimulateTicketNftSafeBatchTransferFrom =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xB380fB36E568a16ceE6eB529f621a4df26eB1f2E)
  */
-export const useSimulateTicketNftSafeTransferFrom =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: ticketNftAbi,
-    address: ticketNftAddress,
-    functionName: 'safeTransferFrom',
-  })
+export const useSimulateTicketNftSafeTransferFrom = /*#__PURE__*/ createUseSimulateContract({
+  abi: ticketNftAbi,
+  address: ticketNftAddress,
+  functionName: 'safeTransferFrom',
+})
 
 /**
  * Wraps __{@link useSimulateContract}__ with `abi` set to __{@link ticketNftAbi}__ and `functionName` set to `"setApprovalForAll"`
@@ -8349,12 +7981,11 @@ export const useSimulateTicketNftSafeTransferFrom =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xB380fB36E568a16ceE6eB529f621a4df26eB1f2E)
  */
-export const useSimulateTicketNftSetApprovalForAll =
-  /*#__PURE__*/ createUseSimulateContract({
-    abi: ticketNftAbi,
-    address: ticketNftAddress,
-    functionName: 'setApprovalForAll',
-  })
+export const useSimulateTicketNftSetApprovalForAll = /*#__PURE__*/ createUseSimulateContract({
+  abi: ticketNftAbi,
+  address: ticketNftAddress,
+  functionName: 'setApprovalForAll',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ticketNftAbi}__
@@ -8362,9 +7993,10 @@ export const useSimulateTicketNftSetApprovalForAll =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xB380fB36E568a16ceE6eB529f621a4df26eB1f2E)
  */
-export const useWatchTicketNftEvent = /*#__PURE__*/ createUseWatchContractEvent(
-  { abi: ticketNftAbi, address: ticketNftAddress },
-)
+export const useWatchTicketNftEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: ticketNftAbi,
+  address: ticketNftAddress,
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ticketNftAbi}__ and `eventName` set to `"ApprovalForAll"`
@@ -8372,12 +8004,11 @@ export const useWatchTicketNftEvent = /*#__PURE__*/ createUseWatchContractEvent(
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xB380fB36E568a16ceE6eB529f621a4df26eB1f2E)
  */
-export const useWatchTicketNftApprovalForAllEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: ticketNftAbi,
-    address: ticketNftAddress,
-    eventName: 'ApprovalForAll',
-  })
+export const useWatchTicketNftApprovalForAllEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: ticketNftAbi,
+  address: ticketNftAddress,
+  eventName: 'ApprovalForAll',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ticketNftAbi}__ and `eventName` set to `"TransferBatch"`
@@ -8385,12 +8016,11 @@ export const useWatchTicketNftApprovalForAllEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xB380fB36E568a16ceE6eB529f621a4df26eB1f2E)
  */
-export const useWatchTicketNftTransferBatchEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: ticketNftAbi,
-    address: ticketNftAddress,
-    eventName: 'TransferBatch',
-  })
+export const useWatchTicketNftTransferBatchEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: ticketNftAbi,
+  address: ticketNftAddress,
+  eventName: 'TransferBatch',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ticketNftAbi}__ and `eventName` set to `"TransferSingle"`
@@ -8398,12 +8028,11 @@ export const useWatchTicketNftTransferBatchEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xB380fB36E568a16ceE6eB529f621a4df26eB1f2E)
  */
-export const useWatchTicketNftTransferSingleEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: ticketNftAbi,
-    address: ticketNftAddress,
-    eventName: 'TransferSingle',
-  })
+export const useWatchTicketNftTransferSingleEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: ticketNftAbi,
+  address: ticketNftAddress,
+  eventName: 'TransferSingle',
+})
 
 /**
  * Wraps __{@link useWatchContractEvent}__ with `abi` set to __{@link ticketNftAbi}__ and `eventName` set to `"URI"`
@@ -8411,9 +8040,8 @@ export const useWatchTicketNftTransferSingleEvent =
  * - [__View Contract on Polygon Polygon Scan__](https://polygonscan.com/address/0x74a8a863545cdf0806a12E14Eb48b728453Bf343)
  * - [__View Contract on Sepolia Etherscan__](https://sepolia.etherscan.io/address/0xB380fB36E568a16ceE6eB529f621a4df26eB1f2E)
  */
-export const useWatchTicketNftUriEvent =
-  /*#__PURE__*/ createUseWatchContractEvent({
-    abi: ticketNftAbi,
-    address: ticketNftAddress,
-    eventName: 'URI',
-  })
+export const useWatchTicketNftUriEvent = /*#__PURE__*/ createUseWatchContractEvent({
+  abi: ticketNftAbi,
+  address: ticketNftAddress,
+  eventName: 'URI',
+})

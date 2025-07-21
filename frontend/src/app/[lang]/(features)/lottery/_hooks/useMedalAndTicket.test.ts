@@ -21,7 +21,7 @@ const mockUseWaitForTransactionReceipt = vi.fn()
 
 beforeEach(() => {
   vi.clearAllMocks()
-  
+
   // Setup default mocks
   mockUseToast.mockReturnValue({
     toast: vi.fn(),
@@ -71,7 +71,8 @@ beforeEach(() => {
   vi.mocked(require('wagmi')).useWriteContract = mockUseWriteContract
   vi.mocked(require('wagmi')).useWaitForTransactionReceipt = mockUseWaitForTransactionReceipt
   vi.mocked(require('@/lib/generated')).useSimulateMedalNftSetApprovalForAll = mockUseSimulateMedalNftSetApprovalForAll
-  vi.mocked(require('@/lib/generated')).useSimulateTicketNftSetApprovalForAll = mockUseSimulateTicketNftSetApprovalForAll
+  vi.mocked(require('@/lib/generated')).useSimulateTicketNftSetApprovalForAll =
+    mockUseSimulateTicketNftSetApprovalForAll
   vi.mocked(require('@/lib/generated')).medalNftConfig = {
     address: { 1: '0xmedal' },
     abi: [],

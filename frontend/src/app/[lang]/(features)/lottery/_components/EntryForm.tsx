@@ -41,7 +41,8 @@ const EntryForm = ({ lotteryId, lotteryInfo }: EntryFormProps) => {
               className='w-full bg-yellow-300 text-xl'
               loading={isPending}
               onClick={returnTicket}
-              disabled={!entryCounts}>
+              disabled={!entryCounts}
+            >
               Return Tickets
             </LoadingButtonForWeb3>
           </div>
@@ -51,7 +52,8 @@ const EntryForm = ({ lotteryId, lotteryInfo }: EntryFormProps) => {
               className='w-full bg-yellow-300 text-xl'
               loading={isPending}
               onClick={entryOrApprove}
-              disabled={disabled}>
+              disabled={disabled}
+            >
               {buttonMessage}
             </LoadingButtonForWeb3>
           </div>

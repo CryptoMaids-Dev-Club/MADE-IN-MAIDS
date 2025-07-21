@@ -54,7 +54,7 @@ const useUpdateProfile = (profile: MaidProfile, asset: AssetInfo, owner: string)
           })
       }
     },
-    [address, asset.image, changeProfile, signMessageAsync, toggleUpdating]
+    [address, asset.image, changeProfile, signMessageAsync, toggleUpdating],
   )
 
   const isOwner = address === owner

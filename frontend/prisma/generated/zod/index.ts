@@ -1,24 +1,36 @@
-import { z } from 'zod';
-import type { Prisma } from '@prisma/client';
+import { z } from 'zod'
+import type { Prisma } from '@prisma/client'
 
 /////////////////////////////////////////
 // HELPER FUNCTIONS
 /////////////////////////////////////////
 
-
 /////////////////////////////////////////
 // ENUMS
 /////////////////////////////////////////
 
-export const TransactionIsolationLevelSchema = z.enum(['ReadUncommitted','ReadCommitted','RepeatableRead','Serializable']);
+export const TransactionIsolationLevelSchema = z.enum([
+  'ReadUncommitted',
+  'ReadCommitted',
+  'RepeatableRead',
+  'Serializable',
+])
 
-export const UserScalarFieldEnumSchema = z.enum(['id','name','address','iconUrl']);
+export const UserScalarFieldEnumSchema = z.enum(['id', 'name', 'address', 'iconUrl'])
 
-export const MaidProfileScalarFieldEnumSchema = z.enum(['id','name','character','description','imageUrl','createdAt','updatedAt']);
+export const MaidProfileScalarFieldEnumSchema = z.enum([
+  'id',
+  'name',
+  'character',
+  'description',
+  'imageUrl',
+  'createdAt',
+  'updatedAt',
+])
 
-export const SortOrderSchema = z.enum(['asc','desc']);
+export const SortOrderSchema = z.enum(['asc', 'desc'])
 
-export const QueryModeSchema = z.enum(['default','insensitive']);
+export const QueryModeSchema = z.enum(['default', 'insensitive'])
 /////////////////////////////////////////
 // MODELS
 /////////////////////////////////////////
