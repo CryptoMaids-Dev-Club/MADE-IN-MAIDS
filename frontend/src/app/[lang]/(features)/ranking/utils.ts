@@ -1,5 +1,5 @@
-import { User } from '@prisma/client'
-import { Address } from 'viem'
+import type { User } from '@prisma/client'
+import type { Address } from 'viem'
 
 export function getUserName(address: Address, userInfos: User[]) {
   const index = userInfos.findIndex((e) => e.address === address)

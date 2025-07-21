@@ -1,21 +1,21 @@
-@import 'https://fonts.googleapis.com/css2?family=DotGothic16&display=swap';
+@import "https://fonts.googleapis.com/css2?family=DotGothic16&display=swap";
 
 html {
   height: 100%;
   margin: 0;
-  background-color: 'lightblue';
+  background-color: "lightblue";
 }
 
 body {
   height: 100%;
   margin: 0;
-  font-family: 'DotGothic16', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans',
-    'Droid Sans', 'Helvetica Neue', sans-serif;
-  background-color: 'lightblue';
+  font-family: "DotGothic16", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  background-color: "lightblue";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }

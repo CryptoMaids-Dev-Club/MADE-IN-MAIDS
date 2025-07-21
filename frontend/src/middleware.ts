@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 import Negotiator from 'negotiator'
-import { NextRequest, NextResponse } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 import { defaultLanguage, availableLanguages } from '@/app/i18n/settings'
 
 const getNegotiatedLanguage = (headers: Negotiator.Headers): string | undefined => {
@@ -29,7 +29,7 @@ export function middleware(request: NextRequest) {
 
   // Redirect to the preferred language if the pathname is missing the locale
   const pathnameIsMissingLocale = availableLanguages.every(
-    (lang) => !pathname.startsWith(`/${lang}/`) && pathname !== `/${lang}`
+    (lang) => !pathname.startsWith(`/${lang}/`) && pathname !== `/${lang}`,
   )
   if (pathnameIsMissingLocale) {
     if (preferredLanguage !== defaultLanguage) {

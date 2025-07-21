@@ -2,7 +2,7 @@
 
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import useLottery from '@/app/[lang]/(features)/lottery/_hooks/useLottery'
-import { LotteryInfo } from '@/app/[lang]/(features)/lottery/_type'
+import type { LotteryInfo } from '@/app/[lang]/(features)/lottery/_type'
 import LoadingButtonForWeb3 from '@/app/[lang]/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
 import { useLanguage, useTranslation } from '@/app/i18n/client'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
@@ -41,7 +41,8 @@ const EntryForm = ({ lotteryId, lotteryInfo }: EntryFormProps) => {
               className='w-full bg-yellow-300 text-xl'
               loading={isPending}
               onClick={returnTicket}
-              disabled={!entryCounts}>
+              disabled={!entryCounts}
+            >
               Return Tickets
             </LoadingButtonForWeb3>
           </div>
@@ -51,7 +52,8 @@ const EntryForm = ({ lotteryId, lotteryInfo }: EntryFormProps) => {
               className='w-full bg-yellow-300 text-xl'
               loading={isPending}
               onClick={entryOrApprove}
-              disabled={disabled}>
+              disabled={disabled}
+            >
               {buttonMessage}
             </LoadingButtonForWeb3>
           </div>

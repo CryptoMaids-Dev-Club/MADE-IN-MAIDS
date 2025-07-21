@@ -1,6 +1,6 @@
-import { Suspense } from 'react'
-import { Address } from 'viem'
 import { Typography } from '@/components/ui/typography'
+import { Suspense } from 'react'
+import type { Address } from 'viem'
 import MaidsList from './MaidsList'
 import Profile, { ProfileSkelton } from './Profile'
 

@@ -1,6 +1,6 @@
 export const defaultLanguage = 'en'
 export const availableLanguages = [defaultLanguage, 'ja']
-export const namespaces = ['translation', 'top', 'lottery']
+export const namespaces = ['translation', 'top', 'lottery', 'staking']
 
 export function getOptions(lng = defaultLanguage) {
   return {

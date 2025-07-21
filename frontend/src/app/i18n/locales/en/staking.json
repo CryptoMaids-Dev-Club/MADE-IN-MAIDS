@@ -1,0 +1,29 @@
+{
+  "title": "Staking",
+  "welcome": "Welcome to the CryptoMaids Staking!",
+  "holdEarn": "HOLD CRYPTOMAIDS EARN $MAIDS",
+  "description": {
+    "part1": "$MAIDS is a community token.",
+    "part2": "Voting, buying fan art, and more!"
+  },
+  "rewardRate": "1 CryptoMaids NFT 10 $MAIDS/day",
+  "import": {
+    "title": "Import $MAIDS",
+    "description": "Import $MAIDS to enter the Maids World!",
+    "button": "IMPORT $MAIDS"
+  },
+  "claim": {
+    "title": "Claim Rewards",
+    "description": "Claim your Rewards! No gas fee required",
+    "pendingRewards": "Pending Rewards:",
+    "minClaimNote": "You can only claim if the pending tokens are over 100",
+    "button": "CLAIM"
+  },
+  "buy": {
+    "title": "Buy CryptoMaids Item",
+    "description": "Buy CryptoMaids Item with $MAIDS",
+    "balance": "Your Balance:",
+    "button": "MAIDS MARKET"
+  },
+  "connectWallet": "CONNECT WALLET"
+}

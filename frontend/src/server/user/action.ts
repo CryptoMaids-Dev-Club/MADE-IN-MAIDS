@@ -1,8 +1,8 @@
 'use server'
 
-import { User } from '@prisma/client'
+import type { User } from '@prisma/client'
 import { revalidatePath } from 'next/cache'
-import { Address } from 'viem'
+import type { Address } from 'viem'
 import { ZodError, z } from 'zod'
 import prisma from '@/lib/prisma'
 import { verifySignature } from '@/utils/signature'

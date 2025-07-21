@@ -1,6 +1,6 @@
 import { defineConfig } from '@wagmi/cli'
 import { react } from '@wagmi/cli/plugins'
-import { Abi } from 'viem'
+import type { Abi } from 'viem'
 import { polygon, sepolia } from 'wagmi/chains'
 import ERC1155Mock from '../contracts/out/ERC1155Mock.sol/ERC1155Mock.json'
 import MaidsItem from '../contracts/out/MaidsItem1155.sol/MaidsItem1155.json'
@@ -8,6 +8,7 @@ import MaidsLottery from '../contracts/out/MaidsLottery.sol/MaidsLottery.json'
 import MaidsMarket from '../contracts/out/MaidsMarketPlace.sol/MaidsMarketPlace.json'
 import MaidsPrediction from '../contracts/out/MaidsPrediction.sol/MaidsPrediction.json'
 import MaidsToken from '../contracts/out/MaidsToken.sol/MaidsToken.json'
+import MaidsTokenYield from '../contracts/out/MaidsTokenYield.sol/MaidsTokenYield.json'
 import MaidsVoting from '../contracts/out/MaidsVoting.sol/MaidsVoting.json'
 
 export default defineConfig({
@@ -19,6 +20,14 @@ export default defineConfig({
       address: {
         [polygon.id]: '0xFf46623eF19871Ff9Abc5F66CA0B1c6a9bdD39cF',
         [sepolia.id]: '0x3cc3E7DFa0CC1d188bf3c6F40C98c7dE466f11D6',
+      },
+    },
+    {
+      name: 'MaidsTokenYield',
+      abi: MaidsTokenYield.abi as Abi,
+      address: {
+        [polygon.id]: '0x9803445DA8701F6cbc9AE0dD24928961847bdAc2',
+        [sepolia.id]: '0x9803445DA8701F6cbc9AE0dD24928961847bdAc2', // TODO: Update address
       },
     },
     {

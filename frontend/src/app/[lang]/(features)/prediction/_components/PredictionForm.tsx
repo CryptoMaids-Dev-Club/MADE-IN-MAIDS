@@ -1,12 +1,14 @@
 'use client'
 
-import { z } from 'zod'
 import usePredict from '@/app/[lang]/(features)/prediction/_hooks/usePredict'
-import LoadingButtonForWeb3 from '@/app/[lang]/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
-import AutoForm from '@/components/ui/auto-form'
-import { FormItem, FormControl, FormLabel } from '@/components/ui/form'
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import type { Prediction, PredictionText } from '@/app/[lang]/(features)/prediction/_types'
+import LoadingButtonForWeb3 from '@/app/[lang]/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
+import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 
 type PredictionFormProps = {
   predictionInfo: Prediction
@@ -20,50 +22,67 @@ const schema = z.object({
 
 const PredictionForm = ({ predictionInfo, predictionText: PredictionText }: PredictionFormProps) => {
   const { choice, predictOrApprove, updateChoice, updateAmount, isLoading, isPredicted, buttonMessage } = usePredict(
-    predictionInfo.id
+    predictionInfo.id,
   )
+
+  const form = useForm({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      choice,
+      amount: 100,
+    },
+  })
 
   const handleSubmit = () => {
     predictOrApprove()
   }
 
   return (
-    <AutoForm
-      formSchema={schema}
-      onSubmit={handleSubmit}
-      fieldConfig={{
-        choice: {
-          fieldType: () => (
-            <RadioGroup
-              onValueChange={(value) => updateChoice(PredictionText.choices.indexOf(value))}
-              defaultValue={PredictionText.choices[choice]}
-              className='flex flex-col space-y-1'>
-              {PredictionText.choices.map((choice) => (
-                <FormItem key={choice} className='flex items-center space-x-3 space-y-0'>
-                  <FormControl>
-                    <RadioGroupItem value={choice} />
-                  </FormControl>
-                  <FormLabel className='text-white'>{choice}</FormLabel>
-                </FormItem>
-              ))}
-            </RadioGroup>
-          ),
-        },
-        amount: {
-          inputProps: {
-            placeholder: 'Amount',
-          },
-        },
-      }}
-      values={{ choice, amount: 100 }}
-      onParsedValuesChange={(values) => {
-        updateChoice(values.choice ?? 0)
-        updateAmount(values.amount ?? 100)
-      }}>
-      <LoadingButtonForWeb3 className='w-full' type='submit' loading={isLoading} disabled={isPredicted}>
-        {buttonMessage}
-      </LoadingButtonForWeb3>
-    </AutoForm>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(handleSubmit)} className='p-8'>
+        <FormField
+          control={form.control}
+          name='choice'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Choice</FormLabel>
+              <FormControl>
+                <RadioGroup onValueChange={field.onChange} defaultValue={PredictionText.choices[field.value]}>
+                  {PredictionText.choices.map((choice) => (
+                    <RadioGroupItem key={choice} value={choice}>
+                      {choice}
+                    </RadioGroupItem>
+                  ))}
+                </RadioGroup>
+              </FormControl>
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name='amount'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Amount</FormLabel>
+              <FormControl>
+                <Input
+                  {...field}
+                  placeholder='Amount'
+                  onChange={(e) => {
+                    field.onChange(e)
+                    updateAmount(form.getValues().amount)
+                    updateChoice(form.getValues().choice)
+                  }}
+                />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+        <LoadingButtonForWeb3 type='submit' loading={isLoading} disabled={isPredicted}>
+          {buttonMessage}
+        </LoadingButtonForWeb3>
+      </form>
+    </Form>
   )
 }
 

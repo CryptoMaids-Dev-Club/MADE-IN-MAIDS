@@ -1,8 +1,8 @@
-import Image from 'next/image'
-import { Trans } from 'react-i18next/TransWithoutContext'
 import { FadeInBottom } from '@/app/[lang]/_components/Elements/FadeInButton'
 import { getTranslation } from '@/app/i18n/server'
 import { Typography } from '@/components/ui/typography'
+import Image from 'next/image'
+import { Trans } from 'react-i18next/TransWithoutContext'
 
 const HowToGetMedal = async ({ lang }: { lang: string }) => {
   const { t } = await getTranslation(lang)
@@ -14,10 +14,10 @@ const HowToGetMedal = async ({ lang }: { lang: string }) => {
           <div className='col-span-3 grid grid-cols-3 gap-4'>
             {/* Apply order classes for mobile view */}
             <div className='order-2 col-span-3 md:order-none md:col-span-2'>
-              <Image src='/images/cluster.png' alt='medal' width={500} height={500} />
+              <Image src='/images/lottery/cluster.png' alt='medal' width={500} height={500} />
             </div>
             <div className='order-3 col-span-3 md:order-none md:col-start-2 md:col-end-4'>
-              <Image src='/images/minecraft.png' alt='medal' width={500} height={500} />
+              <Image src='/images/lottery/minecraft.png' alt='medal' width={500} height={500} />
             </div>
           </div>
           {/* Adjust the order to display this block first on mobile */}
@@ -37,7 +37,7 @@ const HowToGetMedal = async ({ lang }: { lang: string }) => {
             <Typography variant='lead'>{t('lottery:howToGetMedalFanartText')}</Typography>
           </div>
 
-          <Image src='/images/fanart.png' alt='medal' width={600} height={600} />
+          <Image src='/images/lottery/fanart.png' alt='medal' width={600} height={600} />
         </FadeInBottom>
       </div>
 
@@ -52,7 +52,7 @@ const HowToGetMedal = async ({ lang }: { lang: string }) => {
 
           <div className='mt-4 grid grid-cols-1 items-center md:grid-cols-2'>
             <div>
-              <Image src='/images/club.png' alt='medal' width={800} height={800} />
+              <Image src='/images/lottery/club.png' alt='medal' width={800} height={800} />
             </div>
 
             <div className='mx-4'>

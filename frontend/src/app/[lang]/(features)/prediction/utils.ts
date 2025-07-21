@@ -1,5 +1,5 @@
 import { formatEther } from 'viem'
-import { SolidityUserInfo } from '@/app/[lang]/(features)/prediction/_types'
+import type { SolidityUserInfo } from '@/app/[lang]/(features)/prediction/_types'
 
 export function convertUserInfo(data: SolidityUserInfo) {
   return {

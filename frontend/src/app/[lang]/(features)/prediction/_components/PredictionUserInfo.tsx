@@ -1,7 +1,7 @@
 'use client'
 
 import { useAccount } from 'wagmi'
-import { SolidityUserInfo } from '@/app/[lang]/(features)/prediction/_types'
+import type { SolidityUserInfo } from '@/app/[lang]/(features)/prediction/_types'
 import { convertUserInfo } from '@/app/[lang]/(features)/prediction/utils'
 import { Typography } from '@/components/ui/typography'
 import { useReadMaidsPredictionGetUserInfo } from '@/lib/generated'

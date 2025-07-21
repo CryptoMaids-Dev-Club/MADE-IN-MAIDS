@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react'
-import { MaidProfile } from '@prisma/client'
+import type { MaidProfile } from '@prisma/client'
 import { useAccount, useSignMessage } from 'wagmi'
 import { updateMaidProfile } from '@/server/maidsProfile/action'
 import { getSignatureFromLocalStorage, saveSignatureToLocalStorage } from '@/utils/signature'
@@ -54,7 +54,7 @@ const useUpdateProfile = (profile: MaidProfile, asset: AssetInfo, owner: string)
           })
       }
     },
-    [address, asset.image, changeProfile, signMessageAsync, toggleUpdating]
+    [address, asset.image, changeProfile, signMessageAsync, toggleUpdating],
   )
 
   const isOwner = address === owner

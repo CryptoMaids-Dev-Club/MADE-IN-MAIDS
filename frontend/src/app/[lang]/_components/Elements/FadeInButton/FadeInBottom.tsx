@@ -32,15 +32,15 @@ export const FadeInBottom: React.FC<Props> = ({ children }) => {
 
   const wrappedChildren = React.Children.map(children, (child) => {
     if (React.isValidElement(child)) {
-      const className = [child.props.className, fadeInClassName].filter((el) => el).join(' ')
+      const childElement = child as React.ReactElement<{ className?: string; ref?: React.Ref<unknown> }>
+      const className = [childElement.props.className, fadeInClassName].filter((el) => el).join(' ')
 
-      return React.cloneElement(child as React.ReactElement, {
+      return React.cloneElement(childElement, {
         ref,
         className,
       })
-    } else {
-      return child
     }
+    return child
   })
 
   return <>{wrappedChildren}</>

@@ -1,16 +1,18 @@
 import { getMarketItems } from '@/app/[lang]/(features)/market/_api/query'
-import ItemDetail from '../_components/ItemDetail'
 import type { MarketItemInfo } from '@/app/[lang]/(features)/market/_types'
+import ItemDetail from '../_components/ItemDetail'
 
-const AssetDetail = async ({ params }: { params: { id: string } }) => {
-  return <ItemDetail id={Number(params.id)} />
+const AssetDetail = async (params: { params: Promise<{ id: string }> }) => {
+  const { id } = await params.params
+  return <ItemDetail id={Number(id)} />
 }
 
 export default AssetDetail
 
-export const generateMetadata = async ({ params }: { params: { id: string } }) => {
+export const generateMetadata = async (params: { params: Promise<{ id: string }> }) => {
+  const { id } = await params.params
   const marketItems = await getMarketItems()
-  const meta = marketItems[Number(params.id)] as MarketItemInfo
+  const meta = marketItems[Number(id)] as MarketItemInfo
 
   return {
     title: 'Item',

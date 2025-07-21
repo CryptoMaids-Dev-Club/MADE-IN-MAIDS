@@ -1,9 +1,10 @@
 /// <reference lib="dom" />
 
 import { renderHook } from '@testing-library/react'
+import { describe, test, expect, vi } from 'vitest'
 import { useMaidsList } from '@/app/[lang]/(features)/account/[address]/_hooks/useMaidsList'
 
-jest.mock('fetch')
+vi.mock('fetch')
 
 describe('useMaidsList', () => {
   test('初期値確認', () => {

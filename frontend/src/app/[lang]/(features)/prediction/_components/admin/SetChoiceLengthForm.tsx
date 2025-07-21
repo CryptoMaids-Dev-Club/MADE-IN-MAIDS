@@ -1,12 +1,13 @@
 'use client'
 
-import { useState } from 'react'
+import LoadingButtonForWeb3 from '@/app/[lang]/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
+import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { useWriteMaidsPredictionSetChoicesLength } from '@/lib/generated'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
 import { useWaitForTransactionReceipt } from 'wagmi'
 import { z } from 'zod'
-import LoadingButtonForWeb3 from '@/app/[lang]/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
-import AutoForm from '@/components/ui/auto-form'
-import { useDebounce } from '@/hooks/useDebounce'
-import { useWriteMaidsPredictionSetChoicesLength } from '@/lib/generated'
 
 const schema = z.object({
   choiceLength: z.number().positive().int().min(1),
@@ -17,9 +18,6 @@ type SetChoiceLength = {
 }
 
 const SetChoiceLength = ({ id }: SetChoiceLength) => {
-  const [choiceLength, setChoiceLength] = useState(0)
-  const debounceChoiceLength = useDebounce(choiceLength, 500)
-
   const {
     data: choiceLengthData,
     isPending,
@@ -30,25 +28,36 @@ const SetChoiceLength = ({ id }: SetChoiceLength) => {
     hash: choiceLengthData,
   })
 
+  const form = useForm({
+    resolver: zodResolver(schema),
+  })
+
+  const onClick = (values: z.infer<typeof schema>) => {
+    writeChoiceLength({
+      args: [BigInt(id), BigInt(values.choiceLength)],
+    })
+  }
+
   return (
-    <AutoForm
-      formSchema={schema}
-      onSubmit={() =>
-        writeChoiceLength({
-          args: [BigInt(id), BigInt(debounceChoiceLength)],
-        })
-      }
-      fieldConfig={{
-        choiceLength: {
-          inputProps: {
-            placeholder: 'ChoiceLength',
-          },
-        },
-      }}
-      values={{ choiceLength }}
-      onParsedValuesChange={(values) => setChoiceLength(values.choiceLength ?? 1)}>
-      <LoadingButtonForWeb3 loading={isPending || writeChoiceLengthTx.isLoading}>Set ChoiceLength</LoadingButtonForWeb3>
-    </AutoForm>
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit((data) => onClick(data as z.infer<typeof schema>))} className='p-8'>
+        <FormField
+          control={form.control}
+          name='choiceLength'
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>ChoiceLength</FormLabel>
+              <FormControl>
+                <Input {...field} placeholder='ChoiceLength' />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+        <LoadingButtonForWeb3 loading={isPending || writeChoiceLengthTx.isLoading}>
+          Set ChoiceLength
+        </LoadingButtonForWeb3>
+      </form>
+    </Form>
   )
 }
 

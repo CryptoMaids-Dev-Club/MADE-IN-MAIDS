@@ -1,8 +1,8 @@
-import { Hono } from 'hono'
-import { Address } from 'viem'
-import { CHAINBASE_API_KEY } from '@/config/server'
+import { env } from '@/env/server.mjs'
 import prisma from '@/lib/prisma'
 import type { AssetInfo } from '@/server/asset'
+import { Hono } from 'hono'
+import type { Address } from 'viem'
 
 export type OwnedResponse = {
   code: number
@@ -19,7 +19,7 @@ export type OwnedAssetInfo = {
 export type OwnedNFTs = AssetInfo & {
   image_uri: string
   name: string
-  owner: string
+  owner: Address
   token_id: string
   token_uri: string
 }
@@ -37,13 +37,13 @@ const fetchOwnedNFTs = async (address: Address, page: number): Promise<OwnedAsse
     `https://api.chainbase.online/v1/account/nfts?chain_id=1&address=${address}&contract_address=0x5703A3245FF6FAD37fa2a2500F0739d4F6a234E7&page=${page}&limit=10`,
     {
       headers: {
-        'X-Api-Key': CHAINBASE_API_KEY,
+        'X-Api-Key': env.CHAINBASE_API_KEY,
       },
-    }
+    },
   )
 
   if (!response.ok) {
-    throw new Error('HTTP error! status: ' + response.status + ' ' + response.statusText)
+    throw new Error(`HTTP error! status: ${response.status} ${response.statusText}`)
   }
 
   const chainbaseResponse = (await response.json()) as ChainbaseResponse
@@ -68,7 +68,7 @@ const fetchOwnedNFTs = async (address: Address, page: number): Promise<OwnedAsse
       } else {
         assets.push({ ...nft, ...asset })
       }
-    })
+    }),
   )
 
   return { assets, next_page: chainbaseResponse.next_page }

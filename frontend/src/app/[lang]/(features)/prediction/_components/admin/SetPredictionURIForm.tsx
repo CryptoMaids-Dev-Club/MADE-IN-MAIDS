@@ -1,12 +1,12 @@
 'use client'
 
+import LoadingButtonForWeb3 from '@/app/[lang]/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
+import { useWriteMaidsPredictionSetPredictionUri } from '@/lib/generated'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 import { useWaitForTransactionReceipt } from 'wagmi'
 import { z } from 'zod'
-import LoadingButtonForWeb3 from '@/app/[lang]/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
-import AutoForm from '@/components/ui/auto-form'
-import { useDebounce } from '@/hooks/useDebounce'
-import { useWriteMaidsPredictionSetPredictionUri } from '@/lib/generated'
 
 const schema = z.object({
   predictionURI: z.string().url(),
@@ -17,36 +17,39 @@ type SetPredictionURIFormProps = {
 }
 
 const SetPredictionURIForm = ({ id }: SetPredictionURIFormProps) => {
-  const [predictionURI, setPredictionURI] = useState('')
-  const debouncePredictionURI = useDebounce(predictionURI, 500)
-
-  const { data, isPending, writeContract } = useWriteMaidsPredictionSetPredictionUri({})
-
-  const writePredictionURITx = useWaitForTransactionReceipt({
-    hash: data,
+  const form = useForm({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      predictionURI: '',
+    },
   })
 
+  const {
+    data: predictionURIData,
+    isPending,
+    writeContract: writePredictionURI,
+  } = useWriteMaidsPredictionSetPredictionUri()
+
+  const writePredictionURITx = useWaitForTransactionReceipt({
+    hash: predictionURIData,
+  })
+
+  const onSubmit = (values: z.infer<typeof schema>) => {
+    writePredictionURI({
+      args: [BigInt(id), values.predictionURI],
+    })
+  }
+
   return (
-    <AutoForm
-      formSchema={schema}
-      onSubmit={() =>
-        writeContract({
-          args: [BigInt(id), debouncePredictionURI],
-        })
-      }
-      fieldConfig={{
-        predictionURI: {
-          inputProps: {
-            placeholder: 'PredictionURI',
-          },
-        },
-      }}
-      values={{ predictionURI }}
-      onParsedValuesChange={(values) => setPredictionURI(values.predictionURI ?? '')}>
+    <form onSubmit={form.handleSubmit((values) => onSubmit(values as z.infer<typeof schema>))} className='p-8'>
+      <div>
+        <label htmlFor='predictionURI'>PredictionURI</label>
+        <input {...form.register('predictionURI')} placeholder='PredictionURI' />
+      </div>
       <LoadingButtonForWeb3 loading={isPending || writePredictionURITx.isLoading}>
         Set PredictionURI
       </LoadingButtonForWeb3>
-    </AutoForm>
+    </form>
   )
 }
 

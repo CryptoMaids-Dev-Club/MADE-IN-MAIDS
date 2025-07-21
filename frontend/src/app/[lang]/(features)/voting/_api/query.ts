@@ -1,5 +1,5 @@
 import { readContract } from '@wagmi/core'
-import { Address, formatEther } from 'viem'
+import { type Address, formatEther } from 'viem'
 import { NETWORK } from '@/config/server'
 import { maidsVotingAbi, maidsVotingAddress } from '@/lib/generated'
 import { wagmiConfig } from '@/lib/wagmicore'
@@ -20,7 +20,7 @@ export const getTopAssets = async (slug: number) => {
     topVotes.map(async (vote, index) => {
       const asset = await getAsset(vote.id)
       topAssets.push({ ...vote, ...asset, rank: index + 1 })
-    })
+    }),
   )
 
   return topAssets

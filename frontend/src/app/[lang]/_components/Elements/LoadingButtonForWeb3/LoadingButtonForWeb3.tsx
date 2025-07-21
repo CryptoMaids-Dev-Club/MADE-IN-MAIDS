@@ -2,7 +2,7 @@
 
 import { useConnectModal } from '@rainbow-me/rainbowkit'
 import { useAccount, useSwitchChain } from 'wagmi'
-import { ButtonProps } from '@/components/ui/button'
+import type { ButtonProps } from '@/components/ui/button'
 import { LoadingButton } from '@/components/ui/loading-button'
 
 export type ButtonLoadingProps = ButtonProps & {
@@ -27,7 +27,8 @@ const LoadingButtonForWeb3 = ({ loading, ...props }: ButtonLoadingProps) => {
       <LoadingButton
         className={props.className}
         loading={isPending}
-        onClick={() => switchChain({ chainId: chains[0].id })}>
+        onClick={() => switchChain({ chainId: chains[0].id })}
+      >
         Switch to {chains[0].name} Network
       </LoadingButton>
     )

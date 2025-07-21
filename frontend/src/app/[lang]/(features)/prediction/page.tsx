@@ -1,7 +1,10 @@
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 import Prediction from './_components/Prediction'
 
-const PredictionPage = ({ params }: { params: { lang: string } }) => <Prediction lang={params.lang} />
+const PredictionPage = async (params: { params: Promise<{ lang: string }> }) => {
+  const { lang } = await params.params
+  return <Prediction lang={lang} />
+}
 
 export default PredictionPage
 

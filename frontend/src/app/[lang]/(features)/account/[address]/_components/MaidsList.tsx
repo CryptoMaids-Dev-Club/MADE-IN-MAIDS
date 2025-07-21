@@ -1,15 +1,15 @@
 'use client'
 
-import Image from 'next/image'
-import Link from 'next/link'
-import InfiniteScroll from 'react-infinite-scroller'
-import { useAccount } from 'wagmi'
 import { useMaidsList } from '@/app/[lang]/(features)/account/[address]/_hooks/useMaidsList'
 import { useSaveUserInfo } from '@/app/[lang]/(features)/account/[address]/_hooks/useSaveUserInfo'
 import { useLanguage } from '@/app/i18n/client'
 import { Badge } from '@/components/ui/badge'
 import { Typography } from '@/components/ui/typography'
-import type { Address } from 'viem'
+import Image from 'next/image'
+import Link from 'next/link'
+import InfiniteScroll from 'react-infinite-scroller'
+import { type Address, isAddressEqual } from 'viem'
+import { useAccount } from 'wagmi'
 
 type MaidsListProps = {
   targetAddress: Address
@@ -52,7 +52,7 @@ const MaidsList = ({ targetAddress }: MaidsListProps) => {
               <Typography variant='h4' className='truncate'>
                 {nft.name}
               </Typography>
-              {address && address.toLowerCase() === nft.owner && (
+              {address && isAddressEqual(address, nft.owner) && (
                 <Badge className='ml-4 cursor-pointer' onClick={() => handleSaveClick(nft.image)}>
                   Set as Icon
                 </Badge>

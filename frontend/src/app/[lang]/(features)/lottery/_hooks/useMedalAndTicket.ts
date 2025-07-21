@@ -1,7 +1,4 @@
-import { useEffect } from 'react'
-import { useQueryClient } from '@tanstack/react-query'
-import { useAccount, useReadContracts, useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
-import { useToast } from '@/components/ui/use-toast'
+import { useToast } from '@/components/hooks/use-toast'
 import { NETWORK } from '@/config/client'
 import {
   maidsLotteryAddress,
@@ -10,6 +7,9 @@ import {
   useSimulateMedalNftSetApprovalForAll,
   useSimulateTicketNftSetApprovalForAll,
 } from '@/lib/generated'
+import { useQueryClient } from '@tanstack/react-query'
+import { useEffect } from 'react'
+import { useAccount, useReadContracts, useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
 
 const useMedalAndTicket = () => {
   const queryClient = useQueryClient()
@@ -78,7 +78,7 @@ const useMedalAndTicket = () => {
       })
       refetch()
     }
-  }, [medalIsApproved, queryClient, refetch, status, ticketIsApproved, toast])
+  }, [refetch, status, toast])
 
   return {
     medalBalance: medalBalance ? Number(medalBalance) : 0,

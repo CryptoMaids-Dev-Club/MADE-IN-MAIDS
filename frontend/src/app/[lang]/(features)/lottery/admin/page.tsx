@@ -1,9 +1,8 @@
 'use client'
 
-import { useAccount, useWriteContract } from 'wagmi'
-import { z } from 'zod'
-import AutoForm, { AutoFormSubmit } from '@/components/ui/auto-form'
 import { Button } from '@/components/ui/button'
+import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
 import { Typography } from '@/components/ui/typography'
 import { NETWORK } from '@/config/client'
 import {
@@ -16,6 +15,10 @@ import {
   useReadMaidsLotteryGetLotteryInfo,
   useWriteMaidsLotteryDraw,
 } from '@/lib/generated'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { useAccount, useWriteContract } from 'wagmi'
+import { z } from 'zod'
 
 const schema = z.object({
   medalTokenId: z.coerce.number().min(0),
@@ -27,13 +30,25 @@ const schema = z.object({
     z.object({
       prizeName: z.string().min(1),
       prizeImageUrl: z.string().min(1),
-    })
+    }),
   ),
 })
 
 const LotteryMock = () => {
   const { address } = useAccount()
   const { writeContract } = useWriteContract()
+
+  const form = useForm({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      medalTokenId: 0,
+      ticketTokenId: 0,
+      maxShares: 0,
+      startTime: 0,
+      endTime: 0,
+      Prize: [],
+    },
+  })
 
   const { data: lotteryInfo } = useReadMaidsLotteryGetLotteryInfo({
     args: [BigInt(0)],
@@ -54,6 +69,25 @@ const LotteryMock = () => {
 
   const { writeContract: draw, error } = useWriteMaidsLotteryDraw()
 
+  const onSubmit = (data: z.infer<typeof schema>) => {
+    writeContract({
+      address: maidsLotteryAddress[NETWORK.id],
+      abi: maidsLotteryAbi,
+      functionName: 'createNewLottery',
+      args: [
+        BigInt(data.medalTokenId),
+        BigInt(data.ticketTokenId),
+        BigInt(data.maxShares),
+        BigInt(data.startTime),
+        BigInt(data.endTime),
+        data.Prize.map((prize) => ({
+          prizeName: prize.prizeName,
+          prizeImageUrl: prize.prizeImageUrl,
+        })),
+      ],
+    })
+  }
+
   return (
     <div className='container mx-auto max-w-7xl pb-12'>
       <Typography variant='h1'>Lottery</Typography>
@@ -70,7 +104,8 @@ const LotteryMock = () => {
               functionName: 'mint',
               args: [address ?? '0x0', BigInt(0), BigInt(10)],
             })
-          }>
+          }
+        >
           Mint
         </Button>
 
@@ -82,7 +117,8 @@ const LotteryMock = () => {
               functionName: 'setApprovalForAll',
               args: [maidsLotteryAddress[NETWORK.id], false],
             })
-          }>
+          }
+        >
           Approve
         </Button>
 
@@ -96,7 +132,8 @@ const LotteryMock = () => {
               functionName: 'mint',
               args: [address ?? '0x0', BigInt(0), BigInt(10)],
             })
-          }>
+          }
+        >
           Mint
         </Button>
 
@@ -108,7 +145,8 @@ const LotteryMock = () => {
               functionName: 'setApprovalForAll',
               args: [maidsLotteryAddress[NETWORK.id], false],
             })
-          }>
+          }
+        >
           Approve
         </Button>
       </div>
@@ -116,62 +154,82 @@ const LotteryMock = () => {
       <div className='my-4'>
         <Typography variant='h2'>2. Create New Lottery</Typography>
         <Typography variant='h3'>Create New Lottery</Typography>
-        <AutoForm
-          formSchema={schema}
-          fieldConfig={{
-            medalTokenId: {
-              inputProps: {
-                placeholder: 'MedalToken ID',
-              },
-            },
-            ticketTokenId: {
-              inputProps: {
-                placeholder: 'TicketToken ID',
-              },
-            },
-            maxShares: {
-              inputProps: {
-                placeholder: 'Max Shares',
-              },
-            },
-            startTime: {
-              inputProps: {
-                placeholder: 'Start Time',
-              },
-            },
-            endTime: {
-              inputProps: {
-                placeholder: 'End Time',
-              },
-            },
-            Prize: {
-              inputProps: {
-                placeholder: 'Prize',
-              },
-            },
-          }}
-          onSubmit={(data) =>
-            writeContract({
-              address: maidsLotteryAddress[NETWORK.id],
-              abi: maidsLotteryAbi,
-              functionName: 'createNewLottery',
-              args: [
-                BigInt(data.medalTokenId),
-                BigInt(data.ticketTokenId),
-                BigInt(data.maxShares),
-                BigInt(data.startTime),
-                BigInt(data.endTime),
-                data.Prize.map((prize) => ({
-                  prizeName: prize.prizeName,
-                  prizeImageUrl: prize.prizeImageUrl,
-                })),
-              ],
-            })
-          }>
-          <Typography variant='smallText'>* Prize Type: 0 = ERC20, 1 = ERC721, 2 = ERC1155</Typography>
-          <br />
-          <AutoFormSubmit>Create New Lottery</AutoFormSubmit>
-        </AutoForm>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
+            <FormField
+              control={form.control}
+              name='medalTokenId'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Medal Token Id</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                </FormItem>
+              )}
+            ></FormField>
+            <FormField
+              control={form.control}
+              name='ticketTokenId'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Ticket Token Id</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                </FormItem>
+              )}
+            ></FormField>
+            <FormField
+              control={form.control}
+              name='maxShares'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Max Shares</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                </FormItem>
+              )}
+            ></FormField>
+            <FormField
+              control={form.control}
+              name='startTime'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Start Time</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                </FormItem>
+              )}
+            ></FormField>
+            <FormField
+              control={form.control}
+              name='endTime'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>End Time</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                </FormItem>
+              )}
+            ></FormField>
+            <FormField
+              control={form.control}
+              name='Prize'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Prize</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                </FormItem>
+              )}
+            ></FormField>
+          </form>
+        </Form>
       </div>
 
       <div className='my-4'>
@@ -219,7 +277,8 @@ const LotteryMock = () => {
               functionName: 'entry',
               args: [BigInt(1)],
             })
-          }}>
+          }}
+        >
           Enter
         </Button>
       </div>

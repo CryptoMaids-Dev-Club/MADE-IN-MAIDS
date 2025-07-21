@@ -1,7 +1,7 @@
-import { useState, useCallback } from 'react'
+import type { OwnedNFTs } from '@/app/[[...route]]/ownedNfts'
+import type { AppType } from '@/app/[[...route]]/route'
 import { hc } from 'hono/client'
-import { OwnedNFTs } from '@/app/[[...route]]/ownedNfts'
-import { AppType } from '@/app/[[...route]]/route'
+import { useCallback, useState } from 'react'
 import type { Address } from 'viem'
 
 export type UseMaidsListReturnType = {
@@ -33,8 +33,8 @@ export const useMaidsList = (targetAddress: Address): UseMaidsListReturnType => 
         // Duplicate values when strict mode is enabled.
         setMaidsList((prevMaidsList) =>
           [...prevMaidsList, ...ownedNfts.assets].filter(
-            (maid, index, self) => index === self.findIndex((m) => m.token_id === maid.token_id)
-          )
+            (maid, index, self) => index === self.findIndex((m) => m.token_id === maid.token_id),
+          ),
         )
         if (ownedNfts.next_page === undefined) {
           setHasMore(false)
@@ -44,7 +44,7 @@ export const useMaidsList = (targetAddress: Address): UseMaidsListReturnType => 
         setHasMore(false)
       }
     },
-    [targetAddress]
+    [targetAddress],
   )
 
   return { maidsList, hasMore, loadMore }

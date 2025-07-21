@@ -1,5 +1,5 @@
 import { UserRound } from 'lucide-react'
-import { Address } from 'viem'
+import type { Address } from 'viem'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Typography } from '@/components/ui/typography'

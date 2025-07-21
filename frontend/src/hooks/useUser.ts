@@ -1,10 +1,10 @@
 'use client'
 
-import { User } from '@prisma/client'
+import type { User } from '@prisma/client'
 import { useMutation, useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
 import { hc } from 'hono/client'
-import { Address } from 'viem'
-import { AppType } from '@/app/[[...route]]/route'
+import type { Address } from 'viem'
+import type { AppType } from '@/app/[[...route]]/route'
 import { userKeys } from '@/app/[[...route]]/user'
 import { updateUserInfo } from '@/server/user/action'
 

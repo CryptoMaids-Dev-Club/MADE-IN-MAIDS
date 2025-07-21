@@ -1,13 +1,13 @@
-import { useState, useEffect, useCallback } from 'react'
-import { TwitterShareButton, XIcon } from 'react-share'
-import { formatEther, type Address } from 'viem'
-import { useWaitForTransactionReceipt, useWriteContract } from 'wagmi'
-import { MarketItemInfo } from '@/app/[lang]/(features)/market/_types'
-import { useToast } from '@/components/ui/use-toast'
+import type { MarketItemInfo } from '@/app/[lang]/(features)/market/_types'
+import { useToast } from '@/components/hooks/use-toast'
 import { NETWORK } from '@/config/client'
 import { useAllowance } from '@/hooks/useAllowance'
 import { useApprove } from '@/hooks/useApprove'
-import { maidsMarketAddress, useReadMaidsTokenBalanceOf, useSimulateMaidsMarketBuyItem } from '@/lib/generated'
+import { maidsMarketAddress, useReadMaidsTokenBalanceOf, useWriteMaidsMarketBuyItem } from '@/lib/generated'
+import { useCallback, useEffect, useState } from 'react'
+import { TwitterShareButton, XIcon } from 'react-share'
+import { type Address, formatEther } from 'viem'
+import { useWaitForTransactionReceipt } from 'wagmi'
 
 type usePurchaseProps = {
   address: Address | undefined
@@ -15,6 +15,8 @@ type usePurchaseProps = {
 }
 
 export const usePurchase = ({ address, item }: usePurchaseProps) => {
+  const range = Math.min(item.supply, item.limitPerWallet, 10)
+
   const [approved, setApproved] = useState(false)
   const [amount, setAmount] = useState(1)
   const [checked, setChecked] = useState(false)
@@ -22,9 +24,8 @@ export const usePurchase = ({ address, item }: usePurchaseProps) => {
 
   const { allowance, refetch } = useAllowance(address ?? `0x${''}`, maidsMarketAddress[NETWORK.id])
   const { approve, isPending: isLoadingApprove } = useApprove(maidsMarketAddress[NETWORK.id])
-  const { toast } = useToast()
 
-  const range = Math.min(item.supply, item.limitPerWallet, 10)
+  const { toast } = useToast()
 
   useEffect(() => {
     const totalPrice = item.price * amount
@@ -35,6 +36,7 @@ export const usePurchase = ({ address, item }: usePurchaseProps) => {
     setAmount(Number(e))
   }, [])
 
+  // 他ユーザーへmintする場合のトグル
   const toggleChecked = useCallback(() => {
     setChecked(!checked)
   }, [checked])
@@ -50,20 +52,14 @@ export const usePurchase = ({ address, item }: usePurchaseProps) => {
     },
   })
 
-  const { data } = useSimulateMaidsMarketBuyItem({
-    args: differentAddress
-      ? [differentAddress, BigInt(item.id), BigInt(amount)]
-      : [address ?? `0x${''}`, BigInt(item.id), BigInt(amount)],
-  })
+  const { data: writeData, isPending: isLoadingBuyItem, writeContract } = useWriteMaidsMarketBuyItem()
 
-  const { data: writeData, isPending: isLoadingBuyItem, writeContract } = useWriteContract()
-
-  const { isLoading, status } = useWaitForTransactionReceipt({
+  const { isLoading, isSuccess } = useWaitForTransactionReceipt({
     hash: writeData,
   })
 
   useEffect(() => {
-    if (status === 'success') {
+    if (isSuccess) {
       toast({
         title: 'Successfully bought!',
         description: 'Share your purchase on X!',
@@ -71,19 +67,24 @@ export const usePurchase = ({ address, item }: usePurchaseProps) => {
         action: (
           <TwitterShareButton
             url={`https://market.cryptomaids.tokyo/market/item/${item.id}`}
-            title={`Successfully bought ${item.name}!`}>
+            title={`Successfully bought ${item.name}!`}
+          >
             <XIcon size={32} round />
           </TwitterShareButton>
         ),
       })
       refetch()
     }
-  }, [status, refetch, toast, item.id, item.name])
+  }, [refetch, toast, item.id, item.name, isSuccess])
 
   const buyItem = useCallback(() => {
-    if (data === undefined) return
-    writeContract(data.request)
-  }, [data, writeContract])
+    writeContract({
+      args:
+        differentAddress && checked
+          ? [differentAddress, BigInt(item.id), BigInt(amount)]
+          : [address ?? `0x${''}`, BigInt(item.id), BigInt(amount)],
+    })
+  }, [writeContract, address, differentAddress, item.id, amount, checked])
 
   const buyItemOrApprove = useCallback(() => {
     if (approved) {

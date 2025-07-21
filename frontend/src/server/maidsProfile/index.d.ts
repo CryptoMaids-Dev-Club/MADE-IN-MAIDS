@@ -6,7 +6,7 @@ export const maidProfileUpdateSchema = MaidProfileSchema.merge(
     imageUrl: z.string(),
     address: z.string(),
     signature: z.string(),
-  })
+  }),
 )
 
 export type MaidProfileUpdateSchema = z.infer<typeof maidProfileUpdateSchema>

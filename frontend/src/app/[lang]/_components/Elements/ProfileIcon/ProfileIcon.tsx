@@ -2,7 +2,7 @@
 
 import { UserRound } from 'lucide-react'
 import Link from 'next/link'
-import { Address } from 'viem'
+import type { Address } from 'viem'
 import { useLanguage } from '@/app/i18n/client'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { useUser } from '@/hooks/useUser'
