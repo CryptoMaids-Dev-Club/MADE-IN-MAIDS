@@ -69,7 +69,6 @@ export const updateUserInfo = async (data: UpdateUserInfoSchema) => {
 
     return user
   } catch (e) {
-    console.error(e)
     if (e instanceof ZodError) {
       return { error: e.issues[0].message }
     }

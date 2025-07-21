@@ -53,7 +53,6 @@ export const updateMaidProfile = async (data: MaidProfileUpdateSchema) => {
 
     return maidProfile
   } catch (e) {
-    console.error(e)
     if (e instanceof ZodError) {
       return { error: e.issues[0].message }
     }

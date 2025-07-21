@@ -54,7 +54,7 @@ const getItemInfo = async (items: ItemInfo[]): Promise<MarketItemInfo[]> => {
         }
         infos.push(info)
       } catch (e) {
-        console.error(e)
+        // Failed to fetch metadata for market item, skipping
       }
     }),
   )
