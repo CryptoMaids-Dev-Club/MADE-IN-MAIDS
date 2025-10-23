@@ -4,14 +4,14 @@ import LoadingButtonForWeb3 from '@/app/[lang]/_components/Elements/LoadingButto
 import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { useWriteMaidsPredictionSetEndTime } from '@/lib/generated'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { valibotResolver } from '@hookform/resolvers/valibot'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useWaitForTransactionReceipt } from 'wagmi'
-import { z } from 'zod'
+import * as v from 'valibot'
 
-const schema = z.object({
-  endTime: z.number().positive().int().min(1),
+const schema = v.object({
+  endTime: v.pipe(v.number(), v.integer(), v.minValue(1)),
 })
 
 type SetEndTimeForm = {
@@ -20,7 +20,7 @@ type SetEndTimeForm = {
 
 const SetEndTimeForm = ({ id }: SetEndTimeForm) => {
   const form = useForm({
-    resolver: zodResolver(schema),
+    resolver: valibotResolver(schema),
   })
 
   const { data: endTimeData, isPending, writeContract: writeEndTime } = useWriteMaidsPredictionSetEndTime()
@@ -29,7 +29,7 @@ const SetEndTimeForm = ({ id }: SetEndTimeForm) => {
     hash: endTimeData,
   })
 
-  const onSubmit = (values: z.infer<typeof schema>) => {
+  const onSubmit = (values: v.InferOutput<typeof schema>) => {
     writeEndTime({
       args: [BigInt(id), BigInt(values.endTime)],
     })
@@ -37,7 +37,7 @@ const SetEndTimeForm = ({ id }: SetEndTimeForm) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit((values) => onSubmit(values as z.infer<typeof schema>))} className='p-8'>
+      <form onSubmit={form.handleSubmit((values) => onSubmit(values as v.InferOutput<typeof schema>))} className='p-8'>
         <FormField
           control={form.control}
           name='endTime'

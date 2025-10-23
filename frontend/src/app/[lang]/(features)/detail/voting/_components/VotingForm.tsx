@@ -4,12 +4,12 @@ import useVote from '@/app/[lang]/(features)/detail/voting/_hooks/useVote'
 import LoadingButtonForWeb3 from '@/app/[lang]/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
 import { FormControl, FormField, FormLabel } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { valibotResolver } from '@hookform/resolvers/valibot'
 import { Form, useForm } from 'react-hook-form'
-import { z } from 'zod'
+import * as v from 'valibot'
 
-const schema = z.object({
-  num: z.coerce.number().positive().int().min(1),
+const schema = v.object({
+  num: v.pipe(v.number(), v.integer(), v.minValue(1)),
 })
 
 type VotingFormProps = {
@@ -17,14 +17,14 @@ type VotingFormProps = {
 }
 
 const VotingForm = ({ id }: VotingFormProps) => {
-  const handleSubmit = (data: z.infer<typeof schema>) => {
+  const handleSubmit = (data: v.InferOutput<typeof schema>) => {
     voteOrApprove(data.num)
   }
 
   const { voteOrApprove, isLoading, allowance } = useVote(id)
 
   const form = useForm({
-    resolver: zodResolver(schema),
+    resolver: valibotResolver(schema),
     defaultValues: {
       num: 0,
     },

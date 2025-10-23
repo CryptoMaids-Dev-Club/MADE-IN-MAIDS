@@ -7,7 +7,7 @@
     "bun": ">=1.0.0"
   },
   "dependencies": {
-    "@hono/zod-validator": "^0.1.11",
+    "@hono/valibot-validator": "^0.4.0",
     "@hookform/resolvers": "^3.9.1",
     "@prisma/client": "latest",
     "@prisma/extension-accelerate": "^0.6.3",
@@ -71,11 +71,10 @@
     "tailwindcss-animate": "^1.0.7",
     "typescript": "^5.0.4",
     "util": "^0.12.5",
+    "valibot": "^0.42.1",
     "viem": "^2.24.2",
     "wagmi": "^2.14.15",
-    "web-vitals": "^2.1.4",
-    "zod": "^3.24.1",
-    "zod-prisma-types": "^3.1.6"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "preinstall": "bunx only-allow bun",

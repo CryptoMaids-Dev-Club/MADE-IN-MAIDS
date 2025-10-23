@@ -9,13 +9,13 @@ import { LoadingButton } from '@/components/ui/loading-button'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Typography } from '@/components/ui/typography'
 import type { AssetInfo } from '@/server/asset'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { valibotResolver } from '@hookform/resolvers/valibot'
 import type { MaidProfile } from '@prisma/client'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import type { Address } from 'viem'
-import { z } from 'zod'
+import * as v from 'valibot'
 
 type MaidsProfileProps = {
   profile: MaidProfile
@@ -23,17 +23,17 @@ type MaidsProfileProps = {
   owner: Address
 }
 
-const schema = z.object({
-  name: z.string().min(1),
-  character: z.string().min(1),
-  description: z.string().min(1),
+const schema = v.object({
+  name: v.pipe(v.string(), v.minLength(1)),
+  character: v.pipe(v.string(), v.minLength(1)),
+  description: v.pipe(v.string(), v.minLength(1)),
 })
 
 const MaidsProfile = ({ profile, asset, owner }: MaidsProfileProps) => {
   const { language } = useLanguage()
 
   const form = useForm({
-    resolver: zodResolver(schema),
+    resolver: valibotResolver(schema),
     defaultValues: {
       name: profile.name,
       character: profile.character,

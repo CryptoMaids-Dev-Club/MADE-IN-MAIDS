@@ -2,14 +2,14 @@
 
 import LoadingButtonForWeb3 from '@/app/[lang]/_components/Elements/LoadingButtonForWeb3/LoadingButtonForWeb3'
 import { useWriteMaidsPredictionSetPredictionUri } from '@/lib/generated'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { valibotResolver } from '@hookform/resolvers/valibot'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useWaitForTransactionReceipt } from 'wagmi'
-import { z } from 'zod'
+import * as v from 'valibot'
 
-const schema = z.object({
-  predictionURI: z.string().url(),
+const schema = v.object({
+  predictionURI: v.pipe(v.string(), v.url()),
 })
 
 type SetPredictionURIFormProps = {
@@ -18,7 +18,7 @@ type SetPredictionURIFormProps = {
 
 const SetPredictionURIForm = ({ id }: SetPredictionURIFormProps) => {
   const form = useForm({
-    resolver: zodResolver(schema),
+    resolver: valibotResolver(schema),
     defaultValues: {
       predictionURI: '',
     },
@@ -34,14 +34,14 @@ const SetPredictionURIForm = ({ id }: SetPredictionURIFormProps) => {
     hash: predictionURIData,
   })
 
-  const onSubmit = (values: z.infer<typeof schema>) => {
+  const onSubmit = (values: v.InferOutput<typeof schema>) => {
     writePredictionURI({
       args: [BigInt(id), values.predictionURI],
     })
   }
 
   return (
-    <form onSubmit={form.handleSubmit((values) => onSubmit(values as z.infer<typeof schema>))} className='p-8'>
+    <form onSubmit={form.handleSubmit((values) => onSubmit(values as v.InferOutput<typeof schema>))} className='p-8'>
       <div>
         <label htmlFor='predictionURI'>PredictionURI</label>
         <input {...form.register('predictionURI')} placeholder='PredictionURI' />

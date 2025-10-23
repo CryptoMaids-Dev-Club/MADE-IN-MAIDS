@@ -3,7 +3,7 @@
 import type { User } from '@prisma/client'
 import { revalidatePath } from 'next/cache'
 import type { Address } from 'viem'
-import { ZodError, z } from 'zod'
+import * as v from 'valibot'
 import prisma from '@/lib/prisma'
 import { verifySignature } from '@/utils/signature'
 import { UserSchema } from 'prisma/generated/zod'
@@ -49,12 +49,16 @@ async function updateIconUrl(address: Address, iconUrl: string) {
   return user
 }
 
-const updateUserInfoSchema = UserSchema.omit({ id: true }).merge(z.object({ signature: z.string() }))
-type UpdateUserInfoSchema = z.infer<typeof updateUserInfoSchema>
+const updateUserInfoSchema = v.merge([
+  v.omit(UserSchema, ['id']),
+  v.object({ signature: v.string() })
+])
+type UpdateUserInfoSchema = v.InferOutput<typeof updateUserInfoSchema>
 
 export const updateUserInfo = async (data: UpdateUserInfoSchema) => {
   try {
-    const { address, name, iconUrl, signature } = updateUserInfoSchema.parse(data)
+    const result = v.parse(updateUserInfoSchema, data)
+    const { address, name, iconUrl, signature } = result
 
     const verify = await verifySignature(address as Address, 'Update Profile', signature as Address)
     if (!verify) return { error: 'Invalid signature' }
@@ -70,7 +74,7 @@ export const updateUserInfo = async (data: UpdateUserInfoSchema) => {
     return user
   } catch (e) {
     console.error(e)
-    if (e instanceof ZodError) {
+    if (v.isValiError(e)) {
       return { error: e.issues[0].message }
     }
     return { error: 'Internal server error' }

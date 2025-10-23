@@ -1,36 +1,24 @@
-import { z } from 'zod'
-import type { Prisma } from '@prisma/client'
+import * as v from 'valibot';
+import type { Prisma } from '@prisma/client';
 
 /////////////////////////////////////////
 // HELPER FUNCTIONS
 /////////////////////////////////////////
 
+
 /////////////////////////////////////////
 // ENUMS
 /////////////////////////////////////////
 
-export const TransactionIsolationLevelSchema = z.enum([
-  'ReadUncommitted',
-  'ReadCommitted',
-  'RepeatableRead',
-  'Serializable',
-])
+export const TransactionIsolationLevelSchema = v.picklist(['ReadUncommitted','ReadCommitted','RepeatableRead','Serializable']);
 
-export const UserScalarFieldEnumSchema = z.enum(['id', 'name', 'address', 'iconUrl'])
+export const UserScalarFieldEnumSchema = v.picklist(['id','name','address','iconUrl']);
 
-export const MaidProfileScalarFieldEnumSchema = z.enum([
-  'id',
-  'name',
-  'character',
-  'description',
-  'imageUrl',
-  'createdAt',
-  'updatedAt',
-])
+export const MaidProfileScalarFieldEnumSchema = v.picklist(['id','name','character','description','imageUrl','createdAt','updatedAt']);
 
-export const SortOrderSchema = z.enum(['asc', 'desc'])
+export const SortOrderSchema = v.picklist(['asc','desc']);
 
-export const QueryModeSchema = z.enum(['default', 'insensitive'])
+export const QueryModeSchema = v.picklist(['default','insensitive']);
 /////////////////////////////////////////
 // MODELS
 /////////////////////////////////////////
@@ -39,27 +27,27 @@ export const QueryModeSchema = z.enum(['default', 'insensitive'])
 // USER SCHEMA
 /////////////////////////////////////////
 
-export const UserSchema = z.object({
-  id: z.number().int(),
-  name: z.string(),
-  address: z.string().length(42),
-  iconUrl: z.string().url(),
+export const UserSchema = v.object({
+  id: v.pipe(v.number(), v.integer()),
+  name: v.string(),
+  address: v.pipe(v.string(), v.length(42)),
+  iconUrl: v.pipe(v.string(), v.url()),
 })
 
-export type User = z.infer<typeof UserSchema>
+export type User = v.InferOutput<typeof UserSchema>
 
 /////////////////////////////////////////
 // MAID PROFILE SCHEMA
 /////////////////////////////////////////
 
-export const MaidProfileSchema = z.object({
-  id: z.number().int(),
-  name: z.string(),
-  character: z.string(),
-  description: z.string(),
-  imageUrl: z.string().url(),
-  // omitted: createdAt: z.coerce.date(),
-  // omitted: updatedAt: z.coerce.date(),
+export const MaidProfileSchema = v.object({
+  id: v.pipe(v.number(), v.integer()),
+  name: v.string(),
+  character: v.string(),
+  description: v.string(),
+  imageUrl: v.pipe(v.string(), v.url()),
+  // omitted: createdAt: v.coerce(v.date()),
+  // omitted: updatedAt: v.coerce(v.date()),
 })
 
-export type MaidProfile = z.infer<typeof MaidProfileSchema>
+export type MaidProfile = v.InferOutput<typeof MaidProfileSchema>
