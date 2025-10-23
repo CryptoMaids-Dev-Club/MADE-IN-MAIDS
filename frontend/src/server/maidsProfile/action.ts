@@ -6,16 +6,16 @@ import * as v from 'valibot'
 import prisma from '@/lib/prisma'
 import { getNftOwner } from '@/server/nftOwner/query'
 import { verifySignature } from '@/utils/signature'
-import { MaidProfileSchema } from 'prisma/generated/zod'
 
-const maidProfileUpdateSchema = v.merge([
-  MaidProfileSchema,
-  v.object({
-    imageUrl: v.string(),
-    address: v.string(),
-    signature: v.string(),
-  }),
-])
+const maidProfileUpdateSchema = v.object({
+  id: v.pipe(v.number(), v.integer()),
+  name: v.string(),
+  character: v.string(),
+  description: v.string(),
+  imageUrl: v.pipe(v.string(), v.url()),
+  address: v.string(),
+  signature: v.string(),
+})
 
 type MaidProfileUpdateSchema = v.InferOutput<typeof maidProfileUpdateSchema>
 

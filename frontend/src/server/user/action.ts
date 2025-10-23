@@ -49,10 +49,12 @@ async function updateIconUrl(address: Address, iconUrl: string) {
   return user
 }
 
-const updateUserInfoSchema = v.merge([
-  v.omit(UserSchema, ['id']),
-  v.object({ signature: v.string() })
-])
+const updateUserInfoSchema = v.object({
+  name: v.string(),
+  address: v.pipe(v.string(), v.length(42)),
+  iconUrl: v.pipe(v.string(), v.url()),
+  signature: v.string()
+})
 type UpdateUserInfoSchema = v.InferOutput<typeof updateUserInfoSchema>
 
 export const updateUserInfo = async (data: UpdateUserInfoSchema) => {
