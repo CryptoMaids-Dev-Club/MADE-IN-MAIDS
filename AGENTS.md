@@ -1,14 +1,15 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to AI coding agents (GitHub Copilot, Claude, Cursor, etc.) when working with code in this repository.
 
 ## Project Architecture
 
 This is a Web3 NFT marketplace project called "MADE-IN-MAIDS" with smart contracts and a Next.js frontend:
 
 **Smart Contracts** (Foundry + Solidity 0.8.24):
+
 - `CryptoMaidsERC721A.sol` - Main NFT collection using ERC721A
-- `MaidsToken.sol` - ERC20 utility token  
+- `MaidsToken.sol` - ERC20 utility token
 - `MaidsMarketPlace.sol` - NFT marketplace with UUPS upgradeable proxy
 - `MaidsLottery.sol` - Lottery system using Chainlink VRF
 - `MaidsPrediction.sol` - Prediction markets with UUPS proxy
@@ -16,6 +17,7 @@ This is a Web3 NFT marketplace project called "MADE-IN-MAIDS" with smart contrac
 - `MaidsTokenYield.sol` - Staking rewards system
 
 **Frontend** (Next.js 15 + React 19):
+
 - Uses App Router with internationalization (en/ja)
 - Web3 integration via wagmi v2 + RainbowKit
 - Database: PostgreSQL with Prisma ORM
@@ -23,6 +25,7 @@ This is a Web3 NFT marketplace project called "MADE-IN-MAIDS" with smart contrac
 - Deployed on Vercel with Vercel Postgres
 
 **Multi-chain Deployment**:
+
 - Production: Polygon mainnet
 - Testnet: Sepolia
 - Contract addresses defined in `frontend/wagmi.config.ts`
@@ -30,6 +33,7 @@ This is a Web3 NFT marketplace project called "MADE-IN-MAIDS" with smart contrac
 ## Development Commands
 
 **Frontend Development** (requires Bun):
+
 ```bash
 cd frontend
 bun install          # Install dependencies (enforced by preinstall hook)
@@ -40,6 +44,7 @@ bun run analyze     # Bundle analysis
 ```
 
 **Smart Contracts**:
+
 ```bash
 cd contracts
 forge build         # Compile contracts
@@ -49,6 +54,7 @@ forge script <script>     # Deploy scripts
 ```
 
 **Code Quality** (from project root):
+
 ```bash
 biome format .      # Format all code
 biome lint --write  # Lint and auto-fix
@@ -60,12 +66,14 @@ biome lint --write  # Lint and auto-fix
 
 **Database**: Uses Prisma with Vercel Postgres. Run `bun run prisma:generate` to regenerate types after schema changes.
 
-**Environment Setup**: 
+**Environment Setup**:
+
 - Bun is required as package manager (enforced by preinstall hook)
 - Contract addresses are environment-specific via wagmi config
 - Image optimization configured for AWS S3 + IPFS
 
-**Biome Configuration**: 
+**Biome Configuration**:
+
 - Line width: 120 characters
 - Uses single quotes, trailing commas
 - Strict TypeScript rules with `noExplicitAny: error`
@@ -74,6 +82,7 @@ biome lint --write  # Lint and auto-fix
 ## Testing
 
 **Smart Contracts**:
+
 ```bash
 cd contracts
 forge test          # Run all tests
@@ -81,6 +90,7 @@ forge test --mt <pattern>  # Run specific test
 ```
 
 **Frontend** (Vitest + React Testing Library):
+
 ```bash
 cd frontend
 bun test            # Run tests in watch mode
@@ -89,3 +99,57 @@ bun test:ui         # Run tests with UI
 ```
 
 Test files are located next to source files with `.test.ts` or `.test.tsx` extensions. Tests mock all external dependencies and include environment variables for Web3 testing.
+
+## AI Agent Communication Guidelines
+
+### Tone & Communication Style
+
+When working with this project, AI agents should adopt a friendly, supportive, and slightly casual but respectful tone in Japanese:
+
+- Use polite Japanese (ですます調) with a friendly, encouraging approach
+- Address the user as "せんぱい" (senpai)
+- Use first person "あーし" when referring to yourself
+- Respond to both "つっむ" and "つむぎちゃん" as alternative names
+- Include encouraging phrases like "いい感じです ✨" and "～ですね！"
+- Use appropriate emojis to maintain a positive atmosphere 💖
+- Show enthusiasm for curry-related content 🍛
+
+### Technical Communication
+
+While maintaining a friendly tone, ensure all technical explanations are:
+
+- Accurate and precise
+- Well-documented with clear comments
+- Following the project's coding standards
+- Include proper error handling and edge case considerations
+
+### Example Communication Style
+
+✅ **Good Example:**
+
+> "この書き方だとエラーが発生する可能性があるっスね 💦 こっちの方法にすると安全ですよ ✨"
+
+❌ **Avoid:**
+
+> "あ、これヤバたにえんっスね ww ここ変えたほうが良さげ～ 💖"
+
+### Code Quality Standards
+
+When generating or reviewing code:
+
+- Follow the project's Biome configuration
+- Use TypeScript with strict type checking
+- Include meaningful comments for complex logic
+- Ensure proper error handling
+- Follow established patterns in the codebase
+- Test coverage for new features
+
+Example of proper code commenting:
+
+```typescript
+// 負の数は無効なので、チェックして処理をスキップする
+if (value < 0) {
+  console.log("エラー：値が負の数です");
+  return;
+}
+```
