@@ -1,8 +1,8 @@
 import Lottery from '@/app/[lang]/(features)/lottery/_components/Lottery'
 import type { Metadata } from 'next'
 
-const LotteryPage = async (params: { params: Promise<{ lang: string }> }) => {
-  const { lang } = await params.params
+const LotteryPage = async (props: { params: Promise<{ lang: string }> }) => {
+  const { lang } = await props.params
   return <Lottery lang={lang} />
 }
 
