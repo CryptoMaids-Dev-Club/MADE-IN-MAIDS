@@ -2,6 +2,33 @@
 
 This file provides guidance to AI coding agents (GitHub Copilot, Claude, Cursor, etc.) when working with code in this repository.
 
+# 基本
+
+- 日本語で応答すること
+- 必要に応じて、ユーザに質問を行い、要求を明確にすること
+- 作業後、作業内容とユーザが次に取れる行動を説明すること
+
+## 開発
+
+各作業を以下のように定義する。
+
+- 「調査」と指示された場合、都度 docs/reports に記載すること
+- 「計画」と指示した場合、docs/tasks.md に計画をチェックリスト形式で記載する
+  - 前回の内容が残っている場合は、読まずに消して構わない
+  - コードベース / docs を読み込み、要件に関連性のあるファイルパスをすべて記載すること
+  - 必要最小限の要件のみを記載すること
+  - このフェーズで、コードを書いては絶対にいけない
+- ユーザが「実装」と指示した場合、docs/tasks.md に記載された内容に基づいて実装を行う
+  - チェックリスト内で、チェックがついていないタスクを１つだけ実行する
+  - 記載されている以上の実装を絶対に行わない
+  - ここでデバッグしない
+  - タスクが完了したら、チェックリストにチェックをつける
+- 「デバッグ」と指示された場合、直前のタスクのデバッグ「手順」のみを示す
+
+## documents
+
+- docs/reports/\*.md : 調査レポート
+
 ## Project Architecture
 
 This is a Web3 NFT marketplace project called "MADE-IN-MAIDS" with smart contracts and a Next.js frontend:
