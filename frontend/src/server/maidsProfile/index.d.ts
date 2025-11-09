@@ -1,12 +1,13 @@
-import { z } from 'zod'
-import { MaidProfileSchema } from 'prisma/generated/zod'
+import * as v from 'valibot'
 
-export const maidProfileUpdateSchema = MaidProfileSchema.merge(
-  z.object({
-    imageUrl: z.string(),
-    address: z.string(),
-    signature: z.string(),
-  }),
-)
+export const maidProfileUpdateSchema = v.object({
+  id: v.pipe(v.number(), v.integer()),
+  name: v.string(),
+  character: v.string(),
+  description: v.string(),
+  imageUrl: v.pipe(v.string(), v.url()),
+  address: v.string(),
+  signature: v.string(),
+})
 
-export type MaidProfileUpdateSchema = z.infer<typeof maidProfileUpdateSchema>
+export type MaidProfileUpdateSchema = v.InferOutput<typeof maidProfileUpdateSchema>

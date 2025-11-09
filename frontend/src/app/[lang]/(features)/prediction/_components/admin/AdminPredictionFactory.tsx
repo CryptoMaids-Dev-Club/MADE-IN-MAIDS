@@ -4,18 +4,18 @@ import LoadingButtonForWeb3 from '@/app/[lang]/_components/Elements/LoadingButto
 import { FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { useWriteMaidsPredictionCreatePrediction } from '@/lib/generated'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { valibotResolver } from '@hookform/resolvers/valibot'
 import { Form, useForm } from 'react-hook-form'
 import { useWaitForTransactionReceipt } from 'wagmi'
-import { z } from 'zod'
+import * as v from 'valibot'
 
-const schema = z.object({
-  choiceLength: z.number().positive().int().min(1),
-  predictionURI: z.string().url(),
-  rate: z.number().positive().int().min(1),
-  endTime: z.number().positive().int().min(1),
+const schema = v.object({
+  choiceLength: v.pipe(v.number(), v.integer(), v.minValue(1)),
+  predictionURI: v.pipe(v.string(), v.url()),
+  rate: v.pipe(v.number(), v.integer(), v.minValue(1)),
+  endTime: v.pipe(v.number(), v.integer(), v.minValue(1)),
 })
-type PredictionInfo = z.infer<typeof schema>
+type PredictionInfo = v.InferOutput<typeof schema>
 
 const AdminPredictionFactory = () => {
   const { data: createPredictionData, writeContract: createPrediction } = useWriteMaidsPredictionCreatePrediction()
@@ -25,7 +25,7 @@ const AdminPredictionFactory = () => {
   })
 
   const form = useForm({
-    resolver: zodResolver(schema),
+    resolver: valibotResolver(schema),
   })
 
   const onClick = (values: PredictionInfo) => {

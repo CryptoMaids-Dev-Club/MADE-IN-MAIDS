@@ -4,22 +4,22 @@ import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { useWriteMaidsMarketCreateMarketItem } from '@/lib/generated'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { valibotResolver } from '@hookform/resolvers/valibot'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
+import * as v from 'valibot'
 
-const schema = z.object({
-  price: z.coerce.number().min(1).optional(),
-  supply: z.coerce.number().min(1).optional(),
-  tokenURI: z.coerce.string().min(1).optional(),
-  startTime: z.coerce.number().min(1).optional(),
-  limitPerWallet: z.coerce.number().min(1).optional(),
+const schema = v.object({
+  price: v.optional(v.pipe(v.number(), v.minValue(1))),
+  supply: v.optional(v.pipe(v.number(), v.minValue(1))),
+  tokenURI: v.optional(v.pipe(v.string(), v.minLength(1))),
+  startTime: v.optional(v.pipe(v.number(), v.minValue(1))),
+  limitPerWallet: v.optional(v.pipe(v.number(), v.minValue(1))),
 })
-type ItemInfo = z.infer<typeof schema>
+type ItemInfo = v.InferOutput<typeof schema>
 
 const ItemCreate = () => {
   const form = useForm({
-    resolver: zodResolver(schema),
+    resolver: valibotResolver(schema),
     defaultValues: {
       price: 0,
       supply: 0,

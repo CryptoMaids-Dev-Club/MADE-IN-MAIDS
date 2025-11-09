@@ -5,22 +5,22 @@ import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Typography } from '@/components/ui/typography'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { valibotResolver } from '@hookform/resolvers/valibot'
 import type { User } from '@prisma/client'
 import { Pencil } from 'lucide-react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import type { Address } from 'viem'
 import { useAccount } from 'wagmi'
-import { z } from 'zod'
+import * as v from 'valibot'
 
 type UserNameProps = {
   targetAddress: Address
   userInfo: User
 }
 
-const schema = z.object({
-  name: z.string(),
+const schema = v.object({
+  name: v.string(),
 })
 
 const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
@@ -30,7 +30,7 @@ const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
   const { saveUserInfo } = useSaveUserInfo(address ?? '0x0')
 
   const form = useForm({
-    resolver: zodResolver(schema),
+    resolver: valibotResolver(schema),
     defaultValues: {
       name: userInfo.name,
     },

@@ -4,13 +4,13 @@ import LoadingButtonForWeb3 from '@/app/[lang]/_components/Elements/LoadingButto
 import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { useWriteMaidsPredictionSetChoicesLength } from '@/lib/generated'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { valibotResolver } from '@hookform/resolvers/valibot'
 import { useForm } from 'react-hook-form'
 import { useWaitForTransactionReceipt } from 'wagmi'
-import { z } from 'zod'
+import * as v from 'valibot'
 
-const schema = z.object({
-  choiceLength: z.number().positive().int().min(1),
+const schema = v.object({
+  choiceLength: v.pipe(v.number(), v.integer(), v.minValue(1)),
 })
 
 type SetChoiceLength = {
@@ -29,10 +29,10 @@ const SetChoiceLength = ({ id }: SetChoiceLength) => {
   })
 
   const form = useForm({
-    resolver: zodResolver(schema),
+    resolver: valibotResolver(schema),
   })
 
-  const onClick = (values: z.infer<typeof schema>) => {
+  const onClick = (values: v.InferOutput<typeof schema>) => {
     writeChoiceLength({
       args: [BigInt(id), BigInt(values.choiceLength)],
     })
@@ -40,7 +40,7 @@ const SetChoiceLength = ({ id }: SetChoiceLength) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit((data) => onClick(data as z.infer<typeof schema>))} className='p-8'>
+      <form onSubmit={form.handleSubmit((data) => onClick(data as v.InferOutput<typeof schema>))} className='p-8'>
         <FormField
           control={form.control}
           name='choiceLength'

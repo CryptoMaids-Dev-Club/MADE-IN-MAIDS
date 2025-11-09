@@ -15,21 +15,21 @@ import {
   useReadMaidsLotteryGetLotteryInfo,
   useWriteMaidsLotteryDraw,
 } from '@/lib/generated'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { valibotResolver } from '@hookform/resolvers/valibot'
 import { useForm } from 'react-hook-form'
 import { useAccount, useWriteContract } from 'wagmi'
-import { z } from 'zod'
+import * as v from 'valibot'
 
-const schema = z.object({
-  medalTokenId: z.coerce.number().min(0),
-  ticketTokenId: z.coerce.number().min(0),
-  maxShares: z.coerce.number().min(1),
-  startTime: z.coerce.number().min(0).default(0),
-  endTime: z.coerce.number().min(1),
-  Prize: z.array(
-    z.object({
-      prizeName: z.string().min(1),
-      prizeImageUrl: z.string().min(1),
+const schema = v.object({
+  medalTokenId: v.pipe(v.number(), v.minValue(0)),
+  ticketTokenId: v.pipe(v.number(), v.minValue(0)),
+  maxShares: v.pipe(v.number(), v.minValue(1)),
+  startTime: v.pipe(v.number(), v.minValue(0)),
+  endTime: v.pipe(v.number(), v.minValue(1)),
+  Prize: v.array(
+    v.object({
+      prizeName: v.pipe(v.string(), v.minLength(1)),
+      prizeImageUrl: v.pipe(v.string(), v.minLength(1)),
     }),
   ),
 })
@@ -39,7 +39,7 @@ const LotteryMock = () => {
   const { writeContract } = useWriteContract()
 
   const form = useForm({
-    resolver: zodResolver(schema),
+    resolver: valibotResolver(schema),
     defaultValues: {
       medalTokenId: 0,
       ticketTokenId: 0,
@@ -69,7 +69,7 @@ const LotteryMock = () => {
 
   const { writeContract: draw, error } = useWriteMaidsLotteryDraw()
 
-  const onSubmit = (data: z.infer<typeof schema>) => {
+  const onSubmit = (data: v.InferOutput<typeof schema>) => {
     writeContract({
       address: maidsLotteryAddress[NETWORK.id],
       abi: maidsLotteryAbi,

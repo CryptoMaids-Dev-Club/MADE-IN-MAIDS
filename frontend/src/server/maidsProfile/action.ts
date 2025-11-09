@@ -2,25 +2,27 @@
 
 import { revalidatePath } from 'next/cache'
 import type { Address } from 'viem'
-import { ZodError, z } from 'zod'
+import * as v from 'valibot'
 import prisma from '@/lib/prisma'
 import { getNftOwner } from '@/server/nftOwner/query'
 import { verifySignature } from '@/utils/signature'
-import { MaidProfileSchema } from 'prisma/generated/zod'
 
-const maidProfileUpdateSchema = MaidProfileSchema.merge(
-  z.object({
-    imageUrl: z.string(),
-    address: z.string(),
-    signature: z.string(),
-  }),
-)
+const maidProfileUpdateSchema = v.object({
+  id: v.pipe(v.number(), v.integer()),
+  name: v.string(),
+  character: v.string(),
+  description: v.string(),
+  imageUrl: v.pipe(v.string(), v.url()),
+  address: v.string(),
+  signature: v.string(),
+})
 
-type MaidProfileUpdateSchema = z.infer<typeof maidProfileUpdateSchema>
+type MaidProfileUpdateSchema = v.InferOutput<typeof maidProfileUpdateSchema>
 
 export const updateMaidProfile = async (data: MaidProfileUpdateSchema) => {
   try {
-    const { id, name, character, description, imageUrl, address, signature } = maidProfileUpdateSchema.parse(data)
+    const result = v.parse(maidProfileUpdateSchema, data)
+    const { id, name, character, description, imageUrl, address, signature } = result
 
     const lowerAddress = address.toLowerCase() as Address
 
@@ -54,7 +56,7 @@ export const updateMaidProfile = async (data: MaidProfileUpdateSchema) => {
     return maidProfile
   } catch (e) {
     console.error(e)
-    if (e instanceof ZodError) {
+    if (v.isValiError(e)) {
       return { error: e.issues[0].message }
     }
     return { error: 'Internal server error' }

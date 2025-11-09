@@ -3,21 +3,21 @@
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { valibotResolver } from '@hookform/resolvers/valibot'
 import { useRouter } from 'next/navigation'
 import { type SubmitHandler, useForm } from 'react-hook-form'
-import { z } from 'zod'
+import * as v from 'valibot'
 
-export const formSchema = z.object({
-  tokenId: z.coerce.number().positive().int().min(1),
+export const formSchema = v.object({
+  tokenId: v.pipe(v.number(), v.integer(), v.minValue(1)),
 })
 
-export type FormSchema = z.infer<typeof formSchema>
+export type FormSchema = v.InferOutput<typeof formSchema>
 
 export const VotingTransitionForm = () => {
   const router = useRouter()
   const form = useForm<FormSchema>({
-    resolver: zodResolver(formSchema),
+    resolver: valibotResolver(formSchema),
   })
 
   const onSubmit: SubmitHandler<FormSchema> = (data) => {

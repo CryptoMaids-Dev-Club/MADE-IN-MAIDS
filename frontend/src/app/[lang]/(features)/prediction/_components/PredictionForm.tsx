@@ -6,18 +6,18 @@ import LoadingButtonForWeb3 from '@/app/[lang]/_components/Elements/LoadingButto
 import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import { zodResolver } from '@hookform/resolvers/zod'
+import { valibotResolver } from '@hookform/resolvers/valibot'
 import { useForm } from 'react-hook-form'
-import { z } from 'zod'
+import * as v from 'valibot'
 
 type PredictionFormProps = {
   predictionInfo: Prediction
   predictionText: PredictionText
 }
 
-const schema = z.object({
-  choice: z.coerce.number().min(0),
-  amount: z.coerce.number().min(100),
+const schema = v.object({
+  choice: v.pipe(v.number(), v.minValue(0)),
+  amount: v.pipe(v.number(), v.minValue(100)),
 })
 
 const PredictionForm = ({ predictionInfo, predictionText: PredictionText }: PredictionFormProps) => {
@@ -26,7 +26,7 @@ const PredictionForm = ({ predictionInfo, predictionText: PredictionText }: Pred
   )
 
   const form = useForm({
-    resolver: zodResolver(schema),
+    resolver: valibotResolver(schema),
     defaultValues: {
       choice,
       amount: 100,
