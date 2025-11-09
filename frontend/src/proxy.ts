@@ -15,7 +15,7 @@ export const config = {
   matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
 }
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const headers = {
     'accept-language': request.headers.get('accept-language') ?? '',
   }
