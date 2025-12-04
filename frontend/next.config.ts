@@ -21,16 +21,7 @@ const nextConfig: NextConfig = {
       { protocol: 'https', hostname: 'ipfs.io', port: '' },
     ],
   },
-  turbopack: {
-    resolveAlias: {
-      fs: { browser: './empty.ts' },
-      net: { browser: './empty.ts' },
-      tls: { browser: './empty.ts' },
-      lokijs: { browser: './empty.ts' },
-      encoding: { browser: './empty.ts' },
-      'pino-pretty': { browser: './empty.ts' },
-    },
-  },
+  serverExternalPackages: ['pino', 'pino-pretty', 'thread-stream'],
 }
 
 export default withBundleAnalyzer(nextConfig)
