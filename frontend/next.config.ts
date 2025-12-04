@@ -1,14 +1,13 @@
-/** @type {import('next').NextConfig} */
+import type { NextConfig } from 'next'
 import './src/env/client.mjs'
 import './src/env/server.mjs'
 import analyze from '@next/bundle-analyzer'
 
 const withBundleAnalyzer = analyze({
   enabled: false,
-  defaultSizes: 'gzip',
 })
 
-const nextConfig = {
+const nextConfig: NextConfig = {
   reactStrictMode: true,
   reactCompiler: true,
   images: {
