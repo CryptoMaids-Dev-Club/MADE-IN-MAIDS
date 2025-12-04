@@ -24,7 +24,7 @@ export const TopBar = () => {
   const linkNames = ['Discord', 'X', 'WebSite', 'TACHIYOMI', 'OS', 'SHOOTING']
   const linkUrls = [
     'https://discord.gg/cryptomaids',
-    'https://twitter.com/CryptoMaids',
+    'https://x.com/CryptoMaids',
     'https://cryptomaids.tokyo/home',
     'https://cryptomaids.tokyo/tachiyomi',
     'https://opensea.io/collection/cryptomaids',

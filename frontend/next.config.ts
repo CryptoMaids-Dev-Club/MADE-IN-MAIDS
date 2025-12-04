@@ -9,49 +9,27 @@ const withBundleAnalyzer = analyze({
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  reactCompiler: true,
   images: {
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'cryptomaids-art.s3.ap-northeast-1.amazonaws.com',
-        port: '',
-      },
-      {
-        protocol: 'https',
-        hostname: 'cryptomaids-metadata.s3.amazonaws.com',
-        port: '',
-      },
-      {
-        protocol: 'https',
-        hostname: 'made-in-maids.s3.amazonaws.com',
-        port: '',
-      },
-      {
-        protocol: 'https',
-        hostname: 'made-in-maids.s3.us-east-1.amazonaws.com',
-        port: '',
-      },
-      {
-        protocol: 'https',
-        hostname: 'firebasestorage.googleapis.com',
-        port: '',
-      },
-      {
-        protocol: 'https',
-        hostname: 'maidsstakingpolygon.onrender.com',
-        port: '',
-      },
-      {
-        protocol: 'https',
-        hostname: 'placehold.jp', // for testing
-        port: '',
-      },
-      {
-        protocol: 'https',
-        hostname: 'ipfs.io',
-        port: '',
-      },
+      { protocol: 'https', hostname: 'cryptomaids-art.s3.ap-northeast-1.amazonaws.com', port: '' },
+      { protocol: 'https', hostname: 'cryptomaids-metadata.s3.amazonaws.com', port: '' },
+      { protocol: 'https', hostname: 'made-in-maids.s3.amazonaws.com', port: '' },
+      { protocol: 'https', hostname: 'firebasestorage.googleapis.com', port: '' },
+      { protocol: 'https', hostname: 'maidsstakingpolygon.onrender.com', port: '' },
+      { protocol: 'https', hostname: 'placehold.jp', port: '' }, // for testing
+      { protocol: 'https', hostname: 'ipfs.io', port: '' },
     ],
+  },
+  turbopack: {
+    resolveAlias: {
+      fs: { browser: './empty.ts' },
+      net: { browser: './empty.ts' },
+      tls: { browser: './empty.ts' },
+      lokijs: { browser: './empty.ts' },
+      encoding: { browser: './empty.ts' },
+      'pino-pretty': { browser: './empty.ts' },
+    },
   },
 }
 

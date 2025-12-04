@@ -107,3 +107,7 @@ dist
 # DS_Store
 .DS_Store
 .vercel
+
+# Agent generated files
+tasks.md
+docs/reports/*
