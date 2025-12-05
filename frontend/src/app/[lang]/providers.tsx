@@ -35,7 +35,7 @@ export const config = createConfig({
   connectors,
   transports: {
     [polygon.id]: http(),
-    [sepolia.id]: http('https://sepolia.infura.io/v3/bdd42d36e9dd409c90f343c48530cc4c'),
+    [sepolia.id]: http(process.env.NEXT_PUBLIC_SEPOLIA_RPC_URL || 'https://sepolia.infura.io/v3/your-project-id'),
   },
 })
 
@@ -57,7 +57,3 @@ export const Providers = ({ lang, children }: { lang: string; children: React.Re
 
 export default Providers
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-// reportWebVitals()
