@@ -40,7 +40,7 @@ export const useMaidsList = (targetAddress: Address): UseMaidsListReturnType => 
           setHasMore(false)
         }
       } catch (error) {
-        console.error('Failed to load more NFTs:', error)
+        // Failed to load NFTs, disable pagination
         setHasMore(false)
       }
     },

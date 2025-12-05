@@ -29,7 +29,11 @@ export const useSaveUserInfo = (address: Address) => {
             duration: 3000,
           })
         } catch (e) {
-          console.error(e)
+          toast({
+            title: 'Failed to update profile',
+            variant: 'destructive',
+            duration: 3000,
+          })
         }
       })
     }

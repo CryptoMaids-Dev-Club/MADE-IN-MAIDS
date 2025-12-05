@@ -31,7 +31,6 @@ export function useUser(address: Address) {
   })
 
   if (error) {
-    console.error(error)
     return {
       userInfo: defaultUser,
     }

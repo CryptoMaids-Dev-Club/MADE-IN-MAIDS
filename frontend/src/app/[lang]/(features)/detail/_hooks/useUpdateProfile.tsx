@@ -48,8 +48,8 @@ const useUpdateProfile = (profile: MaidProfile, asset: AssetInfo, owner: string)
             setEditing(false)
             toggleUpdating()
           })
-          .catch((e) => {
-            console.error(e)
+          .catch(() => {
+            // Profile update failed or user rejected signature
             toggleUpdating()
           })
       }

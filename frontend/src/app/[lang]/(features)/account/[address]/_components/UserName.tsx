@@ -39,7 +39,6 @@ const UserName = ({ targetAddress, userInfo }: UserNameProps) => {
   const handleClose = async (newName: string) => {
     setEditing(false)
     if (userInfo.name === newName || address === undefined) return
-    console.log('newName:', newName)
 
     await saveUserInfo(newName, userInfo.iconUrl)
   }

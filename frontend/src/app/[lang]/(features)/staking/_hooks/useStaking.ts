@@ -47,7 +47,7 @@ export const useStaking = () => {
         },
       })
     } catch (error) {
-      console.error('Failed to import token:', error)
+      // Token import failed silently - this is expected behavior when user rejects
     }
   }
 
